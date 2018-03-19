@@ -16,36 +16,30 @@ import static org.junit.Assert.*;
 public class RatingCalculatorTest {
     @Test
     public void ratingCalculatorConstructorTest2() {
-        try {
-            final Rating rating1 = new Rating(Rating.MIN_RATING);
-            final Rating rating2 = new Rating(5);
-            final Rating rating3 = new Rating(Rating.MAX_RATING);
-            List<Rating> ratingList = new ArrayList<>();
-            ratingList.add(rating1);
-            ratingList.add(rating2);
-            ratingList.add(rating3);
+        final Rating rating1 = new Rating(Rating.MIN_RATING);
+        final Rating rating2 = new Rating(5);
+        final Rating rating3 = new Rating(Rating.MAX_RATING);
+        List<Rating> ratingList = new ArrayList<>();
+        ratingList.add(rating1);
+        ratingList.add(rating2);
+        ratingList.add(rating3);
 
-            RatingCalculator calculator = new RatingCalculator(ratingList);
+        RatingCalculator calculator = new RatingCalculator(ratingList);
 
-            assertEquals(calculator.getAverageRating(), 5.0000, 0.001);
-
-        } catch (Rating.RatingOutOfBoundsException e) {e.printStackTrace();}
+        assertEquals(5.000, calculator.getAverageRating(), 0.001);
     }
 
     @Test
     public void calculateRatingTest() {
-        try {
-            final Rating rating1 = new Rating(Rating.MIN_RATING);
-            final Rating rating2 = new Rating(5);
-            final Rating rating3 = new Rating(Rating.MAX_RATING);
+        final Rating rating1 = new Rating(Rating.MIN_RATING);
+        final Rating rating2 = new Rating(5);
+        final Rating rating3 = new Rating(Rating.MAX_RATING);
 
-            RatingCalculator calculator = new RatingCalculator();
-            calculator.addRating(rating1);
-            calculator.addRating(rating2);
-            calculator.addRating(rating3);
+        RatingCalculator calculator = new RatingCalculator();
+        calculator.addRating(rating1);
+        calculator.addRating(rating2);
+        calculator.addRating(rating3);
 
-            assertEquals(calculator.getAverageRating(), 5.0000, 0.001);
-
-        } catch (Rating.RatingOutOfBoundsException e) {e.printStackTrace();}
+        assertEquals(5.000, calculator.getAverageRating(), 0.001);
     }
 }

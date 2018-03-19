@@ -15,9 +15,11 @@ public class Rating {
     private int mRating;
 
 
-    public Rating(int rating) throws RatingOutOfBoundsException{
-        if(rating < MIN_RATING || rating > MAX_RATING) {
-            throw new RatingOutOfBoundsException("Rating value outside possible values requested");
+    public Rating(int rating){
+        if(rating < MIN_RATING) {
+            mRating = MIN_RATING;
+        } else if(rating > MAX_RATING){
+            mRating = MAX_RATING;
         } else {
             mRating = rating;
         }
@@ -25,11 +27,5 @@ public class Rating {
 
     public int getRatingValue() {
         return mRating;
-    }
-
-    public class RatingOutOfBoundsException extends Exception {
-        public RatingOutOfBoundsException(String error) {
-            super(error);
-        }
     }
 }

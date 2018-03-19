@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by georg on 19.03.18.
@@ -13,31 +14,23 @@ import static org.junit.Assert.*;
 public class RatingTest {
     @Test
     public void ratingOutOfBoundsTest() {
-        try {
-            final Rating rating = new Rating(Rating.MIN_RATING -1);
-            Assert.fail("Should have thrown Rating.RatingOutOfBoundsException");
-        } catch (Rating.RatingOutOfBoundsException e) {}
+        final Rating ratingMin = new Rating(Rating.MIN_RATING -1);
+        assertEquals(Rating.MIN_RATING, ratingMin.getRatingValue());
 
-        try {
-            final Rating rating = new Rating(Rating.MAX_RATING + 1);
-            Assert.fail("Should have thrown Rating.RatingOutOfBoundsException");
-        } catch (Rating.RatingOutOfBoundsException e) {}
+        final Rating ratingMax = new Rating(Rating.MAX_RATING + 1);
+        assertEquals(Rating.MAX_RATING, ratingMax.getRatingValue());
     }
 
     @Test
     public void setGetRatingTest() {
-        try {
-            Rating rating = new Rating(Rating.MIN_RATING);
-            assertEquals(rating.getRatingValue(), Rating.MIN_RATING);
+        Rating rating = new Rating(Rating.MIN_RATING);
+        assertEquals(Rating.MIN_RATING, rating.getRatingValue());
 
-            rating = new Rating(Rating.MAX_RATING);
-            assertEquals(rating.getRatingValue(), Rating.MAX_RATING);
+        rating = new Rating(Rating.MAX_RATING);
+        assertEquals(Rating.MAX_RATING, rating.getRatingValue());
 
-            final int testValue = 5;
-            rating = new Rating(testValue);
-            assertEquals(rating.getRatingValue(), testValue);
-        } catch (Rating.RatingOutOfBoundsException e) {
-            e.printStackTrace();
-        }
+        final int testValue = 5;
+        rating = new Rating(testValue);
+        assertEquals(rating.getRatingValue(), testValue);
     }
 }
