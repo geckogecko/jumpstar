@@ -47,8 +47,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
 
     @Override
     public void onBindViewHolder(ExerciseViewHolder holder, int position) {
-        holder.txtName.setText(mExerciseList.get(position).mName);
-        holder.txtDescription.setText(mExerciseList.get(position).mDescription);
+        holder.txtName.setText(mExerciseList.get(position).getName());
+        holder.txtDescription.setText("bla");
     }
 
     @Override

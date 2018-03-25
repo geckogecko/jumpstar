@@ -48,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
 
         List<Exercise> exerciseList = new ArrayList<>();
+        /*
         exerciseList.add(new Exercise("Excercise1", "This is a long description bla as1 asdsdaf"));
         exerciseList.add(new Exercise("Excercise2", "This is a long description bla as1 asdsdaf"));
         exerciseList.add(new Exercise("Excercise3", "This is a long description bla as1 asdsdaf"));
         exerciseList.add(new Exercise("Excercise4", "This is a long description bla as1 asdsdaf"));
         exerciseList.add(new Exercise("Excercise5", "This is a long description bla as1 asdsdaf"));
+        */
 
         RVAdapter adapter = new RVAdapter(exerciseList);
         rv.setAdapter(adapter);
