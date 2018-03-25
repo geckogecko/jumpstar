@@ -39,11 +39,26 @@ public class ExerciseDescriptionTest {
 
     @Test
     public void exceptionTest() {
+        //case wrong oder
         final ExerciseStep step2 = new ExerciseStep(2, "Step 2");
         mSteps.add(step2);
 
         try {
             final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps, mEquipment);
+            assertTrue(false);
+        } catch (ExerciseDescription.MissingExerciseStepException e) {
+            assertTrue(true);
+        }
+
+
+        //case not starting with index 0
+        final ExerciseStep step1 = new ExerciseStep(1, "Step 1");
+
+        List<ExerciseStep> steps = new ArrayList<>();
+        steps.add(step1);
+
+        try {
+            final ExerciseDescription exerciseDescription2 = new ExerciseDescription(steps, mEquipment);
             assertTrue(false);
         } catch (ExerciseDescription.MissingExerciseStepException e) {
             assertTrue(true);
