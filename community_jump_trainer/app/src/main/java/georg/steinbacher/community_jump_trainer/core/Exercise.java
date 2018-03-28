@@ -1,4 +1,4 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 import java.util.List;
 
@@ -9,16 +9,28 @@ import java.util.List;
 public class Exercise {
     private String mName;
     private ExerciseDescription mDescription;
+    private List<Equipment> mEquipmentList;
     private Difficulty mDifficulty;
+    private Rating mRating;
 
-    Exercise(String name, ExerciseDescription description, Difficulty difficulty) {
+    Exercise(String name,
+             ExerciseDescription description,
+             List<Equipment> equipment,
+             Difficulty difficulty,
+             Rating rating) {
         mName = name;
         mDescription = description;
+        mEquipmentList = equipment;
         mDifficulty = difficulty;
+        mRating = rating;
     }
 
     public String getName() {
         return mName;
+    }
+
+    public List<Equipment> getNeededEquipment() {
+        return mEquipmentList;
     }
 
     public ExerciseDescription getDescription() {
@@ -27,5 +39,9 @@ public class Exercise {
 
     public Difficulty getDifficulty() {
         return mDifficulty;
+    }
+
+    public Rating getRating() {
+        return mRating;
     }
 }

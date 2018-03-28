@@ -1,4 +1,4 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 public class ExerciseStep {
     private static final String TAG = "ExerciseDescription.Steps";

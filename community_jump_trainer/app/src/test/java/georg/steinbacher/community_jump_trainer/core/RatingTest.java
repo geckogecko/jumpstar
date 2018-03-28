@@ -1,10 +1,9 @@
-package georg.steinbacher.community_jump_trainer;
-
-import junit.framework.Assert;
+package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import georg.steinbacher.community_jump_trainer.core.Rating;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,22 +14,22 @@ public class RatingTest {
     @Test
     public void ratingOutOfBoundsTest() {
         final Rating ratingMin = new Rating(Rating.MIN_RATING -1);
-        assertEquals(Rating.MIN_RATING, ratingMin.getRatingValue());
+        assertEquals(Rating.MIN_RATING, ratingMin.getRatingValue(), 0.001);
 
         final Rating ratingMax = new Rating(Rating.MAX_RATING + 1);
-        assertEquals(Rating.MAX_RATING, ratingMax.getRatingValue());
+        assertEquals(Rating.MAX_RATING, ratingMax.getRatingValue(), 0.001);
     }
 
     @Test
     public void setGetRatingTest() {
         Rating rating = new Rating(Rating.MIN_RATING);
-        assertEquals(Rating.MIN_RATING, rating.getRatingValue());
+        assertEquals(Rating.MIN_RATING, rating.getRatingValue(), 0.001);
 
         rating = new Rating(Rating.MAX_RATING);
-        assertEquals(Rating.MAX_RATING, rating.getRatingValue());
+        assertEquals(Rating.MAX_RATING, rating.getRatingValue(), 0.001);
 
-        final int testValue = 5;
+        final double testValue = 5.0;
         rating = new Rating(testValue);
-        assertEquals(rating.getRatingValue(), testValue);
+        assertEquals(testValue, rating.getRatingValue(), 0.001);
     }
 }

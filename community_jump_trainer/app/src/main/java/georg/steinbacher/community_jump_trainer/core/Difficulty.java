@@ -1,21 +1,21 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 /**
  * Created by georg on 28.03.18.
  */
 
-class Difficulty {
+public class Difficulty {
     private static final String TAG = "Difficulty";
 
-    static final int MAX = 10;
-    static final int MIN = 0;
+    public static final int MAX = 10;
+    public static final int MIN = 0;
 
-    static final int INTERMEDIATE_DIFFICULTY_LIMIT = 4; // <= BEGINNER
-    static final int EXPERT_DIFFICULTY_LIMIT = 7;
+    public static final int INTERMEDIATE_DIFFICULTY_LIMIT = 4; // <= BEGINNER
+    public static final int EXPERT_DIFFICULTY_LIMIT = 7;
 
     private double mValue;
 
-    Difficulty(double value) {
+    public Difficulty(double value) {
         if(value > MAX) {
             mValue = MAX;
         } else if(value < MIN) {
@@ -25,19 +25,19 @@ class Difficulty {
         mValue = value;
     }
 
-    double getValue() {
+    public double getValue() {
         return mValue;
     }
 
-    boolean isBeginner() {
+    public boolean isBeginner() {
         return mValue < INTERMEDIATE_DIFFICULTY_LIMIT;
     }
 
-    boolean isIntermediate() {
+    public boolean isIntermediate() {
         return mValue >= INTERMEDIATE_DIFFICULTY_LIMIT && mValue < EXPERT_DIFFICULTY_LIMIT;
     }
 
-    boolean isExpert() {
+    public boolean isExpert() {
         return mValue >= EXPERT_DIFFICULTY_LIMIT;
     }
 

@@ -1,4 +1,4 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 /**
  * Created by georg on 25.03.18.

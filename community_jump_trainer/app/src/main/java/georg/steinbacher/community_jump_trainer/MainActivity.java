@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import georg.steinbacher.community_jump_trainer.core.Exercise;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;

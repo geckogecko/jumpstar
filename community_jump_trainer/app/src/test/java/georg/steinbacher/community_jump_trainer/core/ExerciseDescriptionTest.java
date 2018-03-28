@@ -1,10 +1,14 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import georg.steinbacher.community_jump_trainer.core.Equipment;
+import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
+import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 
 import static org.junit.Assert.*;
 
@@ -15,26 +19,20 @@ import static org.junit.Assert.*;
 public class ExerciseDescriptionTest {
 
     private List<ExerciseStep> mSteps;
-    private List<Equipment> mEquipment;
 
     @Before
     public void init() {
         final ExerciseStep step0 = new ExerciseStep(0, "Step 1");
         mSteps = new ArrayList<>();
         mSteps.add(step0);
-
-        final Equipment equipment0 = new Equipment("TestEquipment0", Equipment.Type.GYM);
-        mEquipment = new ArrayList<>();
-        mEquipment.add(equipment0);
     }
 
 
     @Test
     public void constructorTest() throws ExerciseDescription.MissingExerciseStepException{
-        final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps, mEquipment);
+        final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps);
 
         assertEquals(mSteps, exerciseDescription.getSteps());
-        assertEquals(mEquipment, exerciseDescription.getNeededEquipment());
     }
 
     @Test
@@ -44,7 +42,7 @@ public class ExerciseDescriptionTest {
         mSteps.add(step2);
 
         try {
-            final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps, mEquipment);
+            final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps);
             assertTrue(false);
         } catch (ExerciseDescription.MissingExerciseStepException e) {
             assertTrue(true);
@@ -58,7 +56,7 @@ public class ExerciseDescriptionTest {
         steps.add(step1);
 
         try {
-            final ExerciseDescription exerciseDescription2 = new ExerciseDescription(steps, mEquipment);
+            final ExerciseDescription exerciseDescription2 = new ExerciseDescription(steps);
             assertTrue(false);
         } catch (ExerciseDescription.MissingExerciseStepException e) {
             assertTrue(true);
@@ -78,7 +76,7 @@ public class ExerciseDescriptionTest {
         steps.add(step1);
         steps.add(step3);
 
-        final ExerciseDescription exerciseDescription = new ExerciseDescription(steps, mEquipment);
+        final ExerciseDescription exerciseDescription = new ExerciseDescription(steps);
 
         List<ExerciseStep> returnedSteps = exerciseDescription.getSteps();
         assertEquals(returnedSteps.get(0), step0);

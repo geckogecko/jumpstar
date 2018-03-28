@@ -1,4 +1,4 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 import android.util.Log;
 
@@ -12,10 +12,10 @@ public class Rating {
     public static final int MAX_RATING = 10;
     public static final int MIN_RATING = 0;
 
-    private int mRating;
+    private double mRating;
 
 
-    public Rating(int rating){
+    public Rating(double rating){
         if(rating < MIN_RATING) {
             mRating = MIN_RATING;
         } else if(rating > MAX_RATING){
@@ -25,7 +25,7 @@ public class Rating {
         }
     }
 
-    public int getRatingValue() {
+    public double getRatingValue() {
         return mRating;
     }
 }

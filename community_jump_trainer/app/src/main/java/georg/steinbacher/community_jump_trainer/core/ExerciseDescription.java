@@ -1,4 +1,4 @@
-package georg.steinbacher.community_jump_trainer;
+package georg.steinbacher.community_jump_trainer.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,25 +11,18 @@ public class ExerciseDescription {
     private static final String TAG = "ExerciseDescription";
 
     private List<ExerciseStep> mSteps;
-    private List<Equipment> mEquipmentList;
 
-    ExerciseDescription(List<ExerciseStep> steps, List<Equipment> equipment) throws MissingExerciseStepException {
+    ExerciseDescription(List<ExerciseStep> steps) throws MissingExerciseStepException {
         //order the steps to be sure they are in the right order.
         mSteps = orderSteps(steps);
 
         //check if steps start with index 0
         if(mSteps.size() > 0 && mSteps.get(0).getStepNr() != 0)
             throw new MissingExerciseStepException("Steps are not starting with index 0");
-
-        mEquipmentList = equipment;
     }
 
     public List<ExerciseStep> getSteps() {
         return mSteps;
-    }
-
-    public List<Equipment> getNeededEquipment() {
-        return mEquipmentList;
     }
 
     private List<ExerciseStep> orderSteps(List<ExerciseStep> steps) throws MissingExerciseStepException {

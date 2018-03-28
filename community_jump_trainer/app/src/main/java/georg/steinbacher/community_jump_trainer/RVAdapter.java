@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import georg.steinbacher.community_jump_trainer.core.Exercise;
+
 /**
  * Created by georg on 15.03.18.
  */
