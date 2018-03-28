@@ -9,10 +9,12 @@ import java.util.List;
 public class Exercise {
     private String mName;
     private ExerciseDescription mDescription;
+    private Difficulty mDifficulty;
 
-    Exercise(String name, ExerciseDescription description) {
+    Exercise(String name, ExerciseDescription description, Difficulty difficulty) {
         mName = name;
         mDescription = description;
+        mDifficulty = difficulty;
     }
 
     public String getName() {
@@ -21,5 +23,9 @@ public class Exercise {
 
     public ExerciseDescription getDescription() {
         return mDescription;
+    }
+
+    public Difficulty getDifficulty() {
+        return mDifficulty;
     }
 }

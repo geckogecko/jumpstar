@@ -17,9 +17,12 @@ public class ExerciseTest {
         final String name = "testExercise";
         final ExerciseDescription exerciseDescription =
                 new ExerciseDescription(new ArrayList<ExerciseStep>(), new ArrayList<Equipment>());
-        Exercise exercise = new Exercise(name, exerciseDescription);
+        final Difficulty difficulty = new Difficulty(7.5);
+
+        Exercise exercise = new Exercise(name, exerciseDescription, difficulty);
 
         assertEquals(name, exercise.getName());
         assertEquals(exerciseDescription, exercise.getDescription());
+        assertEquals(difficulty, exercise.getDifficulty());
     }
 }
