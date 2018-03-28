@@ -28,6 +28,12 @@ public class DifficultyTest {
     public void constructorTest() {
         difficulty = new Difficulty(BEGINNER_VALUE);
         assertEquals(BEGINNER_VALUE, difficulty.getValue(), 0.001);
+
+        difficulty = new Difficulty(Difficulty.MIN - 1);
+        assertEquals(Difficulty.MIN, difficulty.getValue(), 0.001);
+
+        difficulty = new Difficulty(Difficulty.MAX + 1);
+        assertEquals(Difficulty.MAX, difficulty.getValue(), 0.001);
     }
 
 

@@ -50,7 +50,7 @@ public class ExerciseDescriptionTest {
 
 
         //case not starting with index 0
-        final ExerciseStep step1 = new ExerciseStep(1, "Step 1");
+        final ExerciseStep step1 = new ExerciseStep(6, "Step 6");
 
         List<ExerciseStep> steps = new ArrayList<>();
         steps.add(step1);

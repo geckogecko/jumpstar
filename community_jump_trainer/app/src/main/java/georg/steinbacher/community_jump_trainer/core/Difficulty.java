@@ -19,10 +19,10 @@ public class Difficulty {
         if(value > MAX) {
             mValue = MAX;
         } else if(value < MIN) {
+            mValue = MIN;
+        } else {
             mValue = value;
         }
-
-        mValue = value;
     }
 
     public double getValue() {
