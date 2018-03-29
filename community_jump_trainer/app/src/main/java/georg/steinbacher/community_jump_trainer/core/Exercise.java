@@ -8,21 +8,29 @@ import java.util.List;
 
 public class Exercise {
     private String mName;
-    private ExerciseDescription mDescription;
+    private ExerciseDescription mDescription; //TODO this should be dependent on the Type
     private List<Equipment> mEquipmentList;
     private Difficulty mDifficulty;
     private Rating mRating;
+    private Type mType;
+
+    public enum Type {
+        STANDARD,
+        TIME
+    }
 
     Exercise(String name,
              ExerciseDescription description,
              List<Equipment> equipment,
              Difficulty difficulty,
-             Rating rating) {
+             Rating rating,
+             Type type) {
         mName = name;
         mDescription = description;
         mEquipmentList = equipment;
         mDifficulty = difficulty;
         mRating = rating;
+        mType = type;
     }
 
     public String getName() {
@@ -43,5 +51,9 @@ public class Exercise {
 
     public Rating getRating() {
         return mRating;
+    }
+
+    public Type getType() {
+        return mType;
     }
 }
