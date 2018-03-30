@@ -87,7 +87,7 @@ public class UserTest{
     User eventMonitor = new User();
 
     @Test
-    public void listenerCalledTest() throws InterruptedException {
+    public void listenerCalledTest() {
         eventMonitor.setCurrentTrainingsPlan(trainingsPlan);
         verify(userListener, times(1)).onCurrentTrainingsPlanChanged(trainingsPlan);
         verify(userListener, times(0)).onTrainingsPlanAdded(null);

@@ -1,5 +1,6 @@
 package georg.steinbacher.community_jump_trainer.core;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,25 +14,64 @@ import static org.junit.Assert.*;
 
 public class TrainingsPlanTest {
 
-    @Test
-    public void constructorTest() throws ExerciseDescription.MissingExerciseStepException{
-        final String testName = "TestPlan";
-        List<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("TestExercise",
+    final String testName = "TestPlan";
+    List<Exercise> exercises;
+    final long timeStamp = System.currentTimeMillis();
+    final Rating rating = new Rating(5.0);
+    TrainingsPlan trainingsPlan;
+
+    Exercise exercise1, exercise2, exercise3;
+
+    @Before
+    public void init() throws ExerciseDescription.MissingExerciseStepException {
+        exercises = new ArrayList<>();
+        exercise1 = new StandardExercise("TestExercise1",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
                 new ArrayList<Equipment>(),
                 new Difficulty(4),
                 new Rating(7.0),
                 Exercise.TargetArea.FULL_BODY,
-                3));
-        final long timeStamp = System.currentTimeMillis();
-        final Rating rating = new Rating(5.0);
+                3,
+                15);
+        exercise2 = new TimeExercise("TestExercise2",
+                new ExerciseDescription(new ArrayList<ExerciseStep>()),
+                new ArrayList<Equipment>(),
+                new Difficulty(7),
+                new Rating(4.0),
+                Exercise.TargetArea.CORE,
+                3,
+                120);
+        exercise3 = new StandardExercise("TestExercise3",
+                new ExerciseDescription(new ArrayList<ExerciseStep>()),
+                new ArrayList<Equipment>(),
+                new Difficulty(7),
+                new Rating(4.0),
+                Exercise.TargetArea.ARMS,
+                3,
+                10);
+        exercises.add(exercise1);
+        exercises.add(exercise2);
+        exercises.add(exercise3);
 
-        final TrainingsPlan trainingsPlan = new TrainingsPlan(testName, exercises, timeStamp, rating);
+        trainingsPlan = new TrainingsPlan(testName, exercises, timeStamp, rating);
+    }
 
+    @Test
+    public void constructorTest() {
         assertEquals(testName, trainingsPlan.getName());
         assertEquals(exercises, trainingsPlan.getExercises());
         assertEquals(timeStamp, trainingsPlan.getCreationDate());
         assertEquals(rating, trainingsPlan.getRating());
+    }
+
+    @Test
+    public void completeListenerTest() {
+        assertEquals(exercise1, trainingsPlan.getCurrentExercise());
+        trainingsPlan.getCurrentExercise().complete();
+        assertEquals(exercise2, trainingsPlan.getCurrentExercise());
+        trainingsPlan.getCurrentExercise().complete();
+        assertEquals(exercise3, trainingsPlan.getCurrentExercise());
+        trainingsPlan.getCurrentExercise().complete();
+        assertEquals(null, trainingsPlan.getCurrentExercise());
     }
 }

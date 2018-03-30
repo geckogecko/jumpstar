@@ -28,6 +28,11 @@ public class Exercise {
         CORE
     }
 
+    private IExerciseListener mListener;
+    public interface IExerciseListener {
+        void onExerciseCompleted(Exercise completedExercise);
+    }
+
     Exercise(String name,
              ExerciseDescription description,
              List<Equipment> equipment,
@@ -74,5 +79,19 @@ public class Exercise {
 
     public int getSets() {
         return mSets;
+    }
+
+    public void setListener(IExerciseListener exerciseListener) {
+        mListener = exerciseListener;
+    }
+
+    /**
+     * Call when the user completed the current exercise.
+     * By clicking "next" or "finish" for example
+     */
+    public void complete() {
+        if(mListener != null) {
+            mListener.onExerciseCompleted(this);
+        }
     }
 }
