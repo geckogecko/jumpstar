@@ -2,11 +2,16 @@ package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by georg on 28.03.18.
@@ -18,6 +23,8 @@ public class TrainingsPlanTest {
     List<Exercise> exercises;
     final long timeStamp = System.currentTimeMillis();
     final Rating rating = new Rating(5.0);
+
+    @InjectMocks
     TrainingsPlan trainingsPlan;
 
     Exercise exercise1, exercise2, exercise3;
@@ -54,6 +61,9 @@ public class TrainingsPlanTest {
         exercises.add(exercise3);
 
         trainingsPlan = new TrainingsPlan(testName, exercises, timeStamp, rating);
+
+        // listenerCalledTest
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -65,7 +75,7 @@ public class TrainingsPlanTest {
     }
 
     @Test
-    public void completeListenerTest() {
+    public void completeCurrentExerciseTest() {
         assertEquals(exercise1, trainingsPlan.getCurrentExercise());
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(exercise2, trainingsPlan.getCurrentExercise());
@@ -73,5 +83,16 @@ public class TrainingsPlanTest {
         assertEquals(exercise3, trainingsPlan.getCurrentExercise());
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(null, trainingsPlan.getCurrentExercise());
+    }
+
+    @Mock
+    TrainingsPlan.ITrainingsPlanListener trainingsPlanListener;
+
+    @Test
+    public void trainingsPlanCompletedListenerTest() {
+        trainingsPlan.getCurrentExercise().complete();
+        trainingsPlan.getCurrentExercise().complete();
+        trainingsPlan.getCurrentExercise().complete();
+        verify(trainingsPlanListener, times(1)).onTrainingsPlanCompleted(trainingsPlan);
     }
 }

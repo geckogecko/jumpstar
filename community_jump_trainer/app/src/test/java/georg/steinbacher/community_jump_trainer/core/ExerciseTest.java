@@ -54,10 +54,8 @@ public class ExerciseTest {
         assertEquals(sets, exercise.getSets());
     }
 
-    //Listener test
     @Mock
     Exercise.IExerciseListener exerciseListener;
-
 
     @Test
     public void listenerCalledTest() {

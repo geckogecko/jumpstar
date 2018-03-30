@@ -16,6 +16,11 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
     private Rating mRating;
     private Exercise mCurrentExercise;
 
+    private ITrainingsPlanListener mListener;
+    public interface ITrainingsPlanListener {
+        void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
+    }
+
     public TrainingsPlan(String name, List<Exercise> exercises, long creationDate, Rating rating) {
         mName = name;
         mExercises = exercises;
@@ -39,7 +44,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
             mCurrentExercise.setListener(this);
         } else {
             mCurrentExercise = null;
-            //TODO notify TrainingsplanListeners about the complition of the trainingsplan
+
+            if(mListener != null) {
+                mListener.onTrainingsPlanCompleted(this);
+            }
         }
     }
 
@@ -61,5 +69,9 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
 
     public Exercise getCurrentExercise() {
         return mCurrentExercise;
+    }
+
+    public void setListener(ITrainingsPlanListener trainingsPlanListener) {
+        mListener = trainingsPlanListener;
     }
 }
