@@ -8,15 +8,24 @@ import java.util.List;
 
 public class Exercise {
     private String mName;
-    private ExerciseDescription mDescription; //TODO this should be dependent on the Type
+    private ExerciseDescription mDescription;
     private List<Equipment> mEquipmentList;
     private Difficulty mDifficulty;
     private Rating mRating;
-    private Type mType;
+    private TargetArea mTargetArea;
+    private int mSets;
 
     public enum Type {
+        UNKNOWN,
         STANDARD,
         TIME
+    }
+
+    public enum TargetArea {
+        FULL_BODY,
+        LEGS,
+        ARMS,
+        CORE
     }
 
     Exercise(String name,
@@ -24,13 +33,15 @@ public class Exercise {
              List<Equipment> equipment,
              Difficulty difficulty,
              Rating rating,
-             Type type) {
+             TargetArea targetArea,
+             int sets) {
         mName = name;
         mDescription = description;
         mEquipmentList = equipment;
         mDifficulty = difficulty;
         mRating = rating;
-        mType = type;
+        mTargetArea = targetArea;
+        mSets = sets;
     }
 
     public String getName() {
@@ -54,6 +65,14 @@ public class Exercise {
     }
 
     public Type getType() {
-        return mType;
+        return Type.UNKNOWN;
+    }
+
+    public TargetArea getTargetArea() {
+        return mTargetArea;
+    }
+
+    public int getSets() {
+        return mSets;
     }
 }

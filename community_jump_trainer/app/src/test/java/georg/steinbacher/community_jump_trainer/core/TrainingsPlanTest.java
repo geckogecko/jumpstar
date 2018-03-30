@@ -22,7 +22,8 @@ public class TrainingsPlanTest {
                 new ArrayList<Equipment>(),
                 new Difficulty(4),
                 new Rating(7.0),
-                Exercise.Type.STANDARD));
+                Exercise.TargetArea.FULL_BODY,
+                3));
         final long timeStamp = System.currentTimeMillis();
         final Rating rating = new Rating(5.0);
 

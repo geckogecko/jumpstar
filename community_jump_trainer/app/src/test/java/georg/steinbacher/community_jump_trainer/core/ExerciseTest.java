@@ -22,15 +22,18 @@ public class ExerciseTest {
         equipmentList.add(equipment0);
         final Difficulty difficulty = new Difficulty(7.5);
         final Rating rating = new Rating(8.4);
-        final Exercise.Type type= Exercise.Type.STANDARD;
+        final Exercise.TargetArea targetArea = Exercise.TargetArea.FULL_BODY;
+        final int sets = 3;
 
-        Exercise exercise = new Exercise(name, exerciseDescription, equipmentList, difficulty, rating, type);
+        Exercise exercise = new Exercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets);
 
         assertEquals(name, exercise.getName());
         assertEquals(exerciseDescription, exercise.getDescription());
         assertEquals(equipmentList, exercise.getNeededEquipment());
         assertEquals(difficulty, exercise.getDifficulty());
         assertEquals(rating, exercise.getRating());
-        assertEquals(type, exercise.getType());
+        assertEquals(Exercise.Type.UNKNOWN, exercise.getType());
+        assertEquals(targetArea, exercise.getTargetArea());
+        assertEquals(sets, exercise.getSets());
     }
 }
