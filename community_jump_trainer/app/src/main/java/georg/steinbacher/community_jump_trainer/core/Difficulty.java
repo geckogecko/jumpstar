@@ -16,9 +16,9 @@ public class Difficulty {
     private double mValue;
 
     public Difficulty(double value) {
-        if(value > MAX) {
+        if (value > MAX) {
             mValue = MAX;
-        } else if(value < MIN) {
+        } else if (value < MIN) {
             mValue = MIN;
         } else {
             mValue = value;

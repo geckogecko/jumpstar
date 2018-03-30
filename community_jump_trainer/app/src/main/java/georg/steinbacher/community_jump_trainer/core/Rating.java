@@ -1,7 +1,5 @@
 package georg.steinbacher.community_jump_trainer.core;
 
-import android.util.Log;
-
 /**
  * Created by georg on 19.03.18.
  */
@@ -15,10 +13,10 @@ public class Rating {
     private double mRating;
 
 
-    public Rating(double rating){
-        if(rating < MIN_RATING) {
+    public Rating(double rating) {
+        if (rating < MIN_RATING) {
             mRating = MIN_RATING;
-        } else if(rating > MAX_RATING){
+        } else if (rating > MAX_RATING) {
             mRating = MAX_RATING;
         } else {
             mRating = rating;

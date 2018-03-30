@@ -14,8 +14,10 @@ public class User {
     private TrainingsPlan mCurrentTrainingsPlan;
 
     private IUserListener mListener;
+
     public interface IUserListener {
         void onCurrentTrainingsPlanChanged(TrainingsPlan currentTrainingsPlan);
+
         void onTrainingsPlanAdded(TrainingsPlan addedTrainingsPlan);
     }
 
@@ -35,13 +37,13 @@ public class User {
      * @return false when the provided trainingsPlan is already in the list
      */
     public boolean addTrainingsPlan(TrainingsPlan trainingsPlan) {
-        if(mTrainingsPlanList.contains(trainingsPlan)) {
+        if (mTrainingsPlanList.contains(trainingsPlan)) {
             return false;
         }
 
         mTrainingsPlanList.add(trainingsPlan);
 
-        if(mListener != null) {
+        if (mListener != null) {
             mListener.onTrainingsPlanAdded(trainingsPlan);
         }
 
@@ -63,7 +65,7 @@ public class User {
 
     public void setCurrentTrainingsPlan(TrainingsPlan currentTrainingsPlan) {
         //notify listener
-        if(mListener != null && mCurrentTrainingsPlan != currentTrainingsPlan) {
+        if (mListener != null && mCurrentTrainingsPlan != currentTrainingsPlan) {
             mListener.onCurrentTrainingsPlanChanged(currentTrainingsPlan);
         }
 

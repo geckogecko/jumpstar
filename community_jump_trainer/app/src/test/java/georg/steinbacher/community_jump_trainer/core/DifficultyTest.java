@@ -2,7 +2,7 @@ package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by georg on 28.03.18.
@@ -35,7 +35,6 @@ public class DifficultyTest {
         difficulty = new Difficulty(Difficulty.MAX + 1);
         assertEquals(Difficulty.MAX, difficulty.getValue(), 0.001);
     }
-
 
 
     @Test

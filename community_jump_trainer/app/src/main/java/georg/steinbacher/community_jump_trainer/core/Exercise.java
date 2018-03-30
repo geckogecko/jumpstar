@@ -29,6 +29,7 @@ public class Exercise {
     }
 
     private IExerciseListener mListener;
+
     public interface IExerciseListener {
         void onExerciseCompleted(Exercise completedExercise);
     }
@@ -90,7 +91,7 @@ public class Exercise {
      * By clicking "next" or "finish" for example
      */
     public void complete() {
-        if(mListener != null) {
+        if (mListener != null) {
             mListener.onExerciseCompleted(this);
         }
     }

@@ -17,7 +17,7 @@ public class ExerciseDescription {
         mSteps = orderSteps(steps);
 
         //check if steps start with index 0
-        if(mSteps.size() > 0 && mSteps.get(0).getStepNr() != 0)
+        if (mSteps.size() > 0 && mSteps.get(0).getStepNr() != 0)
             throw new MissingExerciseStepException("Steps are not starting with index 0");
     }
 
@@ -40,7 +40,7 @@ public class ExerciseDescription {
                 }
             }
 
-            if(!stepFound) {
+            if (!stepFound) {
                 throw new MissingExerciseStepException("Step nr:" + i + " not found!");
             }
         }

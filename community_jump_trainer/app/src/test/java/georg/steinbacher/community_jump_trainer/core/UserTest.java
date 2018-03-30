@@ -8,9 +8,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -18,12 +17,12 @@ import static org.mockito.Mockito.verify;
  * Created by georg on 28.03.18.
  */
 
-public class UserTest{
+public class UserTest {
     TrainingsPlan trainingsPlan;
     List<TrainingsPlan> trainingsPlanList;
 
     @Before
-    public void init() throws ExerciseDescription.MissingExerciseStepException{
+    public void init() throws ExerciseDescription.MissingExerciseStepException {
         final String testName = "TestPlan";
         List<Exercise> exercises = new ArrayList<>();
         exercises.add(new Exercise("TestExercise",
@@ -45,7 +44,7 @@ public class UserTest{
     }
 
     @Test
-    public void setGetTrainingsPlanTest(){
+    public void setGetTrainingsPlanTest() {
         // set/get trainingsplan test
         User user = new User();
         assertEquals(true, user.addTrainingsPlan(trainingsPlan));

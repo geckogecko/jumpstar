@@ -9,6 +9,7 @@ public class Equipment {
 
     private String mName;
     private Type mType;
+
     public enum Type {
         GYM,
         HOME

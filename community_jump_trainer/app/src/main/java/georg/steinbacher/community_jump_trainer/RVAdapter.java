@@ -16,7 +16,7 @@ import georg.steinbacher.community_jump_trainer.core.Exercise;
  * Created by georg on 15.03.18.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder>{
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder> {
     private static final String TAG = "RVAdapter";
 
     private List<Exercise> mExerciseList;
@@ -29,10 +29,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ExerciseViewHolder
 
         ExerciseViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            txtName = (TextView)itemView.findViewById(R.id.person_name);
-            txtDescription = (TextView)itemView.findViewById(R.id.person_age);
-            imgPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            cv = (CardView) itemView.findViewById(R.id.cv);
+            txtName = (TextView) itemView.findViewById(R.id.person_name);
+            txtDescription = (TextView) itemView.findViewById(R.id.person_age);
+            imgPhoto = (ImageView) itemView.findViewById(R.id.person_photo);
         }
     }
 

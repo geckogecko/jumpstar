@@ -6,11 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import georg.steinbacher.community_jump_trainer.core.Equipment;
-import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
-import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by georg on 25.03.18.
@@ -29,7 +26,7 @@ public class ExerciseDescriptionTest {
 
 
     @Test
-    public void constructorTest() throws ExerciseDescription.MissingExerciseStepException{
+    public void constructorTest() throws ExerciseDescription.MissingExerciseStepException {
         final ExerciseDescription exerciseDescription = new ExerciseDescription(mSteps);
 
         assertEquals(mSteps, exerciseDescription.getSteps());
@@ -65,7 +62,7 @@ public class ExerciseDescriptionTest {
     }
 
     @Test
-    public void testOrderingOfSteps() throws ExerciseDescription.MissingExerciseStepException{
+    public void testOrderingOfSteps() throws ExerciseDescription.MissingExerciseStepException {
         final ExerciseStep step0 = new ExerciseStep(0, "Step 0");
         final ExerciseStep step1 = new ExerciseStep(1, "Step 1");
         final ExerciseStep step2 = new ExerciseStep(2, "Step 2");

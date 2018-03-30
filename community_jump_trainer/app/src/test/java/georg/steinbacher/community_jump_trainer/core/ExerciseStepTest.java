@@ -1,8 +1,6 @@
 package georg.steinbacher.community_jump_trainer.core;
 
-import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by georg on 25.03.18.

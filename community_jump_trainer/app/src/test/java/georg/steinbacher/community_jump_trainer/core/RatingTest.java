@@ -2,8 +2,6 @@ package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Test;
 
-import georg.steinbacher.community_jump_trainer.core.Rating;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -13,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class RatingTest {
     @Test
     public void ratingOutOfBoundsTest() {
-        final Rating ratingMin = new Rating(Rating.MIN_RATING -1);
+        final Rating ratingMin = new Rating(Rating.MIN_RATING - 1);
         assertEquals(Rating.MIN_RATING, ratingMin.getRatingValue(), 0.001);
 
         final Rating ratingMax = new Rating(Rating.MAX_RATING + 1);

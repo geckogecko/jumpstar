@@ -2,12 +2,7 @@ package georg.steinbacher.community_jump_trainer.core;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import georg.steinbacher.community_jump_trainer.core.Equipment;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by georg on 25.03.18.

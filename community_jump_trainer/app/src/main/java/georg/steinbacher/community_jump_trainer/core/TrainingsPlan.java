@@ -1,13 +1,12 @@
 package georg.steinbacher.community_jump_trainer.core;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by georg on 28.03.18.
  */
 
-public class TrainingsPlan implements Exercise.IExerciseListener{
+public class TrainingsPlan implements Exercise.IExerciseListener {
     private static final String TAG = "TrainingsPlan";
 
     private String mName;
@@ -17,6 +16,7 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
     private Exercise mCurrentExercise;
 
     private ITrainingsPlanListener mListener;
+
     public interface ITrainingsPlanListener {
         void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
     }
@@ -27,7 +27,7 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
         mCreationDate = creationDate;
         mRating = rating;
 
-        if(mExercises.size() > 0) {
+        if (mExercises.size() > 0) {
             mCurrentExercise = exercises.get(0);
             mCurrentExercise.setListener(this);
         }
@@ -38,14 +38,14 @@ public class TrainingsPlan implements Exercise.IExerciseListener{
         int completedExerciseIndex = mExercises.indexOf(completedExercise);
 
         // is this the last exercise ?
-        if(completedExerciseIndex != mExercises.size() - 1) {
-            Exercise nextExercise = mExercises.get(completedExerciseIndex +1);
+        if (completedExerciseIndex != mExercises.size() - 1) {
+            Exercise nextExercise = mExercises.get(completedExerciseIndex + 1);
             mCurrentExercise = nextExercise;
             mCurrentExercise.setListener(this);
         } else {
             mCurrentExercise = null;
 
-            if(mListener != null) {
+            if (mListener != null) {
                 mListener.onTrainingsPlanCompleted(this);
             }
         }
