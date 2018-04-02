@@ -18,8 +18,9 @@ public class StandardExercise extends Exercise {
                      Rating rating,
                      TargetArea targetArea,
                      int sets,
+                     Category category,
                      int repetetions) {
-        super(name, description, equipment, difficulty, rating, targetArea, sets);
+        super(name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mRepetitions = repetetions;
     }

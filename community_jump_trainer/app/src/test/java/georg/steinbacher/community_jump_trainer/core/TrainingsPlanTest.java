@@ -39,6 +39,7 @@ public class TrainingsPlanTest {
                 new Rating(7.0),
                 Exercise.TargetArea.FULL_BODY,
                 3,
+                Exercise.Category.STRENGTH,
                 15);
         exercise2 = new TimeExercise("TestExercise2",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
@@ -47,6 +48,7 @@ public class TrainingsPlanTest {
                 new Rating(4.0),
                 Exercise.TargetArea.CORE,
                 3,
+                Exercise.Category.STRENGTH,
                 120);
         exercise3 = new StandardExercise("TestExercise3",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
@@ -55,6 +57,7 @@ public class TrainingsPlanTest {
                 new Rating(4.0),
                 Exercise.TargetArea.ARMS,
                 3,
+                Exercise.Category.STRENGTH,
                 10);
         exercises.add(exercise1);
         exercises.add(exercise2);

@@ -31,7 +31,8 @@ public class UserTest {
                 new Difficulty(4),
                 new Rating(7.0),
                 Exercise.TargetArea.FULL_BODY,
-                3));
+                3,
+                Exercise.Category.STRENGTH));
         final long timeStamp = System.currentTimeMillis();
         final Rating rating = new Rating(5.0);
 

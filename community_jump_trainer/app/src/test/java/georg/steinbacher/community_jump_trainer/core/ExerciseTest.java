@@ -26,6 +26,7 @@ public class ExerciseTest {
     final Rating rating = new Rating(8.4);
     final Exercise.TargetArea targetArea = Exercise.TargetArea.FULL_BODY;
     final int sets = 3;
+    final Exercise.Category category= Exercise.Category.STRENGTH;
 
     @InjectMocks
     Exercise exercise;
@@ -36,7 +37,7 @@ public class ExerciseTest {
         equipmentList = new ArrayList<>();
         equipmentList.add(equipment0);
 
-        exercise = new Exercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets);
+        exercise = new Exercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category);
 
         // listenerCalledTest
         MockitoAnnotations.initMocks(this);
@@ -52,6 +53,7 @@ public class ExerciseTest {
         assertEquals(Exercise.Type.UNKNOWN, exercise.getType());
         assertEquals(targetArea, exercise.getTargetArea());
         assertEquals(sets, exercise.getSets());
+        assertEquals(category, exercise.getCategory());
     }
 
     @Mock

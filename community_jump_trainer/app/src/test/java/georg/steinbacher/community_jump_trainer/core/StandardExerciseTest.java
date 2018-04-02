@@ -28,9 +28,10 @@ public class StandardExerciseTest {
         final Rating rating = new Rating(8.4);
         final Exercise.TargetArea targetArea = Exercise.TargetArea.FULL_BODY;
         final int sets = 3;
+        final Exercise.Category category= Exercise.Category.STRENGTH;
 
 
-        mExercise = new StandardExercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, mRepetitions);
+        mExercise = new StandardExercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category, mRepetitions);
     }
 
     @Test

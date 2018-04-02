@@ -28,8 +28,9 @@ public class TimeExerciseTest {
         final Rating rating = new Rating(8.4);
         final Exercise.TargetArea targetArea = Exercise.TargetArea.FULL_BODY;
         final int sets = 3;
+        final Exercise.Category category= Exercise.Category.STRENGTH;
 
-        mExercise = new TimeExercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, time);
+        mExercise = new TimeExercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category, time);
     }
 
     @Test

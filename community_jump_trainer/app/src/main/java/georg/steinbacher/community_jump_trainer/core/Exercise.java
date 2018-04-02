@@ -14,6 +14,7 @@ public class Exercise {
     private Rating mRating;
     private TargetArea mTargetArea;
     private int mSets;
+    private Category mCategory;
 
     public enum Type {
         UNKNOWN,
@@ -28,6 +29,13 @@ public class Exercise {
         CORE
     }
 
+    //TODO which categories should we use?
+    public enum Category {
+        STRETCH,
+        STRENGTH,
+        PLYOMETRICS
+    }
+
     private IExerciseListener mListener;
 
     public interface IExerciseListener {
@@ -40,7 +48,8 @@ public class Exercise {
              Difficulty difficulty,
              Rating rating,
              TargetArea targetArea,
-             int sets) {
+             int sets,
+             Category category) {
         mName = name;
         mDescription = description;
         mEquipmentList = equipment;
@@ -48,6 +57,7 @@ public class Exercise {
         mRating = rating;
         mTargetArea = targetArea;
         mSets = sets;
+        mCategory = category;
     }
 
     public String getName() {
@@ -94,5 +104,9 @@ public class Exercise {
         if (mListener != null) {
             mListener.onExerciseCompleted(this);
         }
+    }
+
+    public Category getCategory() {
+        return mCategory;
     }
 }

@@ -18,8 +18,9 @@ public class TimeExercise extends Exercise {
                  Rating rating,
                  TargetArea targetArea,
                  int sets,
+                 Category category,
                  int time) {
-        super(name, description, equipment, difficulty, rating, targetArea, sets);
+        super(name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mTime = time;
     }
