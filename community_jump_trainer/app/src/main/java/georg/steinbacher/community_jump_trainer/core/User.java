@@ -12,7 +12,6 @@ public class User {
 
     private List<TrainingsPlan> mTrainingsPlanList;
     private TrainingsPlan mCurrentTrainingsPlan;
-    private StaticStatistic mStaticStatistic;
 
     private IUserListener mListener;
 
@@ -27,11 +26,9 @@ public class User {
     }
 
     public User(List<TrainingsPlan> trainingsPlanList,
-                TrainingsPlan currentTrainingsPlan,
-                StaticStatistic staticStatistic) {
+                TrainingsPlan currentTrainingsPlan) {
         mTrainingsPlanList = trainingsPlanList;
         mCurrentTrainingsPlan = currentTrainingsPlan;
-        mStaticStatistic = staticStatistic;
     }
 
     /**
@@ -80,9 +77,5 @@ public class User {
 
     public IUserListener getListener() {
         return mListener;
-    }
-
-    public StaticStatistic getStaticStatistic() {
-        return mStaticStatistic;
     }
 }

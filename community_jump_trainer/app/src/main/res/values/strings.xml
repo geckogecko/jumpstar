@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="centimeters_short">cm</string>
+    <string name="inches_short">inches</string>
+
+    <string name="setup_reach_height_input_hint">Your reach in %1$s</string>
 </resources>

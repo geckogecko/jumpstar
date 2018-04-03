@@ -52,7 +52,7 @@ public class UserTest {
         assertEquals(trainingsPlan, user.getTrainingsPlanList().get(0));
 
         // constructor / get trainingsplan test
-        user = new User(trainingsPlanList, null, null);
+        user = new User(trainingsPlanList, null);
         assertEquals(trainingsPlanList, user.getTrainingsPlanList());
 
         //set mutliple times the same trainingsplane
@@ -77,13 +77,6 @@ public class UserTest {
 
         user.setCurrentTrainingsPlan(trainingsPlan);
         assertEquals(true, user.hasCurrentTrainingsPlan());
-    }
-
-    @Test
-    public void getStaticStatisticTest() {
-        final StaticStatistic staticStatistic = new StaticStatistic();
-        User user = new User(trainingsPlanList, null, staticStatistic);
-        assertEquals(staticStatistic, user.getStaticStatistic());
     }
 
     // listenerCalledTest
