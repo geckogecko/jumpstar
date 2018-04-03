@@ -12,6 +12,7 @@ public class User {
 
     private List<TrainingsPlan> mTrainingsPlanList;
     private TrainingsPlan mCurrentTrainingsPlan;
+    private StaticStatistic mStaticStatistic;
 
     private IUserListener mListener;
 
@@ -23,13 +24,14 @@ public class User {
 
     public User() {
         mTrainingsPlanList = new ArrayList<>();
-        mListener = null;
     }
 
-    public User(List<TrainingsPlan> trainingsPlanList, TrainingsPlan currentTrainingsPlan) {
+    public User(List<TrainingsPlan> trainingsPlanList,
+                TrainingsPlan currentTrainingsPlan,
+                StaticStatistic staticStatistic) {
         mTrainingsPlanList = trainingsPlanList;
         mCurrentTrainingsPlan = currentTrainingsPlan;
-        mListener = null;
+        mStaticStatistic = staticStatistic;
     }
 
     /**
@@ -78,5 +80,9 @@ public class User {
 
     public IUserListener getListener() {
         return mListener;
+    }
+
+    public StaticStatistic getStaticStatistic() {
+        return mStaticStatistic;
     }
 }
