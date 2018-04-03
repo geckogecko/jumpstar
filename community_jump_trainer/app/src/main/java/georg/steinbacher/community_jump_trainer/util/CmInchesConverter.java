@@ -5,8 +5,6 @@ package georg.steinbacher.community_jump_trainer.util;
  */
 
 public class CmInchesConverter {
-    private static final String TAG = "CmInchesConverter";
-
     private static final double CONVERSATION_VALUE = 0.39370;
 
     public static double getInches(double cm) {
