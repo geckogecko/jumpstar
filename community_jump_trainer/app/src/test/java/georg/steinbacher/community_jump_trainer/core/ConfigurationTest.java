@@ -40,4 +40,12 @@ public class ConfigurationTest {
         assertEquals(MAX_REACH, mConfiguration.getReachHeight(), 0.0001);
     }
 
+    private static final boolean SETUP_COMPLETED = true;
+    @Test
+    public void setupCompletedTest() {
+        assertEquals(false, mConfiguration.isSetupCompleted());
+        mConfiguration.setSetupCompleted(SETUP_COMPLETED);
+        assertEquals(SETUP_COMPLETED, mConfiguration.isSetupCompleted());
+    }
+
 }

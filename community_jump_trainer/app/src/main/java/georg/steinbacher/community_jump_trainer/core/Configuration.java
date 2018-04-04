@@ -19,6 +19,7 @@ public class Configuration {
     private UnitLocal mUnitLocal;
     private boolean mIsReachHeightSet;
     private double mReachHeight; //max reach when standing
+    private boolean mSetupCompleted;
 
     private static final Configuration ourInstance = new Configuration();
     public static Configuration getInstance() {
@@ -60,6 +61,14 @@ public class Configuration {
 
     public double getReachHeight() {
         return mReachHeight;
+    }
+
+    public void setSetupCompleted(boolean setupCompleted) {
+        mSetupCompleted = setupCompleted;
+    }
+
+    public boolean isSetupCompleted() {
+        return mSetupCompleted;
     }
 
 }

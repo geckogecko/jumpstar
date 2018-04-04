@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WelcomeHelper mSetupHelper;
     private Context mContext;
+    private Configuration mConfig = Configuration.getInstance();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         // is this the first time the app is started ?
         // if yes -> open the Setup
-        if(!SharedPreferencesManager.getBoolean(this,
-                Configuration.SETUP_COMPLETED_KEY,
-                false)) {
+        if(!mConfig.isSetupCompleted()) {
             mSetupHelper = new WelcomeHelper(this, SetupActivity.class);
             mSetupHelper.forceShow();
         }
@@ -105,6 +104,13 @@ public class MainActivity extends AppCompatActivity {
     private void initConfiguration(Context context) {
         Configuration configuration = Configuration.getInstance();
 
+        //SETUP COMPLETED
+        boolean setupCompleted = SharedPreferencesManager.getBoolean(context, Configuration.SETUP_COMPLETED_KEY, false);
+        if(setupCompleted) {
+            configuration.setSetupCompleted(setupCompleted);
+        }
+
+        //REACHED HEIGHT
         double reachHeight = SharedPreferencesManager.getDouble(context, Configuration.REACHED_HEIGHT_KEY, -1);
         if(reachHeight != -1) {
             configuration.setReachHeight(reachHeight);
