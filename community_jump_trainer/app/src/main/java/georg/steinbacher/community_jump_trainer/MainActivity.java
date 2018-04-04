@@ -1,16 +1,21 @@
 package georg.steinbacher.community_jump_trainer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.stephentuso.welcome.WelcomeActivity;
+import com.stephentuso.welcome.WelcomeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +27,8 @@ import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private TextView mTextMessage;
+    private WelcomeHelper mSetupHelper;
+    private Context mContext;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,16 +51,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mContext = getApplicationContext();
+        //SharedPreferencesManager.clear(mContext);
+
+        initConfiguration(mContext);
+
         // is this the first time the app is started ?
         // if yes -> open the Setup
         if(!SharedPreferencesManager.getBoolean(this,
-                SetupActivity.SETUP_COMPLETED_KEY,
+                Configuration.SETUP_COMPLETED_KEY,
                 false)) {
-            Intent setupActivity = new Intent(this, SetupActivity.class);
-            this.startActivity(setupActivity);
+            mSetupHelper = new WelcomeHelper(this, SetupActivity.class);
+            mSetupHelper.forceShow();
         }
-
-        Log.i(TAG, "onCreate: "  + Configuration.getInstance().getReachHeight());
 
         setContentView(R.layout.activity_main);
 
@@ -80,4 +89,23 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if(requestCode == WelcomeHelper.DEFAULT_WELCOME_SCREEN_REQUEST) {
+           SharedPreferencesManager.writeBoolean(this,
+                   Configuration.SETUP_COMPLETED_KEY,
+                   true);
+        }
+    }
+
+    private void initConfiguration(Context context) {
+        Configuration configuration = Configuration.getInstance();
+
+        double reachHeight = SharedPreferencesManager.getDouble(context, Configuration.REACHED_HEIGHT_KEY, -1);
+        if(reachHeight != -1) {
+            configuration.setReachHeight(reachHeight);
+        }
+    }
 }

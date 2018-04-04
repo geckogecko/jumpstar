@@ -2,6 +2,7 @@ package georg.steinbacher.community_jump_trainer;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.stephentuso.welcome.FragmentWelcomePage;
 import com.stephentuso.welcome.TitlePage;
 import com.stephentuso.welcome.WelcomeActivity;
 import com.stephentuso.welcome.WelcomeConfiguration;
+import com.stephentuso.welcome.WelcomeHelper;
 
 import java.util.Locale;
 
@@ -21,8 +23,6 @@ import georg.steinbacher.community_jump_trainer.core.Configuration;
 
 public class SetupActivity extends WelcomeActivity {
     private static final String TAG = "SetupActivity";
-
-    public static final String SETUP_COMPLETED_KEY = "setup_completed";
 
     //https://github.com/stephentuso/welcome-android
 
@@ -48,7 +48,7 @@ public class SetupActivity extends WelcomeActivity {
                 .build();
     }
 
-    Locale getCurrentLocale(Context context){
+    private Locale getCurrentLocale(Context context){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             return context.getResources().getConfiguration().getLocales().get(0);
         } else{

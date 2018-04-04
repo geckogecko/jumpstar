@@ -8,6 +8,9 @@ import java.util.Locale;
 
 public class Configuration {
 
+    public static final String SETUP_COMPLETED_KEY = "setup_completed";
+    public static final String REACHED_HEIGHT_KEY = "reached_height";
+
     public enum UnitLocal {
         METRIC,
         IMPERIAL

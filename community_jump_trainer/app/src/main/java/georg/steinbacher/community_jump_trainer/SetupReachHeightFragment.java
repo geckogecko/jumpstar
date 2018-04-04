@@ -1,6 +1,7 @@
 package georg.steinbacher.community_jump_trainer;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import georg.steinbacher.community_jump_trainer.core.Configuration;
+import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
 
 public class SetupReachHeightFragment extends Fragment {
@@ -31,9 +33,10 @@ public class SetupReachHeightFragment extends Fragment {
                     try {
                         double parsedValue = Double.parseDouble(reachHeightInput.getText().toString());
                         Configuration.getInstance().setReachHeight(parsedValue);
+                        SharedPreferencesManager.writeDouble(getContext(), Configuration.REACHED_HEIGHT_KEY, parsedValue);
                     } catch (NumberFormatException e) {
-                        //TODO show error
-                        //not able to parse input
+                        Snackbar.make(v, R.string.setup_reach_height_input_error, Snackbar.LENGTH_SHORT)
+                                .show();
                     }
                 }
             }

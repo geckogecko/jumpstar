@@ -32,6 +32,15 @@ public class SharedPreferencesManager {
         return context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE).getBoolean(key, defaultValue);
     }
 
+    public static void writeDouble(Context context, String key, double value) {
+        getSharedPreferencesEditor(context).putLong(key, Double.doubleToRawLongBits(value)).apply();
+    }
+
+    public static double getDouble(Context context, String key, double defaultValue) {
+        return Double.longBitsToDouble(context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE)
+                .getLong(key, Double.doubleToLongBits(defaultValue)));
+    }
+
     private static SharedPreferences.Editor getSharedPreferencesEditor(Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE);
         return sharedPref.edit();
