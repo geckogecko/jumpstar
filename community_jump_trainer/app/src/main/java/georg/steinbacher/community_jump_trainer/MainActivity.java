@@ -38,8 +38,14 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    HomeFragment fragmentHome = new HomeFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentHome)
+                            .commit();
                     return true;
                 case R.id.navigation_dashboard:
+                    TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentTrai)
+                            .commit();
                     return true;
                 case R.id.navigation_notifications:
                     return true;
@@ -69,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
         //Bottom Navigation
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //Set the content
+        HomeFragment homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.main_content, homeFragment)
+                .commit();
 
         /*
         //Receicler

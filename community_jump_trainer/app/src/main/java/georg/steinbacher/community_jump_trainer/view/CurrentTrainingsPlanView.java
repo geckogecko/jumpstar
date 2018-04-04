@@ -6,23 +6,22 @@ import android.util.AttributeSet;
 
 import georg.steinbacher.community_jump_trainer.R;
 
-
 /**
  * Created by georg on 04.04.18.
  */
 
-public class TrainingsPlanView extends CardView {
-    public TrainingsPlanView(Context context) {
+public class CurrentTrainingsPlanView extends CardView {
+    public CurrentTrainingsPlanView(Context context) {
         super(context);
         init(context);
     }
 
-    public TrainingsPlanView(Context context, AttributeSet attrs) {
-        super(context,attrs);
+    public CurrentTrainingsPlanView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         init(context);
     }
 
     private void init(Context context) {
-        inflate(context, R.layout.view_trainings_plan, this);
+        inflate(context, R.layout.view_current_trainings_plan, this);
     }
 }
