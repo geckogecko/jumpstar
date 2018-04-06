@@ -28,6 +28,10 @@ public class SharedPreferencesManagerTest {
     private static final boolean BOOLEAN_VALUE = true;
     private static final boolean BOOLEAN_VALUE_DEFAULT = false;
 
+    private static final String STRING_KEY = "string";
+    private static final String STRING_VALUE = "test";
+    private static final String STRING_VALUE_DEFAULT = "default";
+
     private Context mContext;
 
     @Before
@@ -57,5 +61,23 @@ public class SharedPreferencesManagerTest {
         assertEquals(BOOLEAN_VALUE, SharedPreferencesManager.getBoolean(mContext, BOOLEAN_KEY, BOOLEAN_VALUE_DEFAULT));
 
         assertEquals(BOOLEAN_VALUE_DEFAULT, SharedPreferencesManager.getBoolean(mContext, "wrong key", BOOLEAN_VALUE_DEFAULT));
+    }
+
+    @Test
+    public void stringTest() {
+        assertEquals(STRING_VALUE_DEFAULT,
+                SharedPreferencesManager.getString(mContext, STRING_KEY, STRING_VALUE_DEFAULT));
+
+        SharedPreferencesManager.writeString(mContext, STRING_KEY, STRING_VALUE);
+        assertEquals(STRING_VALUE, SharedPreferencesManager.getString(mContext, STRING_KEY, STRING_VALUE_DEFAULT));
+
+        assertEquals(STRING_VALUE_DEFAULT, SharedPreferencesManager.getString(mContext, "wrong key", STRING_VALUE_DEFAULT));
+    }
+
+    @Test
+    public void containsTest() {
+        assertEquals(false, SharedPreferencesManager.contains(mContext, BOOLEAN_KEY));
+        SharedPreferencesManager.writeBoolean(mContext, BOOLEAN_KEY, BOOLEAN_VALUE);
+        assertEquals(true, SharedPreferencesManager.contains(mContext, BOOLEAN_KEY));
     }
 }

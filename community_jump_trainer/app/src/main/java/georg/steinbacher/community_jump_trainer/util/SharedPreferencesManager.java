@@ -16,6 +16,10 @@ public class SharedPreferencesManager {
         getSharedPreferencesEditor(context).clear().apply();
     }
 
+    public static boolean contains(Context context, String key) {
+        return context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE).contains(key);
+    }
+
     public static void writeInt(Context context, String key, int value) {
         getSharedPreferencesEditor(context).putInt(key, value).apply();
     }
@@ -39,6 +43,14 @@ public class SharedPreferencesManager {
     public static double getDouble(Context context, String key, double defaultValue) {
         return Double.longBitsToDouble(context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE)
                 .getLong(key, Double.doubleToLongBits(defaultValue)));
+    }
+
+    public static void writeString(Context context, String key, String value) {
+        getSharedPreferencesEditor(context).putString(key, value).apply();
+    }
+
+    public static String getString(Context context, String key, String defaultValue) {
+        return context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE).getString(key, defaultValue);
     }
 
     private static SharedPreferences.Editor getSharedPreferencesEditor(Context context) {
