@@ -10,6 +10,7 @@
     <string name="setup_reach_height_input_hint">Your reach in %1$s</string>
     <string name="setup_reach_height_input_error">Invalid Input</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Home -->
+    <string name="start_current_trainingsPlan">Start TrainingsPlan</string>
+
 </resources>

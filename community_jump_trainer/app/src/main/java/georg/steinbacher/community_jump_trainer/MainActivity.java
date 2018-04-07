@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         //SharedPreferencesManager.clear(mContext);
 
+        //development
+        Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, "Test Plan");
 
         // is this the first time the app is started ?
         // if yes -> open the Setup

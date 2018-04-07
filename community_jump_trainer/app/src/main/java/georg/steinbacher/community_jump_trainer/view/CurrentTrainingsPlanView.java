@@ -3,6 +3,8 @@ package georg.steinbacher.community_jump_trainer.view;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.R;
 
@@ -11,6 +13,11 @@ import georg.steinbacher.community_jump_trainer.R;
  */
 
 public class CurrentTrainingsPlanView extends CardView {
+
+    private View mRootView;
+
+    private String mName = "";
+
     public CurrentTrainingsPlanView(Context context) {
         super(context);
         init(context);
@@ -22,6 +29,16 @@ public class CurrentTrainingsPlanView extends CardView {
     }
 
     private void init(Context context) {
-        inflate(context, R.layout.view_current_trainings_plan, this);
+        mRootView = inflate(context, R.layout.view_current_trainings_plan, this);
+    }
+
+    public void setName(String name) {
+        mName = name;
+        TextView txtView = mRootView.findViewById(R.id.name);
+        txtView.setText(name);
+    }
+
+    public String getName() {
+        return mName;
     }
 }

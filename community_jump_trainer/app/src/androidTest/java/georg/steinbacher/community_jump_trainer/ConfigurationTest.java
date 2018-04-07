@@ -66,6 +66,17 @@ public class ConfigurationTest {
     }
 
     @Test
+    public void stringTest() {
+        final String testValue = "test_string";
+        final String stringKey = "string";
+
+        assertEquals(false, Configuration.isSet(mContext, stringKey));
+        Configuration.set(mContext, stringKey, testValue);
+        assertEquals(true, Configuration.isSet(mContext, stringKey));
+        assertEquals(testValue, Configuration.getString(mContext, stringKey));
+    }
+
+    @Test
     public void unitLocalTest() {
         final Locale metricLocal = Locale.GERMANY;
         final Locale imperialLocal = Locale.US;
