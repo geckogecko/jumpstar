@@ -19,6 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <georg.steinbacher.community_jump_trainer.view.TrainingsPlanHistoryView
+            android:id="@+id/trainings_plan_history_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </android.support.v7.widget.LinearLayoutCompat>
 
 </FrameLayout>

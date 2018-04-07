@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Calendar;
+
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
+import georg.steinbacher.community_jump_trainer.view.TrainingsPlanHistoryView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 public class HomeFragment extends Fragment {
@@ -34,5 +37,11 @@ public class HomeFragment extends Fragment {
         //Is vertical progress set?
         VerticalProgressView verticalProgress = view.findViewById(R.id.vertical_progress);
         //TODO add logic to hide/show the verticalProgress if we dont have any vertical progress data
+
+        //Load the history views
+        //TODO load from db and add dynamicaly
+        TrainingsPlanHistoryView trainingsPlanHistoryView = view.findViewById(R.id.trainings_plan_history_test);
+        trainingsPlanHistoryView.setTitle("History");
+        trainingsPlanHistoryView.setDate(Calendar.getInstance().getTime());
     }
 }
