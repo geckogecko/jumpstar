@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
+import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 public class HomeFragment extends Fragment {
     @Override
@@ -25,9 +26,13 @@ public class HomeFragment extends Fragment {
         //Is a current trainingsPlan set?
         CurrentTrainingsPlanView currentPlan = view.findViewById(R.id.current_trainingsPlan);
         if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
-            currentPlan.setName(Configuration.getString(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)); //TODO change to name
+            currentPlan.setTitle(Configuration.getString(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)); //TODO change to name
         } else {
             currentPlan.setVisibility(View.GONE);
         }
+
+        //Is vertical progress set?
+        VerticalProgressView verticalProgress = view.findViewById(R.id.vertical_progress);
+        //TODO add logic to hide/show the verticalProgress if we dont have any vertical progress data
     }
 }

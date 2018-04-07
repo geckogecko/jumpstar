@@ -6,7 +6,13 @@
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <georg.steinbacher.community_jump_trainer.view.VerticalProgressView
+            android:id="@+id/vertical_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView
             android:id="@+id/current_trainingsPlan"

@@ -16,7 +16,7 @@ public class CurrentTrainingsPlanView extends CardView {
 
     private View mRootView;
 
-    private String mName = "";
+    private String mTitle = "";
 
     public CurrentTrainingsPlanView(Context context) {
         super(context);
@@ -32,13 +32,13 @@ public class CurrentTrainingsPlanView extends CardView {
         mRootView = inflate(context, R.layout.view_current_trainings_plan, this);
     }
 
-    public void setName(String name) {
-        mName = name;
+    public void setTitle(String name) {
+        mTitle = name;
         TextView txtView = mRootView.findViewById(R.id.name);
         txtView.setText(name);
     }
 
-    public String getName() {
-        return mName;
+    public String getTitle() {
+        return mTitle;
     }
 }
