@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentHome)
                             .commit();
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_trainingsPlanChooser:
                     TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentTrai)
                             .commit();
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_settings:
                     return true;
             }
             return false;

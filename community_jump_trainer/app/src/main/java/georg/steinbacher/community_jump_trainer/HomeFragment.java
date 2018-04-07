@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Is a current trainingsplan set?
+        //Is a current trainingsPlan set?
         CurrentTrainingsPlanView currentPlan = view.findViewById(R.id.current_trainingsPlan);
         if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
             currentPlan.setName(Configuration.getString(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)); //TODO change to name

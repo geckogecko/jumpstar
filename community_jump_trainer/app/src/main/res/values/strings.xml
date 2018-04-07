@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Community_jump_trainer</string>
+
+    <!-- navigation -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_trainingsPlans">Plans</string>
+    <string name="title_settings">Settings</string>
 
     <string name="centimeters_short">cm</string>
     <string name="inches_short">inches</string>
