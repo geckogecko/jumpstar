@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SetupActivity" android:theme="@style/WelcomeScreenTheme"></activity>
+        <activity
+            android:name=".SetupActivity"
+            android:theme="@style/WelcomeScreenTheme" />
+        <activity android:name=".TrainingActivity"
+            />
     </application>
 
 </manifest>

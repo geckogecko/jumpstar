@@ -1,6 +1,7 @@
 package georg.steinbacher.community_jump_trainer;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,17 @@ public class HomeFragment extends Fragment {
         //Is a current trainingsPlan set?
         CurrentTrainingsPlanView currentPlan = view.findViewById(R.id.current_trainingsPlan);
         if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
-            currentPlan.setTitle(Configuration.getString(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)); //TODO change to name
+            final String trainingsPlanId = Configuration.getString(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY);
+            currentPlan.setTitle(trainingsPlanId); //TODO change to name
+            currentPlan.setOnStartClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), TrainingActivity.class);
+                    intent.putExtra(TrainingActivity.TRAININGS_PLAN_ID, trainingsPlanId);
+                    startActivity(intent);
+                }
+            });
+
         } else {
             currentPlan.setVisibility(View.GONE);
         }

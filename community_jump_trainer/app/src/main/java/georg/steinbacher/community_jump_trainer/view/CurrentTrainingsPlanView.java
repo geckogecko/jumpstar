@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.R;
@@ -40,5 +41,10 @@ public class CurrentTrainingsPlanView extends CardView {
 
     public String getTitle() {
         return mTitle;
+    }
+
+    public void setOnStartClickListener(OnClickListener listener) {
+        Button button = mRootView.findViewById(R.id.button_start);
+        button.setOnClickListener(listener);
     }
 }
