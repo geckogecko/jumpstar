@@ -42,14 +42,14 @@ public class Exercise {
         void onExerciseCompleted(Exercise completedExercise);
     }
 
-    Exercise(String name,
-             ExerciseDescription description,
-             List<Equipment> equipment,
-             Difficulty difficulty,
-             Rating rating,
-             TargetArea targetArea,
-             int sets,
-             Category category) {
+    public Exercise(String name,
+                    ExerciseDescription description,
+                    List<Equipment> equipment,
+                    Difficulty difficulty,
+                    Rating rating,
+                    TargetArea targetArea,
+                    int sets,
+                    Category category) {
         mName = name;
         mDescription = description;
         mEquipmentList = equipment;

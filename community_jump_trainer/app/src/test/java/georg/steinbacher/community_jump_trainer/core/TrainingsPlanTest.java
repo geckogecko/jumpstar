@@ -92,10 +92,13 @@ public class TrainingsPlanTest {
     TrainingsPlan.ITrainingsPlanListener trainingsPlanListener;
 
     @Test
-    public void trainingsPlanCompletedListenerTest() {
+    public void listenerTest() {
         trainingsPlan.getCurrentExercise().complete();
+        verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise1);
         trainingsPlan.getCurrentExercise().complete();
+        verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise2);
         trainingsPlan.getCurrentExercise().complete();
+        verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise3);
         verify(trainingsPlanListener, times(1)).onTrainingsPlanCompleted(trainingsPlan);
     }
 }

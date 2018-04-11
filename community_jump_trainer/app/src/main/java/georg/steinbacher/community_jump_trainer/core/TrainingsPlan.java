@@ -18,6 +18,7 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     private ITrainingsPlanListener mListener;
 
     public interface ITrainingsPlanListener {
+        void onCurrentExerciseCompleted(Exercise currentCompletedExercise);
         void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
     }
 
@@ -48,6 +49,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
             if (mListener != null) {
                 mListener.onTrainingsPlanCompleted(this);
             }
+        }
+
+        if(mListener != null) {
+            mListener.onCurrentExerciseCompleted(completedExercise);
         }
     }
 
