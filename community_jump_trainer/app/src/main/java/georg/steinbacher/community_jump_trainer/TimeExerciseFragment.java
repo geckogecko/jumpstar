@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.core.Exercise;
@@ -14,6 +15,8 @@ import georg.steinbacher.community_jump_trainer.core.Exercise;
 public class TimeExerciseFragment extends Fragment {
     private Exercise mExercise;
     private View mView;
+    private int mProgress;
+    private int mMaxProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +31,7 @@ public class TimeExerciseFragment extends Fragment {
 
         mView = view;
 
+        //Name
         TextView textView = mView.findViewById(R.id.exercise_name);
         textView.setText(mExercise.getName());
 
@@ -38,11 +42,19 @@ public class TimeExerciseFragment extends Fragment {
             }
         });
 
+        //Progress
+        ProgressBar progressBar = mView.findViewById(R.id.progress_bar);
+        progressBar.setMax(mMaxProgress);
+        progressBar.setProgress(mProgress);
     }
 
     public void setExercise(Exercise exercise) {
         mExercise = exercise;
+    }
 
+    public void setProgress(int progress, int maxProgress) {
+        mProgress = progress;
+        mMaxProgress = maxProgress;
     }
 
 }

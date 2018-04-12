@@ -75,21 +75,30 @@ public class TrainingsPlanTest {
         assertEquals(exercises, trainingsPlan.getExercises());
         assertEquals(timeStamp, trainingsPlan.getCreationDate());
         assertEquals(rating, trainingsPlan.getRating());
+        assertEquals(0, trainingsPlan.getCurrentExerciseIndex());
+        assertEquals(3, trainingsPlan.getExerciseCount());
     }
 
     @Test
     public void completeCurrentExerciseTest() {
         assertEquals(exercise1, trainingsPlan.getCurrentExercise());
         assertEquals(false, trainingsPlan.completedLastExercise());
+        assertEquals(0, trainingsPlan.getCurrentExerciseIndex());
+
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(exercise2, trainingsPlan.getCurrentExercise());
         assertEquals(false, trainingsPlan.completedLastExercise());
+        assertEquals(1, trainingsPlan.getCurrentExerciseIndex());
+
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(exercise3, trainingsPlan.getCurrentExercise());
         assertEquals(false, trainingsPlan.completedLastExercise());
+        assertEquals(2, trainingsPlan.getCurrentExerciseIndex());
+
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(null, trainingsPlan.getCurrentExercise());
         assertEquals(true, trainingsPlan.completedLastExercise());
+        assertEquals(-1, trainingsPlan.getCurrentExerciseIndex());
     }
 
     @Mock

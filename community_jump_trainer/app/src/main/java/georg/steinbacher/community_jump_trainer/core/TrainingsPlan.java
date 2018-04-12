@@ -86,4 +86,16 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     public boolean completedLastExercise() {
         return mCompletedLastExercise;
     }
+
+    public int getExerciseCount() {
+        return mExercises.size();
+    }
+
+    public int getCurrentExerciseIndex() {
+        if(mCurrentExercise == null) {
+            return -1;
+        } else {
+            return mExercises.indexOf(mCurrentExercise);
+        }
+    }
 }

@@ -41,13 +41,17 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         mTraingsPlan = new TrainingsPlan("test", exercises, 0, new Rating(0));
         mTraingsPlan.setListener(this);
 
-        loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+        loadExerciseFragment(mTraingsPlan.getCurrentExercise(),
+                mTraingsPlan.getCurrentExerciseIndex(),
+                mTraingsPlan.getExerciseCount());
     }
 
     @Override
     public void onCurrentExerciseCompleted(Exercise currentCompletedExercise) {
         if(!mTraingsPlan.completedLastExercise()) {
-            loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+            loadExerciseFragment(mTraingsPlan.getCurrentExercise(),
+                    mTraingsPlan.getCurrentExerciseIndex(),
+                    mTraingsPlan.getExerciseCount());
         }
     }
 
@@ -56,14 +60,16 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     }
 
-    private void loadExerciseFragment(Exercise exercise) {
+    private void loadExerciseFragment(Exercise exercise, int progress, int maxProgress) {
         if(exercise.getType() == Exercise.Type.STANDARD) {
             StandardExerciseFragment sef = new StandardExerciseFragment();
             sef.setExercise(exercise);
+            sef.setProgress(progress, maxProgress);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_content, sef).commit();
         } else if(exercise.getType() == Exercise.Type.TIME) {
             TimeExerciseFragment tef = new TimeExerciseFragment();
             tef.setExercise(exercise);
+            tef.setProgress(progress, maxProgress);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_content, tef).commit();
         }
     }
