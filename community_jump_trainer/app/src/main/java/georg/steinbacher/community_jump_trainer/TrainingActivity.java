@@ -39,17 +39,17 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         mTraingsPlan = new TrainingsPlan("test", exercises, 0, new Rating(0));
         mTraingsPlan.setListener(this);
 
-        ExerciseFragment exerciseFragment = new ExerciseFragment();
-        exerciseFragment.setExercise(mTraingsPlan.getCurrentExercise());
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, exerciseFragment)
+        StandardExerciseFragment standardExerciseFragment = new StandardExerciseFragment();
+        standardExerciseFragment.setExercise(mTraingsPlan.getCurrentExercise());
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, standardExerciseFragment)
                 .commit();
     }
 
     @Override
     public void onCurrentExerciseCompleted(Exercise currentCompletedExercise) {
-        ExerciseFragment exerciseFragment = new ExerciseFragment();
-        exerciseFragment.setExercise(mTraingsPlan.getCurrentExercise());
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, exerciseFragment)
+        StandardExerciseFragment standardExerciseFragment = new StandardExerciseFragment();
+        standardExerciseFragment.setExercise(mTraingsPlan.getCurrentExercise());
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, standardExerciseFragment)
                 .commit();
     }
 
