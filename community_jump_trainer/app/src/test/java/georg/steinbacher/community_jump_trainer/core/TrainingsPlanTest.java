@@ -80,12 +80,16 @@ public class TrainingsPlanTest {
     @Test
     public void completeCurrentExerciseTest() {
         assertEquals(exercise1, trainingsPlan.getCurrentExercise());
+        assertEquals(false, trainingsPlan.completedLastExercise());
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(exercise2, trainingsPlan.getCurrentExercise());
+        assertEquals(false, trainingsPlan.completedLastExercise());
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(exercise3, trainingsPlan.getCurrentExercise());
+        assertEquals(false, trainingsPlan.completedLastExercise());
         trainingsPlan.getCurrentExercise().complete();
         assertEquals(null, trainingsPlan.getCurrentExercise());
+        assertEquals(true, trainingsPlan.completedLastExercise());
     }
 
     @Mock

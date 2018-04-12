@@ -11,15 +11,15 @@ public class StandardExercise extends Exercise {
 
     private int mRepetitions;
 
-    StandardExercise(String name,
-                     ExerciseDescription description,
-                     List<Equipment> equipment,
-                     Difficulty difficulty,
-                     Rating rating,
-                     TargetArea targetArea,
-                     int sets,
-                     Category category,
-                     int repetetions) {
+    public StandardExercise(String name,
+                            ExerciseDescription description,
+                            List<Equipment> equipment,
+                            Difficulty difficulty,
+                            Rating rating,
+                            TargetArea targetArea,
+                            int sets,
+                            Category category,
+                            int repetetions) {
         super(name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mRepetitions = repetetions;

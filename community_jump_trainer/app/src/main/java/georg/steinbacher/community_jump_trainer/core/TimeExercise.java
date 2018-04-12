@@ -11,15 +11,15 @@ public class TimeExercise extends Exercise {
 
     private int mTime; //Seconds
 
-    TimeExercise(String name,
-                 ExerciseDescription description,
-                 List<Equipment> equipment,
-                 Difficulty difficulty,
-                 Rating rating,
-                 TargetArea targetArea,
-                 int sets,
-                 Category category,
-                 int time) {
+    public TimeExercise(String name,
+                        ExerciseDescription description,
+                        List<Equipment> equipment,
+                        Difficulty difficulty,
+                        Rating rating,
+                        TargetArea targetArea,
+                        int sets,
+                        Category category,
+                        int time) {
         super(name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mTime = time;

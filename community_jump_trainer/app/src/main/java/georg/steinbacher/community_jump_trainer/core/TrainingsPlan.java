@@ -14,6 +14,7 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     private long mCreationDate;
     private Rating mRating;
     private Exercise mCurrentExercise;
+    private boolean mCompletedLastExercise;
 
     private ITrainingsPlanListener mListener;
 
@@ -43,8 +44,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
             Exercise nextExercise = mExercises.get(completedExerciseIndex + 1);
             mCurrentExercise = nextExercise;
             mCurrentExercise.setListener(this);
+            mCompletedLastExercise = false;
         } else {
             mCurrentExercise = null;
+            mCompletedLastExercise = true;
 
             if (mListener != null) {
                 mListener.onTrainingsPlanCompleted(this);
@@ -78,5 +81,9 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
 
     public void setListener(ITrainingsPlanListener trainingsPlanListener) {
         mListener = trainingsPlanListener;
+    }
+
+    public boolean completedLastExercise() {
+        return mCompletedLastExercise;
     }
 }
