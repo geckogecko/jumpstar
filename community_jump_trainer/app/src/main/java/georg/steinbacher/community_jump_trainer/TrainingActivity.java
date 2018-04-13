@@ -104,7 +104,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
             fragmentTrans.replace(R.id.main_content, sef).commit();
         } else if(exercise.getType() == Exercise.Type.TIME) {
             TimeExerciseFragment tef = new TimeExerciseFragment();
-            tef.setExercise(exercise);
+            tef.setExercise((TimeExercise) exercise);
             fragmentTrans.replace(R.id.main_content, tef).commit();
         }
     }
