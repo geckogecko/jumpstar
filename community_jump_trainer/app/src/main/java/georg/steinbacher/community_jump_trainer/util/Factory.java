@@ -73,6 +73,22 @@ public class Factory {
             e.printStackTrace();
             return null;
         }
+    }
 
+    public static List<TrainingsPlan> getAllTrainingsPlans() {
+        JSONObject trainingsPlansJSON = JSONHolder.getInstance().getTrainingsPlans();
+
+        List<TrainingsPlan> trainingsPlans = new ArrayList<>();
+        for (int i = 1; i <= trainingsPlansJSON.length(); i++) {
+            TrainingsPlan trainingsPlan = createTraingsPlan(i);
+
+            if(trainingsPlan != null) {
+                trainingsPlans.add(trainingsPlan);
+            } else {
+                Log.e(TAG, "getAllTrainingsPlans: createTraingsPlan() returned null. Traininsplan not added!");
+            }
+        }
+
+        return trainingsPlans;
     }
 }

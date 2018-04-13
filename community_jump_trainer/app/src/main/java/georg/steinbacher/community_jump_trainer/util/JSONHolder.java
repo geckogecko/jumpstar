@@ -50,4 +50,8 @@ public class JSONHolder {
             return null;
         }
     }
+
+    JSONObject getTrainingsPlans() {
+        return mTraingsPlans;
+    }
 }

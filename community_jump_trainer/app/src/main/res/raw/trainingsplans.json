@@ -16,5 +16,15 @@
             }
         ],
         "creationDate": 1523611753
+    },
+    "2": {
+        "name": "Test Plan2",
+        "exercises": [
+            {
+                "type": "TIME",
+                "id": 1
+            }
+        ],
+        "creationDate": 1523612753
     }
 }
