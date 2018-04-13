@@ -8,22 +8,24 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark">
 
-    <Button
-        android:id="@+id/complete_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:text="Complete exercise"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="79dp" />
-
     <TextView
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
+    <TextView
+        android:id="@+id/exercise_name1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+        android:layout_height="200sp"
+        android:text="asd"/>
+    <TextView
+        android:id="@+id/exercise_name2"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:text="asd"/>
+    <TextView
+        android:id="@+id/exercise_name3"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:text="asd"/>
 </android.support.v7.widget.LinearLayoutCompat>

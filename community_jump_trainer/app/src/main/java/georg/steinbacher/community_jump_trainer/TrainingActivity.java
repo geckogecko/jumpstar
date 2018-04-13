@@ -1,9 +1,12 @@
 package georg.steinbacher.community_jump_trainer;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
     public static final String TRAININGS_PLAN_ID = "trainings_plan_id";
 
     private TrainingsPlan mTraingsPlan;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +43,43 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         exercises.add(new StandardExercise("exercise3", null,
                 null, null, null, null, 0, null, 13));
         mTraingsPlan = new TrainingsPlan("test", exercises, 0, new Rating(0));
+
+        //set progress
+        mProgressBar = findViewById(R.id.progress_bar);
+        mProgressBar.setMax(mTraingsPlan.getExerciseCount());
+        mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
+
+        //load the fragment for the current trainingsplan
+        loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         mTraingsPlan.setListener(this);
 
-        loadExerciseFragment(mTraingsPlan.getCurrentExercise(),
-                mTraingsPlan.getCurrentExerciseIndex(),
-                mTraingsPlan.getExerciseCount());
+        findViewById(R.id.complete_exercise_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTraingsPlan.getCurrentExercise().complete();
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        mTraingsPlan.setListener(null);
     }
 
     @Override
     public void onCurrentExerciseCompleted(Exercise currentCompletedExercise) {
         if(!mTraingsPlan.completedLastExercise()) {
-            loadExerciseFragment(mTraingsPlan.getCurrentExercise(),
-                    mTraingsPlan.getCurrentExerciseIndex(),
-                    mTraingsPlan.getExerciseCount());
+            loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+            mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
         }
     }
 
@@ -60,17 +88,18 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     }
 
-    private void loadExerciseFragment(Exercise exercise, int progress, int maxProgress) {
+    private void loadExerciseFragment(Exercise exercise) {
+        FragmentTransaction fragmentTrans = getSupportFragmentManager().beginTransaction();
+        fragmentTrans.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
+
         if(exercise.getType() == Exercise.Type.STANDARD) {
             StandardExerciseFragment sef = new StandardExerciseFragment();
             sef.setExercise(exercise);
-            sef.setProgress(progress, maxProgress);
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_content, sef).commit();
+            fragmentTrans.replace(R.id.main_content, sef).commit();
         } else if(exercise.getType() == Exercise.Type.TIME) {
             TimeExerciseFragment tef = new TimeExerciseFragment();
             tef.setExercise(exercise);
-            tef.setProgress(progress, maxProgress);
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_content, tef).commit();
+            fragmentTrans.replace(R.id.main_content, tef).commit();
         }
     }
 }

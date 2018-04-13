@@ -14,8 +14,6 @@ import georg.steinbacher.community_jump_trainer.core.Exercise;
 public class StandardExerciseFragment extends Fragment {
     private Exercise mExercise;
     private View mView;
-    private int mProgress;
-    private int mMaxProgress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,27 +31,10 @@ public class StandardExerciseFragment extends Fragment {
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);
         textView.setText(mExercise.getName());
-
-        mView.findViewById(R.id.complete_exercise).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mExercise.complete();
-            }
-        });
-
-        //Progress
-        ProgressBar progressBar = mView.findViewById(R.id.progress_bar);
-        progressBar.setMax(mMaxProgress);
-        progressBar.setProgress(mProgress);
     }
 
     public void setExercise(Exercise exercise) {
         mExercise = exercise;
 
-    }
-
-    public void setProgress(int progress, int maxProgress) {
-        mProgress = progress;
-        mMaxProgress = maxProgress;
     }
 }
