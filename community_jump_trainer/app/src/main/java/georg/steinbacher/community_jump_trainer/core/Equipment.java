@@ -5,7 +5,7 @@ package georg.steinbacher.community_jump_trainer.core;
  */
 
 public class Equipment {
-    private static final String TAG = "Equipment";
+    private static final String TAG = "equipment";
 
     private String mName;
     private Type mType;

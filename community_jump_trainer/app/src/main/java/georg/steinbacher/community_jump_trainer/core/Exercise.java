@@ -33,7 +33,7 @@ public class Exercise {
     public enum Category {
         STRETCH,
         STRENGTH,
-        PLYOMETRICS
+        POLYMETRICS
     }
 
     private IExerciseListener mListener;

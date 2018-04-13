@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.stephentuso.welcome.WelcomeHelper;
 
+import georg.steinbacher.community_jump_trainer.util.JSONHolder;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //SharedPreferencesManager.clear(mContext);
 
         //development
-        Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, "Test Plan");
+        Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, 1);
 
         // is this the first time the app is started ?
         // if yes -> open the Setup
@@ -66,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
         HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.main_content, homeFragment)
                 .commit();
+
+        //Load all the json data
+        JSONHolder holder = JSONHolder.getInstance();
+        holder.loadExercises(mContext);
+        holder.loadTrainingsPlans(mContext);
+
+
 
         /*
         //Receicler
