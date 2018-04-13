@@ -10,9 +10,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.core.Exercise;
+import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 
 public class StandardExerciseFragment extends Fragment {
-    private Exercise mExercise;
+    private StandardExercise mExercise;
     private View mView;
 
     @Override
@@ -29,12 +30,19 @@ public class StandardExerciseFragment extends Fragment {
         mView = view;
 
         //Name
-        TextView textView = mView.findViewById(R.id.exercise_name);
-        textView.setText(mExercise.getName());
+        TextView nameTextView = mView.findViewById(R.id.exercise_name);
+        nameTextView.setText(mExercise.getName());
+
+        //Sets
+        TextView setsTextView = mView.findViewById(R.id.exercise_sets);
+        setsTextView.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
+
+        //Repetitions
+        TextView repetitionsTextView = mView.findViewById(R.id.exercise_repetitions);
+        repetitionsTextView.setText(getString(R.string.exercise_repetitions, Integer.toString(mExercise.getRepetitions())));
     }
 
-    public void setExercise(Exercise exercise) {
+    public void setExercise(StandardExercise exercise) {
         mExercise = exercise;
-
     }
 }

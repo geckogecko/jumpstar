@@ -67,7 +67,9 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         findViewById(R.id.complete_exercise_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTraingsPlan.getCurrentExercise().complete();
+                if(mTraingsPlan.getCurrentExercise() != null) {
+                    mTraingsPlan.getCurrentExercise().complete();
+                }
             }
         });
     }
@@ -98,7 +100,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
         if(exercise.getType() == Exercise.Type.STANDARD) {
             StandardExerciseFragment sef = new StandardExerciseFragment();
-            sef.setExercise(exercise);
+            sef.setExercise((StandardExercise) exercise);
             fragmentTrans.replace(R.id.main_content, sef).commit();
         } else if(exercise.getType() == Exercise.Type.TIME) {
             TimeExerciseFragment tef = new TimeExerciseFragment();
