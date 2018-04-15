@@ -21,8 +21,8 @@
         <activity
             android:name=".SetupActivity"
             android:theme="@style/WelcomeScreenTheme" />
-        <activity android:name=".TrainingActivity"
-            />
+        <activity android:name=".TrainingActivity" />
+        <activity android:name=".TrainingsPlanDetailActivity"></activity>
     </application>
 
 </manifest>
