@@ -19,6 +19,7 @@ import static org.mockito.Mockito.verify;
 
 public class TrainingsPlanTest {
 
+    final int id = 1;
     final String testName = "TestPlan";
     List<Exercise> exercises;
     final long timeStamp = System.currentTimeMillis();
@@ -63,7 +64,7 @@ public class TrainingsPlanTest {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        trainingsPlan = new TrainingsPlan(testName, exercises, timeStamp, rating);
+        trainingsPlan = new TrainingsPlan(id, testName, exercises, timeStamp, rating);
 
         // listenerCalledTest
         MockitoAnnotations.initMocks(this);
@@ -77,6 +78,7 @@ public class TrainingsPlanTest {
         assertEquals(rating, trainingsPlan.getRating());
         assertEquals(0, trainingsPlan.getCurrentExerciseIndex());
         assertEquals(3, trainingsPlan.getExerciseCount());
+        assertEquals(id, trainingsPlan.getId());
     }
 
     @Test

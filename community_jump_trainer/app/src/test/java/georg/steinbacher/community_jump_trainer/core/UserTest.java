@@ -23,6 +23,7 @@ public class UserTest {
 
     @Before
     public void init() throws ExerciseDescription.MissingExerciseStepException {
+        final int testId = 1;
         final String testName = "TestPlan";
         List<Exercise> exercises = new ArrayList<>();
         exercises.add(new Exercise("TestExercise",
@@ -36,7 +37,7 @@ public class UserTest {
         final long timeStamp = System.currentTimeMillis();
         final Rating rating = new Rating(5.0);
 
-        trainingsPlan = new TrainingsPlan(testName, exercises, timeStamp, rating);
+        trainingsPlan = new TrainingsPlan(testId, testName, exercises, timeStamp, rating);
         trainingsPlanList = new ArrayList<>();
         trainingsPlanList.add(trainingsPlan);
 

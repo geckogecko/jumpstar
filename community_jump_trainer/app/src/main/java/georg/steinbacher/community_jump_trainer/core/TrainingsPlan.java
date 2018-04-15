@@ -9,6 +9,7 @@ import java.util.List;
 public class TrainingsPlan implements Exercise.IExerciseListener {
     private static final String TAG = "TrainingsPlan";
 
+    private int mId;
     private String mName;
     private List<Exercise> mExercises;
     private long mCreationDate;
@@ -23,7 +24,8 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
     }
 
-    public TrainingsPlan(String name, List<Exercise> exercises, long creationDate, Rating rating) {
+    public TrainingsPlan(int id, String name, List<Exercise> exercises, long creationDate, Rating rating) {
+        mId = id;
         mName = name;
         mExercises = exercises;
         mCreationDate = creationDate;
@@ -57,6 +59,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         if(mListener != null) {
             mListener.onCurrentExerciseCompleted(completedExercise);
         }
+    }
+
+    public int getId() {
+        return mId;
     }
 
     public String getName() {

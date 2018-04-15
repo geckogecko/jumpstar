@@ -23,9 +23,9 @@ public class Factory {
     private static final String TAG = "Factory";
 
     //TODO also add the missing field which get inserted with null atm
-    public static TrainingsPlan createTraingsPlan(int trainingsPlan) {
+    public static TrainingsPlan createTraingsPlan(int trainingsPlanId) {
         JSONHolder holder = JSONHolder.getInstance();
-        JSONObject loadedTraingsPlan = holder.getTraingsPlan(trainingsPlan);
+        JSONObject loadedTraingsPlan = holder.getTraingsPlan(trainingsPlanId);
 
         //Load the exercises
         try {
@@ -65,7 +65,8 @@ public class Factory {
                 }
             }
 
-            return new TrainingsPlan(loadedTraingsPlan.getString("name"),
+            return new TrainingsPlan(trainingsPlanId,
+                    loadedTraingsPlan.getString("name"),
                     exercises,
                     loadedTraingsPlan.getLong("creationDate"),
                     null);

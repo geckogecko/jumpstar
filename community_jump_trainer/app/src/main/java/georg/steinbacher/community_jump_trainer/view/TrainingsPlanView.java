@@ -45,7 +45,7 @@ public class TrainingsPlanView extends CardView implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
-        intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getName());
+        intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
         mContext.startActivity(intent);
     }
 }
