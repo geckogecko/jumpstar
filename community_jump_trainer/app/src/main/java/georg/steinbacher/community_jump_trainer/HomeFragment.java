@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
         CurrentTrainingsPlanView currentPlan = view.findViewById(R.id.current_trainingsPlan);
         if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
             final int trainingsPlanId = Configuration.getInt(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY);
-            currentPlan.setTitle("Test"); //TODO change to name
+            currentPlan.setName("Test");
             currentPlan.setOnStartClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
