@@ -5,29 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="georg.steinbacher.community_jump_trainer.StandardExerciseFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/TrainingsStyle">
 
     <TextView
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
     <ImageView
         android:id="@+id/exercise_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300sp"
         app:srcCompat="@drawable/ic_launcher_foreground"/>
 
     <TextView
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="Sets: XX"/>
 
     <TextView
         android:id="@+id/exercise_repetitions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text= "Repetition: XX"/>
 
 </android.support.v7.widget.LinearLayoutCompat>
