@@ -21,6 +21,13 @@
         app:isShowMinute="true"
         app:isShowSecond="true" />
 
+    <ProgressBar
+        android:id="@+id/time_exercise_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+        android:progress="0"/>
+
     <Button
         android:id="@+id/exercise_start_button"
         android:layout_width="match_parent"

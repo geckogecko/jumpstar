@@ -15,10 +15,11 @@ import cn.iwgang.countdownview.CountdownView;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 
-public class TimeExerciseFragment extends Fragment implements CountdownView.OnCountdownEndListener{
+public class TimeExerciseFragment extends Fragment implements CountdownView.OnCountdownEndListener, CountdownView.OnCountdownIntervalListener{
     private TimeExercise mExercise;
     private View mView;
     private CountdownView mCountdownView;
+    private ProgressBar mProgressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +41,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
         mCountdownView.setOnCountdownEndListener(this);
+        mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
 
         //Button
         Button exerciseStart = mView.findViewById(R.id.exercise_start_button);
@@ -49,6 +51,9 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                 mCountdownView.start(mExercise.getTime() * 1000);
             }
         });
+
+        //ProgressBar
+        mProgressBar = mView.findViewById(R.id.time_exercise_progress_bar);
     }
 
     public void setExercise(TimeExercise exercise) {
@@ -57,6 +62,13 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
     @Override
     public void onEnd(CountdownView cv) {
+        //TODO do something when countdown ends
+    }
 
+    @Override
+    public void onInterval(CountdownView cv, long remainTime) {
+        int passedTime = mExercise.getTime() - (int)(remainTime/1000);
+        int progressPercent = (passedTime * 100) / mExercise.getTime();
+        mProgressBar.setProgress(progressPercent);
     }
 }
