@@ -91,7 +91,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     @Override
     public void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan) {
-
+        //TODO add to history
+        finish();
     }
 
     private void loadExerciseFragment(Exercise exercise) {
