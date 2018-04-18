@@ -62,7 +62,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
     @Override
     public void onEnd(CountdownView cv) {
-        //TODO do something when countdown ends
+        mExercise.complete();
     }
 
     @Override
