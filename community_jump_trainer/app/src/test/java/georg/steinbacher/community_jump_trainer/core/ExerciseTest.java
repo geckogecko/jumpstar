@@ -54,6 +54,7 @@ public class ExerciseTest {
         assertEquals(targetArea, exercise.getTargetArea());
         assertEquals(sets, exercise.getSets());
         assertEquals(category, exercise.getCategory());
+        assertEquals(false, exercise.isCompleted());
     }
 
     @Mock
@@ -61,7 +62,9 @@ public class ExerciseTest {
 
     @Test
     public void listenerCalledTest() {
+        assertEquals(false, exercise.isCompleted());
         exercise.complete();
         verify(exerciseListener, times(1)).onExerciseCompleted(exercise);
+        assertEquals(true, exercise.isCompleted());
     }
 }

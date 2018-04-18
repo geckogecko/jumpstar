@@ -19,6 +19,7 @@ import georg.steinbacher.community_jump_trainer.core.Rating;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.drawables.TrainingsPlanProgressDrawable;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
 
@@ -52,6 +53,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         mProgressBar = findViewById(R.id.progress_bar);
         mProgressBar.setMax(mTraingsPlan.getExerciseCount());
         mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
+        mProgressBar.setProgressDrawable(new TrainingsPlanProgressDrawable(
+                mTraingsPlan, getApplicationContext()));
 
         //load the fragment for the current trainingsplan
         loadExerciseFragment(mTraingsPlan.getCurrentExercise());
@@ -83,15 +86,16 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     @Override
     public void onCurrentExerciseCompleted(Exercise currentCompletedExercise) {
+        mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
+
         if(!mTraingsPlan.completedLastExercise()) {
             loadExerciseFragment(mTraingsPlan.getCurrentExercise());
-            mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
         }
     }
 
     @Override
     public void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan) {
-        //TODO add to history
+        //TODO return something
         finish();
     }
 

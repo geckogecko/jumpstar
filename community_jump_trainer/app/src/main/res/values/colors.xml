@@ -3,4 +3,10 @@
     <color name="colorPrimary">#CDDC39</color>
     <color name="colorPrimaryDark">#C0CA33</color>
     <color name="colorAccent">#009688</color>
+
+
+    <color name="colorStandardExercise">#3633ca</color>
+    <color name="colorStandardExerciseLight">#6bc4f7</color>
+    <color name="colorTimeExercise">#068415</color>
+    <color name="colorTimeExerciseLight">#6bf77b</color>
 </resources>

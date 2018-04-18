@@ -15,6 +15,7 @@ public class Exercise {
     private TargetArea mTargetArea;
     private int mSets;
     private Category mCategory;
+    private boolean mCompleted;
 
     public enum Type {
         UNKNOWN,
@@ -101,6 +102,8 @@ public class Exercise {
      * By clicking "next" or "finish" for example
      */
     public void complete() {
+        mCompleted = true;
+
         if (mListener != null) {
             mListener.onExerciseCompleted(this);
         }
@@ -108,5 +111,9 @@ public class Exercise {
 
     public Category getCategory() {
         return mCategory;
+    }
+
+    public boolean isCompleted() {
+        return mCompleted;
     }
 }
