@@ -5,8 +5,10 @@
     <color name="colorAccent">#009688</color>
 
 
-    <color name="colorStandardExercise">#3633ca</color>
-    <color name="colorStandardExerciseLight">#6bc4f7</color>
-    <color name="colorTimeExercise">#068415</color>
-    <color name="colorTimeExerciseLight">#6bf77b</color>
+    <color name="colorExerciseStretch">#068415</color>
+    <color name="colorExerciseStretchLight">#6bf77b</color>
+    <color name="colorExerciseStrength">#3633ca</color>
+    <color name="colorExerciseStrengthLight">#6bc4f7</color>
+    <color name="colorExercisePlyometric">#8633ca</color>
+    <color name="colorExercisePlyometricLight">#bc8be4</color>
 </resources>

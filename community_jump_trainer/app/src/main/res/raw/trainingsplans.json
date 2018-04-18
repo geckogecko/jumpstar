@@ -3,6 +3,10 @@
         "name": "Test Plan",
         "exercises": [
             {
+                "type": "TIME",
+                "id": 2
+            },
+            {
                 "type": "STANDARD",
                 "id": 1
             },

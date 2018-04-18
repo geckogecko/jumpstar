@@ -50,16 +50,20 @@ public class TrainingsPlanProgressDrawable extends Drawable {
             final Exercise exercise = mTraingsPlan.getExercises().get(i);
             Paint paint = new Paint();
             if (exercise.isCompleted()) {
-                if(exercise.getType() == Exercise.Type.STANDARD) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorStandardExercise));
-                } else if(exercise.getType() == Exercise.Type.TIME) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorTimeExercise));
+                if(exercise.getCategory() == Exercise.Category.STRETCH) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStretch));
+                } else if(exercise.getCategory() == Exercise.Category.STRENGTH) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStrength));
+                } else if(exercise.getCategory() == Exercise.Category.PLYOMETRIC) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExercisePlyometric));
                 }
             } else {
-                if(exercise.getType() == Exercise.Type.STANDARD) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorStandardExerciseLight));
-                } else if(exercise.getType() == Exercise.Type.TIME) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorTimeExerciseLight));
+                if(exercise.getCategory() == Exercise.Category.STRETCH) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStretchLight));
+                } else if(exercise.getCategory() == Exercise.Category.STRENGTH) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStrengthLight));
+                } else if(exercise.getCategory() == Exercise.Category.PLYOMETRIC) {
+                    paint.setColor(mContext.getResources().getColor(R.color.colorExercisePlyometricLight));
                 }
             }
             canvas.drawRect(segment, paint);

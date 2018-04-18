@@ -13,7 +13,7 @@
       "difficulty": 2,
       "targetArea": "LEGS",
       "sets": 2,
-      "category": "POLYMETRICS",
+      "category": "PLYOMETRIC",
       "repetitions": 15
     }
   },
@@ -25,6 +25,14 @@
       "sets": 3,
       "category": "STRENGTH",
       "time": 60
+    },
+    "2": {
+      "name": "TimeExercise",
+      "difficulty": 4,
+      "targetArea": "FULL_BODY",
+      "sets": 1,
+      "category": "STRETCH",
+      "time": 30
     }
   }
 }
