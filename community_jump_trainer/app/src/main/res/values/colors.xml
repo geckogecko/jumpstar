@@ -6,9 +6,9 @@
 
 
     <color name="colorExerciseStretch">#068415</color>
-    <color name="colorExerciseStretchLight">#6bf77b</color>
+    <color name="colorExerciseStretchLight">#4b6bf77b</color>
     <color name="colorExerciseStrength">#3633ca</color>
-    <color name="colorExerciseStrengthLight">#6bc4f7</color>
+    <color name="colorExerciseStrengthLight">#4b6bc4f7</color>
     <color name="colorExercisePlyometric">#8633ca</color>
-    <color name="colorExercisePlyometricLight">#bc8be4</color>
+    <color name="colorExercisePlyometricLight">#4bbc8be4</color>
 </resources>
