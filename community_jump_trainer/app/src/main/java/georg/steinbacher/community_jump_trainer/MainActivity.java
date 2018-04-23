@@ -10,6 +10,9 @@ import android.view.MenuItem;
 
 import com.stephentuso.welcome.WelcomeHelper;
 
+import java.sql.Time;
+
+import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,8 +51,16 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         //SharedPreferencesManager.clear(mContext);
 
-        //development
+        // DEVELOPMENT TODO remove when not needed
         Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, 1);
+
+        VerticalHeightWriter writer = new VerticalHeightWriter(getApplicationContext());
+        writer.add(System.currentTimeMillis(), 30);
+        writer.add(System.currentTimeMillis() + 10000, 32);
+        writer.add(System.currentTimeMillis() + 20000, 34);
+        writer.add(System.currentTimeMillis() + 30000, 35);
+
+        //END DEVELOPMENT
 
         // is this the first time the app is started ?
         // if yes -> open the Setup
