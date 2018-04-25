@@ -8,12 +8,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightContract;
@@ -27,6 +33,7 @@ import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 public class VerticalProgressView extends CardView {
 
     private View mRootView;
+    private Context mContext;
 
     private String mTitle = "";
 
@@ -41,6 +48,7 @@ public class VerticalProgressView extends CardView {
     }
 
     private void init(Context context) {
+        mContext = context;
         mRootView = inflate(context, R.layout.view_vertical_progress, this);
 
         initChart();
@@ -72,8 +80,24 @@ public class VerticalProgressView extends CardView {
             }
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
+            dataSet.setLineWidth(2);
+            dataSet.setColor(mContext.getResources().getColor(R.color.colorAccent));
+            dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             LineData lineData = new LineData(dataSet);
             chart.setData(lineData);
+            chart.getAxisRight().setEnabled(false);
+            chart.getLegend().setEnabled(false);
+            chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+            chart.getDescription().setEnabled(false);
+            chart.getXAxis().setValueFormatter(new IAxisValueFormatter() {
+                private SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM");
+
+                @Override
+                public String getFormattedValue(float value, AxisBase axis) {
+                    long millis = TimeUnit.HOURS.toMillis((long) value);
+                    return mFormat.format(new Date(millis));
+                }
+            });
         } else {
             //TODO indicate or hide the view
         }
