@@ -17,7 +17,7 @@ public class VerticalHeightDbHelper extends SQLiteOpenHelper {
                     VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE + " INTEGER," +
                     VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT + " INTEGER)";
 
-    private static final String SQL_DROP_VERTICAL_HEIGHT =
+    public static final String SQL_DROP_VERTICAL_HEIGHT =
             "DROP TABLE IF EXISTS " + VerticalHeightContract.VerticalHeightEntry.TABLE_NAME;
 
     public VerticalHeightDbHelper(Context context) {
@@ -31,6 +31,5 @@ public class VerticalHeightDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 }

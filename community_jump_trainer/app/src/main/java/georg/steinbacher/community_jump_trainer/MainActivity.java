@@ -50,9 +50,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
-        SharedPreferencesManager.clear(mContext);
 
         // DEVELOPMENT TODO remove when not needed
+        /*
+        SharedPreferencesManager.clear(mContext);
+        VerticalHeightWriter writer2 = new VerticalHeightWriter(mContext);
+        writer2.drop();
+        */
+
         int[] ids = {1,2};
         Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, ids);
 

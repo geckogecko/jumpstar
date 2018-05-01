@@ -23,4 +23,8 @@ public class VerticalHeightWriter {
 
         mDb.insert(VerticalHeightContract.VerticalHeightEntry.TABLE_NAME, null, value);
     }
+
+    public void drop() {
+        mDb.execSQL(VerticalHeightDbHelper.SQL_DROP_VERTICAL_HEIGHT);
+    }
 }

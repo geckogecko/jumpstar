@@ -2,6 +2,7 @@ package georg.steinbacher.community_jump_trainer;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.Calendar;
 
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
 import georg.steinbacher.community_jump_trainer.view.TrainingsPlanHistoryView;
@@ -29,11 +31,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        LinearLayoutCompat layout = view.findViewById(R.id.home_fragment_layout);
 
         //Is a current trainingsPlan set?
         if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
             final int[] trainingsPlanIds = Configuration.getIntArray(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY);
-            LinearLayoutCompat layout = view.findViewById(R.id.home_fragment_layout);
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];
                 final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);
@@ -52,8 +54,12 @@ public class HomeFragment extends Fragment {
         }
 
         //Is vertical progress set?
-        VerticalProgressView verticalProgress = view.findViewById(R.id.vertical_progress);
-        //TODO add logic to hide/show the verticalProgress if we dont have any vertical progress data
+        VerticalHeightReader reader = new VerticalHeightReader(getContext());
+        Cursor cursor = reader.getAll();
+        if(cursor.getCount() > 0) {
+            VerticalProgressView vpv = new VerticalProgressView(view.getContext());
+            layout.addView(vpv, 0);
+        }
 
         //Load the history views
         //TODO load from db and add dynamicaly or lets remove it ?
