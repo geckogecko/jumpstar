@@ -2,13 +2,16 @@ package georg.steinbacher.community_jump_trainer.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.drawables.CategorySummaryDrawable;
 
 import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 
@@ -20,6 +23,7 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
 public class TrainingsPlanView extends CardView implements View.OnClickListener{
     private Context mContext;
     private TrainingsPlan mTrainingsPlan;
+    private ProgressBar mCategorySummery;
 
     public TrainingsPlanView(Context context) {
         super(context);
@@ -35,11 +39,22 @@ public class TrainingsPlanView extends CardView implements View.OnClickListener{
 
     private void init(Context context) {
         inflate(context, R.layout.view_trainings_plan, this);
+        mCategorySummery = findViewById(R.id.categorySummery);
         setOnClickListener(this);
     }
 
     public void setTrainingsPlan(TrainingsPlan trainingsPlan) {
         mTrainingsPlan = trainingsPlan;
+        setCategorySummary(trainingsPlan);
+    }
+
+    private void setCategorySummary(TrainingsPlan trainingsPlan) {
+        CategorySummaryDrawable categorySummaryDrawable = new CategorySummaryDrawable(trainingsPlan, mContext);
+        mCategorySummery.setProgressDrawable(categorySummaryDrawable);
+
+        //set the background color of the card
+        CardView card = findViewById(R.id.cardView);
+        card.setCardBackgroundColor(categorySummaryDrawable.getIndicatorPaint().getColor());
     }
 
     @Override

@@ -46,27 +46,16 @@ public class TrainingsPlanProgressDrawable extends Drawable {
         final float segmentWidth = (b.width() - (mSegmentsNumber - 1) * gapWidth) / mSegmentsNumber;
         RectF segment = new RectF(0, 0, segmentWidth, b.height());
 
+
         for (int i = 0; i < mSegmentsNumber; i++) {
             final Exercise exercise = mTraingsPlan.getExercises().get(i);
             Paint paint = new Paint();
             if (exercise.isCompleted()) {
-                if(exercise.getCategory() == Exercise.Category.STRETCH) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStretch));
-                } else if(exercise.getCategory() == Exercise.Category.STRENGTH) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStrength));
-                } else if(exercise.getCategory() == Exercise.Category.PLYOMETRIC) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExercisePlyometric));
-                }
+                paint = CategoryPaints.getPrimaryColor(mContext, exercise.getCategory());
             } else {
-                if(exercise.getCategory() == Exercise.Category.STRETCH) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStretchLight));
-                } else if(exercise.getCategory() == Exercise.Category.STRENGTH) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExerciseStrengthLight));
-                } else if(exercise.getCategory() == Exercise.Category.PLYOMETRIC) {
-                    paint.setColor(mContext.getResources().getColor(R.color.colorExercisePlyometricLight));
-                }
+                paint = CategoryPaints.getSecondaryColor(mContext, exercise.getCategory());
             }
-            canvas.drawRect(segment, paint);
+            canvas.drawRoundRect(segment, 5, 5, paint);
             segment.offset(segment.width() + gapWidth, 0);
         }
     }
