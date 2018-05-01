@@ -52,6 +52,31 @@ public class Configuration {
         return SharedPreferencesManager.getInt(context, key, -1);
     }
 
+    public static void set(Context context, String key, int[] value) {
+        String string = "";
+        for (int i = 0; i < value.length; i++) {
+            string += Integer.toString(value[i]);
+
+            if(i != value.length -1) {
+                string += ",";
+            }
+        }
+
+        SharedPreferencesManager.writeString(context, key, string);
+    }
+
+    public static int[] getIntArray(Context context, String key) {
+        String string = SharedPreferencesManager.getString(context, key, "");
+        String[] splited = string.split(",");
+
+        int[] numbers = new int[splited.length];
+        for (int i = 0; i < splited.length; i++) {
+            numbers[i] = Integer.parseInt(splited[i]);
+        }
+
+        return numbers;
+    }
+
     //String
     public static void set(Context context, String key, String value) {
         SharedPreferencesManager.writeString(context, key, value);
