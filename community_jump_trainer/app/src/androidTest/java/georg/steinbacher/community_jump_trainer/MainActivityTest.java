@@ -49,7 +49,6 @@ public class MainActivityTest {
 
     @Test
     public void SetupActivityShownTest() {
-        onView(withId(R.id.current_trainingsPlan)).check(doesNotExist());
         onView(withId(R.id.vertical_progress)).check(doesNotExist());
     }
 }

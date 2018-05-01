@@ -55,6 +55,21 @@ public class ConfigurationTest {
     }
 
     @Test
+    public void intArrayTest() {
+        final int[] testValue = {1,2,3,4,5};
+        final String intKey = "int";
+
+        assertEquals(false, Configuration.isSet(mContext, intKey));
+        Configuration.set(mContext, intKey, testValue);
+        assertEquals(true, Configuration.isSet(mContext, intKey));
+
+        int[] returnedArray = Configuration.getIntArray(mContext, intKey);
+        for (int i = 0; i < returnedArray.length; i++) {
+            assertEquals(testValue[i], returnedArray[i]);
+        }
+    }
+
+    @Test
     public void doubleTest() {
         final double testValue = 1.1234;
         final String doubleKey = "int";
