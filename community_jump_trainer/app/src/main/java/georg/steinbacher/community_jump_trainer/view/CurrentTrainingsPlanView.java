@@ -4,19 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import georg.steinbacher.community_jump_trainer.Configuration;
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.TrainingActivity;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.drawables.CategorySummaryDrawable;
 
 /**
  * Created by georg on 04.04.18.
@@ -27,6 +27,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
     private View mRootView;
     private Context mContext;
     private TrainingsPlan mTrainingsplan;
+    private ProgressBar mCategorySummery;
 
     public CurrentTrainingsPlanView(Context context, TrainingsPlan trainingsPlan) {
         super(context);
@@ -51,6 +52,18 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
                 mContext.startActivity(intent);
             }
         });
+
+        mCategorySummery = findViewById(R.id.categorySummery);
+        setCategorySummary(trainingsPlan);
+    }
+
+    private void setCategorySummary(TrainingsPlan trainingsPlan) {
+        CategorySummaryDrawable categorySummaryDrawable = new CategorySummaryDrawable(trainingsPlan, mContext);
+        mCategorySummery.setProgressDrawable(categorySummaryDrawable);
+
+        //set the background color of the card
+        CardView card = findViewById(R.id.cardView);
+        card.setCardBackgroundColor(categorySummaryDrawable.getIndicatorPaint().getColor());
     }
 
     @Override
@@ -69,7 +82,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
             mRootView.setVisibility(View.GONE);
 
             //remove from config
-            int[] currentConfig = Configuration.getIntArray(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY);
+            int[] currentConfig = Configuration.getIntArray(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             int[] newConfig = new int[currentConfig.length-1];
             int j = 0;
             for (int i = 0; i < currentConfig.length; i++) {
@@ -78,7 +91,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
                     j++;
                 }
             }
-            Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, newConfig);
+            Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, newConfig);
         }
         return false;
     }

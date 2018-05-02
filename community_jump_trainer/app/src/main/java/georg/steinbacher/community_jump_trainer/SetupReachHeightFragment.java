@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
 
@@ -30,7 +31,8 @@ public class SetupReachHeightFragment extends Fragment {
                     TextInputEditText reachHeightInput = v.findViewById(R.id.setup_reach_height_input);
                     try {
                         double parsedValue = Double.parseDouble(reachHeightInput.getText().toString());
-                        Configuration.set(getContext(), Configuration.REACHED_HEIGHT_KEY, parsedValue);
+                        VerticalHeightWriter writer = new VerticalHeightWriter(getContext());
+                        writer.add(System.currentTimeMillis(), parsedValue);
                     } catch (NumberFormatException e) {
                         Snackbar.make(v, R.string.setup_reach_height_input_error, Snackbar.LENGTH_SHORT)
                                 .show();

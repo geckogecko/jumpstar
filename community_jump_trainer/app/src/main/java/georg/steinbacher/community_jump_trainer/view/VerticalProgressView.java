@@ -30,7 +30,7 @@ import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
  * Created by georg on 07.04.18.
  */
 
-public class VerticalProgressView extends CardView {
+public class VerticalProgressView extends CardView implements View.OnLongClickListener{
 
     private View mRootView;
     private Context mContext;
@@ -54,6 +54,11 @@ public class VerticalProgressView extends CardView {
         initChart();
     }
 
+    @Override
+    public boolean onLongClick(View v) {
+        return false;
+    }
+
     public void setTitle(String name) {
         mTitle = name;
         TextView txtView = mRootView.findViewById(R.id.name);
@@ -75,8 +80,8 @@ public class VerticalProgressView extends CardView {
         if(cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
-                int vertical = cursor.getInt(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
-                entries.add(new Entry(timestamp, vertical));
+                double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
+                entries.add(new Entry(timestamp, (int)vertical));
             }
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");

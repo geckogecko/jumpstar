@@ -10,11 +10,8 @@ import android.view.MenuItem;
 
 import com.stephentuso.welcome.WelcomeHelper;
 
-import java.sql.Time;
-
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
-import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         */
 
         int[] ids = {1,2};
-        Configuration.set(mContext, Configuration.CURREN_TRAININGSPLAN_ID_KEY, ids);
+        Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, ids);
 
         VerticalHeightWriter writer = new VerticalHeightWriter(getApplicationContext());
         writer.add(System.currentTimeMillis(), 30);

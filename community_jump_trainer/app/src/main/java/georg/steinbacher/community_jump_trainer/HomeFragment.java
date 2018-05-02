@@ -1,7 +1,6 @@
 package georg.steinbacher.community_jump_trainer;
 
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,13 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Calendar;
-
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
-import georg.steinbacher.community_jump_trainer.view.TrainingsPlanHistoryView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 public class HomeFragment extends Fragment {
@@ -34,8 +30,8 @@ public class HomeFragment extends Fragment {
         LinearLayoutCompat layout = view.findViewById(R.id.home_fragment_layout);
 
         //Is a current trainingsPlan set?
-        if(Configuration.isSet(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY)) {
-            final int[] trainingsPlanIds = Configuration.getIntArray(getContext(), Configuration.CURREN_TRAININGSPLAN_ID_KEY);
+        if(Configuration.isSet(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY)) {
+            final int[] trainingsPlanIds = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];
                 final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);

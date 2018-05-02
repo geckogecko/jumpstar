@@ -16,7 +16,7 @@ public class VerticalHeightWriter {
         mDb = new VerticalHeightDbHelper(context).getWritableDatabase();
     }
 
-    public void add(long timestamp, int verticalHeight) {
+    public void add(long timestamp, double verticalHeight) {
         ContentValues value = new ContentValues();
         value.put(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE, timestamp);
         value.put(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT, verticalHeight);

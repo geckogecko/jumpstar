@@ -14,6 +14,8 @@ import georg.steinbacher.community_jump_trainer.R;
  * Created by georg on 07.04.18.
  */
 
+
+//TODO remove ?
 public class TrainingsPlanHistoryView extends CardView {
 
     private View mRootView;
