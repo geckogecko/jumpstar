@@ -12,6 +12,7 @@ import com.stephentuso.welcome.WelcomeHelper;
 
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
+import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         // DEVELOPMENT TODO remove when not needed
+        //SharedPreferencesManager.clear(mContext);
         /*
         SharedPreferencesManager.clear(mContext);
         VerticalHeightWriter writer2 = new VerticalHeightWriter(mContext);
@@ -71,8 +73,12 @@ public class MainActivity extends AppCompatActivity {
         if(!Configuration.isSet(mContext, Configuration.SETUP_COMPLETED_KEY)) {
             mSetupHelper = new WelcomeHelper(this, SetupActivity.class);
             mSetupHelper.forceShow();
+        } else {
+            initMain();
         }
+    }
 
+    private void initMain() {
         setContentView(R.layout.activity_main);
 
         //Bottom Navigation
@@ -88,27 +94,6 @@ public class MainActivity extends AppCompatActivity {
         JSONHolder holder = JSONHolder.getInstance();
         holder.loadExercises(mContext);
         holder.loadTrainingsPlans(mContext);
-
-
-
-        /*
-        //Receicler
-        RecyclerView rv = findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
-
-        List<Exercise> exerciseList = new ArrayList<>();
-
-        exerciseList.add(new Exercise("Excercise1", "This is a long description bla as1 asdsdaf"));
-        exerciseList.add(new Exercise("Excercise2", "This is a long description bla as1 asdsdaf"));
-        exerciseList.add(new Exercise("Excercise3", "This is a long description bla as1 asdsdaf"));
-        exerciseList.add(new Exercise("Excercise4", "This is a long description bla as1 asdsdaf"));
-        exerciseList.add(new Exercise("Excercise5", "This is a long description bla as1 asdsdaf"));
-
-
-        RVAdapter adapter = new RVAdapter(exerciseList);
-        rv.setAdapter(adapter);
-        */
     }
 
     @Override
@@ -117,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == WelcomeHelper.DEFAULT_WELCOME_SCREEN_REQUEST) {
             Configuration.set(mContext, Configuration.SETUP_COMPLETED_KEY, true);
+            initMain();
         }
     }
 }

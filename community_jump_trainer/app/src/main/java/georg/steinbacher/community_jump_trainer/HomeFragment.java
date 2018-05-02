@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
+
+import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment {
     @Override
@@ -41,11 +44,17 @@ public class HomeFragment extends Fragment {
         }
 
         //Is vertical progress set?
-        VerticalHeightReader reader = new VerticalHeightReader(getContext());
-        Cursor cursor = reader.getAll();
-        if(cursor.getCount() > 0) {
-            VerticalProgressView vpv = new VerticalProgressView(view.getContext());
-            layout.addView(vpv, 0);
+        if(Configuration.isSet(getContext(), Configuration.SHOW_VERTICAL_PROGRESS) &&
+            Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
+
+            VerticalHeightReader reader = new VerticalHeightReader(getContext());
+            Cursor cursor = reader.getAll();
+            if (cursor.getCount() > 0) {
+                VerticalProgressView vpv = new VerticalProgressView(view.getContext());
+                layout.addView(vpv, 0);
+            } else {
+                Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
+            }
         }
 
         //Load the history views

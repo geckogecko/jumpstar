@@ -12,7 +12,7 @@ import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
 public class Configuration {
     public static final String SETUP_COMPLETED_KEY = "setup_completed";
-    public static final String REACHED_HEIGHT_KEY = "reached_height";
+    public static final String SHOW_VERTICAL_PROGRESS = "show_vertical_progress";
     public static final String UNIT_LOCAL_KEY = "reached_height";
     public static final String CURRENT_TRAININGSPLANS_ID_KEY = "current_trainingsPlan";
 

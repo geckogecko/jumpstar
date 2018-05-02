@@ -33,6 +33,7 @@ public class SetupReachHeightFragment extends Fragment {
                         double parsedValue = Double.parseDouble(reachHeightInput.getText().toString());
                         VerticalHeightWriter writer = new VerticalHeightWriter(getContext());
                         writer.add(System.currentTimeMillis(), parsedValue);
+                        Configuration.set(getContext(), Configuration.SHOW_VERTICAL_PROGRESS, true);
                     } catch (NumberFormatException e) {
                         Snackbar.make(v, R.string.setup_reach_height_input_error, Snackbar.LENGTH_SHORT)
                                 .show();
