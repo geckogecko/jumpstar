@@ -15,6 +15,7 @@ import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
+import georg.steinbacher.community_jump_trainer.view.VerticalProgressInputView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 import static android.content.ContentValues.TAG;
@@ -56,6 +57,10 @@ public class HomeFragment extends Fragment {
                 Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
             }
         }
+
+        //Vertical Progress input
+        VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
+        layout.addView(vpiv);
 
         //Load the history views
         //TODO load from db and add dynamicaly or lets remove it ?
