@@ -27,17 +27,16 @@ public class TrainingsPlanView extends CardView implements View.OnClickListener{
 
     public TrainingsPlanView(Context context) {
         super(context);
-        mContext = context;
         init(context);
     }
 
     public TrainingsPlanView(Context context, AttributeSet attrs) {
         super(context,attrs);
-        mContext = context;
         init(context);
     }
 
     private void init(Context context) {
+        mContext = context;
         inflate(context, R.layout.view_trainings_plan, this);
         mCategorySummery = findViewById(R.id.categorySummery);
         setOnClickListener(this);

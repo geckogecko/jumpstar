@@ -20,4 +20,9 @@
     <!-- Standard exercise -->
     <string name="exercise_repetitions">Repetition: %1$s</string>
 
+
+    <!-- current_trainingsplan_menu -->
+    <string name="remove">Remove</string>
+
+
 </resources>

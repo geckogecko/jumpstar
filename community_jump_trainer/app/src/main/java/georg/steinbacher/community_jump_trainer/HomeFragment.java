@@ -39,16 +39,7 @@ public class HomeFragment extends Fragment {
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];
                 final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);
-                CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext());
-                ctpv.setName(trainingsPlan.getName());
-                ctpv.setOnStartClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), TrainingActivity.class);
-                        intent.putExtra(TrainingActivity.TRAININGS_PLAN_ID, trainingsPlan.getId());
-                        startActivity(intent);
-                    }
-                });
+                CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(), trainingsPlan);
                 layout.addView(ctpv);
             }
         }
