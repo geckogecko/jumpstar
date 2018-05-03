@@ -20,7 +20,9 @@ import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 import static android.content.ContentValues.TAG;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements VerticalProgressInputView.IInputDoneListener{
+    private VerticalProgressView mVerticialProgressV;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,8 +53,8 @@ public class HomeFragment extends Fragment {
             VerticalHeightReader reader = new VerticalHeightReader(getContext());
             Cursor cursor = reader.getAll();
             if (cursor.getCount() > 0) {
-                VerticalProgressView vpv = new VerticalProgressView(view.getContext());
-                layout.addView(vpv, 0);
+                mVerticialProgressV = new VerticalProgressView(view.getContext());
+                layout.addView(mVerticialProgressV, 0);
             } else {
                 Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
             }
@@ -60,6 +62,7 @@ public class HomeFragment extends Fragment {
 
         //Vertical Progress input
         VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
+        vpiv.setListener(this);
         layout.addView(vpiv);
 
         //Load the history views
@@ -69,5 +72,12 @@ public class HomeFragment extends Fragment {
         trainingsPlanHistoryView.setTitle("History");
         trainingsPlanHistoryView.setDate(Calendar.getInstance().getTime());
         */
+    }
+
+    @Override
+    public void onInputDone() {
+        if(mVerticialProgressV != null) {
+            mVerticialProgressV.initChart();
+        }
     }
 }
