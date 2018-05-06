@@ -4,6 +4,7 @@ package georg.steinbacher.community_jump_trainer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import cn.iwgang.countdownview.CountdownView;
-import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
+
+import static android.content.ContentValues.TAG;
+import static georg.steinbacher.community_jump_trainer.Configuration.PREPARATION_COUNTDOWN_TIME;
+import static georg.steinbacher.community_jump_trainer.Configuration.PREPARATION_COUNTDOWN_TIME_DEFAULT;
 
 public class TimeExerciseFragment extends Fragment implements CountdownView.OnCountdownEndListener, CountdownView.OnCountdownIntervalListener{
     private TimeExercise mExercise;
@@ -22,6 +26,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private ProgressBar mProgressBar;
     private TextView mSets;
     private int mCompletedSets; //TODO show the completed sets on the UI
+    private boolean mPreperationCountdown;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +55,8 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         exerciseStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCountdownView.start(mExercise.getTime() * 1000);
+                mPreperationCountdown = true;
+                mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
             }
         });
 
@@ -69,16 +75,34 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
     @Override
     public void onEnd(CountdownView cv) {
-        mCompletedSets++;
-        if(mCompletedSets >= mExercise.getSets()) {
-            mExercise.complete();
+        if(mPreperationCountdown) {
+            mPreperationCountdown = false;
+            mProgressBar.setProgress(0);
+            mCountdownView.start(mExercise.getTime() * 1000);
+        } else {
+            mCompletedSets++;
+            if (mCompletedSets >= mExercise.getSets()) {
+                mExercise.complete();
+            }
         }
     }
 
     @Override
     public void onInterval(CountdownView cv, long remainTime) {
-        int passedTime = mExercise.getTime() - (int)(remainTime/1000);
-        int progressPercent = (passedTime * 100) / mExercise.getTime();
+        int maxTime = getMaxTime(mPreperationCountdown);
+        int passedTime = maxTime - (int)(remainTime/1000);
+        int progressPercent = (passedTime * 100) / maxTime;
+        Log.i(TAG, "onInterval: " + progressPercent);
         mProgressBar.setProgress(progressPercent);
+    }
+
+    private int getMaxTime(boolean preparation) {
+        if(preparation) {
+            return Configuration.getInt(mView.getContext(),
+                    PREPARATION_COUNTDOWN_TIME,
+                    PREPARATION_COUNTDOWN_TIME_DEFAULT);
+        } else {
+            return mExercise.getTime();
+        }
     }
 }

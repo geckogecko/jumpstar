@@ -16,6 +16,9 @@ public class Configuration {
     public static final String UNIT_LOCAL_KEY = "reached_height";
     public static final String CURRENT_TRAININGSPLANS_ID_KEY = "current_trainingsPlan";
 
+    public static final String PREPARATION_COUNTDOWN_TIME = "preparation_countdown_time";
+    public static final int PREPARATION_COUNTDOWN_TIME_DEFAULT = 5; //seconds
+
     public enum UnitLocal {
         METRIC,
         IMPERIAL
@@ -50,6 +53,10 @@ public class Configuration {
 
     public static int getInt(Context context, String key) {
         return SharedPreferencesManager.getInt(context, key, -1);
+    }
+
+    public static int getInt(Context context, String key, int defaultValue) {
+        return SharedPreferencesManager.getInt(context, key, defaultValue);
     }
 
     public static void set(Context context, String key, int[] value) {
