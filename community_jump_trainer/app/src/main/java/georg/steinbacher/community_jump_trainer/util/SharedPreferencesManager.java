@@ -12,6 +12,10 @@ public class SharedPreferencesManager {
 
     private static final String PREFERENCES_FILE_KEY = "defaultPrefs";
 
+    public static String getName() {
+        return PREFERENCES_FILE_KEY;
+    }
+
     public static void clear(Context context) {
         getSharedPreferencesEditor(context).clear().apply();
     }

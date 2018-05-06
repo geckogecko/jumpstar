@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="PREFERENCES_FILE_KEY">
+
+    <PreferenceCategory
+        android:title="@string/preferences_trainingsPlan_title">
+
+        <ListPreference
+            android:key="preferences_trainingsPlan_preparationTime"
+            android:title="@string/preferences_trainingsPlan_preparationTime"
+            android:defaultValue="@string/preparation_times_default"
+            android:entries="@array/preparation_times"
+            android:entryValues="@array/preparation_times_values"
+            android:summary="%s"/>
+    </PreferenceCategory>
+</PreferenceScreen>

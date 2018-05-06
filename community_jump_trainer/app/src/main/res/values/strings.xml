@@ -17,7 +17,6 @@
     <string name="hint_vertical_reach">Enter your vertical reach</string>
 
 
-
     <string name="exercise_sets">Sets: %1$s</string>
     <!-- Standard exercise -->
     <string name="exercise_repetitions">Repetition: %1$s</string>
@@ -25,6 +24,10 @@
 
     <!-- current_trainingsplan_menu -->
     <string name="remove">Remove</string>
+
+    <!-- Preferences -->
+    <string name="preferences_trainingsPlan_title">Trainings plan</string>
+    <string name="preferences_trainingsPlan_preparationTime">Preparation time</string>
 
 
 </resources>

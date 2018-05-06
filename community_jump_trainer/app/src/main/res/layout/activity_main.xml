@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     tools:context="georg.steinbacher.community_jump_trainer.MainActivity">
 
-    <!--
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv"
-        android:scrollbars="vertical" />
-    -->
-
     <FrameLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"

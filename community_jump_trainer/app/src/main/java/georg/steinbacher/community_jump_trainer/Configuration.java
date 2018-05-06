@@ -16,12 +16,16 @@ public class Configuration {
     public static final String UNIT_LOCAL_KEY = "reached_height";
     public static final String CURRENT_TRAININGSPLANS_ID_KEY = "current_trainingsPlan";
 
-    public static final String PREPARATION_COUNTDOWN_TIME = "preparation_countdown_time";
-    public static final int PREPARATION_COUNTDOWN_TIME_DEFAULT = 5; //seconds
+    public static final String PREPARATION_COUNTDOWN_TIME = "preferences_trainingsPlan_preparationTime";
+    public static final String PREPARATION_COUNTDOWN_TIME_DEFAULT = "5";
 
     public enum UnitLocal {
         METRIC,
         IMPERIAL
+    }
+
+    public static String getPrefName() {
+        return SharedPreferencesManager.getName();
     }
 
     public static boolean isSet(Context context, String key) {
@@ -91,6 +95,10 @@ public class Configuration {
 
     public static String getString(Context context, String key) {
         return SharedPreferencesManager.getString(context, key, "");
+    }
+
+    public static String getString(Context context, String key, String defaultValue) {
+        return SharedPreferencesManager.getString(context, key, defaultValue);
     }
 
     //UnitLocal

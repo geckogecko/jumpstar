@@ -92,15 +92,14 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         int maxTime = getMaxTime(mPreperationCountdown);
         int passedTime = maxTime - (int)(remainTime/1000);
         int progressPercent = (passedTime * 100) / maxTime;
-        Log.i(TAG, "onInterval: " + progressPercent);
         mProgressBar.setProgress(progressPercent);
     }
 
     private int getMaxTime(boolean preparation) {
         if(preparation) {
-            return Configuration.getInt(mView.getContext(),
+            return Integer.valueOf(Configuration.getString(mView.getContext(),
                     PREPARATION_COUNTDOWN_TIME,
-                    PREPARATION_COUNTDOWN_TIME_DEFAULT);
+                    PREPARATION_COUNTDOWN_TIME_DEFAULT));
         } else {
             return mExercise.getTime();
         }

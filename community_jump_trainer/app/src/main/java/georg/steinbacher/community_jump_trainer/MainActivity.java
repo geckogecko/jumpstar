@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                     return true;
                 case R.id.navigation_settings:
+                    PreferenceFragment fragmentPref = new PreferenceFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentPref)
+                            .commit();
                     return true;
             }
             return false;
