@@ -30,7 +30,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     private TrainingsPlan mTraingsPlan;
     private ProgressBar mProgressBar;
-    private JSONHolder mJSONHolder = JSONHolder.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
