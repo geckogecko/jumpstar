@@ -1,5 +1,6 @@
 package georg.steinbacher.community_jump_trainer.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -103,5 +104,20 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         } else {
             return mExercises.indexOf(mCurrentExercise);
         }
+    }
+
+    public List<Equipment.Type> getNeededEquipmentTypes() {
+        List<Equipment.Type> neededTypes = new ArrayList<>();
+
+        for (Exercise exercise : mExercises) {
+            for (Equipment equipment : exercise.getNeededEquipment()) {
+                Equipment.Type type = equipment.getType();
+                if(!neededTypes.contains(type)) {
+                    neededTypes.add(type);
+                }
+            }
+        }
+
+        return neededTypes;
     }
 }

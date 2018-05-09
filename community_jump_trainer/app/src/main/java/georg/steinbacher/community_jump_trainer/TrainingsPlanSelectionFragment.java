@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.TrainingsPlanView;
@@ -47,6 +48,10 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         //TODO add only plans which the user has the equipment for
         // or mark plans with missing equipment
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
+            for (Equipment.Type type : trainingsPlan.getNeededEquipmentTypes()) {
+                Log.i(TAG, "onViewCreated: " + type.name().toString());
+            }
+
             TrainingsPlanView trainingsPlanView = new TrainingsPlanView(getContext());
             trainingsPlanView.setTrainingsPlan(trainingsPlan);
             linearLayoutCompat.addView(trainingsPlanView);

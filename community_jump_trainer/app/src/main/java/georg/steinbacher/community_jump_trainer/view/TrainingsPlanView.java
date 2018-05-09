@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity;
+import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.drawables.CategorySummaryDrawable;
 

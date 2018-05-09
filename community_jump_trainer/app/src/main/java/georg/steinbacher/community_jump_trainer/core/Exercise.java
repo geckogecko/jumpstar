@@ -1,5 +1,6 @@
 package georg.steinbacher.community_jump_trainer.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
