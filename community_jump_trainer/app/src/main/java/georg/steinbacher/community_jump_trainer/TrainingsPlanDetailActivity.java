@@ -35,20 +35,34 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         TextView txtName = findViewById(R.id.detail_trainings_plan_name);
         txtName.setText(mTrainingsPlan.getName());
 
+        //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
-        btnAddTrainingsPlan.setOnClickListener(this);
+        final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
+        boolean planIsCurrentTrainingsPlan = false;
+        for (int i = 0; i < currentPlans.length; i++) {
+            if(currentPlans[i] == mTrainingsPlan.getId()) {
+                planIsCurrentTrainingsPlan = true;
+                break;
+            }
+        }
+
+        if(planIsCurrentTrainingsPlan) {
+            btnAddTrainingsPlan.setVisibility(View.GONE);
+        } else {
+            btnAddTrainingsPlan.setOnClickListener(this);
+        }
     }
 
     @Override
     public void onClick(View v) {
         final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
         int[] newCurrentPlans = new int[currentPlans.length +1];
+        newCurrentPlans[0] = mTrainingsPlan.getId();
         for (int i = 0; i < currentPlans.length; i++) {
-            newCurrentPlans[i] = currentPlans[i];
+            newCurrentPlans[i+1] = currentPlans[i];
         }
-        newCurrentPlans[newCurrentPlans.length - 1] = mTrainingsPlan.getId();
         Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
-        
+
         finish();
     }
 }

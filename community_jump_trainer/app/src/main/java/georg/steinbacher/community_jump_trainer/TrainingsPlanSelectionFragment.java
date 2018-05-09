@@ -27,6 +27,8 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
 public class TrainingsPlanSelectionFragment extends Fragment {
     private static final String TAG = "TrainingsPlanSelectionF";
 
+    private int mCurrentTrainingsPlanCount;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,5 +49,22 @@ public class TrainingsPlanSelectionFragment extends Fragment {
             trainingsPlanView.setTrainingsPlan(trainingsPlan);
             linearLayoutCompat.addView(trainingsPlanView);
         }
+
+        //for detecting if a new currentTrainingsPlan got added
+        mCurrentTrainingsPlanCount = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY).length;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        final int newCurrentTrainingsPlanCount = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY).length;
+        if(mCurrentTrainingsPlanCount != newCurrentTrainingsPlanCount) {
+            MainActivity mainActivity = (MainActivity)getActivity();
+            if(mainActivity != null) {
+                mainActivity.changeContent(R.id.navigation_home);
+            }
+        }
+
     }
 }

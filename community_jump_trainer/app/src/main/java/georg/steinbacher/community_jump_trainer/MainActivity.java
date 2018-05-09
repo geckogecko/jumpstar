@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity implements SwipeListener{
         }
     }
 
+    public void changeContent(int id) {
+        mNavigation.setSelectedItemId(id);
+    }
+
     @Override public boolean dispatchTouchEvent(MotionEvent event) {
         mSwipe.dispatchTouchEvent(event);
         return super.dispatchTouchEvent(event);
