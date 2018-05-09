@@ -30,6 +30,9 @@
     <!-- Preferences -->
     <string name="preferences_trainingsPlan_title">Trainings plan</string>
     <string name="preferences_trainingsPlan_preparationTime">Preparation time</string>
+    <string name="preferences_equipment_title">Available equipment</string>
+    <string name="preferences_equipment_home">Home</string>
+    <string name="preferences_equipment_gym">Gym</string>
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>

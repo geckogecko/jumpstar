@@ -13,4 +13,18 @@
             android:entryValues="@array/preparation_times_values"
             android:summary="%s"/>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/preferences_equipment_title">
+        <CheckBoxPreference
+            android:key="preference_equipment_home"
+            android:title="@string/preferences_equipment_home"
+            android:defaultValue="true">
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:key="preference_equipment_gym"
+            android:title="@string/preferences_equipment_gym"
+            android:defaultValue="true">
+        </CheckBoxPreference>
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -44,6 +44,8 @@ public class TrainingsPlanSelectionFragment extends Fragment {
 
         LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view;
 
+        //TODO add only plans which the user has the equipment for
+        // or mark plans with missing equipment
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
             TrainingsPlanView trainingsPlanView = new TrainingsPlanView(getContext());
             trainingsPlanView.setTrainingsPlan(trainingsPlan);
