@@ -13,6 +13,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
+    <TextView
+        android:id="@+id/exercise_equipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text= "@string/exercise_equipment"/>
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/detail_button_add_trainings_plan"
         android:layout_width="match_parent"

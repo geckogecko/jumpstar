@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import georg.steinbacher.community_jump_trainer.core.Equipment;
+import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 
@@ -32,8 +37,34 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             mTrainingsPlan = Factory.createTraingsPlan(trainingsPlanId);
         }
 
+        //title
         TextView txtName = findViewById(R.id.detail_trainings_plan_name);
         txtName.setText(mTrainingsPlan.getName());
+
+
+        //Equipment
+        TextView equipmentTextView = findViewById(R.id.exercise_equipment);
+        List<String> equipmentList = new ArrayList<>();
+        List<Exercise> exerciseList= mTrainingsPlan.getExercises();
+        for (Exercise exercise : exerciseList) {
+            List<Equipment> equ = exercise.getNeededEquipment();
+            for (Equipment equipment : equ) {
+                if(!equipmentList.contains(equipment.getName())) {
+                    equipmentList.add(equipment.getName());
+                }
+            }
+        }
+
+        if(equipmentList.size() > 0) {
+            String equipmentString = "";
+            for (String equipment : equipmentList) {
+                equipmentString += equipment + ",";
+            }
+            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
+            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
+        } else {
+            equipmentTextView.setVisibility(View.GONE);
+        }
 
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
