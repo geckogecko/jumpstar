@@ -121,8 +121,7 @@ public class MainActivity extends AppCompatActivity implements SwipeListener{
 
         //Load all the json data
         JSONHolder holder = JSONHolder.getInstance();
-        holder.loadExercises(mContext);
-        holder.loadTrainingsPlans(mContext);
+        holder.loadAll(mContext);
     }
 
     @Override

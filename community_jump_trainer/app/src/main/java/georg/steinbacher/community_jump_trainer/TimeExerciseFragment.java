@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.iwgang.countdownview.CountdownView;
+import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 
 import static android.content.ContentValues.TAG;
@@ -67,6 +70,22 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mCompletedSets = 0;
         mSets = mView.findViewById(R.id.exercise_sets);
         mSets.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
+
+        //Equipment
+        TextView equipmentTextView = mView.findViewById(R.id.exercise_equipment);
+        List<Equipment> equipmentList = mExercise.getNeededEquipment();
+        if(equipmentList.size() > 0) {
+            String equipmentString = "";
+            for (Equipment equipment : equipmentList) {
+                equipmentString += equipment.getName() + ",";
+            }
+            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
+
+
+            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
+        } else {
+            equipmentTextView.setVisibility(View.GONE);
+        }
     }
 
     public void setExercise(TimeExercise exercise) {

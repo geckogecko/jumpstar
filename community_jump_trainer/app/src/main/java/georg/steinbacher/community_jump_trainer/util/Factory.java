@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import georg.steinbacher.community_jump_trainer.core.Difficulty;
+import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
@@ -38,10 +39,23 @@ public class Factory {
                 Exercise.Type type = Exercise.Type.valueOf(current.getString("type"));
                 JSONObject loaded = holder.getExerciseJSON(current.getInt("id"), type);
 
+                //load the equipmentList
+                List<Equipment> equipmentList = new ArrayList<>();
+                if(loaded.has("equipment")) {
+                    JSONArray equ = loaded.getJSONArray("equipment");
+                    for(int j=0; j<equ.length(); j++) {
+                        final JSONObject loadEq = holder.getEquipment(equ.getInt(j));
+                        final String name = loadEq.getString("name");
+                        final Equipment.Type equType = Equipment.Type.valueOf(loadEq.getString("type"));
+                        equipmentList.add(new Equipment(name, equType));
+                    }
+                }
+
+
                 if(type == Exercise.Type.STANDARD) {
                     ex = new StandardExercise(loaded.getString("name"),
                             null,
-                            null,
+                            equipmentList,
                             new Difficulty(loaded.getInt("difficulty")),
                             null,
                             Exercise.TargetArea.valueOf(loaded.getString("targetArea")),
@@ -52,7 +66,7 @@ public class Factory {
                 } else if(type == Exercise.Type.TIME) {
                     ex = new TimeExercise(loaded.getString("name"),
                             null,
-                            null,
+                            equipmentList,
                             new Difficulty(loaded.getInt("difficulty")),
                             null,
                             Exercise.TargetArea.valueOf(loaded.getString("targetArea")),

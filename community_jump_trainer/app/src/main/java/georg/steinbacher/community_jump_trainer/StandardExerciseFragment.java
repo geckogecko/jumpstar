@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+
+import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 
@@ -40,6 +43,22 @@ public class StandardExerciseFragment extends Fragment {
         //Repetitions
         TextView repetitionsTextView = mView.findViewById(R.id.exercise_repetitions);
         repetitionsTextView.setText(getString(R.string.exercise_repetitions, Integer.toString(mExercise.getRepetitions())));
+
+        //Equipment
+        TextView equipmentTextView = mView.findViewById(R.id.exercise_equipment);
+        List<Equipment> equipmentList = mExercise.getNeededEquipment();
+        if(equipmentList.size() > 0) {
+            String equipmentString = "";
+            for (Equipment equipment : equipmentList) {
+                equipmentString += equipment.getName() + ",";
+            }
+            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
+
+
+            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
+        } else {
+            equipmentTextView.setVisibility(View.GONE);
+        }
     }
 
     public void setExercise(StandardExercise exercise) {

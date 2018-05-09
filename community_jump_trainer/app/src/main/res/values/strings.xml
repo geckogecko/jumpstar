@@ -18,6 +18,8 @@
 
 
     <string name="exercise_sets">Sets: %1$s</string>
+    <string name="exercise_equipment">Equipment: %1$s</string>
+
     <!-- Standard exercise -->
     <string name="exercise_repetitions">Repetition: %1$s</string>
 

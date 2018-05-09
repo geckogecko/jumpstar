@@ -16,6 +16,7 @@ public class JSONHolder {
 
     private JSONObject mExercises;
     private JSONObject mTraingsPlans;
+    private JSONObject mEquipment;
 
     private static final JSONHolder ourInstance = new JSONHolder();
     public static JSONHolder getInstance() {
@@ -24,12 +25,22 @@ public class JSONHolder {
     private JSONHolder() {
     }
 
-    public void loadExercises(Context context) {
+    public void loadAll(Context context) {
+        loadExercises(context);
+        loadTrainingsPlans(context);
+        loadEquipment(context);
+    }
+
+    private void loadExercises(Context context) {
         mExercises = JSONLoader.get(context, R.raw.exercises);
     }
 
-    public void loadTrainingsPlans(Context context) {
+    private void loadTrainingsPlans(Context context) {
         mTraingsPlans = JSONLoader.get(context, R.raw.trainingsplans);
+    }
+
+    private void loadEquipment(Context context) {
+        mEquipment = JSONLoader.get(context, R.raw.equipment);
     }
 
     JSONObject getExerciseJSON(int id, Exercise.Type type) {
@@ -54,4 +65,14 @@ public class JSONHolder {
     JSONObject getTrainingsPlans() {
         return mTraingsPlans;
     }
+
+    JSONObject getEquipment(int id) {
+        try {
+            return mEquipment.getJSONObject(Integer.toString(id));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    JSONObject getEquipments() {return mEquipment;}
 }
