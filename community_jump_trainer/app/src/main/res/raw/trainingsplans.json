@@ -30,5 +30,23 @@
             }
         ],
         "creationDate": 1523612753
+    },
+    "3": {
+        "name": "Test Plan3",
+        "exercises": [
+            {
+                "type": "TIME",
+                "id": 2
+            },
+            {
+                "type": "STANDARD",
+                "id": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 2
+            }
+        ],
+        "creationDate": 1523652753
     }
 }
