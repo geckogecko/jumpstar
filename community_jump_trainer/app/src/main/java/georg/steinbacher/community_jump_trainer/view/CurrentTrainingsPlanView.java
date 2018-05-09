@@ -15,18 +15,21 @@ import android.widget.TextView;
 import georg.steinbacher.community_jump_trainer.Configuration;
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.TrainingActivity;
+import georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.drawables.CategorySummaryDrawable;
+
+import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 
 /**
  * Created by georg on 04.04.18.
  */
 
-public class CurrentTrainingsPlanView extends CardView implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
+public class CurrentTrainingsPlanView extends CardView implements View.OnClickListener, View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
 
     private View mRootView;
     private Context mContext;
-    private TrainingsPlan mTrainingsplan;
+    private TrainingsPlan mTrainingsPlan;
     private ProgressBar mCategorySummery;
 
     public CurrentTrainingsPlanView(Context context, TrainingsPlan trainingsPlan) {
@@ -36,19 +39,20 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
 
     private void init(Context context, TrainingsPlan trainingsPlan) {
         mContext = context;
-        mTrainingsplan = trainingsPlan;
+        mTrainingsPlan = trainingsPlan;
         mRootView = inflate(context, R.layout.view_current_trainings_plan, this);
+        setOnClickListener(this);
         setOnLongClickListener(this);
 
         TextView txtView = mRootView.findViewById(R.id.name);
-        txtView.setText(mTrainingsplan.getName());
+        txtView.setText(mTrainingsPlan.getName());
 
         Button button = mRootView.findViewById(R.id.button_start);
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TrainingActivity.class);
-                intent.putExtra(TrainingActivity.TRAININGS_PLAN_ID, mTrainingsplan.getId());
+                intent.putExtra(TrainingActivity.TRAININGS_PLAN_ID, mTrainingsPlan.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -64,6 +68,13 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
         //set the background color of the card
         CardView card = findViewById(R.id.cardView);
         card.setCardBackgroundColor(categorySummaryDrawable.getIndicatorPaint().getColor());
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
+        intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
+        mContext.startActivity(intent);
     }
 
     @Override
@@ -86,7 +97,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
             int[] newConfig = new int[currentConfig.length-1];
             int j = 0;
             for (int i = 0; i < currentConfig.length; i++) {
-                if(currentConfig[i] != mTrainingsplan.getId()) {
+                if(currentConfig[i] != mTrainingsPlan.getId()) {
                     newConfig[j] = currentConfig[i];
                     j++;
                 }
