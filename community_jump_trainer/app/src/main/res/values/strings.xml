@@ -29,5 +29,7 @@
     <string name="preferences_trainingsPlan_title">Trainings plan</string>
     <string name="preferences_trainingsPlan_preparationTime">Preparation time</string>
 
+    <!-- TrainingsPlanDetail-->
+
 
 </resources>
