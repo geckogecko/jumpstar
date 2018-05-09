@@ -1,3 +1,10 @@
 {
-
+  "1": {
+    "name": "Equipment1",
+    "type": "HOME"
+  },
+  "2": {
+    "name": "Equipment2",
+    "type": "GYM"
+  }
 }

@@ -45,6 +45,34 @@
             {
                 "type": "STANDARD",
                 "id": 2
+            },
+            {
+                "type": "STANDARD",
+                "id": 2
+            },
+            {
+                "type": "TIME",
+                "id": 2
+            },
+            {
+                "type": "TIME",
+                "id": 2
+            },
+            {
+                "type": "TIME",
+                "id": 2
+            },
+            {
+                "type": "TIME",
+                "id": 2
+            },
+            {
+                "type": "STANDARD",
+                "id": 2
+            },
+            {
+                "type": "STANDARD",
+                "id": 2
             }
         ],
         "creationDate": 1523652753

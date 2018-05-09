@@ -6,7 +6,8 @@
       "targetArea": "FULL_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": 12
+      "repetitions": 12,
+      "equipment": [1]
     },
     "2": {
       "name": "TestExercise2",
@@ -24,7 +25,8 @@
       "targetArea": "FULL_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "time": 60
+      "time": 60,
+      "equipment": [1,2]
     },
     "2": {
       "name": "TimeExercise",
