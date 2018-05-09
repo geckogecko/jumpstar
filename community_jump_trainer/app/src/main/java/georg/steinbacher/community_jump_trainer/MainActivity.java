@@ -31,24 +31,34 @@ public class MainActivity extends AppCompatActivity implements SwipeListener{
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        private MenuItem mPrevItem;
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            //TODO add animation for page changes
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     HomeFragment fragmentHome = new HomeFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentHome)
-                            .commit();
+                    fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    fragmentTransaction.replace(R.id.main_content, fragmentHome).commit();
+                    mPrevItem = item;
                     return true;
                 case R.id.navigation_trainingsPlanChooser:
                     TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentTrai)
-                            .commit();
+                    if(mPrevItem.getItemId() == R.id.navigation_home) {
+                        fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                    } else if(mPrevItem.getItemId() == R.id.navigation_settings){
+                        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
+                    fragmentTransaction.replace(R.id.main_content, fragmentTrai).commit();
+                    mPrevItem = item;
                     return true;
                 case R.id.navigation_settings:
                     PreferenceFragment fragmentPref = new PreferenceFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragmentPref)
-                            .commit();
+                    fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                    fragmentTransaction.replace(R.id.main_content, fragmentPref).commit();
+                    mPrevItem = item;
                     return true;
             }
             return false;
