@@ -41,4 +41,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text= "@string/exercise_equipment"/>
 
+    <TextView
+        android:id="@+id/exercise_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 </android.support.v7.widget.LinearLayoutCompat>

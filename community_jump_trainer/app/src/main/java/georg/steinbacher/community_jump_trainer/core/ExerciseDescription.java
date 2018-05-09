@@ -12,7 +12,7 @@ public class ExerciseDescription {
 
     private List<ExerciseStep> mSteps;
 
-    ExerciseDescription(List<ExerciseStep> steps) throws MissingExerciseStepException {
+    public ExerciseDescription(List<ExerciseStep> steps) throws MissingExerciseStepException {
         //order the steps to be sure they are in the right order.
         mSteps = orderSteps(steps);
 

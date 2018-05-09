@@ -12,6 +12,8 @@ import java.util.List;
 import georg.steinbacher.community_jump_trainer.core.Difficulty;
 import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
+import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
+import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
@@ -23,7 +25,6 @@ import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 public class Factory {
     private static final String TAG = "Factory";
 
-    //TODO also add the missing field which get inserted with null atm
     public static TrainingsPlan createTraingsPlan(int trainingsPlanId) {
         JSONHolder holder = JSONHolder.getInstance();
         JSONObject loadedTraingsPlan = holder.getTraingsPlan(trainingsPlanId);
@@ -51,10 +52,27 @@ public class Factory {
                     }
                 }
 
+                //load the description
+                List<ExerciseStep> exerciseSteps = new ArrayList<>();
+                if(loaded.has("steps")) {
+                    JSONArray steps = loaded.getJSONArray("steps");
+                    for(int j=0; j<steps.length(); j++) {
+                        final JSONObject loadedStep = steps.getJSONObject(j);
+                        final int stepNr = Integer.valueOf(loadedStep.getString("nr"));
+                        final String desc = loadedStep.getString("description");
+                        exerciseSteps.add(new ExerciseStep(stepNr, desc));
+                    }
+                }
+                ExerciseDescription exerciseDescription = null;
+                try {
+                    exerciseDescription = new ExerciseDescription(exerciseSteps);
+                } catch (ExerciseDescription.MissingExerciseStepException e) {
+                    e.printStackTrace();
+                }
 
                 if(type == Exercise.Type.STANDARD) {
                     ex = new StandardExercise(loaded.getString("name"),
-                            null,
+                            exerciseDescription,
                             equipmentList,
                             new Difficulty(loaded.getInt("difficulty")),
                             null,
@@ -65,7 +83,7 @@ public class Factory {
                     exercises.add(ex);
                 } else if(type == Exercise.Type.TIME) {
                     ex = new TimeExercise(loaded.getString("name"),
-                            null,
+                            exerciseDescription,
                             equipmentList,
                             new Difficulty(loaded.getInt("difficulty")),
                             null,

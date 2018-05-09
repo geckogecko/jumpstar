@@ -13,6 +13,8 @@ import java.util.List;
 
 import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
+import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
+import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 
 public class StandardExerciseFragment extends Fragment {
@@ -59,6 +61,21 @@ public class StandardExerciseFragment extends Fragment {
         } else {
             equipmentTextView.setVisibility(View.GONE);
         }
+
+        //description
+        TextView descriptionTextView = mView.findViewById(R.id.exercise_description);
+        ExerciseDescription description = mExercise.getDescription();
+        if(description != null) {
+            List<ExerciseStep> exerciseSteps = mExercise.getDescription().getSteps();
+            String descString = "";
+            for (ExerciseStep step : exerciseSteps) {
+                descString += step.getStepNr() + ": " + step.getDescription() + "\n";
+            }
+            descriptionTextView.setText(descString);
+        } else {
+            descriptionTextView.setVisibility(View.GONE);
+        }
+
     }
 
     public void setExercise(StandardExercise exercise) {

@@ -6,7 +6,7 @@ public class ExerciseStep {
     private int mStepNr;
     private String mStepDescription;
 
-    ExerciseStep(int stepNr, String stepDescription) {
+    public ExerciseStep(int stepNr, String stepDescription) {
         mStepNr = stepNr;
         mStepDescription = stepDescription;
     }
