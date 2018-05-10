@@ -13,20 +13,17 @@
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
         android:layout_marginLeft="10sp">
-        <android.support.design.widget.TextInputLayout
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/text_input"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/save_input_button"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:focusableInTouchMode="true">
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/text_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hint_vertical_reach"
-                android:lines="1"
-                android:inputType="numberDecimal"/>
-        </android.support.design.widget.TextInputLayout>
+            android:layout_toLeftOf="@id/save_input_button"
+            android:hint="@string/hint_vertical_reach"
+            android:lines="1"
+            android:inputType="numberDecimal"
+            android:cursorVisible="false"/>
 
         <ImageButton
             android:id="@+id/save_input_button"
