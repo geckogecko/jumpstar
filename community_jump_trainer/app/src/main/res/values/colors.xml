@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#CDDC39</color>
-    <color name="colorPrimaryDark">#C0CA33</color>
-    <color name="colorAccent">#009688</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#0099cc</color>
+    <color name="background">#303030</color>
+    <color name="cardBackground">#424242</color>
+
+    <color name="lightGrey">#F5F5F5</color>
+    <color name="darkerGrey">#A9A9A9</color>
 
 
     <color name="colorExerciseStretch">#068415</color>
@@ -11,4 +16,6 @@
     <color name="colorExerciseStrengthLight">#4b6bc4f7</color>
     <color name="colorExercisePlyometric">#8633ca</color>
     <color name="colorExercisePlyometricLight">#4bbc8be4</color>
+
+
 </resources>

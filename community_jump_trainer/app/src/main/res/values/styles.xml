@@ -4,11 +4,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColor">@color/lightGrey</item>
         
         <!-- preferences -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
+    <style name="CardViewStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPaddingBottom">12dp</item>
+        <item name="contentPaddingTop">12dp</item>
+        <item name="contentPaddingLeft">8dp</item>
+        <item name="contentPaddingRight">8dp</item>
+        <item name="cardBackgroundColor">@color/cardBackground</item>
+    </style>
 
     <style name="TrainingsStyle" parent="AppTheme">
         <item name="android:background">@color/colorPrimaryDark</item>

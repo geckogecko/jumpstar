@@ -66,8 +66,11 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnClickLi
         mCategorySummery.setProgressDrawable(categorySummaryDrawable);
 
         //set the background color of the card
+        //TODO indicate that somehow different
+        /*
         CardView card = findViewById(R.id.cardView);
         card.setCardBackgroundColor(categorySummaryDrawable.getIndicatorPaint().getColor());
+        */
     }
 
     @Override
