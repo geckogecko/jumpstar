@@ -42,19 +42,23 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
-
         LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view;
 
-        //TODO add only plans which the user has the equipment for
-        // or mark plans with missing equipment
+        boolean showPlan = true;
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
             for (Equipment.Type type : trainingsPlan.getNeededEquipmentTypes()) {
-                Log.i(TAG, "onViewCreated: " + type.name().toString());
+                if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)) {
+                    showPlan = false;
+                } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)) {
+                    showPlan = false;
+                }
             }
 
-            TrainingsPlanView trainingsPlanView = new TrainingsPlanView(getContext());
-            trainingsPlanView.setTrainingsPlan(trainingsPlan);
-            linearLayoutCompat.addView(trainingsPlanView);
+            if(showPlan) {
+                TrainingsPlanView trainingsPlanView = new TrainingsPlanView(getContext());
+                trainingsPlanView.setTrainingsPlan(trainingsPlan);
+                linearLayoutCompat.addView(trainingsPlanView);
+            }
         }
 
         //for detecting if a new currentTrainingsPlan got added

@@ -19,6 +19,9 @@ public class Configuration {
     public static final String PREPARATION_COUNTDOWN_TIME = "preferences_trainingsPlan_preparationTime";
     public static final String PREPARATION_COUNTDOWN_TIME_DEFAULT = "5";
 
+    public static final String EQUIPMENT_HOME = "preference_equipment_home";
+    public static final String EQUIPMENT_GYM = "preference_equipment_gym";
+
     public enum UnitLocal {
         METRIC,
         IMPERIAL
@@ -39,6 +42,10 @@ public class Configuration {
 
     public static boolean getBoolean(Context context, String key) {
         return SharedPreferencesManager.getBoolean(context, key, false);
+    }
+
+    public static boolean getBoolean(Context context, String key, boolean defaultValue) {
+        return SharedPreferencesManager.getBoolean(context, key, defaultValue);
     }
 
     //Double
