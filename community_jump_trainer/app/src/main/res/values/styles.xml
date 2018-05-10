@@ -21,6 +21,11 @@
         <item name="cardBackgroundColor">@color/cardBackground</item>
     </style>
 
+    <style name="ButtonStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/darkerGrey</item>
+    </style>
+
     <style name="TrainingsStyle" parent="AppTheme">
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>

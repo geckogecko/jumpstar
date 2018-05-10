@@ -20,7 +20,7 @@
         android:layout_above="@id/complete_exercise_button"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/complete_exercise_button"
         android:layout_width="match_parent"
         android:layout_height="52dp"

@@ -28,10 +28,11 @@
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
         android:progress="0"/>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/exercise_start_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:text="Start"/>
 
     <TextView
