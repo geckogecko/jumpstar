@@ -15,6 +15,8 @@
     <!-- Home -->
     <string name="start_current_trainingsPlan">Start TrainingsPlan</string>
     <string name="hint_vertical_reach">Enter your vertical reach</string>
+    <string name="vertical_progress_title">Vertical Progress</string>
+    <string name="vertical_progress_input_title">Vertical Progress Input</string>
 
 
     <string name="exercise_sets">Sets: %1$s</string>

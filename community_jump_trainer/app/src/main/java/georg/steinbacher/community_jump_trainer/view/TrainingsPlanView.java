@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity;
@@ -47,6 +48,9 @@ public class TrainingsPlanView extends CardView implements View.OnClickListener{
     public void setTrainingsPlan(TrainingsPlan trainingsPlan) {
         mTrainingsPlan = trainingsPlan;
         setCategorySummary(trainingsPlan);
+
+        TextView txtTitle = findViewById(R.id.name);
+        txtTitle.setText(mTrainingsPlan.getName());
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {
