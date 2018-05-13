@@ -59,6 +59,9 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnClickLi
 
         mCategorySummery = findViewById(R.id.categorySummery);
         setCategorySummary(trainingsPlan);
+
+        TextView txtDescription = mRootView.findViewById(R.id.description);
+        txtDescription.setText(mTrainingsPlan.getDescription());
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {

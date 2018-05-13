@@ -99,6 +99,7 @@ public class Factory {
 
             return new TrainingsPlan(trainingsPlanId,
                     loadedTraingsPlan.getString("name"),
+                    loadedTraingsPlan.getString("description"),
                     exercises,
                     loadedTraingsPlan.getLong("creationDate"),
                     null);

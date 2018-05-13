@@ -17,6 +17,7 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     private Rating mRating;
     private Exercise mCurrentExercise;
     private boolean mCompletedLastExercise;
+    private String mDescription;
 
     private ITrainingsPlanListener mListener;
 
@@ -25,9 +26,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
     }
 
-    public TrainingsPlan(int id, String name, List<Exercise> exercises, long creationDate, Rating rating) {
+    public TrainingsPlan(int id, String name, String description, List<Exercise> exercises, long creationDate, Rating rating) {
         mId = id;
         mName = name;
+        mDescription = description;
         mExercises = exercises;
         mCreationDate = creationDate;
         mRating = rating;
@@ -68,6 +70,10 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
 
     public String getName() {
         return mName;
+    }
+
+    public String getDescription() {
+        return mDescription;
     }
 
     public List<Exercise> getExercises() {

@@ -21,6 +21,7 @@ public class TrainingsPlanTest {
 
     final int id = 1;
     final String testName = "TestPlan";
+    final String testDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna.";
     List<Exercise> exercises;
     final long timeStamp = System.currentTimeMillis();
     final Rating rating = new Rating(5.0);
@@ -64,7 +65,7 @@ public class TrainingsPlanTest {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        trainingsPlan = new TrainingsPlan(id, testName, exercises, timeStamp, rating);
+        trainingsPlan = new TrainingsPlan(id, testName, testDescription, exercises, timeStamp, rating);
 
         // listenerCalledTest
         MockitoAnnotations.initMocks(this);
@@ -73,6 +74,7 @@ public class TrainingsPlanTest {
     @Test
     public void constructorTest() {
         assertEquals(testName, trainingsPlan.getName());
+        assertEquals(testDescription, trainingsPlan.getDescription());
         assertEquals(exercises, trainingsPlan.getExercises());
         assertEquals(timeStamp, trainingsPlan.getCreationDate());
         assertEquals(rating, trainingsPlan.getRating());
