@@ -26,6 +26,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_margin="@dimen/card_margins_content"
                     android:text="test"/>
             </LinearLayout>
 
@@ -49,26 +51,32 @@
                     style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
             </LinearLayout>
-            <RelativeLayout
+            <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:background="@color/colorPrimary">
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/button_start"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_weight="1"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:text="@string/start_current_trainingsPlan"/>
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardBackground"
+                    ></View>
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/button_info"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:text="@string/info_current_trainingsPlan"/>
-            </RelativeLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </android.support.v7.widget.LinearLayoutCompat>
