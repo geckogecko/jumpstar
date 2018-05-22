@@ -25,7 +25,7 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
  * Created by georg on 04.04.18.
  */
 
-public class CurrentTrainingsPlanView extends CardView implements View.OnClickListener, View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
+public class CurrentTrainingsPlanView extends CardView implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
 
     private View mRootView;
     private Context mContext;
@@ -41,18 +41,27 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnClickLi
         mContext = context;
         mTrainingsPlan = trainingsPlan;
         mRootView = inflate(context, R.layout.view_current_trainings_plan, this);
-        setOnClickListener(this);
         setOnLongClickListener(this);
 
         TextView txtView = mRootView.findViewById(R.id.name);
         txtView.setText(mTrainingsPlan.getName());
 
-        Button button = mRootView.findViewById(R.id.button_start);
-        button.setOnClickListener(new OnClickListener() {
+        Button startButton = mRootView.findViewById(R.id.button_start);
+        startButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TrainingActivity.class);
                 intent.putExtra(TrainingActivity.TRAININGS_PLAN_ID, mTrainingsPlan.getId());
+                mContext.startActivity(intent);
+            }
+        });
+
+        Button infoButton = mRootView.findViewById(R.id.button_info);
+        infoButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
+                intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -74,13 +83,6 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnClickLi
         CardView card = findViewById(R.id.cardView);
         card.setCardBackgroundColor(categorySummaryDrawable.getIndicatorPaint().getColor());
         */
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
-        intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
-        mContext.startActivity(intent);
     }
 
     @Override

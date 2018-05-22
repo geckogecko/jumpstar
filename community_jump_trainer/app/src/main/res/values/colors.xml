@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CDDC39</color>
+    <color name="colorPrimary">#777272</color> <!-- todo find a better color -->
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#0099cc</color>
     <color name="background">#303030</color>
