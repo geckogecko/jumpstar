@@ -59,7 +59,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         mRootView = inflate(context, R.layout.view_vertical_progress, this);
 
         setOnLongClickListener(this);
-        initChart();
+        setData();
     }
 
     @Override
@@ -92,7 +92,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         return mTitle;
     }
 
-    public void initChart() {
+    public void setData() {
         LineChart chart = mRootView.findViewById(R.id.chart);
 
         List<Entry> entries = new ArrayList<Entry>();

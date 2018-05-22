@@ -80,12 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         int[] ids = {1,2};
         Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, ids);
-
-        VerticalHeightWriter writer = new VerticalHeightWriter(getApplicationContext());
-        writer.add(System.currentTimeMillis(), 30);
-        writer.add(System.currentTimeMillis() + 10000, 32);
-        writer.add(System.currentTimeMillis() + 20000, 34);
-        writer.add(System.currentTimeMillis() + 30000, 35);
+        Configuration.set(mContext, Configuration.SHOW_VERTICAL_PROGRESS, true);
 
         //END DEVELOPMENT
 

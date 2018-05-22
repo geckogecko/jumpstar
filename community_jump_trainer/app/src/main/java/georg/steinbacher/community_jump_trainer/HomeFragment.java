@@ -1,6 +1,7 @@
 package georg.steinbacher.community_jump_trainer;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,8 @@ import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 import static android.content.ContentValues.TAG;
 
 public class HomeFragment extends Fragment implements VerticalProgressInputView.IInputDoneListener{
+    private Context mContext;
+    private LinearLayoutCompat mLayout;
     private VerticalProgressView mVerticialProgressV;
 
     @Override
@@ -33,7 +36,8 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayoutCompat layout = view.findViewById(R.id.home_fragment_layout);
+        mLayout = view.findViewById(R.id.home_fragment_layout);
+        mContext = view.getContext();
 
         //Is a current trainingsPlan set?
         if(Configuration.isSet(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY)) {
@@ -42,28 +46,24 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
                 final int id = trainingsPlanIds[i];
                 final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);
                 CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(), trainingsPlan);
-                layout.addView(ctpv);
+                mLayout.addView(ctpv);
             }
         }
 
         //Is vertical progress set?
         if(Configuration.isSet(getContext(), Configuration.SHOW_VERTICAL_PROGRESS) &&
             Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
+            mVerticialProgressV = createVerticalProgressView();
 
-            VerticalHeightReader reader = new VerticalHeightReader(getContext());
-            Cursor cursor = reader.getAll();
-            if (cursor.getCount() > 0) {
-                mVerticialProgressV = new VerticalProgressView(view.getContext());
-                layout.addView(mVerticialProgressV, 0);
-            } else {
-                Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
+            if(mVerticialProgressV != null) {
+                mVerticialProgressV.setData();
             }
         }
 
         //Vertical Progress input
         VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
         vpiv.setListener(this);
-        layout.addView(vpiv);
+        mLayout.addView(vpiv);
 
         //Load the history views
         //TODO load from db and add dynamicaly or lets remove it ?
@@ -76,8 +76,29 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
 
     @Override
     public void onInputDone() {
-        if(mVerticialProgressV != null) {
-            mVerticialProgressV.initChart();
+        if(mVerticialProgressV == null &&
+                Configuration.isSet(getContext(), Configuration.SHOW_VERTICAL_PROGRESS) &&
+                Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
+            mVerticialProgressV = createVerticalProgressView();
         }
+
+        if(mVerticialProgressV != null) {
+            mVerticialProgressV.setData();
+        }
+    }
+
+    private VerticalProgressView createVerticalProgressView() {
+        VerticalProgressView verticalProgress = null;
+        VerticalHeightReader reader = new VerticalHeightReader(getContext());
+        Cursor cursor = reader.getAll();
+
+        if (cursor.getCount() > 0) {
+            verticalProgress = new VerticalProgressView(mContext);
+            mLayout.addView(verticalProgress, 0);
+        } else {
+            Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
+        }
+
+        return verticalProgress;
     }
 }
