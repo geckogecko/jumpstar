@@ -12,20 +12,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-import com.github.pwittchen.swipe.library.rx2.Swipe;
-import com.github.pwittchen.swipe.library.rx2.SwipeListener;
 import com.stephentuso.welcome.WelcomeHelper;
 
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
 import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
-public class MainActivity extends AppCompatActivity implements SwipeListener{
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private WelcomeHelper mSetupHelper;
     private Context mContext;
-    private Swipe mSwipe;
     private BottomNavigationView mNavigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -105,10 +102,6 @@ public class MainActivity extends AppCompatActivity implements SwipeListener{
     private void initMain() {
         setContentView(R.layout.activity_main);
 
-        //set swipe left right listener
-        mSwipe = new Swipe();
-        mSwipe.setListener(this);
-
         //Bottom Navigation
         mNavigation = findViewById(R.id.navigation);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -136,60 +129,5 @@ public class MainActivity extends AppCompatActivity implements SwipeListener{
 
     public void changeContent(int id) {
         mNavigation.setSelectedItemId(id);
-    }
-
-    @Override public boolean dispatchTouchEvent(MotionEvent event) {
-        mSwipe.dispatchTouchEvent(event);
-        return super.dispatchTouchEvent(event);
-    }
-
-    @Override
-    public void onSwipingLeft(MotionEvent event) {
-
-    }
-
-    @Override
-    public boolean onSwipedLeft(MotionEvent event) {
-        if(mNavigation.getSelectedItemId() == R.id.navigation_home) {
-            mNavigation.setSelectedItemId(R.id.navigation_trainingsPlanChooser);
-        } else if(mNavigation.getSelectedItemId() == R.id.navigation_trainingsPlanChooser) {
-            mNavigation.setSelectedItemId(R.id.navigation_settings);
-        }
-        return false;
-    }
-
-    @Override
-    public void onSwipingRight(MotionEvent event) {
-
-    }
-
-    @Override
-    public boolean onSwipedRight(MotionEvent event) {
-        if(mNavigation.getSelectedItemId() == R.id.navigation_settings) {
-            mNavigation.setSelectedItemId(R.id.navigation_trainingsPlanChooser);
-        } else if(mNavigation.getSelectedItemId() == R.id.navigation_trainingsPlanChooser) {
-            mNavigation.setSelectedItemId(R.id.navigation_home);
-        }
-        return false;
-    }
-
-    @Override
-    public void onSwipingUp(MotionEvent event) {
-
-    }
-
-    @Override
-    public boolean onSwipedUp(MotionEvent event) {
-        return false;
-    }
-
-    @Override
-    public void onSwipingDown(MotionEvent event) {
-
-    }
-
-    @Override
-    public boolean onSwipedDown(MotionEvent event) {
-        return false;
     }
 }
