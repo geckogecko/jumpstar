@@ -18,7 +18,8 @@
     <string name="hint_vertical_reach">Enter your vertical reach</string>
     <string name="vertical_progress_title">Vertical Progress</string>
     <string name="vertical_progress_input_title">Vertical Progress Input</string>
-
+    <string name="add_current_trainings_plan_text">Select a trainingsplan and start your training</string>
+    <string name="add_current_trainings_plan_Select">Select</string>
 
     <string name="exercise_sets">Sets: %1$s</string>
     <string name="exercise_equipment">Equipment: %1$s</string>

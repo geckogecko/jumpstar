@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
+import georg.steinbacher.community_jump_trainer.view.AddCurrentTrainingsPlanView;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressInputView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
@@ -48,6 +49,9 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
                 CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(), trainingsPlan);
                 mLayout.addView(ctpv);
             }
+        } else {
+            AddCurrentTrainingsPlanView actpv = new AddCurrentTrainingsPlanView(mContext);
+            mLayout.addView(actpv);
         }
 
         //Is vertical progress set?
