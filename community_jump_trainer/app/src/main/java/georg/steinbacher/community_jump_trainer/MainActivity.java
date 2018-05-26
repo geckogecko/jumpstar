@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private WelcomeHelper mSetupHelper;
     private Context mContext;
     private BottomNavigationView mNavigation;
+    private Fragment mCurrentFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     HomeFragment fragmentHome = new HomeFragment();
                     fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     fragmentTransaction.replace(R.id.main_content, fragmentHome).commit();
+                    mCurrentFragment = fragmentHome;
                     mPrevItem = item;
                     return true;
                 case R.id.navigation_trainingsPlanChooser:
@@ -49,12 +52,14 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
                     fragmentTransaction.replace(R.id.main_content, fragmentTrai).commit();
+                    mCurrentFragment = fragmentTrai;
                     mPrevItem = item;
                     return true;
                 case R.id.navigation_settings:
                     PreferenceFragment fragmentPref = new PreferenceFragment();
                     fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                     fragmentTransaction.replace(R.id.main_content, fragmentPref).commit();
+                    mCurrentFragment = fragmentPref;
                     mPrevItem = item;
                     return true;
             }
@@ -122,7 +127,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void changeContent(int id) {
-        mNavigation.setSelectedItemId(id);
+    public void changeContent(int id, boolean animation) {
+        if(animation) {
+            mNavigation.setSelectedItemId(id);
+        } else {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            switch (id) {
+                case R.id.navigation_home:
+                    HomeFragment fragmentHome = new HomeFragment();
+                    fragmentTransaction.replace(R.id.main_content, fragmentHome).commit();
+                    mCurrentFragment = fragmentHome;
+                    break;
+                case R.id.navigation_trainingsPlanChooser:
+                    TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
+                    fragmentTransaction.replace(R.id.main_content, fragmentTrai).commit();
+                    mCurrentFragment = fragmentTrai;
+                    break;
+                case R.id.navigation_settings:
+                    PreferenceFragment fragmentPref = new PreferenceFragment();
+                    fragmentTransaction.replace(R.id.main_content, fragmentPref).commit();
+                    mCurrentFragment = fragmentPref;
+                    break;
+            }
+        }
     }
 }

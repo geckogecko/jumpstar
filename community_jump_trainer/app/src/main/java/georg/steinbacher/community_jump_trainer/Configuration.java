@@ -85,6 +85,10 @@ public class Configuration {
 
     public static int[] getIntArray(Context context, String key) {
         String string = SharedPreferencesManager.getString(context, key, "");
+        if(string.equals("")) {
+            return new int[0];
+        }
+
         String[] splited = string.split(",");
 
         int[] numbers = new int[splited.length];

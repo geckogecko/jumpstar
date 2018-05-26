@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,13 +33,21 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
     private TrainingsPlan mTrainingsPlan;
     private ProgressBar mCategorySummery;
 
-    public CurrentTrainingsPlanView(Context context, TrainingsPlan trainingsPlan) {
-        super(context);
-        init(context, trainingsPlan);
+    private IViewRemovedListener mListener;
+
+    public interface IViewRemovedListener {
+        void onRemoved();
     }
 
-    private void init(Context context, TrainingsPlan trainingsPlan) {
+    public CurrentTrainingsPlanView(Context context, IViewRemovedListener listener,
+                                    TrainingsPlan trainingsPlan) {
+        super(context);
+        init(context, listener, trainingsPlan);
+    }
+
+    private void init(Context context, IViewRemovedListener listener, TrainingsPlan trainingsPlan) {
         mContext = context;
+        mListener = listener;
         mTrainingsPlan = trainingsPlan;
         mRootView = inflate(context, R.layout.view_current_trainings_plan, this);
         setOnLongClickListener(this);
@@ -98,7 +107,9 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if(item.getTitle().equals(mContext.getString(R.string.remove))) {
+            ViewGroup parent = (ViewGroup) mRootView.getParent();
             mRootView.setVisibility(View.GONE);
+            parent.removeView(mRootView);
 
             //remove from config
             int[] currentConfig = Configuration.getIntArray(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
@@ -111,6 +122,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
                 }
             }
             Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, newConfig);
+            mListener.onRemoved();
         }
         return false;
     }

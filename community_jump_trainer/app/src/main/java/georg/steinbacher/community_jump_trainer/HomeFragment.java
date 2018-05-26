@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
@@ -22,7 +23,7 @@ import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
 import static android.content.ContentValues.TAG;
 
-public class HomeFragment extends Fragment implements VerticalProgressInputView.IInputDoneListener{
+public class HomeFragment extends Fragment implements VerticalProgressInputView.IInputDoneListener, CurrentTrainingsPlanView.IViewRemovedListener{
     private Context mContext;
     private LinearLayoutCompat mLayout;
     private VerticalProgressView mVerticialProgressV;
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];
                 final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);
-                CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(), trainingsPlan);
+                CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(),this,  trainingsPlan);
                 mLayout.addView(ctpv);
             }
         } else {
@@ -104,5 +105,10 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
         }
 
         return verticalProgress;
+    }
+
+    @Override
+    public void onRemoved() {
+        ((MainActivity)getActivity()).changeContent(R.id.navigation_home, false);
     }
 }

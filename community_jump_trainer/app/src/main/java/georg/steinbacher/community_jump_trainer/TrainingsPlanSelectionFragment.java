@@ -73,7 +73,7 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         if(mCurrentTrainingsPlanCount != newCurrentTrainingsPlanCount) {
             MainActivity mainActivity = (MainActivity)getActivity();
             if(mainActivity != null) {
-                mainActivity.changeContent(R.id.navigation_home);
+                mainActivity.changeContent(R.id.navigation_home, false);
             }
         }
 
