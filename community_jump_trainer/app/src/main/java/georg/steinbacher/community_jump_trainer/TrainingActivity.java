@@ -19,11 +19,13 @@ import georg.steinbacher.community_jump_trainer.core.Rating;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.drawables.TrainingsPlanProgressDrawable;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.util.JSONHolder;
 
-public class TrainingActivity extends AppCompatActivity implements TrainingsPlan.ITrainingsPlanListener {
+public class TrainingActivity extends AppCompatActivity implements TrainingsPlan.ITrainingsPlanListener,
+        TrainingsPlanEntry.ITrainingsPlanEntryListener {
     private static final String TAG = "TrainingActivity";
 
     public static final String TRAININGS_PLAN_ID = "trainings_plan_id";
@@ -65,6 +67,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         super.onStart();
 
         mTraingsPlan.setListener(this);
+        mTraingsPlan.setTrainingsPlanListener(this);
 
         findViewById(R.id.complete_exercise_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         super.onStop();
 
         mTraingsPlan.setListener(null);
+        mTraingsPlan.setTrainingsPlanListener(null);
     }
 
     @Override
@@ -90,12 +94,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         if(!mTraingsPlan.completedLastExercise()) {
             loadExerciseFragment(mTraingsPlan.getCurrentExercise());
         }
-    }
-
-    @Override
-    public void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan) {
-        //TODO return something
-        finish();
     }
 
     private void loadExerciseFragment(Exercise exercise) {
@@ -111,5 +109,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
             tef.setExercise((TimeExercise) exercise);
             fragmentTrans.replace(R.id.main_content, tef).commit();
         }
+    }
+
+    @Override
+    public void onEntryCompleted(TrainingsPlanEntry completedEntry) {
+        //TODO return something
+        finish();
     }
 }

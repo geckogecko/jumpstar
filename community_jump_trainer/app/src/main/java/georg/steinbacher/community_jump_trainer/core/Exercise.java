@@ -7,7 +7,7 @@ import java.util.List;
  * Created by georg on 15.03.18.
  */
 
-public class Exercise {
+public class Exercise extends TrainingsPlanEntry{
     private String mName;
     private ExerciseDescription mDescription;
     private List<Equipment> mEquipmentList;
@@ -16,7 +16,6 @@ public class Exercise {
     private TargetArea mTargetArea;
     private int mSets;
     private Category mCategory;
-    private boolean mCompleted;
 
     public enum Type {
         UNKNOWN,
@@ -36,12 +35,6 @@ public class Exercise {
         STRETCH,
         STRENGTH,
         PLYOMETRIC
-    }
-
-    private IExerciseListener mListener;
-
-    public interface IExerciseListener {
-        void onExerciseCompleted(Exercise completedExercise);
     }
 
     public Exercise(String name,
@@ -94,27 +87,7 @@ public class Exercise {
         return mSets;
     }
 
-    public void setListener(IExerciseListener exerciseListener) {
-        mListener = exerciseListener;
-    }
-
-    /**
-     * Call when the user completed the current exercise.
-     * By clicking "next" or "finish" for example
-     */
-    public void complete() {
-        mCompleted = true;
-
-        if (mListener != null) {
-            mListener.onExerciseCompleted(this);
-        }
-    }
-
     public Category getCategory() {
         return mCategory;
-    }
-
-    public boolean isCompleted() {
-        return mCompleted;
     }
 }

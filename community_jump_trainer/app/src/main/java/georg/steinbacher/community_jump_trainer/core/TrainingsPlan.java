@@ -7,7 +7,7 @@ import java.util.List;
  * Created by georg on 28.03.18.
  */
 
-public class TrainingsPlan implements Exercise.IExerciseListener {
+public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEntry.ITrainingsPlanEntryListener {
     private static final String TAG = "TrainingsPlan";
 
     private int mId;
@@ -19,11 +19,9 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     private boolean mCompletedLastExercise;
     private String mDescription;
 
-    private ITrainingsPlanListener mListener;
-
+    private ITrainingsPlanListener mTrainingsPlanListener;
     public interface ITrainingsPlanListener {
         void onCurrentExerciseCompleted(Exercise currentCompletedExercise);
-        void onTrainingsPlanCompleted(TrainingsPlan completedTrainingsPlan);
     }
 
     public TrainingsPlan(int id, String name, String description, List<Exercise> exercises, long creationDate, Rating rating) {
@@ -41,8 +39,8 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
     }
 
     @Override
-    public void onExerciseCompleted(Exercise completedExercise) {
-        int completedExerciseIndex = mExercises.indexOf(completedExercise);
+    public void onEntryCompleted(TrainingsPlanEntry completedEntry) {
+        int completedExerciseIndex = mExercises.indexOf(completedEntry);
 
         // is this the last exercise ?
         if (completedExerciseIndex != mExercises.size() - 1) {
@@ -53,14 +51,11 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         } else {
             mCurrentExercise = null;
             mCompletedLastExercise = true;
-
-            if (mListener != null) {
-                mListener.onTrainingsPlanCompleted(this);
-            }
+            this.complete();
         }
 
-        if(mListener != null) {
-            mListener.onCurrentExerciseCompleted(completedExercise);
+        if(mTrainingsPlanListener != null) {
+            mTrainingsPlanListener.onCurrentExerciseCompleted((Exercise) completedEntry);
         }
     }
 
@@ -92,8 +87,8 @@ public class TrainingsPlan implements Exercise.IExerciseListener {
         return mCurrentExercise;
     }
 
-    public void setListener(ITrainingsPlanListener trainingsPlanListener) {
-        mListener = trainingsPlanListener;
+    public void setTrainingsPlanListener(ITrainingsPlanListener trainingsPlanListener) {
+        mTrainingsPlanListener = trainingsPlanListener;
     }
 
     public boolean completedLastExercise() {

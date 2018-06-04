@@ -108,6 +108,9 @@ public class TrainingsPlanTest {
     @Mock
     TrainingsPlan.ITrainingsPlanListener trainingsPlanListener;
 
+    @Mock
+    TrainingsPlanEntry.ITrainingsPlanEntryListener listener;
+
     @Test
     public void listenerTest() {
         trainingsPlan.getCurrentExercise().complete();
@@ -116,6 +119,6 @@ public class TrainingsPlanTest {
         verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise2);
         trainingsPlan.getCurrentExercise().complete();
         verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise3);
-        verify(trainingsPlanListener, times(1)).onTrainingsPlanCompleted(trainingsPlan);
+        verify(listener, times(1)).onEntryCompleted(trainingsPlan);
     }
 }

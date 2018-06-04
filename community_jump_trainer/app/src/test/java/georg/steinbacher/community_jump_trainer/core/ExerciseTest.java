@@ -58,13 +58,13 @@ public class ExerciseTest {
     }
 
     @Mock
-    Exercise.IExerciseListener exerciseListener;
+    TrainingsPlanEntry.ITrainingsPlanEntryListener exerciseListener;
 
     @Test
     public void listenerCalledTest() {
         assertEquals(false, exercise.isCompleted());
         exercise.complete();
-        verify(exerciseListener, times(1)).onExerciseCompleted(exercise);
+        verify(exerciseListener, times(1)).onEntryCompleted(exercise);
         assertEquals(true, exercise.isCompleted());
     }
 }
