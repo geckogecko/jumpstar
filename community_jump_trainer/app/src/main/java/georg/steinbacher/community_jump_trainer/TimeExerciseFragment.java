@@ -28,7 +28,6 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private CountdownView mCountdownView;
     private ProgressBar mProgressBar;
     private TextView mSets;
-    private int mCompletedSets; //TODO show the completed sets on the UI
     private boolean mPreperationCountdown;
 
     @Override
@@ -67,7 +66,6 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mProgressBar = mView.findViewById(R.id.time_exercise_progress_bar);
 
         //Sets
-        mCompletedSets = 0;
         mSets = mView.findViewById(R.id.exercise_sets);
         mSets.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
 
@@ -99,10 +97,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
             mProgressBar.setProgress(0);
             mCountdownView.start(mExercise.getTime() * 1000);
         } else {
-            mCompletedSets++;
-            if (mCompletedSets >= mExercise.getSets()) {
-                mExercise.complete();
-            }
+            mExercise.complete();
         }
     }
 
