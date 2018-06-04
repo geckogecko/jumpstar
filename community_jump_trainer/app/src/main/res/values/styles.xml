@@ -9,6 +9,9 @@
         
         <!-- preferences -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+        <!-- dropdown menu -->
+        <item name="android:itemBackground">@color/cardBackground</item>
     </style>
 
     <style name="CardViewStyle" parent="ThemeOverlay.AppCompat.Dark">
