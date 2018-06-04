@@ -27,7 +27,7 @@
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:layout_margin="@dimen/card_margins_content"
-                    android:text="@string/vertical_progress_input_title"/>
+                    android:text="@string/select_current_trainingsplan_title"/>
             </LinearLayout>
 
             <LinearLayout

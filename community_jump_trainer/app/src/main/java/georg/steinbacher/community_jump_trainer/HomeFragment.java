@@ -52,6 +52,12 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
             }
         } else {
             AddCurrentTrainingsPlanView actpv = new AddCurrentTrainingsPlanView(mContext);
+            actpv.setListener(new AddCurrentTrainingsPlanView.IAddCurrentTrainingsplanClickedListener() {
+                @Override
+                public void onAddCurrentTrainingsplanClicked() {
+                    ((MainActivity)getActivity()).changeContent(R.id.navigation_trainingsPlanChooser, true);
+                }
+            });
             mLayout.addView(actpv);
         }
 

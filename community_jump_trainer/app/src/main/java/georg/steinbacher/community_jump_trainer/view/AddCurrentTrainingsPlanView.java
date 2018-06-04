@@ -13,9 +13,19 @@ public class AddCurrentTrainingsPlanView extends CardView{
     private Context mContext;
     private View mRootView;
 
+    private IAddCurrentTrainingsplanClickedListener mListener;
+
+    public interface IAddCurrentTrainingsplanClickedListener {
+        void onAddCurrentTrainingsplanClicked();
+    }
+
     public AddCurrentTrainingsPlanView(Context context) {
         super(context);
         init(context);
+    }
+
+    public void setListener(IAddCurrentTrainingsplanClickedListener listener) {
+        mListener = listener;
     }
 
     private void init(Context context){
@@ -26,8 +36,12 @@ public class AddCurrentTrainingsPlanView extends CardView{
         buttonSelect.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO switch to select trainingsplan tab
+                if(mListener != null) {
+                    mListener.onAddCurrentTrainingsplanClicked();
+                }
             }
         });
     }
+
+
 }
