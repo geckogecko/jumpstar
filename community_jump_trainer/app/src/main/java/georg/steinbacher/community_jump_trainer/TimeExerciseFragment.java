@@ -17,6 +17,7 @@ import java.util.List;
 import cn.iwgang.countdownview.CountdownView;
 import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
+import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
 
 import static android.content.ContentValues.TAG;
 import static georg.steinbacher.community_jump_trainer.Configuration.PREPARATION_COUNTDOWN_TIME;
@@ -42,6 +43,9 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         super.onViewCreated(view, savedInstanceState);
 
         mView = view;
+
+        //background color
+        mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);

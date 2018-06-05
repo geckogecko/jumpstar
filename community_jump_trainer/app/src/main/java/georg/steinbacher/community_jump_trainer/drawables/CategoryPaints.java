@@ -11,8 +11,8 @@ import georg.steinbacher.community_jump_trainer.core.Exercise;
  * Created by Georg Steinbacher on 01.05.18.
  */
 
-class CategoryPaints {
-    static Paint getPrimaryColor(Context context, Exercise.Category category) {
+public class CategoryPaints {
+    public static Paint getPrimaryColor(Context context, Exercise.Category category) {
         Paint paint = new Paint();
 
         if(category == Exercise.Category.STRETCH) {
@@ -26,7 +26,7 @@ class CategoryPaints {
         return paint;
     }
 
-    static Paint getSecondaryColor(Context context, Exercise.Category category) {
+    public static Paint getSecondaryColor(Context context, Exercise.Category category) {
         Paint paint = new Paint();
 
         if(category == Exercise.Category.STRETCH) {

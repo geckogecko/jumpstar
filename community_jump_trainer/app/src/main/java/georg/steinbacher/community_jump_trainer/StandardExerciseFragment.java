@@ -16,6 +16,7 @@ import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
+import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
 
 public class StandardExerciseFragment extends Fragment {
     private StandardExercise mExercise;
@@ -33,6 +34,9 @@ public class StandardExerciseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mView = view;
+
+        //background color
+        mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Name
         TextView nameTextView = mView.findViewById(R.id.exercise_name);

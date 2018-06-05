@@ -43,16 +43,20 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
         mTraingsPlan = Factory.createTraingsPlan(trainingsPlanId);
 
-        //set progress
-        mProgressBar = findViewById(R.id.progress_bar);
-        mProgressBar.setMax(mTraingsPlan.getEntryCount());
-        mProgressBar.setProgress(mTraingsPlan.getCurrentEntryIndex());
-        mProgressBar.setProgressDrawable(new TrainingsPlanProgressDrawable(
-                mTraingsPlan, getApplicationContext()));
+        if(mTraingsPlan.hasTrainingsPlan()) {
+            //TODO show the trainingsplans in an overview
+        } else {
+            //set progress
+            mProgressBar = findViewById(R.id.progress_bar);
+            mProgressBar.setMax(mTraingsPlan.getEntryCount());
+            mProgressBar.setProgress(mTraingsPlan.getCurrentEntryIndex());
+            mProgressBar.setProgressDrawable(new TrainingsPlanProgressDrawable(
+                    mTraingsPlan, getApplicationContext()));
 
-        //load the fragment for the current trainingsplan
-        //TODO remove the case to Exercise
-        loadExerciseFragment( (Exercise) mTraingsPlan.getCurrentEntry());
+            //load the fragment for the current trainingsplan
+            //TODO remove the case to Exercise
+            loadExerciseFragment((Exercise) mTraingsPlan.getCurrentEntry());
+        }
 
     }
 
