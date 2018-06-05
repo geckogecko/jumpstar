@@ -45,8 +45,11 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         TextView txtName = findViewById(R.id.detail_trainings_plan_name);
         txtName.setText(mTrainingsPlan.getName());
 
+        //Description
+        TextView txtDescription = findViewById(R.id.detail_trainings_plan_description);
+        txtDescription.setText(mTrainingsPlan.getDescription());
+
         //Equipment
-        //TODO if entry is a trainingsplan step into it and load the equipment
         TextView equipmentTextView = findViewById(R.id.exercise_equipment);
         List<String> equipmentList = new ArrayList<>();
         for (Equipment equipment: mTrainingsPlan.getNeededEquipment()) {
