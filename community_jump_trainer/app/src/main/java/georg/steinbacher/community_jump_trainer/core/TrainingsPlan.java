@@ -107,24 +107,35 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         }
     }
 
-    public List<Equipment.Type> getNeededEquipmentTypes() {
-        List<Equipment.Type> neededTypes = new ArrayList<>();
+    public List<Equipment> getNeededEquipment() {
+        List<Equipment> needed = new ArrayList<>();
+        return findNeededEquipment(needed, this);
+    }
 
-        for (TrainingsPlanEntry entry : mEntries) {
-            //TODO if entry is a trainingsplan load the equipment of it
+    private List<Equipment> findNeededEquipment(List<Equipment> equipment, TrainingsPlan trainingsPlan) {
+        for (TrainingsPlanEntry entry : trainingsPlan.getEntries()) {
             if(entry.getClass().equals(StandardExercise.class) ||
                     entry.getClass().equals(TimeExercise.class)) {
                 Exercise exercise = (Exercise) entry;
-                for (Equipment equipment : exercise.getNeededEquipment()) {
-                    Equipment.Type type = equipment.getType();
-                    if (!neededTypes.contains(type)) {
-                        neededTypes.add(type);
+                for (Equipment equ : exercise.getNeededEquipment()) {
+
+                    //already included ?
+                    boolean included = false;
+                    for(Equipment addedEquip : equipment) {
+                        if(addedEquip.getName().equals(equ.getName())){
+                            included = true;
+                        }
+                    }
+
+                    if (!included) {
+                        equipment.add(equ);
                     }
                 }
+            } else {
+                equipment = findNeededEquipment(equipment, (TrainingsPlan) entry);
             }
         }
-
-        return neededTypes;
+        return equipment;
     }
 
     /**
@@ -137,5 +148,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
                 return true;
             }
         }
+
+        return false;
     }
 }

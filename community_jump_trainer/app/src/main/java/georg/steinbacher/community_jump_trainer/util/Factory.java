@@ -28,73 +28,82 @@ public class Factory {
 
     public static TrainingsPlan createTraingsPlan(int trainingsPlanId) {
         JSONHolder holder = JSONHolder.getInstance();
+        Log.i(TAG, "createTraingsPlan: " + trainingsPlanId);
         JSONObject loadedTraingsPlan = holder.getTraingsPlan(trainingsPlanId);
 
-        //Load the exercises
+        //Load the entries
         try {
-            JSONArray exercisesJSONArray = loadedTraingsPlan.getJSONArray("exercises");
             List<TrainingsPlanEntry> entries = new ArrayList<>();
-            for(int i=0; i<exercisesJSONArray.length(); i++) {
-                JSONObject current = exercisesJSONArray.getJSONObject(i);
+            if(loadedTraingsPlan.has("exercises")) {
+                JSONArray exercisesJSONArray = loadedTraingsPlan.getJSONArray("exercises");
+                for(int i=0; i<exercisesJSONArray.length(); i++) {
+                    JSONObject current = exercisesJSONArray.getJSONObject(i);
 
-                Exercise ex;
-                Exercise.Type type = Exercise.Type.valueOf(current.getString("type"));
-                JSONObject loaded = holder.getExerciseJSON(current.getInt("id"), type);
+                    Exercise ex;
+                    Exercise.Type type = Exercise.Type.valueOf(current.getString("type"));
+                    JSONObject loaded = holder.getExerciseJSON(current.getInt("id"), type);
 
-                //load the equipmentList
-                List<Equipment> equipmentList = new ArrayList<>();
-                if(loaded.has("equipment")) {
-                    JSONArray equ = loaded.getJSONArray("equipment");
-                    for(int j=0; j<equ.length(); j++) {
-                        final JSONObject loadEq = holder.getEquipment(equ.getInt(j));
-                        final String name = loadEq.getString("name");
-                        final Equipment.Type equType = Equipment.Type.valueOf(loadEq.getString("type"));
-                        equipmentList.add(new Equipment(name, equType));
+                    //load the equipmentList
+                    List<Equipment> equipmentList = new ArrayList<>();
+                    if (loaded.has("equipment")) {
+                        JSONArray equ = loaded.getJSONArray("equipment");
+                        for (int j = 0; j < equ.length(); j++) {
+                            final JSONObject loadEq = holder.getEquipment(equ.getInt(j));
+                            final String name = loadEq.getString("name");
+                            final Equipment.Type equType = Equipment.Type.valueOf(loadEq.getString("type"));
+                            equipmentList.add(new Equipment(name, equType));
+                        }
+                    }
+
+                    //load the description
+                    List<ExerciseStep> exerciseSteps = new ArrayList<>();
+                    if (loaded.has("steps")) {
+                        JSONArray steps = loaded.getJSONArray("steps");
+                        for (int j = 0; j < steps.length(); j++) {
+                            final JSONObject loadedStep = steps.getJSONObject(j);
+                            final int stepNr = Integer.valueOf(loadedStep.getString("nr"));
+                            final String desc = loadedStep.getString("description");
+                            exerciseSteps.add(new ExerciseStep(stepNr, desc));
+                        }
+                    }
+                    ExerciseDescription exerciseDescription = null;
+                    try {
+                        exerciseDescription = new ExerciseDescription(exerciseSteps);
+                    } catch (ExerciseDescription.MissingExerciseStepException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (type == Exercise.Type.STANDARD) {
+                        ex = new StandardExercise(loaded.getString("name"),
+                                exerciseDescription,
+                                equipmentList,
+                                new Difficulty(loaded.getInt("difficulty")),
+                                null,
+                                Exercise.TargetArea.valueOf(loaded.getString("targetArea")),
+                                loaded.getInt("sets"),
+                                Exercise.Category.valueOf(loaded.getString("category")),
+                                loaded.getInt("repetitions"));
+                        entries.add(ex);
+                    } else if (type == Exercise.Type.TIME) {
+                        ex = new TimeExercise(loaded.getString("name"),
+                                exerciseDescription,
+                                equipmentList,
+                                new Difficulty(loaded.getInt("difficulty")),
+                                null,
+                                Exercise.TargetArea.valueOf(loaded.getString("targetArea")),
+                                loaded.getInt("sets"),
+                                Exercise.Category.valueOf(loaded.getString("category")),
+                                loaded.getInt("time"));
+                        entries.add(ex);
+                    } else {
+                        Log.e(TAG, "createTraingsPlan: Type not found!");
                     }
                 }
-
-                //load the description
-                List<ExerciseStep> exerciseSteps = new ArrayList<>();
-                if(loaded.has("steps")) {
-                    JSONArray steps = loaded.getJSONArray("steps");
-                    for(int j=0; j<steps.length(); j++) {
-                        final JSONObject loadedStep = steps.getJSONObject(j);
-                        final int stepNr = Integer.valueOf(loadedStep.getString("nr"));
-                        final String desc = loadedStep.getString("description");
-                        exerciseSteps.add(new ExerciseStep(stepNr, desc));
-                    }
-                }
-                ExerciseDescription exerciseDescription = null;
-                try {
-                    exerciseDescription = new ExerciseDescription(exerciseSteps);
-                } catch (ExerciseDescription.MissingExerciseStepException e) {
-                    e.printStackTrace();
-                }
-
-                if(type == Exercise.Type.STANDARD) {
-                    ex = new StandardExercise(loaded.getString("name"),
-                            exerciseDescription,
-                            equipmentList,
-                            new Difficulty(loaded.getInt("difficulty")),
-                            null,
-                            Exercise.TargetArea.valueOf(loaded.getString("targetArea")),
-                            loaded.getInt("sets"),
-                            Exercise.Category.valueOf(loaded.getString("category")),
-                            loaded.getInt("repetitions"));
-                    entries.add(ex);
-                } else if(type == Exercise.Type.TIME) {
-                    ex = new TimeExercise(loaded.getString("name"),
-                            exerciseDescription,
-                            equipmentList,
-                            new Difficulty(loaded.getInt("difficulty")),
-                            null,
-                            Exercise.TargetArea.valueOf(loaded.getString("targetArea")),
-                            loaded.getInt("sets"),
-                            Exercise.Category.valueOf(loaded.getString("category")),
-                            loaded.getInt("time"));
-                    entries.add(ex);
-                } else {
-                    Log.e(TAG, "createTraingsPlan: Type not found!");
+            } else if(loadedTraingsPlan.has("trainingsplans")){
+                JSONArray trainingsplansJSONArray = loadedTraingsPlan.getJSONArray("trainingsplans");
+                for(int i=0; i<trainingsplansJSONArray.length(); i++) {
+                    JSONObject current = trainingsplansJSONArray.getJSONObject(i);
+                    entries.add(createTraingsPlan(current.getInt("id")));
                 }
             }
 

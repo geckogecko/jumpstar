@@ -1,19 +1,12 @@
 package georg.steinbacher.community_jump_trainer;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -21,8 +14,6 @@ import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.TrainingsPlanView;
-
-import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 
 
 public class TrainingsPlanSelectionFragment extends Fragment {
@@ -46,7 +37,8 @@ public class TrainingsPlanSelectionFragment extends Fragment {
 
         boolean showPlan = true;
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
-            for (Equipment.Type type : trainingsPlan.getNeededEquipmentTypes()) {
+            for (Equipment equipment : trainingsPlan.getNeededEquipment()) {
+                Equipment.Type type = equipment.getType();
                 if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)) {
                     showPlan = false;
                 } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)) {

@@ -13,12 +13,15 @@ import java.util.List;
 
 import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
+import georg.steinbacher.community_jump_trainer.core.StandardExercise;
+import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 
 import static georg.steinbacher.community_jump_trainer.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
+//TODO if this trainingsplan includes other trainingsplans -> show them here
 public class TrainingsPlanDetailActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "TrainingsPlanDetailActi";
     public static final String TRAININGS_PLAN_ID = "trainings_plan_id";
@@ -46,16 +49,8 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         //TODO if entry is a trainingsplan step into it and load the equipment
         TextView equipmentTextView = findViewById(R.id.exercise_equipment);
         List<String> equipmentList = new ArrayList<>();
-        for (TrainingsPlanEntry entry : mTrainingsPlan.getEntries()) {
-            if(entry.getClass().getName().equals(Exercise.class.getName())) {
-                Exercise exercise = (Exercise) entry;
-                List<Equipment> equ = exercise.getNeededEquipment();
-                for (Equipment equipment : equ) {
-                    if (!equipmentList.contains(equipment.getName())) {
-                        equipmentList.add(equipment.getName());
-                    }
-                }
-            }
+        for (Equipment equipment: mTrainingsPlan.getNeededEquipment()) {
+            equipmentList.add(equipment.getName());
         }
 
         if(equipmentList.size() > 0) {

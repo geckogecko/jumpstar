@@ -79,5 +79,18 @@
         ],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum.",
         "creationDate": 1523652753
+    },
+    "4": {
+        "name": "Complex Plan",
+        "trainingsplans": [
+            {
+                "id": 1
+            },
+            {
+                "id": 2
+            }
+        ],
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo.",
+        "creationDate": 1523615753
     }
 }

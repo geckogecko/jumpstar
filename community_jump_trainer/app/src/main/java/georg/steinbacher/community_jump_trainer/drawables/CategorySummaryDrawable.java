@@ -33,6 +33,7 @@ public class CategorySummaryDrawable extends Drawable {
     private Context mContext;
     private TrainingsPlan mTraingsPlan;
     private List<CategoryCounter> mCategoryCounts = new ArrayList<>();
+    private int mCategoryEntriesSum = 0;
 
     public CategorySummaryDrawable(TrainingsPlan trainingsPlan, Context context) {
         mTraingsPlan = trainingsPlan;
@@ -43,16 +44,22 @@ public class CategorySummaryDrawable extends Drawable {
             mCategoryCounts.add(new CategoryCounter(Exercise.Category.values()[i]));
         }
 
-        //TODO if entry is a trainingsplan step into it and load the exercises
-        for (TrainingsPlanEntry entry : mTraingsPlan.getEntries()) {
+        calcCategoryCounts(mTraingsPlan);
+    }
+
+    private void calcCategoryCounts(TrainingsPlan trainingsPlan) {
+        for (TrainingsPlanEntry entry : trainingsPlan.getEntries()) {
             if(entry.getClass().equals(StandardExercise.class) ||
                     entry.getClass().equals(TimeExercise.class)) {
-                Exercise exercise = (Exercise)entry;
+                Exercise exercise = (Exercise) entry;
                 for (CategoryCounter mCategoryCount : mCategoryCounts) {
                     if (exercise.getCategory().equals(mCategoryCount.getCategory())) {
                         mCategoryCount.increaseCount();
+                        mCategoryEntriesSum++;
                     }
                 }
+            } else if(entry.getClass().equals(TrainingsPlan.class)){
+                calcCategoryCounts((TrainingsPlan) entry);
             }
         }
     }
@@ -68,8 +75,7 @@ public class CategorySummaryDrawable extends Drawable {
         for (int i = 0; i < mCategoryCounts.size(); i++) {
             if(mCategoryCounts.get(i).getCount() > 0) {
                 final float segmentWidth = calculateSegmentWidth(mCategoryCounts.get(i),
-                        b.width(),
-                        gapWidth) - gapWidth;
+                        b.width()) - gapWidth;
                 RectF segment = new RectF(0, 0, segmentWidth, b.height());
 
                 paint = CategoryPaints.getPrimaryColor(mContext, mCategoryCounts.get(i).getCategory());
@@ -98,11 +104,11 @@ public class CategorySummaryDrawable extends Drawable {
         return CategoryPaints.getSecondaryColor(mContext, mCategoryCounts.get(highest).getCategory());
     }
 
-    private float calculateSegmentWidth(CategoryCounter categoryCounter, float width,  float gapWidth) {
+    private float calculateSegmentWidth(CategoryCounter categoryCounter, float width) {
         if(categoryCounter.getCount() == 0) {
             return 0;
         } else {
-            final float percentage = categoryCounter.getCount() * 100 / mTraingsPlan.getEntries().size();
+            final float percentage = categoryCounter.getCount() * 100 / mCategoryEntriesSum;
             return (percentage / 100) * width;
         }
     }
