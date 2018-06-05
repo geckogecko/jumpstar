@@ -26,7 +26,7 @@ public class UserTest {
         final int testId = 1;
         final String testName = "TestPlan";
         final String testDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna.";
-        List<Exercise> exercises = new ArrayList<>();
+        List<TrainingsPlanEntry> exercises = new ArrayList<>();
         exercises.add(new Exercise("TestExercise",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
                 new ArrayList<Equipment>(),

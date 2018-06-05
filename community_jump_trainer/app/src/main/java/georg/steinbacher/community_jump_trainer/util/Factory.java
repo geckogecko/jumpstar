@@ -17,6 +17,7 @@ import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 
 /**
  * Created by stge on 13.04.18.
@@ -32,7 +33,7 @@ public class Factory {
         //Load the exercises
         try {
             JSONArray exercisesJSONArray = loadedTraingsPlan.getJSONArray("exercises");
-            List<Exercise> exercises = new ArrayList<>();
+            List<TrainingsPlanEntry> entries = new ArrayList<>();
             for(int i=0; i<exercisesJSONArray.length(); i++) {
                 JSONObject current = exercisesJSONArray.getJSONObject(i);
 
@@ -80,7 +81,7 @@ public class Factory {
                             loaded.getInt("sets"),
                             Exercise.Category.valueOf(loaded.getString("category")),
                             loaded.getInt("repetitions"));
-                    exercises.add(ex);
+                    entries.add(ex);
                 } else if(type == Exercise.Type.TIME) {
                     ex = new TimeExercise(loaded.getString("name"),
                             exerciseDescription,
@@ -91,7 +92,7 @@ public class Factory {
                             loaded.getInt("sets"),
                             Exercise.Category.valueOf(loaded.getString("category")),
                             loaded.getInt("time"));
-                    exercises.add(ex);
+                    entries.add(ex);
                 } else {
                     Log.e(TAG, "createTraingsPlan: Type not found!");
                 }
@@ -100,7 +101,7 @@ public class Factory {
             return new TrainingsPlan(trainingsPlanId,
                     loadedTraingsPlan.getString("name"),
                     loadedTraingsPlan.getString("description"),
-                    exercises,
+                    entries,
                     loadedTraingsPlan.getLong("creationDate"),
                     null);
         } catch (JSONException e) {

@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import georg.steinbacher.community_jump_trainer.core.Exercise;
+import georg.steinbacher.community_jump_trainer.core.StandardExercise;
+import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,10 +43,15 @@ public class CategorySummaryDrawable extends Drawable {
             mCategoryCounts.add(new CategoryCounter(Exercise.Category.values()[i]));
         }
 
-        for (Exercise exercise : mTraingsPlan.getExercises()) {
-            for (CategoryCounter mCategoryCount : mCategoryCounts) {
-                if(exercise.getCategory().equals(mCategoryCount.getCategory())) {
-                    mCategoryCount.increaseCount();
+        //TODO if entry is a trainingsplan step into it and load the exercises
+        for (TrainingsPlanEntry entry : mTraingsPlan.getEntries()) {
+            if(entry.getClass().equals(StandardExercise.class) ||
+                    entry.getClass().equals(TimeExercise.class)) {
+                Exercise exercise = (Exercise)entry;
+                for (CategoryCounter mCategoryCount : mCategoryCounts) {
+                    if (exercise.getCategory().equals(mCategoryCount.getCategory())) {
+                        mCategoryCount.increaseCount();
+                    }
                 }
             }
         }
@@ -94,7 +102,7 @@ public class CategorySummaryDrawable extends Drawable {
         if(categoryCounter.getCount() == 0) {
             return 0;
         } else {
-            final float percentage = categoryCounter.getCount() * 100 / mTraingsPlan.getExercises().size();
+            final float percentage = categoryCounter.getCount() * 100 / mTraingsPlan.getEntries().size();
             return (percentage / 100) * width;
         }
     }

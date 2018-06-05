@@ -12,11 +12,11 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
 
     private int mId;
     private String mName;
-    private List<Exercise> mExercises;
+    private List<TrainingsPlanEntry> mEntries;
     private long mCreationDate;
     private Rating mRating;
-    private Exercise mCurrentExercise;
-    private boolean mCompletedLastExercise;
+    private TrainingsPlanEntry mCurrentEntry;
+    private boolean mLastCompletedEntry;
     private String mDescription;
 
     private ITrainingsPlanListener mTrainingsPlanListener;
@@ -24,33 +24,33 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         void onCurrentExerciseCompleted(Exercise currentCompletedExercise);
     }
 
-    public TrainingsPlan(int id, String name, String description, List<Exercise> exercises, long creationDate, Rating rating) {
+    public TrainingsPlan(int id, String name, String description, List<TrainingsPlanEntry> entries, long creationDate, Rating rating) {
         mId = id;
         mName = name;
         mDescription = description;
-        mExercises = exercises;
+        mEntries = entries;
         mCreationDate = creationDate;
         mRating = rating;
 
-        if (mExercises.size() > 0) {
-            mCurrentExercise = exercises.get(0);
-            mCurrentExercise.setListener(this);
+        if (mEntries.size() > 0) {
+            mCurrentEntry = entries.get(0);
+            mCurrentEntry.setListener(this);
         }
     }
 
     @Override
     public void onEntryCompleted(TrainingsPlanEntry completedEntry) {
-        int completedExerciseIndex = mExercises.indexOf(completedEntry);
+        int completedIndex = mEntries.indexOf(completedEntry);
 
-        // is this the last exercise ?
-        if (completedExerciseIndex != mExercises.size() - 1) {
-            Exercise nextExercise = mExercises.get(completedExerciseIndex + 1);
-            mCurrentExercise = nextExercise;
-            mCurrentExercise.setListener(this);
-            mCompletedLastExercise = false;
+        // is this the last entry ?
+        if (completedIndex != mEntries.size() - 1) {
+            TrainingsPlanEntry nextExercise = mEntries.get(completedIndex + 1);
+            mCurrentEntry = nextExercise;
+            mCurrentEntry.setListener(this);
+            mLastCompletedEntry = false;
         } else {
-            mCurrentExercise = null;
-            mCompletedLastExercise = true;
+            mCurrentEntry = null;
+            mLastCompletedEntry = true;
             this.complete();
         }
 
@@ -71,8 +71,8 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         return mDescription;
     }
 
-    public List<Exercise> getExercises() {
-        return mExercises;
+    public List<TrainingsPlanEntry> getEntries() {
+        return mEntries;
     }
 
     public long getCreationDate() {
@@ -83,42 +83,59 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         return mRating;
     }
 
-    public Exercise getCurrentExercise() {
-        return mCurrentExercise;
+    public TrainingsPlanEntry getCurrentEntry() {
+        return mCurrentEntry;
     }
 
     public void setTrainingsPlanListener(ITrainingsPlanListener trainingsPlanListener) {
         mTrainingsPlanListener = trainingsPlanListener;
     }
 
-    public boolean completedLastExercise() {
-        return mCompletedLastExercise;
+    public boolean getLastCompletedEntry() {
+        return mLastCompletedEntry;
     }
 
-    public int getExerciseCount() {
-        return mExercises.size();
+    public int getEntryCount() {
+        return mEntries.size();
     }
 
-    public int getCurrentExerciseIndex() {
-        if(mCurrentExercise == null) {
+    public int getCurrentEntryIndex() {
+        if(mCurrentEntry == null) {
             return -1;
         } else {
-            return mExercises.indexOf(mCurrentExercise);
+            return mEntries.indexOf(mCurrentEntry);
         }
     }
 
     public List<Equipment.Type> getNeededEquipmentTypes() {
         List<Equipment.Type> neededTypes = new ArrayList<>();
 
-        for (Exercise exercise : mExercises) {
-            for (Equipment equipment : exercise.getNeededEquipment()) {
-                Equipment.Type type = equipment.getType();
-                if(!neededTypes.contains(type)) {
-                    neededTypes.add(type);
+        for (TrainingsPlanEntry entry : mEntries) {
+            //TODO if entry is a trainingsplan load the equipment of it
+            if(entry.getClass().equals(StandardExercise.class) ||
+                    entry.getClass().equals(TimeExercise.class)) {
+                Exercise exercise = (Exercise) entry;
+                for (Equipment equipment : exercise.getNeededEquipment()) {
+                    Equipment.Type type = equipment.getType();
+                    if (!neededTypes.contains(type)) {
+                        neededTypes.add(type);
+                    }
                 }
             }
         }
 
         return neededTypes;
+    }
+
+    /**
+     *
+     * @return true if the trainingsplan consists of one or more other trainingsplans
+     */
+    public boolean hasTrainingsPlan() {
+        for(TrainingsPlanEntry entry : mEntries) {
+            if(entry.getClass().equals(TrainingsPlan.class)) {
+                return true;
+            }
+        }
     }
 }

@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import georg.steinbacher.community_jump_trainer.R;
 
-//TODO finish this view
 public class AddCurrentTrainingsPlanView extends CardView{
     private Context mContext;
     private View mRootView;

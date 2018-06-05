@@ -9,20 +9,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import georg.steinbacher.community_jump_trainer.core.Exercise;
-import georg.steinbacher.community_jump_trainer.core.Rating;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.drawables.TrainingsPlanProgressDrawable;
 import georg.steinbacher.community_jump_trainer.util.Factory;
-import georg.steinbacher.community_jump_trainer.util.JSONHolder;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingsPlan.ITrainingsPlanListener,
         TrainingsPlanEntry.ITrainingsPlanEntryListener {
@@ -52,13 +45,14 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
         //set progress
         mProgressBar = findViewById(R.id.progress_bar);
-        mProgressBar.setMax(mTraingsPlan.getExerciseCount());
-        mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
+        mProgressBar.setMax(mTraingsPlan.getEntryCount());
+        mProgressBar.setProgress(mTraingsPlan.getCurrentEntryIndex());
         mProgressBar.setProgressDrawable(new TrainingsPlanProgressDrawable(
                 mTraingsPlan, getApplicationContext()));
 
         //load the fragment for the current trainingsplan
-        loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+        //TODO remove the case to Exercise
+        loadExerciseFragment( (Exercise) mTraingsPlan.getCurrentEntry());
 
     }
 
@@ -72,8 +66,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         findViewById(R.id.complete_exercise_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mTraingsPlan.getCurrentExercise() != null) {
-                    mTraingsPlan.getCurrentExercise().complete();
+                if(mTraingsPlan.getCurrentEntry() != null) {
+                    mTraingsPlan.getCurrentEntry().complete();
                 }
             }
         });
@@ -89,10 +83,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     @Override
     public void onCurrentExerciseCompleted(Exercise currentCompletedExercise) {
-        mProgressBar.setProgress(mTraingsPlan.getCurrentExerciseIndex());
+        mProgressBar.setProgress(mTraingsPlan.getCurrentEntryIndex());
 
-        if(!mTraingsPlan.completedLastExercise()) {
-            loadExerciseFragment(mTraingsPlan.getCurrentExercise());
+        if(!mTraingsPlan.getLastCompletedEntry()) {
+            //TODO remove the case to Exercise
+            loadExerciseFragment((Exercise) mTraingsPlan.getCurrentEntry());
         }
     }
 

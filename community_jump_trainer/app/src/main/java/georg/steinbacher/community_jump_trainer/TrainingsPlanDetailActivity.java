@@ -14,6 +14,7 @@ import java.util.List;
 import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
+import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 
 import static georg.steinbacher.community_jump_trainer.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
@@ -41,16 +42,18 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         TextView txtName = findViewById(R.id.detail_trainings_plan_name);
         txtName.setText(mTrainingsPlan.getName());
 
-
         //Equipment
+        //TODO if entry is a trainingsplan step into it and load the equipment
         TextView equipmentTextView = findViewById(R.id.exercise_equipment);
         List<String> equipmentList = new ArrayList<>();
-        List<Exercise> exerciseList= mTrainingsPlan.getExercises();
-        for (Exercise exercise : exerciseList) {
-            List<Equipment> equ = exercise.getNeededEquipment();
-            for (Equipment equipment : equ) {
-                if(!equipmentList.contains(equipment.getName())) {
-                    equipmentList.add(equipment.getName());
+        for (TrainingsPlanEntry entry : mTrainingsPlan.getEntries()) {
+            if(entry.getClass().getName().equals(Exercise.class.getName())) {
+                Exercise exercise = (Exercise) entry;
+                List<Equipment> equ = exercise.getNeededEquipment();
+                for (Equipment equipment : equ) {
+                    if (!equipmentList.contains(equipment.getName())) {
+                        equipmentList.add(equipment.getName());
+                    }
                 }
             }
         }

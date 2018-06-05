@@ -22,7 +22,7 @@ public class TrainingsPlanTest {
     final int id = 1;
     final String testName = "TestPlan";
     final String testDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna.";
-    List<Exercise> exercises;
+    List<TrainingsPlanEntry> exercises;
     final long timeStamp = System.currentTimeMillis();
     final Rating rating = new Rating(5.0);
 
@@ -75,34 +75,34 @@ public class TrainingsPlanTest {
     public void constructorTest() {
         assertEquals(testName, trainingsPlan.getName());
         assertEquals(testDescription, trainingsPlan.getDescription());
-        assertEquals(exercises, trainingsPlan.getExercises());
+        assertEquals(exercises, trainingsPlan.getEntries());
         assertEquals(timeStamp, trainingsPlan.getCreationDate());
         assertEquals(rating, trainingsPlan.getRating());
-        assertEquals(0, trainingsPlan.getCurrentExerciseIndex());
-        assertEquals(3, trainingsPlan.getExerciseCount());
+        assertEquals(0, trainingsPlan.getCurrentEntryIndex());
+        assertEquals(3, trainingsPlan.getEntryCount());
         assertEquals(id, trainingsPlan.getId());
     }
 
     @Test
     public void completeCurrentExerciseTest() {
-        assertEquals(exercise1, trainingsPlan.getCurrentExercise());
-        assertEquals(false, trainingsPlan.completedLastExercise());
-        assertEquals(0, trainingsPlan.getCurrentExerciseIndex());
+        assertEquals(exercise1, trainingsPlan.getCurrentEntry());
+        assertEquals(false, trainingsPlan.getLastCompletedEntry());
+        assertEquals(0, trainingsPlan.getCurrentEntryIndex());
 
-        trainingsPlan.getCurrentExercise().complete();
-        assertEquals(exercise2, trainingsPlan.getCurrentExercise());
-        assertEquals(false, trainingsPlan.completedLastExercise());
-        assertEquals(1, trainingsPlan.getCurrentExerciseIndex());
+        trainingsPlan.getCurrentEntry().complete();
+        assertEquals(exercise2, trainingsPlan.getCurrentEntry());
+        assertEquals(false, trainingsPlan.getLastCompletedEntry());
+        assertEquals(1, trainingsPlan.getCurrentEntryIndex());
 
-        trainingsPlan.getCurrentExercise().complete();
-        assertEquals(exercise3, trainingsPlan.getCurrentExercise());
-        assertEquals(false, trainingsPlan.completedLastExercise());
-        assertEquals(2, trainingsPlan.getCurrentExerciseIndex());
+        trainingsPlan.getCurrentEntry().complete();
+        assertEquals(exercise3, trainingsPlan.getCurrentEntry());
+        assertEquals(false, trainingsPlan.getLastCompletedEntry());
+        assertEquals(2, trainingsPlan.getCurrentEntryIndex());
 
-        trainingsPlan.getCurrentExercise().complete();
-        assertEquals(null, trainingsPlan.getCurrentExercise());
-        assertEquals(true, trainingsPlan.completedLastExercise());
-        assertEquals(-1, trainingsPlan.getCurrentExerciseIndex());
+        trainingsPlan.getCurrentEntry().complete();
+        assertEquals(null, trainingsPlan.getCurrentEntry());
+        assertEquals(true, trainingsPlan.getLastCompletedEntry());
+        assertEquals(-1, trainingsPlan.getCurrentEntryIndex());
     }
 
     @Mock
@@ -113,11 +113,11 @@ public class TrainingsPlanTest {
 
     @Test
     public void listenerTest() {
-        trainingsPlan.getCurrentExercise().complete();
+        trainingsPlan.getCurrentEntry().complete();
         verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise1);
-        trainingsPlan.getCurrentExercise().complete();
+        trainingsPlan.getCurrentEntry().complete();
         verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise2);
-        trainingsPlan.getCurrentExercise().complete();
+        trainingsPlan.getCurrentEntry().complete();
         verify(trainingsPlanListener, times(1)).onCurrentExerciseCompleted(exercise3);
         verify(listener, times(1)).onEntryCompleted(trainingsPlan);
     }
