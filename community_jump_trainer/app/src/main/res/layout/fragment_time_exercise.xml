@@ -56,13 +56,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="Sets: XX"/>
+        android:text="@string/exercise_sets"/>
 
-    <TextView
-        android:id="@+id/exercise_equipment"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/equipment_icon_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text= "@string/exercise_equipment"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/exercise_equipment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text= "@string/exercise_equipment"
+            android:gravity="center_vertical" />
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.v7.widget.LinearLayoutCompat>

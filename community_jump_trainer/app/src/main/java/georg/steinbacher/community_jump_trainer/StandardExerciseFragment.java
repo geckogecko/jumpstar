@@ -3,9 +3,12 @@ package georg.steinbacher.community_jump_trainer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +22,8 @@ import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
 
 public class StandardExerciseFragment extends Fragment {
+    private static final String TAG = "StandardExerciseFragmen";
+
     private StandardExercise mExercise;
     private View mView;
 
@@ -51,20 +56,22 @@ public class StandardExerciseFragment extends Fragment {
         repetitionsTextView.setText(getString(R.string.exercise_repetitions, Integer.toString(mExercise.getRepetitions())));
 
         //Equipment
-        TextView equipmentTextView = mView.findViewById(R.id.exercise_equipment);
+        //TODO add an icon for every equipment
+        LinearLayoutCompat equipmentViewHolder= mView.findViewById(R.id.equipment_icon_container);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        if(equipmentList.size() > 0) {
-            String equipmentString = "";
-            for (Equipment equipment : equipmentList) {
-                equipmentString += equipment.getName() + ",";
+        for (Equipment equipment: equipmentList) {
+            ImageView imageView = new ImageView(getContext());
+            final int drawableId = getContext().getResources().getIdentifier(equipment.getName(),
+                    "drawable", getContext().getPackageName());
+            if(drawableId != 0) {
+                imageView.setImageDrawable(getResources().getDrawable(drawableId));
+            } else {
+                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
+                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
             }
-            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
-
-
-            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
-        } else {
-            equipmentTextView.setVisibility(View.GONE);
+            equipmentViewHolder.addView(imageView);
         }
+        //TODO show a 'no needed equipment icon' if there is no needed equipment
 
         //description
         TextView descriptionTextView = mView.findViewById(R.id.exercise_description);

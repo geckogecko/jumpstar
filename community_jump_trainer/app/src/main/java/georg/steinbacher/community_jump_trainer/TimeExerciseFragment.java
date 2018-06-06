@@ -4,14 +4,17 @@ package georg.steinbacher.community_jump_trainer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.iwgang.countdownview.CountdownView;
@@ -76,20 +79,22 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mSets.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
 
         //Equipment
-        TextView equipmentTextView = mView.findViewById(R.id.exercise_equipment);
+        //TODO add an icon for every equipment
+        LinearLayoutCompat equipmentViewHolder= mView.findViewById(R.id.equipment_icon_container);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        if(equipmentList.size() > 0) {
-            String equipmentString = "";
-            for (Equipment equipment : equipmentList) {
-                equipmentString += equipment.getName() + ",";
+        for (Equipment equipment: equipmentList) {
+            ImageView imageView = new ImageView(getContext());
+            final int drawableId = getContext().getResources().getIdentifier(equipment.getName(),
+                    "drawable", getContext().getPackageName());
+            if(drawableId != 0) {
+                imageView.setImageDrawable(getResources().getDrawable(drawableId));
+            } else {
+                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
+                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
             }
-            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
-
-
-            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
-        } else {
-            equipmentTextView.setVisibility(View.GONE);
+            equipmentViewHolder.addView(imageView);
         }
+        //TODO show a 'no needed equipment icon' if there is no needed equipment
     }
 
     public void setExercise(TimeExercise exercise) {
