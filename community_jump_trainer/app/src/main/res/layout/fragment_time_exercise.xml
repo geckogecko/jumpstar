@@ -16,10 +16,18 @@
 
     <cn.iwgang.countdownview.CountdownView
         android:id="@+id/exercise_countdown"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:isShowMinute="true"
-        app:isShowSecond="true" />
+        app:isShowSecond="true"
+        app:suffixMinute="m"
+        app:suffixSecond="s"
+        app:suffixTextSize="20sp"
+        app:suffixGravity="bottom"
+        app:suffixTextColor="@color/darkerGrey"
+        app:timeTextSize="60sp"
+        app:timeTextColor="@color/lightGrey"
+        />
 
     <ProgressBar
         android:id="@+id/time_exercise_progress_bar"
@@ -27,13 +35,6 @@
         android:layout_height="wrap_content"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
         android:progress="0"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/exercise_start_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:text="Start"/>
 
     <TextView
         android:id="@+id/exercise_sets"
@@ -48,4 +49,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text= "@string/exercise_equipment"/>
+    
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/exercise_start_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Start"/>
 </android.support.v7.widget.LinearLayoutCompat>
