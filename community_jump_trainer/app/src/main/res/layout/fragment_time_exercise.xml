@@ -12,7 +12,14 @@
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/exercise_image"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        app:srcCompat="@drawable/ic_launcher_foreground"/>
 
     <cn.iwgang.countdownview.CountdownView
         android:id="@+id/exercise_countdown"

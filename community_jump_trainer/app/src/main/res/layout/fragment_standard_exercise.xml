@@ -12,7 +12,8 @@
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"/>
 
     <ImageView
         android:id="@+id/exercise_image"
