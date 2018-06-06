@@ -23,7 +23,7 @@
     <string name="select_current_trainingsplan_title">Select a trainings plan</string>
 
     <string name="exercise_sets">Sets: %1$s</string>
-    <string name="exercise_equipment">Equipment: %1$s</string>
+    <string name="exercise_equipment">Equipment:</string>
     <string name="exercise_repetitions">Repetition: %1$s</string>
     <string name="time_exercise_start">Start</string>
 

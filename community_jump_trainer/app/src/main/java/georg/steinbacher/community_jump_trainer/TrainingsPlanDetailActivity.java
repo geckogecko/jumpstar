@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -50,22 +52,23 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         txtDescription.setText(mTrainingsPlan.getDescription());
 
         //Equipment
-        TextView equipmentTextView = findViewById(R.id.exercise_equipment);
+        //TODO add an icon for every equipment
+        LinearLayoutCompat equipmentViewHolder= findViewById(R.id.equipment_icon_container);
         List<String> equipmentList = new ArrayList<>();
         for (Equipment equipment: mTrainingsPlan.getNeededEquipment()) {
-            equipmentList.add(equipment.getName());
-        }
-
-        if(equipmentList.size() > 0) {
-            String equipmentString = "";
-            for (String equipment : equipmentList) {
-                equipmentString += equipment + ",";
+            ImageView imageView = new ImageView(getApplicationContext());
+            final int drawableId = getApplicationContext().getResources().getIdentifier(equipment.getName(),
+                    "drawable", getApplicationContext().getPackageName());
+            if(drawableId != 0) {
+                imageView.setImageDrawable(getResources().getDrawable(drawableId));
+            } else {
+                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
+                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
             }
-            equipmentString = equipmentString.substring(0, equipmentString.length() - 1);
-            equipmentTextView.setText(getString(R.string.exercise_equipment, equipmentString));
-        } else {
-            equipmentTextView.setVisibility(View.GONE);
+            equipmentViewHolder.addView(imageView);
         }
+        //TODO show a 'no needed equipment icon' if there is no needed equipment
+
 
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
