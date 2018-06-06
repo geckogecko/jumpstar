@@ -30,6 +30,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private ProgressBar mProgressBar;
     private TextView mSets;
     private boolean mPreperationCountdown;
+    private Button mExerciseStart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,12 +58,13 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
 
         //Button
-        Button exerciseStart = mView.findViewById(R.id.exercise_start_button);
-        exerciseStart.setOnClickListener(new View.OnClickListener() {
+        mExerciseStart = mView.findViewById(R.id.exercise_start_button);
+        mExerciseStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mPreperationCountdown = true;
                 mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
+                mExerciseStart.setEnabled(false);
             }
         });
 

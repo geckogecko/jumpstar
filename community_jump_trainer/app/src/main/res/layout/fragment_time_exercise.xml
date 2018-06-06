@@ -36,6 +36,14 @@
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
         android:progress="0"/>
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/exercise_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="@string/time_exercise_start"/>
+
     <TextView
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
@@ -49,11 +57,5 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text= "@string/exercise_equipment"/>
-    
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/exercise_start_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:text="Start"/>
+
 </android.support.v7.widget.LinearLayoutCompat>
