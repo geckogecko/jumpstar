@@ -3,7 +3,8 @@
     android:key="PREFERENCES_FILE_KEY">
 
     <PreferenceCategory
-        android:title="@string/preferences_trainingsPlan_title">
+        android:title="@string/preferences_trainingsPlan_title"
+        android:layout="@layout/preference_category">
 
         <ListPreference
             android:key="preferences_trainingsPlan_preparationTime"

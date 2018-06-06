@@ -6,7 +6,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColor">@color/lightGrey</item>
-        
+        <item name="android:textColorSecondary">@color/lightGrey</item>
+        <item name="android:textColorSecondaryInverse">@color/lightGrey</item>
+        <item name="android:textColorPrimary">@color/lightGrey</item>
+        <item name="android:textColorPrimaryInverse">@color/lightGrey</item>
+
+        <item name="android:listDivider">@color/darkerGrey</item>
+
+
         <!-- preferences -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
