@@ -20,6 +20,7 @@ import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
 
 public class StandardExerciseFragment extends Fragment {
@@ -61,22 +62,10 @@ public class StandardExerciseFragment extends Fragment {
         repetitionsTextView.setText(getString(R.string.exercise_repetitions, Integer.toString(mExercise.getRepetitions())));
 
         //Equipment
-        //TODO add an icon for every equipment
-        LinearLayoutCompat equipmentViewHolder= mView.findViewById(R.id.equipment_icon_container);
+        EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        for (Equipment equipment: equipmentList) {
-            ImageView imageView = new ImageView(getContext());
-            final int drawableId = getContext().getResources().getIdentifier(equipment.getName(),
-                    "drawable", getContext().getPackageName());
-            if(drawableId != 0) {
-                imageView.setImageDrawable(getResources().getDrawable(drawableId));
-            } else {
-                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
-            }
-            equipmentViewHolder.addView(imageView);
-        }
-        //TODO show a 'no needed equipment icon' if there is no needed equipment
+        equipmentViewHolder.setEquipment(equipmentList);
+
 
         //description
         TextView descriptionTextView = mView.findViewById(R.id.exercise_description);

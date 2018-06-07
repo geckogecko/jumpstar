@@ -20,6 +20,7 @@ import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.util.Factory;
+import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 
 import static georg.steinbacher.community_jump_trainer.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
@@ -52,23 +53,9 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         txtDescription.setText(mTrainingsPlan.getDescription());
 
         //Equipment
-        //TODO add an icon for every equipment
-        LinearLayoutCompat equipmentViewHolder= findViewById(R.id.equipment_icon_container);
-        List<String> equipmentList = new ArrayList<>();
-        for (Equipment equipment: mTrainingsPlan.getNeededEquipment()) {
-            ImageView imageView = new ImageView(getApplicationContext());
-            final int drawableId = getApplicationContext().getResources().getIdentifier(equipment.getName(),
-                    "drawable", getApplicationContext().getPackageName());
-            if(drawableId != 0) {
-                imageView.setImageDrawable(getResources().getDrawable(drawableId));
-            } else {
-                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
-            }
-            equipmentViewHolder.addView(imageView);
-        }
-        //TODO show a 'no needed equipment icon' if there is no needed equipment
-
+        EquipmentView equipmentViewHolder= findViewById(R.id.equipment_view);
+        List<Equipment> equipmentList = mTrainingsPlan.getNeededEquipment();
+        equipmentViewHolder.setEquipment(equipmentList);
 
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);

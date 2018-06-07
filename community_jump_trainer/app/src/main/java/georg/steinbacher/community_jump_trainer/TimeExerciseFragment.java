@@ -30,6 +30,7 @@ import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
 
 import static android.content.ContentValues.TAG;
@@ -98,23 +99,9 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mHoldTime.setText(getString(R.string.time_exercise_hold_time, minutes + ":" + restSeconds));
 
         //Equipment
-        //TODO add an icon for every equipment
-        //TODO move this into a own view and also use it in the other parts
-        LinearLayoutCompat equipmentViewHolder= mView.findViewById(R.id.equipment_icon_container);
+        EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        for (Equipment equipment: equipmentList) {
-            ImageView imageView = new ImageView(getContext());
-            final int drawableId = getContext().getResources().getIdentifier(equipment.getName(),
-                    "drawable", getContext().getPackageName());
-            if(drawableId != 0) {
-                imageView.setImageDrawable(getResources().getDrawable(drawableId));
-            } else {
-                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
-            }
-            equipmentViewHolder.addView(imageView);
-        }
-        //TODO show a 'no needed equipment icon' if there is no needed equipment
+        equipmentViewHolder.setEquipment(equipmentList);
 
         //ExerciseSteps
         ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
