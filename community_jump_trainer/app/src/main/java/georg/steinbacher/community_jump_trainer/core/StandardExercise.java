@@ -11,7 +11,8 @@ public class StandardExercise extends Exercise {
 
     private int mRepetitions;
 
-    public StandardExercise(String name,
+    public StandardExercise(int id,
+                            String name,
                             ExerciseDescription description,
                             List<Equipment> equipment,
                             Difficulty difficulty,
@@ -20,7 +21,7 @@ public class StandardExercise extends Exercise {
                             int sets,
                             Category category,
                             int repetetions) {
-        super(name, description, equipment, difficulty, rating, targetArea, sets, category);
+        super(id, name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mRepetitions = repetetions;
     }

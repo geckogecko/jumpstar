@@ -41,7 +41,8 @@ public class Factory {
 
                     Exercise ex;
                     Exercise.Type type = Exercise.Type.valueOf(current.getString("type"));
-                    JSONObject loaded = holder.getExerciseJSON(current.getInt("id"), type);
+                    final int exerciseId = current.getInt("id");
+                    JSONObject loaded = holder.getExerciseJSON(exerciseId, type);
 
                     //load the equipmentList
                     List<Equipment> equipmentList = new ArrayList<>();
@@ -74,7 +75,9 @@ public class Factory {
                     }
 
                     if (type == Exercise.Type.STANDARD) {
-                        ex = new StandardExercise(loaded.getString("name"),
+                        ex = new StandardExercise(
+                                exerciseId,
+                                loaded.getString("name"),
                                 exerciseDescription,
                                 equipmentList,
                                 new Difficulty(loaded.getInt("difficulty")),
@@ -85,7 +88,9 @@ public class Factory {
                                 loaded.getInt("repetitions"));
                         entries.add(ex);
                     } else if (type == Exercise.Type.TIME) {
-                        ex = new TimeExercise(loaded.getString("name"),
+                        ex = new TimeExercise(
+                                exerciseId,
+                                loaded.getString("name"),
                                 exerciseDescription,
                                 equipmentList,
                                 new Difficulty(loaded.getInt("difficulty")),

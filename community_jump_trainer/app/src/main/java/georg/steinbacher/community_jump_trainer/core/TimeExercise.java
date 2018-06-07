@@ -11,7 +11,8 @@ public class TimeExercise extends Exercise {
 
     private int mTime; //Seconds
 
-    public TimeExercise(String name,
+    public TimeExercise(int id,
+                        String name,
                         ExerciseDescription description,
                         List<Equipment> equipment,
                         Difficulty difficulty,
@@ -20,7 +21,7 @@ public class TimeExercise extends Exercise {
                         int sets,
                         Category category,
                         int time) {
-        super(name, description, equipment, difficulty, rating, targetArea, sets, category);
+        super(id, name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mTime = time;
     }

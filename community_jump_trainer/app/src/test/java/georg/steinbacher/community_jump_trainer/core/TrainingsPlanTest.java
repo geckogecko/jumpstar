@@ -34,7 +34,8 @@ public class TrainingsPlanTest {
     @Before
     public void init() throws ExerciseDescription.MissingExerciseStepException {
         exercises = new ArrayList<>();
-        exercise1 = new StandardExercise("TestExercise1",
+        exercise1 = new StandardExercise(1,
+                "TestExercise1",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
                 new ArrayList<Equipment>(),
                 new Difficulty(4),
@@ -43,7 +44,8 @@ public class TrainingsPlanTest {
                 3,
                 Exercise.Category.STRENGTH,
                 15);
-        exercise2 = new TimeExercise("TestExercise2",
+        exercise2 = new TimeExercise(2,
+                "TestExercise2",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
                 new ArrayList<Equipment>(),
                 new Difficulty(7),
@@ -52,7 +54,8 @@ public class TrainingsPlanTest {
                 3,
                 Exercise.Category.STRENGTH,
                 120);
-        exercise3 = new StandardExercise("TestExercise3",
+        exercise3 = new StandardExercise(3,
+                "TestExercise3",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
                 new ArrayList<Equipment>(),
                 new Difficulty(7),

@@ -15,11 +15,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"/>
 
-    <ImageView
-        android:id="@+id/exercise_image"
+
+    <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
+        android:id="@+id/exercise_step_view"
         android:layout_width="match_parent"
-        android:layout_height="300sp"
-        app:srcCompat="@drawable/ic_launcher_foreground"/>
+        android:layout_height="200dp" />
 
     <cn.iwgang.countdownview.CountdownView
         android:id="@+id/exercise_countdown"

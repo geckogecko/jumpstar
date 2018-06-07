@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class Exercise extends TrainingsPlanEntry{
+    private int mId;
     private String mName;
     private ExerciseDescription mDescription;
     private List<Equipment> mEquipmentList;
@@ -37,7 +38,8 @@ public class Exercise extends TrainingsPlanEntry{
         PLYOMETRIC
     }
 
-    public Exercise(String name,
+    public Exercise(int id,
+                    String name,
                     ExerciseDescription description,
                     List<Equipment> equipment,
                     Difficulty difficulty,
@@ -45,6 +47,7 @@ public class Exercise extends TrainingsPlanEntry{
                     TargetArea targetArea,
                     int sets,
                     Category category) {
+        mId = id;
         mName = name;
         mDescription = description;
         mEquipmentList = equipment;
@@ -53,6 +56,11 @@ public class Exercise extends TrainingsPlanEntry{
         mTargetArea = targetArea;
         mSets = sets;
         mCategory = category;
+    }
+
+    public int getId()
+    {
+        return mId;
     }
 
     public String getName() {

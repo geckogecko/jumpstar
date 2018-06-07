@@ -20,6 +20,7 @@ import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
 
 public class StandardExerciseFragment extends Fragment {
     private static final String TAG = "StandardExerciseFragmen";
@@ -46,6 +47,10 @@ public class StandardExerciseFragment extends Fragment {
         //Name
         TextView nameTextView = mView.findViewById(R.id.exercise_name);
         nameTextView.setText(mExercise.getName());
+
+        //ExerciseSteps
+        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
+        steps.setTrainingsplan(mExercise);
 
         //Sets
         TextView setsTextView = mView.findViewById(R.id.exercise_sets);

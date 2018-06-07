@@ -54,7 +54,17 @@
       "targetArea": "FULL_BODY",
       "sets": 1,
       "category": "STRETCH",
-      "time": 30
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
+        },
+        {
+          "nr": 1,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
+        }
+      ]
     }
   }
 }

@@ -1,6 +1,8 @@
 package georg.steinbacher.community_jump_trainer;
 
 
+import android.content.res.Resources;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,13 +16,21 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import cn.iwgang.countdownview.CountdownView;
 import georg.steinbacher.community_jump_trainer.core.Equipment;
+import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
 
 import static android.content.ContentValues.TAG;
 import static georg.steinbacher.community_jump_trainer.Configuration.PREPARATION_COUNTDOWN_TIME;
@@ -35,6 +45,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private TextView mHoldTime;
     private boolean mPreperationCountdown;
     private Button mExerciseStart;
+    private SliderLayout mExerciseImages;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +99,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
         //Equipment
         //TODO add an icon for every equipment
+        //TODO move this into a own view and also use it in the other parts
         LinearLayoutCompat equipmentViewHolder= mView.findViewById(R.id.equipment_icon_container);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
         for (Equipment equipment: equipmentList) {
@@ -103,6 +115,10 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
             equipmentViewHolder.addView(imageView);
         }
         //TODO show a 'no needed equipment icon' if there is no needed equipment
+
+        //ExerciseSteps
+        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
+        steps.setTrainingsplan(mExercise);
     }
 
     public void setExercise(TimeExercise exercise) {

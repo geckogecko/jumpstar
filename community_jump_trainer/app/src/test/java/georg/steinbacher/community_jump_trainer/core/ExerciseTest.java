@@ -18,6 +18,7 @@ import static org.mockito.Mockito.verify;
  */
 
 public class ExerciseTest {
+    final int id = 12;
     final String name = "testExercise";
     ExerciseDescription exerciseDescription;
     Equipment equipment0 = new Equipment("TestEquipment0", Equipment.Type.GYM);
@@ -37,14 +38,15 @@ public class ExerciseTest {
         equipmentList = new ArrayList<>();
         equipmentList.add(equipment0);
 
-        exercise = new Exercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category);
+        exercise = new Exercise(id, name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category);
 
         // listenerCalledTest
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void constructorTest() throws ExerciseDescription.MissingExerciseStepException {
+    public void constructorTest() {
+        assertEquals(id, exercise.getId());
         assertEquals(name, exercise.getName());
         assertEquals(exerciseDescription, exercise.getDescription());
         assertEquals(equipmentList, exercise.getNeededEquipment());

@@ -19,6 +19,7 @@ public class StandardExerciseTest {
 
     @Before
     public void init() throws ExerciseDescription.MissingExerciseStepException {
+        final int id = 13;
         final String name = "testExercise";
         final ExerciseDescription exerciseDescription = new ExerciseDescription(new ArrayList<ExerciseStep>());
         final Equipment equipment0 = new Equipment("TestEquipment0", Equipment.Type.GYM);
@@ -31,7 +32,7 @@ public class StandardExerciseTest {
         final Exercise.Category category= Exercise.Category.STRENGTH;
 
 
-        mExercise = new StandardExercise(name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category, mRepetitions);
+        mExercise = new StandardExercise(id, name, exerciseDescription, equipmentList, difficulty, rating, targetArea, sets, category, mRepetitions);
     }
 
     @Test
