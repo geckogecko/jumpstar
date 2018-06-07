@@ -32,6 +32,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private CountdownView mCountdownView;
     private ProgressBar mProgressBar;
     private TextView mSets;
+    private TextView mHoldTime;
     private boolean mPreperationCountdown;
     private Button mExerciseStart;
 
@@ -77,6 +78,13 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Sets
         mSets = mView.findViewById(R.id.exercise_sets);
         mSets.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
+
+        //Hold time
+        final int seconds = mExercise.getTime();
+        final int minutes = seconds / 60;
+        final int restSeconds = seconds - (minutes*60);
+        mHoldTime = mView.findViewById(R.id.exercise_hold_time);
+        mHoldTime.setText(getString(R.string.time_exercise_hold_time, minutes + ":" + restSeconds));
 
         //Equipment
         //TODO add an icon for every equipment
