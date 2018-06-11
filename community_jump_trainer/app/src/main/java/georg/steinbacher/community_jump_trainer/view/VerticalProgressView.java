@@ -104,7 +104,8 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             while (cursor.moveToNext()) {
                 long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
                 double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
-                entries.add(new Entry(timestamp, (int)vertical));
+                Log.i(TAG, "setData: " +  timestamp + " " + (int) vertical);
+                entries.add(new Entry(timestamp, (int) vertical));
             }
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
@@ -112,8 +113,11 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             dataSet.setColor(mContext.getResources().getColor(R.color.colorAccent));
             dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             LineData lineData = new LineData(dataSet);
+            lineData.setDrawValues(false);
             chart.setData(lineData);
+            chart.getXAxis().setTextColor(mContext.getResources().getColor(R.color.lightGrey));
             chart.getAxisRight().setEnabled(false);
+            chart.getAxisLeft().setTextColor(mContext.getResources().getColor(R.color.lightGrey));
             chart.getLegend().setEnabled(false);
             chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
             chart.getDescription().setEnabled(false);

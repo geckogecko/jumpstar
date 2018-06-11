@@ -31,5 +31,7 @@ public class VerticalHeightDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //TODO implemend real upgrade stuff
+        db.execSQL(SQL_CREATE_VERTICAL_HEIGHT);
     }
 }

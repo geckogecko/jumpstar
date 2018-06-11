@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
     private void initMain() {
         setContentView(R.layout.activity_main);
 
+        Log.i(TAG, "development: initMain");
+        VerticalHeightWriter writer2 = new VerticalHeightWriter(mContext);
+        writer2.add(System.currentTimeMillis(), 128);
+
         //Bottom Navigation
         mNavigation = findViewById(R.id.navigation);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
