@@ -94,8 +94,9 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
     public void setData() {
         LineChart chart = mRootView.findViewById(R.id.chart);
+        chart.clear();
 
-        List<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
 
         VerticalHeightReader reader = new VerticalHeightReader(getContext());
         Cursor cursor = reader.getAll();
@@ -131,6 +132,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
                 }
             });
             chart.setOnLongClickListener(this);
+            chart.notifyDataSetChanged();
         } else {
             //TODO indicate or hide the view
         }

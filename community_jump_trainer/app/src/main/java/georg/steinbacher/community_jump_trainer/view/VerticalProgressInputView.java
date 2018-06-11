@@ -1,12 +1,18 @@
 package georg.steinbacher.community_jump_trainer.view;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import georg.steinbacher.community_jump_trainer.R;
@@ -17,10 +23,10 @@ import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
  * Created by Georg Steinbacher on 02.05.18.
  */
 
-public class VerticalProgressInputView extends CardView implements TextView.OnEditorActionListener {
+public class VerticalProgressInputView extends CardView {
     private View mRootView;
     private Context mContext;
-    private AppCompatEditText mTextInput;
+    private Button mButton;
 
     private IInputDoneListener mListener;
 
@@ -49,22 +55,42 @@ public class VerticalProgressInputView extends CardView implements TextView.OnEd
     private void init(Context context) {
         mContext = context;
         mRootView = inflate(context, R.layout.view_vertical_progress_input, this);
-        mTextInput = findViewById(R.id.text_input);
-        mTextInput.setOnEditorActionListener(this);
+        mButton = mRootView.findViewById(R.id.button_openInout_dialog);
+        mButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog();
+            }
+        });
     }
 
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if(actionId == EditorInfo.IME_ACTION_DONE) {
-            VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
-            writer.add(System.currentTimeMillis(), Double.valueOf(v.getText().toString()));
+    private void createDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
+        builder.setTitle(mContext.getString(R.string.hint_vertical_reach));
 
-            v.setText("");
+        final EditText input = new EditText(mContext);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
 
-            if(mListener != null) {
-                mListener.onInputDone();
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
+                writer.add(System.currentTimeMillis(), Double.valueOf(input.getText().toString()));
+
+                if(mListener != null) {
+                    mListener.onInputDone();
+                }
             }
-        }
-        return false;
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }

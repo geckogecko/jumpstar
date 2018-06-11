@@ -35,4 +35,13 @@
     <style name="TrainingsStyle" parent="AppTheme">
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
+
+
+    <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/lightGrey</item>
+        <item name="android:background">@color/cardBackground</item>
+    </style>
 </resources>
