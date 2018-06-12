@@ -61,34 +61,24 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
             mLayout.addView(actpv);
         }
 
-        //Is vertical progress set?
-        if(Configuration.isSet(getContext(), Configuration.SHOW_VERTICAL_PROGRESS) &&
-            Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
+        //show vertical progress?
+        if(Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
             mVerticialProgressV = createVerticalProgressView();
 
             if(mVerticialProgressV != null) {
                 mVerticialProgressV.setData();
             }
+
+            //Vertical Progress input
+            VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
+            vpiv.setListener(this);
+            mLayout.addView(vpiv);
         }
-
-        //Vertical Progress input
-        VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
-        vpiv.setListener(this);
-        mLayout.addView(vpiv);
-
-        //Load the history views
-        //TODO load from db and add dynamicaly or lets remove it ?
-        /*
-        TrainingsPlanHistoryView trainingsPlanHistoryView = view.findViewById(R.id.trainings_plan_history_test);
-        trainingsPlanHistoryView.setTitle("History");
-        trainingsPlanHistoryView.setDate(Calendar.getInstance().getTime());
-        */
     }
 
     @Override
     public void onInputDone() {
         if(mVerticialProgressV == null &&
-                Configuration.isSet(getContext(), Configuration.SHOW_VERTICAL_PROGRESS) &&
                 Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
             mVerticialProgressV = createVerticalProgressView();
         }

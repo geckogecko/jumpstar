@@ -33,6 +33,7 @@
     <string name="remove">Remove</string>
 
     <!-- Preferences -->
+    <string name="preferences_show_vertical_progress_title">Show vertical progress</string>
     <string name="preferences_trainingsPlan_title">Trainings plan</string>
     <string name="preferences_trainingsPlan_preparationTime">Preparation time</string>
     <string name="preferences_equipment_title">Available equipment</string>

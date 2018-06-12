@@ -3,6 +3,15 @@
     android:key="PREFERENCES_FILE_KEY">
 
     <PreferenceCategory
+        android:title="@string/preferences_show_vertical_progress_title">
+
+        <SwitchPreferenceCompat
+            android:key="show_vertical_progress"
+            android:title="@string/preferences_show_vertical_progress_title"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/preferences_trainingsPlan_title"
         android:layout="@layout/preference_category">
 
