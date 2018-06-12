@@ -59,7 +59,16 @@ public class StandardExerciseFragment extends Fragment {
 
         //Repetitions
         TextView repetitionsTextView = mView.findViewById(R.id.exercise_repetitions);
-        repetitionsTextView.setText(getString(R.string.exercise_repetitions, Integer.toString(mExercise.getRepetitions())));
+        int[] reps = mExercise.getRepetitions();
+        String repsString = Integer.toString(reps[0]);
+
+        if(reps.length > 1) {
+            for(int i = 1; i < reps.length; i++) {
+                repsString += ",";
+                repsString += Integer.toString(reps[i]);
+            }
+        }
+        repetitionsTextView.setText(getString(R.string.exercise_repetitions, repsString));
 
         //Equipment
         EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);

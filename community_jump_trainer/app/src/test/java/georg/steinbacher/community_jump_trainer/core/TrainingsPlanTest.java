@@ -43,7 +43,7 @@ public class TrainingsPlanTest {
                 Exercise.TargetArea.FULL_BODY,
                 3,
                 Exercise.Category.STRENGTH,
-                15);
+                new int[3]);
         exercise2 = new TimeExercise(2,
                 "TestExercise2",
                 new ExerciseDescription(new ArrayList<ExerciseStep>()),
@@ -63,7 +63,7 @@ public class TrainingsPlanTest {
                 Exercise.TargetArea.ARMS,
                 3,
                 Exercise.Category.STRENGTH,
-                10);
+                new int[3]);
         exercises.add(exercise1);
         exercises.add(exercise2);
         exercises.add(exercise3);

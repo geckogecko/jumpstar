@@ -6,7 +6,7 @@
       "targetArea": "FULL_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": 12,
+      "repetitions": [12],
       "equipment": [1],
       "steps": [
         {
@@ -29,7 +29,7 @@
       "targetArea": "LEGS",
       "sets": 2,
       "category": "PLYOMETRIC",
-      "repetitions": 15,
+      "repetitions": [15],
       "steps": [
         {
           "nr": 0,
@@ -43,7 +43,7 @@
       "targetArea": "FULL_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": 15,
+      "repetitions": [15,13,10],
       "equipment": [
         3
       ],

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class StandardExerciseTest {
 
     private StandardExercise mExercise;
-    private final int mRepetitions = 3;
+    private final int[] mRepetitions = {3};
 
     @Before
     public void init() throws ExerciseDescription.MissingExerciseStepException {

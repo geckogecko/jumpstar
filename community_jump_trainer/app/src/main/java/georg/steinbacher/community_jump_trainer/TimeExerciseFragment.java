@@ -89,7 +89,8 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
         //Sets
         mSets = mView.findViewById(R.id.exercise_sets);
-        mSets.setText(getString(R.string.exercise_sets, Integer.toString(mExercise.getSets())));
+        int sets = mExercise.getSets();
+        mSets.setText(getString(R.string.exercise_sets, Integer.toString(sets)));
 
         //Hold time
         final int seconds = mExercise.getTime();

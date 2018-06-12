@@ -9,7 +9,7 @@ import java.util.List;
 public class StandardExercise extends Exercise {
     private static final String TAG = "StandardExercise";
 
-    private int mRepetitions;
+    private int[] mRepetitions;
 
     public StandardExercise(int id,
                             String name,
@@ -20,7 +20,7 @@ public class StandardExercise extends Exercise {
                             TargetArea targetArea,
                             int sets,
                             Category category,
-                            int repetetions) {
+                            int[] repetetions) {
         super(id, name, description, equipment, difficulty, rating, targetArea, sets, category);
 
         mRepetitions = repetetions;
@@ -31,7 +31,7 @@ public class StandardExercise extends Exercise {
         return Type.STANDARD;
     }
 
-    public int getRepetitions() {
+    public int[] getRepetitions() {
         return mRepetitions;
     }
 }
