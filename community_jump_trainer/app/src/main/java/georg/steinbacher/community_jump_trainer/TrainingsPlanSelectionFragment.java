@@ -33,7 +33,7 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
-        LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view;
+        LinearLayoutCompat linearLayoutCompat = view.findViewById(R.id.container);
 
         boolean showPlan = true;
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
