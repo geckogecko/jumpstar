@@ -42,7 +42,8 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
         mContext = view.getContext();
 
         //Is a current trainingsPlan set?
-        if(Configuration.isSet(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY)) {
+        if(Configuration.isSet(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY) &&
+                Configuration.getIntArray(getContext(),Configuration.CURRENT_TRAININGSPLANS_ID_KEY).length > 0) {
             final int[] trainingsPlanIds = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];

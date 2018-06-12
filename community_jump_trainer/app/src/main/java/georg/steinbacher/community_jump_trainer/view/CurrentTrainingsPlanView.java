@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
  */
 
 public class CurrentTrainingsPlanView extends CardView implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
-
+    private static final String TAG = "CurrentTrainingsPlanVie";
     private View mRootView;
     private Context mContext;
     private TrainingsPlan mTrainingsPlan;
@@ -114,6 +115,7 @@ public class CurrentTrainingsPlanView extends CardView implements View.OnLongCli
                     j++;
                 }
             }
+
             Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, newConfig);
             mListener.onRemoved();
         }

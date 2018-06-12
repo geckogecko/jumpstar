@@ -28,5 +28,6 @@
         android:id="@+id/detail_button_add_trainings_plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:text="@string/detail_add_trainings_plan"/>
 </android.support.v7.widget.LinearLayoutCompat>
