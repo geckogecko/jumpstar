@@ -81,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferencesManager.clear(mContext);
         VerticalHeightWriter writer2 = new VerticalHeightWriter(mContext);
         writer2.drop();
-        */
+
 
         int[] ids = {1,2};
         Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, ids);
         Configuration.set(mContext, Configuration.SHOW_VERTICAL_PROGRESS, true);
-
+        */
         //END DEVELOPMENT
 
         // is this the first time the app is started ?

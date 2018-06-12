@@ -6,5 +6,9 @@
   "2": {
     "name": "Equipment2",
     "type": "GYM"
+  },
+  "3": {
+    "name": "Barbell",
+    "type": "GYM"
   }
 }

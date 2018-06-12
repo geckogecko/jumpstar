@@ -36,6 +36,31 @@
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
         }
       ]
+    },
+    "3": {
+      "name": "Squat",
+      "difficulty": 7,
+      "targetArea": "FULL_BODY",
+      "sets": 3,
+      "category": "STRENGTH",
+      "repetitions": 15,
+      "equipment": [
+        3
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a standing position, barbell on your shoulders/upper back, feet slightly wider than your hips."
+        },
+        {
+          "nr": 1,
+          "description": "Move your hips backwards while bending your knees. Maintain a straight back all time."
+        },
+        {
+          "nr": 2,
+          "description": "Bend down until your hips are lower than your knees (Or as low as you can go without losing form)."
+        }
+      ]
     }
   },
   "TIME": {
