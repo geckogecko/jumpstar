@@ -49,8 +49,13 @@ public class TrainingsPlanView extends CardView implements View.OnClickListener{
         mTrainingsPlan = trainingsPlan;
         setCategorySummary(trainingsPlan);
 
+        //title
         TextView txtTitle = findViewById(R.id.name);
         txtTitle.setText(mTrainingsPlan.getName());
+
+        //description
+        TextView txtDescription = findViewById(R.id.description);
+        txtDescription.setText(mTrainingsPlan.getDescription());
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {

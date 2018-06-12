@@ -39,15 +39,16 @@
                 android:orientation="vertical"
                 android:layout_margin="@dimen/inner_card_margins">
 
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Test Plan" />
+                    android:src="@mipmap/ic_launcher"/>
 
-                <android.support.v7.widget.AppCompatRatingBar
+                <TextView
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"/>
+                    android:layout_margin="@dimen/card_margins_content"/>
 
                 <ProgressBar
                     android:id="@+id/categorySummery"

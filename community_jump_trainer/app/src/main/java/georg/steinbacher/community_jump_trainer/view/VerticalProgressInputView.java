@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -76,11 +77,16 @@ public class VerticalProgressInputView extends CardView {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
-                writer.add(System.currentTimeMillis(), Double.valueOf(input.getText().toString()));
+                final String inputString =  input.getText().toString();
+                if(inputString.isEmpty()) {
+                    dialog.cancel();
+                } else {
+                    VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
+                    writer.add(System.currentTimeMillis(), Double.valueOf(inputString));
 
-                if(mListener != null) {
-                    mListener.onInputDone();
+                    if (mListener != null) {
+                        mListener.onInputDone();
+                    }
                 }
             }
         });

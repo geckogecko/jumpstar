@@ -69,12 +69,12 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
             if(mVerticialProgressV != null) {
                 mVerticialProgressV.setData();
             }
-
-            //Vertical Progress input
-            VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
-            vpiv.setListener(this);
-            mLayout.addView(vpiv);
         }
+
+        //Vertical Progress input
+        VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
+        vpiv.setListener(this);
+        mLayout.addView(vpiv);
     }
 
     @Override
