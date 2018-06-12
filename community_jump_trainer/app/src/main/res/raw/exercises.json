@@ -1,43 +1,6 @@
 {
   "STANDARD": {
     "1": {
-      "name": "TestExercise",
-      "difficulty": 5,
-      "targetArea": "FULL_BODY",
-      "sets": 3,
-      "category": "STRENGTH",
-      "repetitions": [12],
-      "equipment": [1],
-      "steps": [
-        {
-          "nr": 0,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
-        },
-        {
-          "nr": 1,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris."
-        },
-        {
-          "nr": 2,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        }
-      ]
-    },
-    "2": {
-      "name": "TestExercise2",
-      "difficulty": 2,
-      "targetArea": "LEGS",
-      "sets": 2,
-      "category": "PLYOMETRIC",
-      "repetitions": [15],
-      "steps": [
-        {
-          "nr": 0,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
-        }
-      ]
-    },
-    "3": {
       "name": "Squat",
       "difficulty": 7,
       "targetArea": "FULL_BODY",
@@ -45,7 +8,7 @@
       "category": "STRENGTH",
       "repetitions": [15,13,10],
       "equipment": [
-        3
+        1
       ],
       "steps": [
         {
@@ -64,32 +27,5 @@
     }
   },
   "TIME": {
-    "1": {
-      "name": "TimeExercise",
-      "difficulty": 9,
-      "targetArea": "FULL_BODY",
-      "sets": 3,
-      "category": "STRENGTH",
-      "time": 60,
-      "equipment": [1,2]
-    },
-    "2": {
-      "name": "TimeExercise",
-      "difficulty": 4,
-      "targetArea": "FULL_BODY",
-      "sets": 1,
-      "category": "STRETCH",
-      "time": 30,
-      "steps": [
-        {
-          "nr": 0,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
-        },
-        {
-          "nr": 1,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo. Suspendisse ligula neque, dictum sed sem a, auctor scelerisque magna."
-        }
-      ]
-    }
   }
 }

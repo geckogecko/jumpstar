@@ -1,106 +1,12 @@
 {
     "1": {
-        "name": "Test Plan",
-        "exercises": [
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "STANDARD",
-                "id": 1
-            },
-            {
-                "type": "STANDARD",
-                "id": 2
-            },
-            {
-                "type": "TIME",
-                "id": 1
-            }
-        ],
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo.",
-        "creationDate": 1523611753
-    },
-    "2": {
-        "name": "Test Plan2",
-        "exercises": [
-            {
-                "type": "TIME",
-                "id": 1
-            }
-        ],
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo.",
-        "creationDate": 1523612753
-    },
-    "3": {
-        "name": "Test Plan3",
-        "exercises": [
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "STANDARD",
-                "id": 1
-            },
-            {
-                "type": "STANDARD",
-                "id": 2
-            },
-            {
-                "type": "STANDARD",
-                "id": 2
-            },
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "TIME",
-                "id": 2
-            },
-            {
-                "type": "STANDARD",
-                "id": 2
-            },
-            {
-                "type": "STANDARD",
-                "id": 2
-            }
-        ],
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum.",
-        "creationDate": 1523652753
-    },
-    "4": {
-        "name": "Complex Plan",
-        "trainingsplans": [
-            {
-                "id": 1
-            },
-            {
-                "id": 2
-            }
-        ],
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse diam enim, fermentum in finibus at, dictum interdum mauris. Suspendisse sed leo ut lorem dapibus semper id et leo.",
-        "creationDate": 1523615753
-    },
-    "5": {
         "name": "Strength and plyometrics mix",
         "description": "Balanced mix of exercises for general strength and reactive strength",
         "creationDate": 1528742853,
         "exercises": [
             {
                 "type": "STANDARD",
-                "id": 3
+                "id": 1
             }
         ]
     }
