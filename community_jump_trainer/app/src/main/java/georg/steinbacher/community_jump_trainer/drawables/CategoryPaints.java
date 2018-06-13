@@ -21,6 +21,8 @@ public class CategoryPaints {
             paint.setColor(context.getResources().getColor(R.color.colorExerciseStrength));
         } else if(category == Exercise.Category.PLYOMETRIC) {
             paint.setColor(context.getResources().getColor(R.color.colorExercisePlyometric));
+        } else if(category == Exercise.Category.WARMUP) {
+            paint.setColor(context.getResources().getColor(R.color.colorExerciseWarmup));
         }
 
         return paint;
@@ -35,6 +37,8 @@ public class CategoryPaints {
             paint.setColor(context.getResources().getColor(R.color.colorExerciseStrengthLight));
         } else if(category == Exercise.Category.PLYOMETRIC) {
             paint.setColor(context.getResources().getColor(R.color.colorExercisePlyometricLight));
+        } else if(category == Exercise.Category.WARMUP) {
+            paint.setColor(context.getResources().getColor(R.color.colorExerciseWarmupLight));
         }
 
         return paint;

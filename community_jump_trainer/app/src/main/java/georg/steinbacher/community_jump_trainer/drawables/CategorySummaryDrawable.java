@@ -41,7 +41,8 @@ public class CategorySummaryDrawable extends Drawable {
 
         //init the mCategoryCounts
         for (int i = 0; i < Exercise.Category.values().length; i++) {
-            mCategoryCounts.add(new CategoryCounter(Exercise.Category.values()[i]));
+            if(!Exercise.Category.values()[i].name().equals("WARMUP")) //dont add warmup
+                mCategoryCounts.add(new CategoryCounter(Exercise.Category.values()[i]));
         }
 
         calcCategoryCounts(mTraingsPlan);

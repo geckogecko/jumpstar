@@ -7,9 +7,7 @@
       "sets": 3,
       "category": "STRENGTH",
       "repetitions": [15,13,10],
-      "equipment": [
-        1
-      ],
+      "equipment": [1],
       "steps": [
         {
           "nr": 0,
@@ -32,9 +30,7 @@
       "sets": 3,
       "category": "STRENGTH",
       "repetitions": [15,13,10],
-      "equipment": [
-        1
-      ],
+      "equipment": [1],
       "steps": [
         {
           "nr": 0,

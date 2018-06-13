@@ -14,9 +14,12 @@
     <color name="colorExerciseStretch">#068415</color>
     <color name="colorExerciseStretchLight">#4b6bf77b</color>
     <color name="colorExerciseStrength">#3633ca</color>
+    <color name="colorExerciseWarmup">#0e8b99</color>
+
     <color name="colorExerciseStrengthLight">#4b6bc4f7</color>
     <color name="colorExercisePlyometric">#8633ca</color>
     <color name="colorExercisePlyometricLight">#4bbc8be4</color>
+    <color name="colorExerciseWarmupLight">#a70ce4e1</color>
 
 
 </resources>
