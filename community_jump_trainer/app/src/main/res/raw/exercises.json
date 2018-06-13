@@ -24,8 +24,42 @@
           "description": "Bend down until your hips are lower than your knees (Or as low as you can go without losing form)."
         }
       ]
+    },
+    "2": {
+      "name": "Romanian Deadlift",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRENGTH",
+      "repetitions": [15,13,10],
+      "equipment": [
+        1
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Hold the bar at hip level with your knees slightly bent."
+        },
+        {
+          "nr": 1,
+          "description": "Lower the bar by moving your hips back. Move the bar down your body while moving forward. Stop just below your knees."
+        },
+        {
+          "nr": 2,
+          "description": "Return to the starting position by moving your hips forward."
+        }
+      ]
     }
   },
   "TIME": {
+    "1": {
+      "name": "Rope jumps",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 1,
+      "category": "WARMUP",
+      "time": 300,
+      "equipment": [2]
+    }
   }
 }

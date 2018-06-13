@@ -2,5 +2,9 @@
   "1": {
     "name": "Barbell",
     "type": "GYM"
+  },
+  "2": {
+    "name": "Jump rope",
+    "type": "HOME"
   }
 }

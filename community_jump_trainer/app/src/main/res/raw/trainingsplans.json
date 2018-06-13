@@ -5,8 +5,16 @@
         "creationDate": 1528742853,
         "exercises": [
             {
+                "type": "TIME",
+                "id": 1
+            },
+            {
                 "type": "STANDARD",
                 "id": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 2
             }
         ]
     }

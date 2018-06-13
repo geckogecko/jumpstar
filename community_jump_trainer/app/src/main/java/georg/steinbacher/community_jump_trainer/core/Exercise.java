@@ -36,7 +36,8 @@ public class Exercise extends TrainingsPlanEntry{
     public enum Category {
         STRETCH,
         STRENGTH,
-        PLYOMETRIC
+        PLYOMETRIC,
+        WARMUP
     }
 
     public Exercise(int id,
