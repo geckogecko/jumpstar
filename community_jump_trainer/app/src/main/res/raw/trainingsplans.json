@@ -10,7 +10,15 @@
             },
             {
                 "type": "STANDARD",
+                "id": 3
+            },
+            {
+                "type": "STANDARD",
                 "id": 1
+            },
+            {
+                "type": "TIME",
+                "id": 2
             },
             {
                 "type": "STANDARD",

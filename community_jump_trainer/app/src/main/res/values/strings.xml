@@ -26,8 +26,11 @@
     <string name="exercise_sets">Sets: %1$s</string>
     <string name="exercise_equipment">Equipment:</string>
     <string name="exercise_repetitions">Repetition: %1$s</string>
+    <string name="exercise_repetitions_standard_as_much">Repetition: As much as possible per set</string>
     <string name="time_exercise_start">Start</string>
     <string name="time_exercise_hold_time">Hold time: %1$s</string>
+    <string name="minutes_short">min</string>
+    <string name="time_exercise_hold_time_as_much">Hold time: As long as possible per set</string>
 
     <!-- current_trainingsplan_menu -->
     <string name="remove">Remove</string>

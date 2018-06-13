@@ -29,7 +29,8 @@ public class Exercise extends TrainingsPlanEntry{
         FULL_BODY,
         LEGS,
         ARMS,
-        CORE
+        CORE,
+        UPPER_BODY
     }
 
     //TODO which categories should we use?

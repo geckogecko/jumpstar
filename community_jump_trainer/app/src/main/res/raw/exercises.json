@@ -45,7 +45,27 @@
           "description": "Return to the starting position by moving your hips forward."
         }
       ]
+    },
+    "3": {
+      "name": "Pull-Up",
+      "difficulty": 8,
+      "targetArea": "UPPER_BODY",
+      "sets": 3,
+      "category": "STRENGTH",
+      "repetitions": [-1],
+      "equipment": [3],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Hands more than shoulder wide apart, pointing forward."
+        },
+        {
+          "nr": 1,
+          "description": "Pull yourself up until the chin clears the bar."
+        }
+      ]
     }
+
   },
   "TIME": {
     "1": {
@@ -56,6 +76,24 @@
       "category": "WARMUP",
       "time": 300,
       "equipment": [2]
+    },
+    "2": {
+      "name": "Push-Up hold",
+      "difficulty": 5,
+      "targetArea": "FULL_BODY",
+      "sets": 1,
+      "category": "WARMUP",
+      "time": 60,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Begin in a planking position. Back straight and hands directly under your shoulders"
+        },
+        {
+          "nr": 1,
+          "description": "Lower like you would do a push-up till your chest nearly touches the floor. Maintain this position for the required time"
+        }
+      ]
     }
   }
 }
