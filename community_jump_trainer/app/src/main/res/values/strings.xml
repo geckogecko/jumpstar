@@ -44,5 +44,6 @@
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>
+    <string name="detail_exercises">Exercises: </string>
 
 </resources>

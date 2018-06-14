@@ -24,6 +24,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:text="@string/detail_exercises"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+        <TextView
+            android:id="@+id/detail_trainings_plan_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/detail_button_add_trainings_plan"
         android:layout_width="match_parent"
