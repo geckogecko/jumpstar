@@ -44,7 +44,11 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private ProgressBar mProgressBar;
     private TextView mSets;
     private TextView mHoldTime;
+
     private boolean mPreperationCountdown;
+    private boolean mCountdownRunning;
+    private boolean mCountdownPaused;
+
     private Button mExerciseStart;
     private SliderLayout mExerciseImages;
 
@@ -78,9 +82,23 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mExerciseStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPreperationCountdown = true;
-                mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
-                mExerciseStart.setEnabled(false);
+                if(mCountdownRunning) {
+                    mCountdownView.pause();
+                    mCountdownPaused = true;
+                    mCountdownRunning = false;
+                    mExerciseStart.setText(R.string.time_exercise_resume);
+                } else {
+                    if(mCountdownPaused) {
+                        mCountdownView.restart();
+                        mCountdownPaused = false;
+                        mExerciseStart.setText(R.string.time_exercise_pause);
+                    } else {
+                        mCountdownRunning = true;
+                        mPreperationCountdown = true;
+                        mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
+                        mExerciseStart.setText(R.string.time_exercise_pause);
+                    }
+                }
             }
         });
 

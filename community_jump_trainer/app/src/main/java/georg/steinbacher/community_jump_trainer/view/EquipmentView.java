@@ -43,7 +43,7 @@ public class EquipmentView extends LinearLayoutCompat {
                 imageView.setImageDrawable(getResources().getDrawable(drawableId));
             } else {
                 Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
             }
             mView.addView(imageView);
         }
