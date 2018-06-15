@@ -19,7 +19,7 @@
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
         android:id="@+id/exercise_step_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="300dp" />
 
     <cn.iwgang.countdownview.CountdownView
         android:id="@+id/exercise_countdown"

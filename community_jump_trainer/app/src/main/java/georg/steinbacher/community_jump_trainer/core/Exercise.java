@@ -7,7 +7,6 @@ import java.util.List;
  * Created by georg on 15.03.18.
  */
 
-//TODO support for different kind of reps (15-13-10)
 public class Exercise extends TrainingsPlanEntry{
     private int mId;
     private String mName;

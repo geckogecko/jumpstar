@@ -28,6 +28,8 @@
     <string name="exercise_repetitions">Repetition: %1$s</string>
     <string name="exercise_repetitions_standard_as_much">Repetition: As much as possible per set</string>
     <string name="time_exercise_start">Start</string>
+    <string name="time_exercise_pause">Pause</string>
+    <string name="time_exercise_resume">Resume</string>
     <string name="time_exercise_hold_time">Hold time: %1$s</string>
     <string name="minutes_short">min</string>
     <string name="time_exercise_hold_time_as_much">Hold time: As long as possible per set</string>
@@ -45,5 +47,6 @@
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>
+    <string name="detail_exercises">Exercises: </string>
 
 </resources>

@@ -54,25 +54,25 @@ public class ExerciseStepsView extends SliderLayout{
                     getContext().getPackageName());
 
             if(resourceId != 0) {
-                file_maps.put(imageName, resourceId);
+                file_maps.put(step.getStepNr() + ": " + step.getDescription(), resourceId);
             } else {
                 Log.e(TAG, "description image for step: " + imageName + " not found");
                 //TODO what should we do if the image is not found?
             }
         }
 
-        for(String name : file_maps.keySet()){
+        for(String description : file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
             textSliderView
-                    .description(name)
-                    .image(file_maps.get(name))
+                    .description(description)
+                    .image(file_maps.get(description))
                     .setScaleType(BaseSliderView.ScaleType.Fit);
 
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra",description);
 
             exerciseImages.addSlider(textSliderView);
         }

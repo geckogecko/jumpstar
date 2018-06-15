@@ -90,16 +90,8 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
     }
 
     private VerticalProgressView createVerticalProgressView() {
-        VerticalProgressView verticalProgress = null;
-        VerticalHeightReader reader = new VerticalHeightReader(getContext());
-        Cursor cursor = reader.getAll();
-
-        if (cursor.getCount() > 0) {
-            verticalProgress = new VerticalProgressView(mContext);
-            mLayout.addView(verticalProgress, 0);
-        } else {
-            Log.w(TAG, "SHOW_VERTICAL_PROGRESS is true but there seems to be no data");
-        }
+        VerticalProgressView verticalProgress = new VerticalProgressView(mContext);
+        mLayout.addView(verticalProgress, 0);
 
         return verticalProgress;
     }

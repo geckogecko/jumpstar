@@ -57,6 +57,17 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         List<Equipment> equipmentList = mTrainingsPlan.getNeededEquipment();
         equipmentViewHolder.setEquipment(equipmentList);
 
+        //exercises
+        TextView txtExercises = findViewById(R.id.detail_trainings_plan_exercises);
+        List<TrainingsPlanEntry> exercises = mTrainingsPlan.getEntries();
+        String exercisesString = "";
+        for (TrainingsPlanEntry exercise : exercises) {
+            if(exercise.getClass().equals(TimeExercise.class) || exercise.getClass().equals(StandardExercise.class)) {
+                exercisesString += ((Exercise)exercise).getName() + "\n";
+            }
+        }
+        txtExercises.setText(exercisesString);
+
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
         final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
