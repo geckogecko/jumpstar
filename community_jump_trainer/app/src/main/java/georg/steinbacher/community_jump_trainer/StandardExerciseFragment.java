@@ -74,22 +74,6 @@ public class StandardExerciseFragment extends Fragment {
         EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
         equipmentViewHolder.setEquipment(equipmentList);
-
-
-        //description
-        TextView descriptionTextView = mView.findViewById(R.id.exercise_description);
-        ExerciseDescription description = mExercise.getDescription();
-        if(description != null) {
-            List<ExerciseStep> exerciseSteps = mExercise.getDescription().getSteps();
-            String descString = "";
-            for (ExerciseStep step : exerciseSteps) {
-                descString += step.getStepNr() + ": " + step.getDescription() + "\n";
-            }
-            descriptionTextView.setText(descString);
-        } else {
-            descriptionTextView.setVisibility(View.GONE);
-        }
-
     }
 
     public void setExercise(StandardExercise exercise) {

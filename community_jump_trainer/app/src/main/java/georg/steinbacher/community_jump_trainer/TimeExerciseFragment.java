@@ -121,10 +121,6 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
         equipmentViewHolder.setEquipment(equipmentList);
-
-        //ExerciseSteps
-        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
-        steps.setTrainingsplan(mExercise);
     }
 
     public void setExercise(TimeExercise exercise) {
