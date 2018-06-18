@@ -2,6 +2,7 @@ package georg.steinbacher.community_jump_trainer;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 
 import com.stephentuso.welcome.FragmentWelcomePage;
 import com.stephentuso.welcome.TitlePage;
@@ -29,6 +30,12 @@ public class SetupActivity extends WelcomeActivity {
                     @Override
                     protected android.support.v4.app.Fragment fragment() {
                         return new SetupReachHeightFragment();
+                    }
+                }.background(R.color.colorPrimary))
+                .page(new FragmentWelcomePage() {
+                    @Override
+                    protected android.support.v4.app.Fragment fragment() {
+                        return new SetupEquipmentFragment();
                     }
                 }.background(R.color.colorPrimary))
                 .swipeToDismiss(true)
