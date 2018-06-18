@@ -38,8 +38,9 @@
     <string name="remove">Remove</string>
 
     <!-- Preferences -->
+    <string name="preferences_home_screen">Home screen</string>
     <string name="preferences_show_vertical_progress_title">Show vertical progress</string>
-    <string name="preferences_trainingsPlan_title">Trainings plan</string>
+    <string name="preferences_training_title">Training</string>
     <string name="preferences_trainingsPlan_preparationTime">Preparation time</string>
     <string name="preferences_equipment_title">Available equipment</string>
     <string name="preferences_equipment_home">Home</string>

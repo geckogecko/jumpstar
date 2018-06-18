@@ -3,7 +3,7 @@
     android:key="PREFERENCES_FILE_KEY">
 
     <PreferenceCategory
-        android:title="@string/preferences_show_vertical_progress_title">
+        android:title="@string/preferences_home_screen">
 
         <SwitchPreferenceCompat
             android:key="show_vertical_progress"
@@ -12,7 +12,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/preferences_trainingsPlan_title"
+        android:title="@string/preferences_training_title"
         android:layout="@layout/preference_category">
 
         <ListPreference
