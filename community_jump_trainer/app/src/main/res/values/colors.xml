@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#777272</color> <!-- todo find a better color -->
     <color name="colorPrimaryDark">@color/black</color>
-    <color name="colorAccent">#0099cc</color>
+    <color name="colorAccent">#448AFF</color>
     <color name="background">#303030</color>
     <color name="cardBackground">#424242</color>
 
@@ -20,6 +20,8 @@
     <color name="colorExercisePlyometric">#8633ca</color>
     <color name="colorExercisePlyometricLight">#4bbc8be4</color>
     <color name="colorExerciseWarmupLight">#a70ce4e1</color>
+
+    <color name="colorVerticalProgress">#8a60ff</color>W
 
 
 </resources>

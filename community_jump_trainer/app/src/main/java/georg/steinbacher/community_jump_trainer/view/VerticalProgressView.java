@@ -3,6 +3,7 @@ package georg.steinbacher.community_jump_trainer.view;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.AttributeSet;
 import android.util.Log;
