@@ -9,6 +9,10 @@
                 "id": 1
             },
             {
+                "type": "TIME",
+                "id": 2
+            },
+            {
                 "type": "STANDARD",
                 "id": 3
             },
@@ -17,12 +21,16 @@
                 "id": 1
             },
             {
-                "type": "TIME",
+                "type": "STANDARD",
                 "id": 2
             },
             {
-                "type": "STANDARD",
-                "id": 2
+                "type": "TIME",
+                "id": 3
+            },
+            {
+                "type": "TIME",
+                "id": 4
             }
         ]
     }

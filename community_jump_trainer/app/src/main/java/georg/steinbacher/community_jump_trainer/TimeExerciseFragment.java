@@ -111,13 +111,13 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mSets.setText(getString(R.string.exercise_sets, Integer.toString(sets)));
 
         //Hold time
+        mHoldTime = mView.findViewById(R.id.exercise_hold_time);
         final int seconds = mExercise.getTime();
         if(seconds == -1) {
             mHoldTime.setText(getString(R.string.time_exercise_hold_time_as_much));
         } else {
             final int minutes = seconds / 60;
             final int restSeconds = seconds - (minutes * 60);
-            mHoldTime = mView.findViewById(R.id.exercise_hold_time);
             mHoldTime.setText(getString(R.string.time_exercise_hold_time, minutes + ":" + restSeconds)
             + " " + getString(R.string.minutes_short));
         }

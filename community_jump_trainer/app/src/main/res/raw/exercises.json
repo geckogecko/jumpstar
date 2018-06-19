@@ -81,8 +81,8 @@
       "name": "Push-Up hold",
       "difficulty": 5,
       "targetArea": "FULL_BODY",
-      "sets": 1,
-      "category": "WARMUP",
+      "sets": 2,
+      "category": "PLYOMETRIC",
       "time": 60,
       "steps": [
         {
@@ -92,6 +92,34 @@
         {
           "nr": 1,
           "description": "Lower like you would do a push-up till your chest nearly touches the floor. Maintain this position for the required time"
+        }
+      ]
+    },
+    "3": {
+      "name": "Side plank hold",
+      "difficulty": 5,
+      "targetArea": "CORE",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "time": -1,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Hold as long as you can. Switch legs and repeat. (Left and right leg = 1 set)"
+        }
+      ]
+    },
+    "4": {
+      "name": "V-up hold",
+      "difficulty": 7,
+      "targetArea": "CORE",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "time": -1,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Hold as long as you can."
         }
       ]
     }
