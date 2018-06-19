@@ -18,6 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/complete_exercise_button"
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginRight="@dimen/card_margins_content"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
 
     <android.support.v7.widget.AppCompatButton

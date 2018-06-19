@@ -43,7 +43,7 @@ public class StandardExerciseFragment extends Fragment {
         mView = view;
 
         //background color
-        mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
+        //mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Name
         TextView nameTextView = mView.findViewById(R.id.exercise_name);

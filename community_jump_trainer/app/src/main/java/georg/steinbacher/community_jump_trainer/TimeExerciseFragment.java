@@ -66,7 +66,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mView = view;
 
         //background color
-        mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
+        //mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);

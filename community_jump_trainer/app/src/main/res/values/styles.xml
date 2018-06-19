@@ -33,7 +33,7 @@
     </style>
 
     <style name="TrainingsStyle" parent="AppTheme">
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/background</item>
     </style>
 
 
