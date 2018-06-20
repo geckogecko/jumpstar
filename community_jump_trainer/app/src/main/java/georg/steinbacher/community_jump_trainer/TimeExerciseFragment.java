@@ -78,36 +78,47 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
-        mCountdownView.setOnCountdownEndListener(this);
-        mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
+        if(mExercise.getTime() == -1) {
+            mCountdownView.setVisibility(View.GONE);
+        } else {
+            mCountdownView.setOnCountdownEndListener(this);
+            mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
+        }
 
         //Button
         mExerciseStart = mView.findViewById(R.id.exercise_start_button);
-        mExerciseStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mCountdownRunning) {
-                    mCountdownView.pause();
-                    mCountdownPaused = true;
-                    mCountdownRunning = false;
-                    mExerciseStart.setText(R.string.time_exercise_resume);
-                } else {
-                    if(mCountdownPaused) {
-                        mCountdownView.restart();
-                        mCountdownPaused = false;
-                        mExerciseStart.setText(R.string.time_exercise_pause);
+        if(mExercise.getTime() == -1) {
+            mExerciseStart.setVisibility(View.GONE);
+        } else {
+            mExerciseStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCountdownRunning) {
+                        mCountdownView.pause();
+                        mCountdownPaused = true;
+                        mCountdownRunning = false;
+                        mExerciseStart.setText(R.string.time_exercise_resume);
                     } else {
-                        mCountdownRunning = true;
-                        mPreperationCountdown = true;
-                        mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
-                        mExerciseStart.setText(R.string.time_exercise_pause);
+                        if (mCountdownPaused) {
+                            mCountdownView.restart();
+                            mCountdownPaused = false;
+                            mExerciseStart.setText(R.string.time_exercise_pause);
+                        } else {
+                            mCountdownRunning = true;
+                            mPreperationCountdown = true;
+                            mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
+                            mExerciseStart.setText(R.string.time_exercise_pause);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
         //ProgressBar
         mProgressBar = mView.findViewById(R.id.time_exercise_progress_bar);
+        if(mExercise.getTime() == -1) {
+            mProgressBar.setVisibility(View.GONE);
+        }
 
         //Sets
         mSets = mView.findViewById(R.id.exercise_sets);
