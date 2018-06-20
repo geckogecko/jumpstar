@@ -75,7 +75,13 @@
       "sets": 1,
       "category": "WARMUP",
       "time": 300,
-      "equipment": [2]
+      "equipment": [2],
+      "steps": [
+        {
+          "nr": 0,
+          "description": ""
+        }
+      ]
     },
     "2": {
       "name": "Push-Up hold",

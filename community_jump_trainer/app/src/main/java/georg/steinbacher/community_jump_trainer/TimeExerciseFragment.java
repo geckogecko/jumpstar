@@ -72,6 +72,10 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         TextView textView = mView.findViewById(R.id.exercise_name);
         textView.setText(mExercise.getName());
 
+        //ExerciseSteps
+        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
+        steps.setTrainingsplan(mExercise);
+
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
         mCountdownView.setOnCountdownEndListener(this);
