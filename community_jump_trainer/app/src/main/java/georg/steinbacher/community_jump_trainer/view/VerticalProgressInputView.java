@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 
@@ -82,7 +84,7 @@ public class VerticalProgressInputView extends CardView {
                     dialog.cancel();
                 } else {
                     VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
-                    writer.add(System.currentTimeMillis(), Double.valueOf(inputString));
+                    writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), Double.valueOf(inputString));
 
                     if (mListener != null) {
                         mListener.onInputDone();

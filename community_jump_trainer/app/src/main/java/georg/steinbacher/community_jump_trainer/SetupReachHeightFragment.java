@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.concurrent.TimeUnit;
+
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 import georg.steinbacher.community_jump_trainer.util.SharedPreferencesManager;
 
@@ -32,7 +34,7 @@ public class SetupReachHeightFragment extends Fragment {
                     try {
                         double parsedValue = Double.parseDouble(reachHeightInput.getText().toString());
                         VerticalHeightWriter writer = new VerticalHeightWriter(getContext());
-                        writer.add(System.currentTimeMillis(), parsedValue);
+                        writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), parsedValue);
                         Configuration.set(getContext(), Configuration.SHOW_VERTICAL_PROGRESS, true);
                     } catch (NumberFormatException e) {
                         Snackbar.make(v, R.string.setup_reach_height_input_error, Snackbar.LENGTH_SHORT)
