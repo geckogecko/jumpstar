@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
-        Log.i(TAG, "onCreate: " + getIntent().getStringExtra("test"));
 
 
         // DEVELOPMENT TODO remove when not needed
