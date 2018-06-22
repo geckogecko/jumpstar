@@ -63,9 +63,10 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         String exercisesString = "";
         for (TrainingsPlanEntry exercise : exercises) {
             if(exercise.getClass().equals(TimeExercise.class) || exercise.getClass().equals(StandardExercise.class)) {
-                exercisesString += ((Exercise)exercise).getName() + "\n";
+                exercisesString += ((Exercise)exercise).getName() + ", ";
             }
         }
+        exercisesString = exercisesString.substring(0,exercisesString.length()-1);
         txtExercises.setText(exercisesString);
 
         //add button
