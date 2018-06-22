@@ -102,6 +102,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                         if (mCountdownPaused) {
                             mCountdownView.restart();
                             mCountdownPaused = false;
+                            mCountdownRunning = true;
                             mExerciseStart.setText(R.string.time_exercise_pause);
                         } else {
                             mCountdownRunning = true;

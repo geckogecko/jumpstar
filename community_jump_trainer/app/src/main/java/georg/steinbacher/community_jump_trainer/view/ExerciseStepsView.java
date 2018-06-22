@@ -79,6 +79,9 @@ public class ExerciseStepsView extends SliderLayout{
         }
         exerciseImages.setPresetTransformer(SliderLayout.Transformer.Default);
         exerciseImages.getPagerIndicator().setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
-        exerciseImages.stopAutoCycle();
+
+        if(mExercise.getDescription().getSteps().size() <= 1) {
+            exerciseImages.stopAutoCycle();
+        }
     }
 }
