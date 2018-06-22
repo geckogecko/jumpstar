@@ -14,12 +14,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textAlignment="center"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_margin="20sp"/>
 
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
         android:id="@+id/exercise_step_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="200dp"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_sets"
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="Sets: XX"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_repetitions"

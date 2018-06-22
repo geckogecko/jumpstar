@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -77,5 +78,7 @@ public class ExerciseStepsView extends SliderLayout{
             exerciseImages.addSlider(textSliderView);
         }
         exerciseImages.setPresetTransformer(SliderLayout.Transformer.Default);
+        exerciseImages.getPagerIndicator().setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
+        exerciseImages.stopAutoCycle();
     }
 }
