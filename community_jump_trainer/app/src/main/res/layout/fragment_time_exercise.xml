@@ -12,8 +12,9 @@
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textAlignment="center"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/card_margins_content"/>
 
 
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
@@ -34,6 +35,7 @@
         app:suffixTextColor="@color/darkerGrey"
         app:timeTextSize="60sp"
         app:timeTextColor="@color/lightGrey"
+        android:layout_margin="@dimen/card_margins_content"
         />
 
     <ProgressBar
@@ -41,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-        android:progress="0"/>
+        android:progress="0" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/exercise_start_button"
@@ -49,25 +51,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:text="@string/time_exercise_start"/>
+        android:text="@string/time_exercise_start"
+        android:layout_margin="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/exercise_sets"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/exercise_sets"
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_hold_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/time_exercise_hold_time"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/time_exercise_hold_time"
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
     <georg.steinbacher.community_jump_trainer.view.EquipmentView
         android:id="@+id/equipment_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
 </android.support.v7.widget.LinearLayoutCompat>
