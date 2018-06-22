@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<net.colindodd.gradientlayout.GradientLinearLayout
+    android:id="@+id/gradient"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -77,4 +80,4 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/card_margins_content"/>
 
-</android.support.v7.widget.LinearLayoutCompat>
+</net.colindodd.gradientlayout.GradientLinearLayout>

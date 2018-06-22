@@ -21,6 +21,9 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
+import net.colindodd.gradientlayout.GradientLinearLayout;
+import net.colindodd.gradientlayout.GradientRelativeLayout;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +69,9 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mView = view;
 
         //background color
-        //mView.setBackgroundColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
+        final GradientLinearLayout layout = mView.findViewById(R.id.gradient);
+        layout.setStartColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
+        layout.setEndColor(getContext().getResources().getColor(R.color.background));
 
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);
