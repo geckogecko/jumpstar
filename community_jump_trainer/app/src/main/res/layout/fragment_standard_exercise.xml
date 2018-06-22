@@ -12,8 +12,9 @@
         android:id="@+id/exercise_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textAlignment="center"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/card_margins_content"/>
 
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
         android:id="@+id/exercise_step_view"
@@ -24,19 +25,22 @@
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="Sets: XX"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="Sets: XX"
+        android:layout_margin="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_repetitions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text= "Repetition: XX"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text= "Repetition: XX"
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
    <georg.steinbacher.community_jump_trainer.view.EquipmentView
        android:id="@+id/equipment_view"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="@dimen/card_margins_content"/>
 
 </android.support.v7.widget.LinearLayoutCompat>
