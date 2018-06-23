@@ -70,7 +70,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
         //background color
         final GradientLinearLayout layout = mView.findViewById(R.id.gradient);
-        layout.setStartColor(CategoryPaints.getSecondaryColor(getContext(), mExercise.getCategory()).getColor());
+        layout.setStartColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
         layout.setEndColor(getContext().getResources().getColor(R.color.background));
 
         //Name

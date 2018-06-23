@@ -2,7 +2,6 @@
 <net.colindodd.gradientlayout.GradientLinearLayout
     android:id="@+id/gradient"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
