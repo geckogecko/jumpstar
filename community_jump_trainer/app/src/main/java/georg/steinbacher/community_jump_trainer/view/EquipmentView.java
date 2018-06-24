@@ -37,7 +37,7 @@ public class EquipmentView extends LinearLayoutCompat {
         for (Equipment equipment : equipmentList) {
             ImageView imageView = new ImageView(getContext());
             //TODO add an icon for every equipment
-            final int drawableId = getContext().getResources().getIdentifier(equipment.getName(),
+            final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-","_"),
                     "drawable", getContext().getPackageName());
             if (drawableId != 0) {
                 imageView.setImageDrawable(getResources().getDrawable(drawableId));
