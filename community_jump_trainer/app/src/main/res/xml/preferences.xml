@@ -8,7 +8,7 @@
         <SwitchPreferenceCompat
             android:key="show_vertical_progress"
             android:title="@string/preferences_show_vertical_progress_title"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
         <ListPreference
             android:key="reached_height"

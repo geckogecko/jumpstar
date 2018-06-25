@@ -104,10 +104,16 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         VerticalHeightReader reader = new VerticalHeightReader(getContext());
         Cursor cursor = reader.getAll();
 
+        final boolean convertToInches = Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                .equals(Configuration.UnitLocal.IMPERIAL.name());
+
         if(cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
                 double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
+                if(convertToInches) {
+                    vertical = cmToInches(vertical);
+                }
                 Log.i(TAG, "setData: " +  timestamp + " " + (int) vertical);
                 entries.add(new Entry(timestamp, (int) vertical));
             }
@@ -131,6 +137,10 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         } else {
             //TODO indicate or hide the view
         }
+    }
+
+    double cmToInches(double cm) {
+        return cm / 2.54;
     }
 
     public class DayAxisValueFormatter implements IAxisValueFormatter

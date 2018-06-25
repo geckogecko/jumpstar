@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
         }
 
         //show vertical progress?
-        if(Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
+        if(Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS, true)) {
             mVerticialProgressV = createVerticalProgressView();
         }
 

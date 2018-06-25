@@ -93,7 +93,12 @@ public class VerticalProgressInputView extends CardView {
                     dialog.cancel();
                 } else {
                     VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
-                    writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), Double.valueOf(inputString));
+                    if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                            .equals(Configuration.UnitLocal.METRIC.name())) {
+                        writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), Double.valueOf(inputString));
+                    } else {
+                        writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), inchesToCm(Double.valueOf(inputString)));
+                    }
 
                     if (mListener != null) {
                         mListener.onInputDone();
@@ -109,5 +114,9 @@ public class VerticalProgressInputView extends CardView {
         });
 
         builder.show();
+    }
+
+    double inchesToCm(double inches) {
+        return inches * 2.54;
     }
 }
