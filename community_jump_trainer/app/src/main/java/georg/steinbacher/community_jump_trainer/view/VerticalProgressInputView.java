@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
+import georg.steinbacher.community_jump_trainer.Configuration;
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 
@@ -73,6 +74,14 @@ public class VerticalProgressInputView extends CardView {
 
         final EditText input = new EditText(mContext);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                .equals(Configuration.UnitLocal.METRIC.name())) {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.centimeters_short)));
+        } else {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.inches_short)));
+        }
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

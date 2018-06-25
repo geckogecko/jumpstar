@@ -9,6 +9,14 @@
             android:key="show_vertical_progress"
             android:title="@string/preferences_show_vertical_progress_title"
             android:defaultValue="false" />
+
+        <ListPreference
+            android:key="reached_height"
+            android:title="@string/preferences_unit_local_title"
+            android:defaultValue="@string/unit_local_default"
+            android:entries="@array/unit_locals"
+            android:entryValues="@array/unit_locals_values"
+            android:summary="%s"/>
     </PreferenceCategory>
 
     <PreferenceCategory

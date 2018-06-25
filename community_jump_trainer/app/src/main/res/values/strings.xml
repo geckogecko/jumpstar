@@ -8,9 +8,8 @@
 
     <string name="centimeters_short">cm</string>
     <string name="inches_short">inches</string>
-
-    <string name="setup_reach_height_input_hint">Your reach in %1$s</string>
-    <string name="setup_reach_height_input_error">Invalid Input</string>
+    <string name="reach_height_input_hint">Your reach in %1$s</string>
+    <string name="reach_height_input_error">Invalid Input</string>
 
     <!-- Home -->
     <string name="start_current_trainingsPlan">Start</string>
@@ -46,6 +45,7 @@
     <string name="preferences_equipment_title">Available equipment</string>
     <string name="preferences_equipment_home">Home</string>
     <string name="preferences_equipment_gym">Gym</string>
+    <string name="preferences_unit_local_title">Measurement system</string>
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>

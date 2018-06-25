@@ -88,14 +88,7 @@ public class MainActivity extends AppCompatActivity {
         */
         //END DEVELOPMENT
 
-        // is this the first time the app is started ?
-        // if yes -> open the Setup
-        if(!Configuration.isSet(mContext, Configuration.SETUP_COMPLETED_KEY)) {
-            mSetupHelper = new WelcomeHelper(this, SetupActivity.class);
-            mSetupHelper.forceShow();
-        } else {
-            initMain();
-        }
+        initMain();
     }
 
     private void initMain() {
@@ -114,16 +107,6 @@ public class MainActivity extends AppCompatActivity {
         //Load all the json data
         JSONHolder holder = JSONHolder.getInstance();
         holder.loadAll(mContext);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == WelcomeHelper.DEFAULT_WELCOME_SCREEN_REQUEST) {
-            Configuration.set(mContext, Configuration.SETUP_COMPLETED_KEY, true);
-            initMain();
-        }
     }
 
     public void changeContent(int id, boolean animation) {
