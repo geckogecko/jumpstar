@@ -34,19 +34,22 @@ public class EquipmentView extends LinearLayoutCompat {
     }
 
     public void setEquipment(List<Equipment> equipmentList) {
-        for (Equipment equipment : equipmentList) {
-            ImageView imageView = new ImageView(getContext());
-            //TODO add an icon for every equipment
-            final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-","_"),
-                    "drawable", getContext().getPackageName());
-            if (drawableId != 0) {
-                imageView.setImageDrawable(getResources().getDrawable(drawableId));
-            } else {
-                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
+        if(equipmentList.size() != 0) {
+            for (Equipment equipment : equipmentList) {
+                ImageView imageView = new ImageView(getContext());
+
+                final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-", "_"),
+                        "drawable", getContext().getPackageName());
+                if (drawableId != 0) {
+                    imageView.setImageDrawable(getResources().getDrawable(drawableId));
+                } else {
+                    Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
+                }
+                mView.addView(imageView);
             }
-            mView.addView(imageView);
+        } else {
+            findViewById(R.id.exercise_equipment_none).setVisibility(View.VISIBLE);
         }
     }
-    //TODO show a 'no needed equipment icon' if there is no needed equipment
 }
