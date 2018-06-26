@@ -13,6 +13,8 @@
         android:layout_margin="@dimen/card_margins_content"
         android:text= "@string/exercise_equipment" />
 
+    <View style="@style/Divider"/>
+    
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/holder"
         android:layout_width="match_parent"
