@@ -21,6 +21,7 @@ import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.EquipmentView;
+import georg.steinbacher.community_jump_trainer.view.ExercisesView;
 
 import static georg.steinbacher.community_jump_trainer.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
@@ -58,7 +59,10 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         equipmentViewHolder.setEquipment(equipmentList);
 
         //exercises
-        TextView txtExercises = findViewById(R.id.detail_trainings_plan_exercises);
+        ExercisesView exercisesView = findViewById(R.id.detail_trainings_plan_exercises);
+        exercisesView.setTrainingsplan(mTrainingsPlan);
+
+        /*
         List<TrainingsPlanEntry> exercises = mTrainingsPlan.getEntries();
         String exercisesString = "";
         for (TrainingsPlanEntry exercise : exercises) {
@@ -68,6 +72,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         }
         exercisesString = exercisesString.substring(0,exercisesString.length()-1);
         txtExercises.setText(exercisesString);
+        */
 
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
