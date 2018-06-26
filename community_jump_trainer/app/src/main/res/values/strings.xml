@@ -23,7 +23,7 @@
     <string name="select_current_trainingsplan_title">Select a trainings plan</string>
 
     <string name="exercise_sets">Sets: %1$s</string>
-    <string name="exercise_equipment">Equipment:</string>
+    <string name="exercise_equipment">Equipment</string>
     <string name="exercise_equipment_none">None</string>
     <string name="exercise_repetitions">Repetition: %1$s</string>
     <string name="exercise_repetitions_standard_as_much">Repetition: As much as possible per set</string>

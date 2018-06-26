@@ -35,21 +35,12 @@ public class EquipmentView extends LinearLayoutCompat {
 
     public void setEquipment(List<Equipment> equipmentList) {
         if(equipmentList.size() != 0) {
+            LinearLayoutCompat holder = mView.findViewById(R.id.holder);
             for (Equipment equipment : equipmentList) {
-                ImageView imageView = new ImageView(getContext());
-
-                final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-", "_"),
-                        "drawable", getContext().getPackageName());
-                if (drawableId != 0) {
-                    imageView.setImageDrawable(getResources().getDrawable(drawableId));
-                } else {
-                    Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
-                }
-                mView.addView(imageView);
+                EquipmentLineView equipmentLineView = new EquipmentLineView(mContext);
+                equipmentLineView.setEquipment(equipment);
+                holder.addView(equipmentLineView);
             }
-        } else {
-            findViewById(R.id.exercise_equipment_none).setVisibility(View.VISIBLE);
         }
     }
 }

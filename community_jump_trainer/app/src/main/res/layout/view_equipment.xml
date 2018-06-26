@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/exercise_equipment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text= "@string/exercise_equipment"
-        android:gravity="center_vertical" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_margin="@dimen/card_margins_content"
+        android:text= "@string/exercise_equipment" />
 
-    <TextView
-        android:id="@+id/exercise_equipment_none"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/holder"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text= "@string/exercise_equipment_none"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="@dimen/card_margins_content"
-        android:visibility="gone"/>
+        android:orientation="vertical">
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.v7.widget.LinearLayoutCompat>
