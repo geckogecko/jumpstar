@@ -34,10 +34,10 @@ public class Exercise extends TrainingsPlanEntry{
 
     //TODO which categories should we use?
     public enum Category {
+        WARMUP,
         STRETCH,
         STRENGTH,
-        PLYOMETRIC,
-        WARMUP
+        PLYOMETRIC
     }
 
     public Exercise(int id,
