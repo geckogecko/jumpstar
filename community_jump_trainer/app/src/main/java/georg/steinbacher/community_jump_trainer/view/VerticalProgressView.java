@@ -1,11 +1,13 @@
 package georg.steinbacher.community_jump_trainer.view;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
 import android.text.InputType;
 import android.text.format.DateFormat;
@@ -18,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -29,10 +32,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -75,7 +76,15 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         addButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createDialog();
+                createAddDialog();
+            }
+        });
+
+        Button infoButton = findViewById(R.id.button_info);
+        infoButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createInfoDialog();
             }
         });
     }
@@ -177,7 +186,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         }
     }
 
-    private void createDialog() {
+    private void createAddDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
         builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
 
@@ -193,7 +202,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         }
         builder.setView(input);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -213,7 +222,32 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
                 }
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void createInfoDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
+        builder.setTitle(mContext.getString(R.string.vertical_progress_info_hint));
+
+        TextView textView = new TextView(mContext);
+        textView.setText(mContext.getText(R.string.vertical_progress_info_show_youtube_video));
+        builder.setView(textView);
+
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        watchYoutubeVideo(mContext, "zMQR6T2HVY0");
+                    }
+                });
+
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -225,5 +259,16 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
     double inchesToCm(double inches) {
         return inches * 2.54;
+    }
+
+    public static void watchYoutubeVideo(Context context, String id){
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try {
+            context.startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            context.startActivity(webIntent);
+        }
     }
 }
