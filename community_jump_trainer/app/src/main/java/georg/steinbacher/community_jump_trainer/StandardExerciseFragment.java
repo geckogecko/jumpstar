@@ -80,9 +80,13 @@ public class StandardExerciseFragment extends Fragment {
         }
 
         //Equipment
-        EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
-        List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        equipmentViewHolder.setEquipment(equipmentList);
+        EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
+        if(mExercise.getNeededEquipment().size() > 0) {
+            List<Equipment> equipmentList = mExercise.getNeededEquipment();
+            equipmentViewHolder.setEquipment(equipmentList);
+        } else {
+            equipmentViewHolder.setVisibility(View.GONE);
+        }
     }
 
     public void setExercise(StandardExercise exercise) {

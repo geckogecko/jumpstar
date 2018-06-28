@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="Sets: XX"
-        android:layout_marginLeft="@dimen/card_margins_content"/>
+        android:layout_margin="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_repetitions"
@@ -38,12 +38,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text= "Repetition: XX"
-        android:layout_marginLeft="@dimen/card_margins_content"/>
+        android:layout_margin="@dimen/card_margins_content"/>
 
    <georg.steinbacher.community_jump_trainer.view.EquipmentView
        android:id="@+id/equipment_view"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginLeft="@dimen/card_margins_content"/>
+       android:layout_margin="@dimen/card_margins_content"/>
 
 </net.colindodd.gradientlayout.GradientLinearLayout>

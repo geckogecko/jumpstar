@@ -139,14 +139,23 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         } else {
             final int minutes = seconds / 60;
             final int restSeconds = seconds - (minutes * 60);
-            mHoldTime.setText(getString(R.string.time_exercise_hold_time, minutes + ":" + restSeconds)
+            String restSecondsString = Integer.toString(restSeconds);
+            if(restSeconds < 9) {
+                restSecondsString = "0" + restSeconds;
+            }
+
+            mHoldTime.setText(getString(R.string.time_exercise_hold_time, minutes + ":" + restSecondsString)
             + " " + getString(R.string.minutes_short));
         }
 
         //Equipment
-        EquipmentView equipmentViewHolder= mView.findViewById(R.id.equipment_view);
-        List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        equipmentViewHolder.setEquipment(equipmentList);
+        EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
+        if(mExercise.getNeededEquipment().size() > 0) {
+            List<Equipment> equipmentList = mExercise.getNeededEquipment();
+            equipmentViewHolder.setEquipment(equipmentList);
+        } else {
+            equipmentViewHolder.setVisibility(View.GONE);
+        }
     }
 
     public void setExercise(TimeExercise exercise) {
