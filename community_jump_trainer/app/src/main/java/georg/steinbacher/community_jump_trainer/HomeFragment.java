@@ -2,31 +2,23 @@ package georg.steinbacher.community_jump_trainer;
 
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
-import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
 import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.AddCurrentTrainingsPlanView;
 import georg.steinbacher.community_jump_trainer.view.CurrentTrainingsPlanView;
-import georg.steinbacher.community_jump_trainer.view.VerticalProgressInputView;
 import georg.steinbacher.community_jump_trainer.view.VerticalProgressView;
 
-import static android.content.ContentValues.TAG;
-
-public class HomeFragment extends Fragment implements VerticalProgressInputView.IInputDoneListener, CurrentTrainingsPlanView.IViewRemovedListener{
+public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.IViewRemovedListener{
     private Context mContext;
     private LinearLayoutCompat mLayout;
-    private VerticalProgressView mVerticialProgressV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,32 +56,9 @@ public class HomeFragment extends Fragment implements VerticalProgressInputView.
 
         //show vertical progress?
         if(Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS, true)) {
-            mVerticialProgressV = createVerticalProgressView();
+            VerticalProgressView verticalProgress = new VerticalProgressView(mContext);
+            mLayout.addView(verticalProgress, 0);
         }
-
-        //Vertical Progress input
-        VerticalProgressInputView vpiv = new VerticalProgressInputView(getContext());
-        vpiv.setListener(this);
-        mLayout.addView(vpiv);
-    }
-
-    @Override
-    public void onInputDone() {
-        if(mVerticialProgressV == null &&
-                Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS)) {
-            mVerticialProgressV = createVerticalProgressView();
-        }
-
-        if(mVerticialProgressV != null) {
-            mVerticialProgressV.setData();
-        }
-    }
-
-    private VerticalProgressView createVerticalProgressView() {
-        VerticalProgressView verticalProgress = new VerticalProgressView(mContext);
-        mLayout.addView(verticalProgress, 0);
-
-        return verticalProgress;
     }
 
     @Override

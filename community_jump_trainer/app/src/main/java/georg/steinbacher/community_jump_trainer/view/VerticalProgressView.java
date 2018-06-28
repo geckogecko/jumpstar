@@ -1,17 +1,23 @@
 package georg.steinbacher.community_jump_trainer.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
+import android.text.InputType;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -34,6 +40,7 @@ import georg.steinbacher.community_jump_trainer.Configuration;
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightContract;
 import georg.steinbacher.community_jump_trainer.db.VerticalHeightReader;
+import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
 
 
 /**
@@ -45,7 +52,6 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
     private View mRootView;
     private Context mContext;
-
     private String mTitle = "";
 
     public VerticalProgressView(Context context) {
@@ -64,6 +70,14 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
         setOnLongClickListener(this);
         setData();
+
+        Button addButton = findViewById(R.id.button_add);
+        addButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialog();
+            }
+        });
     }
 
     @Override
@@ -161,5 +175,55 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             String date = DateFormat.format("dd-MM", cal).toString();
             return date;
         }
+    }
+
+    private void createDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
+        builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
+
+        final EditText input = new EditText(mContext);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                .equals(Configuration.UnitLocal.METRIC.name())) {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.centimeters_short)));
+        } else {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.inches_short)));
+        }
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                final String inputString =  input.getText().toString();
+                if(inputString.isEmpty()) {
+                    dialog.cancel();
+                } else {
+                    VerticalHeightWriter writer = new VerticalHeightWriter(mContext);
+                    if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                            .equals(Configuration.UnitLocal.METRIC.name())) {
+                        writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), Double.valueOf(inputString));
+                    } else {
+                        writer.add(TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis()), inchesToCm(Double.valueOf(inputString)));
+                    }
+
+                    setData();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    double inchesToCm(double inches) {
+        return inches * 2.54;
     }
 }
