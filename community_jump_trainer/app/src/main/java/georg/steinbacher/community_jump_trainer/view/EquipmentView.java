@@ -34,13 +34,19 @@ public class EquipmentView extends LinearLayoutCompat {
     }
 
     public void setEquipment(List<Equipment> equipmentList) {
+        LinearLayoutCompat holder = mView.findViewById(R.id.holder);
+
         if(equipmentList.size() != 0) {
-            LinearLayoutCompat holder = mView.findViewById(R.id.holder);
             for (Equipment equipment : equipmentList) {
                 EquipmentLineView equipmentLineView = new EquipmentLineView(mContext);
                 equipmentLineView.setEquipment(equipment);
                 holder.addView(equipmentLineView);
             }
+        } else {
+            //add the none equipment
+            EquipmentLineView equipmentLineView = new EquipmentLineView(mContext);
+            equipmentLineView.setEquipment(null);
+            holder.addView(equipmentLineView);
         }
     }
 }

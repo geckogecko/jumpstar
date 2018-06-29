@@ -37,16 +37,22 @@ public class EquipmentLineView extends LinearLayoutCompat {
         mEquipment = equipment;
 
         ImageView image = findViewById(R.id.equipment_image);
-        final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-", "_"),
-                "drawable", getContext().getPackageName());
-        if (drawableId != 0) {
-            image.setImageDrawable(getResources().getDrawable(drawableId));
-        } else {
-            Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
-            image.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
-        }
-
         TextView name = findViewById(R.id.equipment_name);
-        name.setText(equipment.getName());
+        if(equipment != null) {
+            final int drawableId = getContext().getResources().getIdentifier(equipment.getName().toLowerCase().replace(" ", "_").replace("-", "_"),
+                    "drawable", getContext().getPackageName());
+            if (drawableId != 0) {
+                image.setImageDrawable(getResources().getDrawable(drawableId));
+            } else {
+                Log.e(TAG, "No drawable found for equipment: " + equipment.getName());
+                image.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
+            }
+
+            name.setText(equipment.getName());
+        } else {
+            //TODO add non equipment button
+            image.setImageDrawable(getResources().getDrawable(R.drawable.baseline_fitness_center_white_18));
+            name.setText(R.string.exercise_equipment_none);
+        }
     }
 }

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/training"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="georg.steinbacher.community_jump_trainer.TrainingActivity">
 
     <FrameLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/card_margins_content">
     </FrameLayout>
 
     <ProgressBar
@@ -30,4 +33,4 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:text="Complete exercise" />
 
-</RelativeLayout>
+</android.support.v7.widget.LinearLayoutCompat>

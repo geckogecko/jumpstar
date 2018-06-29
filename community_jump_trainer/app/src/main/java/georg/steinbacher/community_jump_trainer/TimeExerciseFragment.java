@@ -150,12 +150,8 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
         //Equipment
         EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
-        if(mExercise.getNeededEquipment().size() > 0) {
-            List<Equipment> equipmentList = mExercise.getNeededEquipment();
-            equipmentViewHolder.setEquipment(equipmentList);
-        } else {
-            equipmentViewHolder.setVisibility(View.GONE);
-        }
+        List<Equipment> equipmentList = mExercise.getNeededEquipment();
+        equipmentViewHolder.setEquipment(equipmentList);
     }
 
     public void setExercise(TimeExercise exercise) {
