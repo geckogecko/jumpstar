@@ -23,9 +23,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -157,6 +159,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             chart.getXAxis().setValueFormatter(new DayAxisValueFormatter(chart));
             chart.setOnLongClickListener(this);
             chart.notifyDataSetChanged();
+            chart.setClickable(false);
         } else {
             //TODO indicate or hide the view
         }
@@ -168,10 +171,9 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
     public class DayAxisValueFormatter implements IAxisValueFormatter
     {
-        private BarLineChartBase<?> chart;
+        private final String[] MONTHS = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
         public DayAxisValueFormatter(BarLineChartBase<?> chart) {
-            this.chart = chart;
         }
 
         @Override
@@ -181,7 +183,8 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(TimeUnit.DAYS.toMillis((long)value));
-            String date = DateFormat.format("dd-MM", cal).toString();
+            String date = DateFormat.format("dd", cal).toString();
+            date += " " + MONTHS[cal.get(Calendar.MONTH)];
             return date;
         }
     }

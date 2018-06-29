@@ -16,7 +16,7 @@
     <!-- Home -->
     <string name="start_current_trainingsPlan">Start</string>
     <string name="info_current_trainingsPlan">Info</string>
-    <string name="vertical_progress_title">Vertical Progress</string>
+    <string name="vertical_progress_title">Jump height</string>
     <string name="vertical_progress_add">Add</string>
     <string name="vertical_progress_input_hint">Enter your vertical reach</string>
     <string name="vertical_progress_info_hint">Vertical reach Info</string>
