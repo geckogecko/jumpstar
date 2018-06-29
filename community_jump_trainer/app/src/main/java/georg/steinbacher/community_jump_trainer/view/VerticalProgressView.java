@@ -33,6 +33,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -129,14 +131,11 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         VerticalHeightReader reader = new VerticalHeightReader(getContext());
         Cursor cursor = reader.getAll();
 
-        final boolean convertToInches = Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
-                .equals(Configuration.UnitLocal.IMPERIAL.name());
-
         if(cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
                 double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
-                if(convertToInches) {
+                if(useImperialValues()) {
                     vertical = cmToInches(vertical);
                 }
                 Log.i(TAG, "setData: " +  timestamp + " " + (int) vertical);
@@ -146,7 +145,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
             dataSet.setLineWidth(2);
             dataSet.setColor(mContext.getResources().getColor(R.color.colorAccent));
-            dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            dataSet.setMode(LineDataSet.Mode.LINEAR);
             LineData lineData = new LineData(dataSet);
             lineData.setDrawValues(false);
             chart.setData(lineData);
@@ -160,6 +159,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
             chart.setOnLongClickListener(this);
             chart.notifyDataSetChanged();
             chart.setClickable(false);
+            chart.getAxisLeft().setValueFormatter(new UnitAxisValueFormatter());
         } else {
             //TODO indicate or hide the view
         }
@@ -167,6 +167,17 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
 
     double cmToInches(double cm) {
         return cm / 2.54;
+    }
+
+    public class UnitAxisValueFormatter implements IAxisValueFormatter {
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            if(useImperialValues()) {
+                return (int) value + " in";
+            } else {
+                return (int) value + " cm";
+            }
+        }
     }
 
     public class DayAxisValueFormatter implements IAxisValueFormatter
@@ -273,5 +284,10 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         } catch (ActivityNotFoundException ex) {
             context.startActivity(webIntent);
         }
+    }
+
+    private boolean useImperialValues() {
+        return Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                .equals(Configuration.UnitLocal.IMPERIAL.name());
     }
 }
