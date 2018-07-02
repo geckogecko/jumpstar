@@ -21,7 +21,7 @@
     <string name="vertical_progress_input_hint">Enter your vertical reach</string>
     <string name="vertical_progress_info_hint">Vertical reach Info</string>
     <string name="vertical_progress_info_show_youtube_video">This diagram tracks your vertical jump progress. Do you want to watch a video explaining how to measure your vertical jump correctly?</string>
-    <string name="add_current_trainings_plan_text">Select a trainings plan and start your training</string>
+    <string name="add_current_trainings_plan_text">Select a trainings plan and start your training.</string>
     <string name="add_current_trainings_plan_Select">Select</string>
     <string name="select_current_trainingsplan_title">Select a trainings plan</string>
 

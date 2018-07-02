@@ -29,28 +29,33 @@
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_margin="@dimen/card_margins_content"
+                    android:layout_marginLeft="@dimen/inner_card_margins"
+                    android:layout_marginTop="@dimen/card_margins_content"
+                    android:layout_marginBottom="@dimen/card_margins_content"
                     android:text="@string/select_current_trainingsplan_title"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_margin="@dimen/inner_card_margins">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@drawable/menu_64"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/inner_card_margins"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:text="@string/add_current_trainings_plan_text"/>
             </LinearLayout>
 
