@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
 import android.text.InputType;
 import android.text.format.DateFormat;
@@ -54,7 +55,7 @@ import georg.steinbacher.community_jump_trainer.db.VerticalHeightWriter;
  * Created by georg on 07.04.18.
  */
 
-public class VerticalProgressView extends CardView implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
+public class VerticalProgressView extends LinearLayoutCompat implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
     private static final String TAG = "VerticalProgressView";
 
     private View mRootView;

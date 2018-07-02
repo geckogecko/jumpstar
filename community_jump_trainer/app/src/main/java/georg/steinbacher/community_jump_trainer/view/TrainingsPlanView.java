@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,7 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
  * Created by georg on 04.04.18.
  */
 
-public class TrainingsPlanView extends CardView implements View.OnClickListener{
+public class TrainingsPlanView extends LinearLayoutCompat implements View.OnClickListener{
     private Context mContext;
     private TrainingsPlan mTrainingsPlan;
     private ProgressBar mCategorySummery;

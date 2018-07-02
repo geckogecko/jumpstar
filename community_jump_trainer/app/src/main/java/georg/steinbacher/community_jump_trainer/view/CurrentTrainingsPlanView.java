@@ -3,6 +3,7 @@ package georg.steinbacher.community_jump_trainer.view;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,7 +28,7 @@ import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivi
  * Created by georg on 04.04.18.
  */
 
-public class CurrentTrainingsPlanView extends CardView implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
+public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener{
     private static final String TAG = "CurrentTrainingsPlanVie";
     private View mRootView;
     private Context mContext;
