@@ -129,20 +129,29 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         LineChart chart = mRootView.findViewById(R.id.chart);
         chart.clear();
 
-        List<Entry> entries = new ArrayList<>();
-
         VerticalHeightReader reader = new VerticalHeightReader(getContext());
         Cursor cursor = reader.getAll();
 
+        //used to only add the newest entry of a day
+        long prevDayTimestamp = -1;
+
         if(cursor.getCount() > 0) {
+            List<Entry> entries = new ArrayList<>();
+
             while (cursor.moveToNext()) {
-                long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
+                long dayTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
                 double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
                 if(useImperialValues()) {
                     vertical = cmToInches(vertical);
                 }
-                Log.i(TAG, "setData: " +  timestamp + " " + (int) vertical);
-                entries.add(new Entry(timestamp, (int) vertical));
+                Log.i(TAG, "setData: " +  dayTimestamp + " " + (int) vertical);
+
+                if(dayTimestamp == prevDayTimestamp) {
+                    entries.remove(entries.size()-1);
+                }
+
+                entries.add(new Entry(dayTimestamp, (int) vertical));
+                prevDayTimestamp = dayTimestamp;
             }
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
@@ -163,6 +172,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             chart.notifyDataSetChanged();
             chart.setClickable(false);
             chart.getAxisLeft().setValueFormatter(new UnitAxisValueFormatter());
+            chart.getAxisLeft().setAxisMinimum(0);
         } else {
             //TODO indicate or hide the view
         }
