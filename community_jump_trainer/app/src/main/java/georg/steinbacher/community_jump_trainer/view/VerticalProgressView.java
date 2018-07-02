@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.text.InputType;
@@ -204,7 +206,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
         builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
 
-        final EditText input = new EditText(mContext);
+        final AppCompatEditText input = new AppCompatEditText(mContext);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
                 .equals(Configuration.UnitLocal.METRIC.name())) {
@@ -249,11 +251,7 @@ public class VerticalProgressView extends CardView implements View.OnLongClickLi
     private void createInfoDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
         builder.setTitle(mContext.getString(R.string.vertical_progress_info_hint));
-
-        TextView textView = new TextView(mContext);
-        textView.setText(mContext.getText(R.string.vertical_progress_info_show_youtube_video));
-        builder.setView(textView);
-
+        builder.setMessage(R.string.vertical_progress_info_show_youtube_video);
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
