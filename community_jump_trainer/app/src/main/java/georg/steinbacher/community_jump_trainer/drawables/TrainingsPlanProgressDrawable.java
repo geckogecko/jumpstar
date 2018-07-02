@@ -47,8 +47,8 @@ public class TrainingsPlanProgressDrawable extends Drawable {
 
         for (int i = 0; i < mSegmentsNumber; i++) {
             final Exercise exercise = (Exercise) mTraingsPlan.getEntries().get(i);
-            Paint paint = new Paint();
-            if (exercise.isCompleted()) {
+            Paint paint;
+            if (exercise.equals(mTraingsPlan.getCurrentEntry())) {
                 paint = CategoryPaints.getPrimaryColor(mContext, exercise.getCategory());
             } else {
                 paint = CategoryPaints.getSecondaryColor(mContext, exercise.getCategory());
