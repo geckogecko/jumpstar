@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:layout_margin="@dimen/card_margins_content"
+        android:textColor="@color/colorAccent"
         android:text= "@string/exercise_equipment" />
 
     <View style="@style/Divider"/>
