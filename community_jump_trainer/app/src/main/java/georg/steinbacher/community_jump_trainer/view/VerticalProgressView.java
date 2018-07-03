@@ -173,6 +173,8 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             chart.setClickable(false);
             chart.getAxisLeft().setValueFormatter(new UnitAxisValueFormatter());
             chart.getAxisLeft().setAxisMinimum(0);
+            chart.getXAxis().setAxisMinimum(entries.get(0).getX() - 1);
+            chart.getXAxis().setAxisMaximum(entries.get(entries.size()-1).getX() + 1);
         } else {
             //TODO indicate or hide the view
         }
