@@ -1,3 +1,4 @@
 
 ICONS:
-- 'menu_64.png' icon: Icon made by https://www.flaticon.com/authors/becris from www.flaticon.com 
+- 'menu_64.png' icon: Icon made by https://www.flaticon.com/authors/becris from www.flaticon.com
+- 'strength_64.png' icon: Icon made by https://www.flaticon.com/authors/becris from www.flaticon.com 

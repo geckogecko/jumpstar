@@ -23,6 +23,7 @@ import georg.steinbacher.community_jump_trainer.util.Factory;
 import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 import georg.steinbacher.community_jump_trainer.view.ExercisesView;
 
+import static android.content.ContentValues.TAG;
 import static georg.steinbacher.community_jump_trainer.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
 //TODO if this trainingsplan includes other trainingsplans -> show them here
@@ -48,6 +49,19 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         //title
         TextView txtName = findViewById(R.id.detail_trainings_plan_name);
         txtName.setText(mTrainingsPlan.getName());
+
+        //image
+        ImageView imgView = findViewById(R.id.image);
+        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
+        final int resourceId = getApplicationContext().getResources().getIdentifier(imageName, "drawable",
+                getApplicationContext().getPackageName());
+
+        if(resourceId != 0) {
+            imgView.setBackgroundResource(resourceId);
+        } else {
+            Log.e(TAG, "image for exercise: " + imageName + " not found");
+            //TODO what should we do if the image is not found?
+        }
 
         //Description
         TextView txtDescription = findViewById(R.id.detail_trainings_plan_description);

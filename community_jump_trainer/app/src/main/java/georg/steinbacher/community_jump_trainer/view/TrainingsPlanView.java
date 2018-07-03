@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.drawables.CategorySummaryDrawable;
 
+import static android.content.ContentValues.TAG;
 import static georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 
 
@@ -57,6 +59,19 @@ public class TrainingsPlanView extends LinearLayoutCompat implements View.OnClic
         //description
         TextView txtDescription = findViewById(R.id.description);
         txtDescription.setText(mTrainingsPlan.getDescription());
+
+        //image
+        ImageView imgView = findViewById(R.id.image);
+        final String imageName = "trainingsplan_" + trainingsPlan.getId();
+        final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
+                getContext().getPackageName());
+
+        if(resourceId != 0) {
+            imgView.setBackgroundResource(resourceId);
+        } else {
+            Log.e(TAG, "image for exercise: " + imageName + " not found");
+            //TODO what should we do if the image is not found?
+        }
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {
