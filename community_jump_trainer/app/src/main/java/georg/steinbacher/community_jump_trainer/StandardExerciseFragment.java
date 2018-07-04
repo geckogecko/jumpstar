@@ -79,6 +79,12 @@ public class StandardExerciseFragment extends Fragment {
             repetitionsTextView.setText(getString(R.string.exercise_repetitions, repsString));
         }
 
+        //Category
+        TextView txtCategory = mView.findViewById(R.id.exercise_category);
+        String category = mExercise.getCategory().name().toLowerCase();
+        category = category.substring(0, 1).toUpperCase() + category.substring(1);
+        txtCategory.setText(category);
+
         //Equipment
         EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();

@@ -30,6 +30,7 @@
     <string name="exercise_equipment_none">None</string>
     <string name="exercise_repetitions">Repetition: %1$s</string>
     <string name="exercise_repetitions_standard_as_much">Repetition: As much as possible per set</string>
+    <string name="exercise_category">Category:</string>
     <string name="time_exercise_start">Start</string>
     <string name="time_exercise_pause">Pause</string>
     <string name="time_exercise_resume">Resume</string>
