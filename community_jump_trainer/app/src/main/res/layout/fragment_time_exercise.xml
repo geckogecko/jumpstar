@@ -19,7 +19,6 @@
         android:textAlignment="center"
         android:layout_margin="20sp"/>
 
-
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
         android:id="@+id/exercise_step_view"
         android:layout_width="match_parent"
@@ -39,7 +38,7 @@
         app:suffixTextColor="@color/darkerGrey"
         app:timeTextSize="60sp"
         app:timeTextColor="@color/lightGrey"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/inner_card_margins"
         />
 
     <ProgressBar
@@ -65,12 +64,27 @@
     </FrameLayout>
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exercise_info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_margin="@dimen/card_margins_content"
+        android:textColor="@color/colorAccent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        style="@style/Divider"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
+
+    <TextView
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="@string/exercise_sets"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_hold_time"
@@ -78,13 +92,15 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="@string/time_exercise_hold_time"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="@dimen/card_margins_content">
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content">
 
         <TextView
             android:id="@+id/exercise_category_title"
@@ -105,6 +121,6 @@
         android:id="@+id/equipment_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

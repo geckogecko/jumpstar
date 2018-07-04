@@ -32,12 +32,27 @@
     </FrameLayout>
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exercise_info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_margin="@dimen/card_margins_content"
+        android:textColor="@color/colorAccent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/card_margins_content"
+        style="@style/Divider"/>
+
+    <TextView
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="Sets: XX"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <TextView
         android:id="@+id/exercise_repetitions"
@@ -45,13 +60,15 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text= "Repetition: XX"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="@dimen/card_margins_content">
+        android:layout_marginLeft="@dimen/card_margins_content"
+        android:layout_marginBottom="@dimen/card_margins_content">
 
         <TextView
             android:id="@+id/exercise_category_title"
@@ -72,6 +89,7 @@
        android:id="@+id/equipment_view"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_margin="@dimen/card_margins_content"/>
+       android:layout_marginLeft="@dimen/card_margins_content"
+       android:layout_marginBottom="@dimen/card_margins_content"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

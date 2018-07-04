@@ -25,6 +25,7 @@
     <string name="add_current_trainings_plan_Select">Select</string>
     <string name="select_current_trainingsplan_title">Select a trainings plan</string>
 
+    <string name="exercise_info">Info</string>
     <string name="exercise_sets">Sets: %1$s</string>
     <string name="exercise_equipment">Equipment</string>
     <string name="exercise_equipment_none">None</string>
