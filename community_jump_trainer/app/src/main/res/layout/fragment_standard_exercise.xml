@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<net.colindodd.gradientlayout.GradientLinearLayout
+<android.support.v7.widget.LinearLayoutCompat
     android:id="@+id/gradient"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     tools:context="georg.steinbacher.community_jump_trainer.StandardExerciseFragment"
     android:orientation="vertical"
-    style="@style/TrainingsStyle">
+    style="@style/TrainingsStyle"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/exercise_name"
@@ -73,4 +74,4 @@
        android:layout_height="wrap_content"
        android:layout_margin="@dimen/card_margins_content"/>
 
-</net.colindodd.gradientlayout.GradientLinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

@@ -28,7 +28,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
     implementation 'com.stephentuso:welcome:1.4.1'
-    implementation 'net.colindodd:gradientlayout:1.2'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.github.iwgang:countdownview:2.1.6'

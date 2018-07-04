@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import net.colindodd.gradientlayout.GradientLinearLayout;
-
 import java.util.List;
 
 import georg.steinbacher.community_jump_trainer.core.Equipment;
@@ -43,11 +41,6 @@ public class StandardExerciseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mView = view;
-
-        //background color
-        final GradientLinearLayout layout = mView.findViewById(R.id.gradient);
-        layout.setStartColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
-        layout.setEndColor(getContext().getResources().getColor(R.color.background));
 
         //Name
         TextView nameTextView = mView.findViewById(R.id.exercise_name);
