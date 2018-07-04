@@ -77,6 +77,7 @@ public class StandardExerciseFragment extends Fragment {
         String category = mExercise.getCategory().name().toLowerCase();
         category = category.substring(0, 1).toUpperCase() + category.substring(1);
         txtCategory.setText(category);
+        txtCategory.setTextColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Equipment
         EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
