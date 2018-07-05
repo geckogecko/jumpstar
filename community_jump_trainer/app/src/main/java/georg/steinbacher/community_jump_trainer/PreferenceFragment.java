@@ -2,8 +2,10 @@ package georg.steinbacher.community_jump_trainer;
 
 
 import android.os.Bundle;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.annotation.Nullable;
+
+
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public class PreferenceFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         getPreferenceManager().setSharedPreferencesName(Configuration.getPrefName());
         addPreferencesFromResource(R.xml.preferences);
         init();
