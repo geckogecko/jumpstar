@@ -144,7 +144,6 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
                 if(useImperialValues()) {
                     vertical = cmToInches(vertical);
                 }
-                Log.i(TAG, "setData: " +  dayTimestamp + " " + (int) vertical);
 
                 if(dayTimestamp == prevDayTimestamp) {
                     entries.remove(entries.size()-1);

@@ -40,13 +40,13 @@
         android:id="@+id/equipment_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <georg.steinbacher.community_jump_trainer.view.ExercisesView
         android:id="@+id/detail_trainings_plan_exercises"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/card_margins_content"/>
+        android:layout_marginBottom="@dimen/card_margins_content"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/detail_button_add_trainings_plan"
