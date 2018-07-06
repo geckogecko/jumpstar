@@ -50,6 +50,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private ExerciseStepsView mSteps;
     private TextView mSets;
     private TextView mHoldTime;
+    private TextView mPrepare;
 
     private boolean mPreperationCountdown;
     private boolean mCountdownRunning;
@@ -72,6 +73,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mView = view;
         bottomLayout = mView.findViewById(R.id.bottom_layout_holder);
         topLayout = mView.findViewById(R.id.top_layout_holder);
+        mPrepare = mView.findViewById(R.id.prepare);
 
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);
@@ -106,11 +108,13 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                     } else if(!mPreperationCountdown){
                         mPreperationCountdown = true;
                         startTimer();
+                        mPrepare.setVisibility(View.VISIBLE);
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 mCountdownRunning = true;
+                                mPrepare.setVisibility(View.GONE);
                                 mCountdownView.start(mExercise.getTime() * 1000);
                             }
                         }, getPreperationTime() * 1000);
