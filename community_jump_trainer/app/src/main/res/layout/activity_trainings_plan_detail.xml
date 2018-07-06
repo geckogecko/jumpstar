@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/detail_trainings_plan_name"
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/colorAccent"
-        android:layout_margin="@dimen/card_margins_content"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/card_margins_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_margins_content" />
+        android:layout_height="match_parent"
+        tools:context="georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/detail_trainings_plan_description"
+            android:id="@+id/detail_trainings_plan_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="@dimen/card_margins_content"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_margins_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margins_content" />
 
-    <georg.steinbacher.community_jump_trainer.view.EquipmentView
-        android:id="@+id/equipment_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
+            <TextView
+                android:id="@+id/detail_trainings_plan_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margins_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-    <georg.steinbacher.community_jump_trainer.view.ExercisesView
-        android:id="@+id/detail_trainings_plan_exercises"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
+        </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/detail_button_add_trainings_plan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:text="@string/detail_add_trainings_plan"/>
-</android.support.v7.widget.LinearLayoutCompat>
+        <georg.steinbacher.community_jump_trainer.view.EquipmentView
+            android:id="@+id/equipment_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
+
+        <georg.steinbacher.community_jump_trainer.view.ExercisesView
+            android:id="@+id/detail_trainings_plan_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/detail_button_add_trainings_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="@string/detail_add_trainings_plan"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>

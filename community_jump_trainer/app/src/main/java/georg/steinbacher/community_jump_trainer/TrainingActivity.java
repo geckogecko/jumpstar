@@ -1,5 +1,6 @@
 package georg.steinbacher.community_jump_trainer;
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_training);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         int trainingsPlanId = getIntent().getIntExtra(TRAININGS_PLAN_ID, -1);
         if(trainingsPlanId == -1) {
