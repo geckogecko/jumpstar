@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -87,6 +88,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         } else {
             mCountdownView.setOnCountdownEndListener(this);
             mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
+            mCountdownView.updateShow(mExercise.getTime() * 1000);
         }
 
         //Button
@@ -97,37 +99,21 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
             mExerciseStart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mCountdownRunning) {
-                        bottomLayout.setVisibility(View.VISIBLE);
-                        topLayout.setVisibility(View.VISIBLE);
-
-                        mCountdownView.pause();
-                        mCountdownPaused = true;
-                        mCountdownRunning = false;
-                        mExerciseStart.setText(R.string.time_exercise_resume);
-
-                        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_white_24);
-                        drawable.setBounds(0,0,drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-                        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
-                    } else {
-                        bottomLayout.setVisibility(View.INVISIBLE);
-                        topLayout.setVisibility(View.INVISIBLE);
-
-                        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_pause_white_24);
-                        drawable.setBounds(0,0,drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-                        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
-
-                        if (mCountdownPaused) {
-                            mCountdownView.restart();
-                            mCountdownPaused = false;
-                            mCountdownRunning = true;
-                            mExerciseStart.setText(R.string.time_exercise_pause);
-                        } else {
-                            mCountdownRunning = true;
-                            mPreperationCountdown = true;
-                            mCountdownView.start(getMaxTime(mPreperationCountdown) * 1000);
-                            mExerciseStart.setText(R.string.time_exercise_pause);
-                        }
+                    if (mCountdownRunning && !mCountdownPaused) {
+                        stopTimer();
+                    } else if(!mCountdownRunning && mCountdownPaused) {
+                        startTimer();
+                    } else if(!mPreperationCountdown){
+                        mPreperationCountdown = true;
+                        startTimer();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mCountdownRunning = true;
+                                mCountdownView.start(mExercise.getTime() * 1000);
+                            }
+                        }, getPreperationTime() * 1000);
                     }
                 }
             });
@@ -174,6 +160,36 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         equipmentViewHolder.setEquipment(equipmentList);
     }
 
+    private void stopTimer() {
+        mExerciseStart.setText(R.string.time_exercise_resume);
+
+        bottomLayout.setVisibility(View.VISIBLE);
+        topLayout.setVisibility(View.VISIBLE);
+
+        mCountdownView.pause();
+        mCountdownPaused = true;
+        mCountdownRunning = false;
+
+        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_white_24);
+        drawable.setBounds(0,0,drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
+    }
+
+    private void startTimer() {
+        mExerciseStart.setText(R.string.time_exercise_pause);
+
+        bottomLayout.setVisibility(View.INVISIBLE);
+        topLayout.setVisibility(View.INVISIBLE);
+
+        mCountdownView.restart();
+        mCountdownPaused = false;
+        mCountdownRunning = true;
+
+        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_pause_white_24);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
+    }
+
     public void setExercise(TimeExercise exercise) {
         mExercise = exercise;
     }
@@ -191,19 +207,15 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
 
     @Override
     public void onInterval(CountdownView cv, long remainTime) {
-        int maxTime = getMaxTime(mPreperationCountdown);
+        int maxTime = mExercise.getTime();
         int passedTime = maxTime - (int)(remainTime/1000);
         int progressPercent = (passedTime * 100) / maxTime;
         mProgressBar.setProgress(progressPercent);
     }
 
-    private int getMaxTime(boolean preparation) {
-        if(preparation) {
-            return Integer.valueOf(Configuration.getString(mView.getContext(),
-                    PREPARATION_COUNTDOWN_TIME,
-                    PREPARATION_COUNTDOWN_TIME_DEFAULT));
-        } else {
-            return mExercise.getTime();
-        }
+    private int getPreperationTime() {
+        return Integer.valueOf(Configuration.getString(mView.getContext(),
+            PREPARATION_COUNTDOWN_TIME,
+            PREPARATION_COUNTDOWN_TIME_DEFAULT));
     }
 }
