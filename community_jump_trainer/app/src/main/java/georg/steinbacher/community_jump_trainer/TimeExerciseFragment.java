@@ -109,12 +109,14 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                         mPreperationCountdown = true;
                         startTimer();
                         mPrepare.setVisibility(View.VISIBLE);
+                        mExerciseStart.setEnabled(false);
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 mCountdownRunning = true;
                                 mPrepare.setVisibility(View.GONE);
+                                mExerciseStart.setEnabled(true);
                                 mCountdownView.start(mExercise.getTime() * 1000);
                             }
                         }, getPreperationTime() * 1000);
