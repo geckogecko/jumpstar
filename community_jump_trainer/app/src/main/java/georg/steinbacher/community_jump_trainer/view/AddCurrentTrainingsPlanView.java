@@ -2,13 +2,14 @@ package georg.steinbacher.community_jump_trainer.view;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 
 import georg.steinbacher.community_jump_trainer.R;
 
-public class AddCurrentTrainingsPlanView extends CardView{
+public class AddCurrentTrainingsPlanView extends LinearLayoutCompat{
     private Context mContext;
     private View mRootView;
 
