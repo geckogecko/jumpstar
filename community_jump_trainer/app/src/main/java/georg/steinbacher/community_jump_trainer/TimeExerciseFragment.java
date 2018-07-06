@@ -2,6 +2,7 @@ package georg.steinbacher.community_jump_trainer;
 
 
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,10 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private View mView;
     private CountdownView mCountdownView;
     private ProgressBar mProgressBar;
+
+    private LinearLayoutCompat bottomLayout;
+    private LinearLayoutCompat topLayout;
+    private ExerciseStepsView mSteps;
     private TextView mSets;
     private TextView mHoldTime;
 
@@ -64,14 +69,16 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         super.onViewCreated(view, savedInstanceState);
 
         mView = view;
+        bottomLayout = mView.findViewById(R.id.bottom_layout_holder);
+        topLayout = mView.findViewById(R.id.top_layout_holder);
 
         //Name
         TextView textView = mView.findViewById(R.id.exercise_name);
         textView.setText(mExercise.getName());
 
         //ExerciseSteps
-        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
-        steps.setTrainingsplan(mExercise);
+        mSteps = mView.findViewById(R.id.exercise_step_view);
+        mSteps.setTrainingsplan(mExercise);
 
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
@@ -91,11 +98,25 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                 @Override
                 public void onClick(View v) {
                     if (mCountdownRunning) {
+                        bottomLayout.setVisibility(View.VISIBLE);
+                        topLayout.setVisibility(View.VISIBLE);
+
                         mCountdownView.pause();
                         mCountdownPaused = true;
                         mCountdownRunning = false;
                         mExerciseStart.setText(R.string.time_exercise_resume);
+
+                        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_white_24);
+                        drawable.setBounds(0,0,drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
                     } else {
+                        bottomLayout.setVisibility(View.INVISIBLE);
+                        topLayout.setVisibility(View.INVISIBLE);
+
+                        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_pause_white_24);
+                        drawable.setBounds(0,0,drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
+
                         if (mCountdownPaused) {
                             mCountdownView.restart();
                             mCountdownPaused = false;

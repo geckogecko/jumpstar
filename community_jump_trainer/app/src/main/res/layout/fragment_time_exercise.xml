@@ -9,22 +9,30 @@
     tools:context="georg.steinbacher.community_jump_trainer.StandardExerciseFragment"
     android:orientation="vertical"
     style="@style/TrainingsStyle"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:animateLayoutChanges="true">
 
-    <TextView
-        android:id="@+id/exercise_name"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/top_layout_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:layout_margin="20sp"/>
+        android:orientation="vertical">
 
-    <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
-        android:id="@+id/exercise_step_view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
+        <TextView
+            android:id="@+id/exercise_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="20sp"/>
+
+        <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
+            android:id="@+id/exercise_step_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
+    </android.support.v7.widget.LinearLayoutCompat>
 
     <cn.iwgang.countdownview.CountdownView
         android:id="@+id/exercise_countdown"
@@ -55,73 +63,82 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:drawablePadding="@dimen/card_margins_content"
         android:text="@string/time_exercise_start"
+        android:drawableLeft="@drawable/baseline_play_arrow_white_24"
         android:layout_margin="@dimen/card_margins_content"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/exercise_info"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:layout_margin="@dimen/card_margins_content"
-        android:textColor="@color/colorAccent"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        style="@style/Divider"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
-
-    <TextView
-        android:id="@+id/exercise_sets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/exercise_sets"
-        android:layout_marginLeft="@dimen/card_margins_content"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
-
-    <TextView
-        android:id="@+id/exercise_hold_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:text="@string/time_exercise_hold_time"
-        android:layout_marginLeft="@dimen/card_margins_content"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
-
     <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/bottom_layout_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/card_margins_content"
-        android:layout_marginBottom="@dimen/card_margins_content">
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
 
         <TextView
-            android:id="@+id/exercise_category_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:text="@string/exercise_category" />
+            android:text="@string/exercise_info"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_margin="@dimen/card_margins_content"
+            android:textColor="@color/colorAccent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/Divider"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
 
         <TextView
-            android:id="@+id/exercise_category"
-            android:layout_width="wrap_content"
+            android:id="@+id/exercise_sets"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginLeft="@dimen/card_margins_content"/>
+            android:text="@string/exercise_sets"
+            android:layout_marginLeft="@dimen/card_margins_content"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
+
+        <TextView
+            android:id="@+id/exercise_hold_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="@string/time_exercise_hold_time"
+            android:layout_marginLeft="@dimen/card_margins_content"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/card_margins_content"
+            android:layout_marginBottom="@dimen/card_margins_content">
+
+            <TextView
+                android:id="@+id/exercise_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/exercise_category" />
+
+            <TextView
+                android:id="@+id/exercise_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginLeft="@dimen/card_margins_content"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <georg.steinbacher.community_jump_trainer.view.EquipmentView
+            android:id="@+id/equipment_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margins_content"/>
     </android.support.v7.widget.LinearLayoutCompat>
-
-    <georg.steinbacher.community_jump_trainer.view.EquipmentView
-        android:id="@+id/equipment_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/card_margins_content"/>
 
 </android.support.v7.widget.LinearLayoutCompat>
