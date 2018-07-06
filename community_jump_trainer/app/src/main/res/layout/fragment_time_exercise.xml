@@ -80,17 +80,17 @@
         android:layout_margin="@dimen/card_margins_content"
         android:paddingRight="@dimen/inner_card_margins"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/bottom_layout_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
