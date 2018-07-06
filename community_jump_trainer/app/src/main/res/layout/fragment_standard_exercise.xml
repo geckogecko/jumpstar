@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:layout_margin="20sp"/>
 
     <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
