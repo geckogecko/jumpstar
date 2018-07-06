@@ -77,7 +77,8 @@
         android:drawablePadding="@dimen/card_margins_content"
         android:text="@string/time_exercise_start"
         android:drawableLeft="@drawable/baseline_play_arrow_white_24"
-        android:layout_margin="@dimen/card_margins_content"/>
+        android:layout_margin="@dimen/card_margins_content"
+        android:paddingRight="@dimen/inner_card_margins"/>
 
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/bottom_layout_holder"
