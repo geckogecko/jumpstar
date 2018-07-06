@@ -14,11 +14,7 @@
 
         <item name="android:listDivider">@color/darkerGrey</item>
 
-
-        <item name="android:dialogTheme">@style/AlertDialogStyle</item>
-        <item name="android:alertDialogTheme">@style/AlertDialogStyle</item>
-        <item name="android:alertDialogStyle">@style/AlertDialogStyle</item>
-        <item name="android:dialogPreferenceStyle">@style/AlertDialogStyle</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
 
         <!-- preferences -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -43,15 +39,11 @@
     </style>
 
 
-    <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/lightGrey</item>
-        <item name="android:background">@color/cardBackground</item>
-        <item name="android:popupBackground">@color/cardBackground</item>
-        <item name="android:windowBackground">@color/cardBackground</item>
-        <item name="android:itemBackground">@color/cardBackground</item>
     </style>
 
     <style name="Divider">

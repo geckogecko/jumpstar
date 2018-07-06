@@ -215,7 +215,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
     }
 
     private void createAddDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.DialogTheme));
         builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
 
         final AppCompatEditText input = new AppCompatEditText(mContext);
@@ -261,7 +261,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
     }
 
     private void createInfoDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.AlertDialogStyle));
+        final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.DialogTheme));
         builder.setTitle(mContext.getString(R.string.vertical_progress_info_hint));
         builder.setMessage(R.string.vertical_progress_info_show_youtube_video);
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
