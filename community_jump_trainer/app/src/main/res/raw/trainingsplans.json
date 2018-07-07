@@ -33,5 +33,13 @@
                 "id": 4
             }
         ]
+    },
+    "2": {
+        "name": "Explosive jump workout",
+        "description": "TODO",
+        "creationDate": 1530976246,
+        "exercises": [
+
+        ]
     }
 }
