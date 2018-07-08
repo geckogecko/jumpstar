@@ -11,19 +11,19 @@
     <color name="black">#000000</color>
 
 
-    <color name="colorExerciseStretch">#068415</color>
-    <color name="colorExerciseStretchLight">#286bf77b</color>
+    <color name="colorExerciseStretch">#ff21e6</color>
+    <color name="colorExerciseStretchLight">#33ff21e6</color>
 
-    <color name="colorExerciseStrength">#3633ca</color>
-    <color name="colorExerciseStrengthLight">#284441e9</color>
+    <color name="colorExerciseStrength">#ff2727</color>
+    <color name="colorExerciseStrengthLight">#33ff2727</color>
 
-    <color name="colorExerciseWarmup">#0e8b99</color>
-    <color name="colorExerciseWarmupLight">#280ce4e1</color>
+    <color name="colorExerciseWarmup">#ffaa00</color>
+    <color name="colorExerciseWarmupLight">#33ffaa00</color>
 
-    <color name="colorExercisePlyometric">#8633ca</color>
-    <color name="colorExercisePlyometricLight">#28bc8be4</color>
+    <color name="colorExercisePlyometric">#ffe100</color>
+    <color name="colorExercisePlyometricLight">#33ffe100</color>
 
-    <color name="colorVerticalProgress">#8a60ff</color>W
+    <color name="colorVerticalProgress">@color/colorAccent</color>W
 
 
 </resources>
