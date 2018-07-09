@@ -156,7 +156,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
             dataSet.setLineWidth(2);
-            dataSet.setColor(mContext.getResources().getColor(R.color.colorAccent));
+            dataSet.setColor(mContext.getResources().getColor(R.color.colorAccentSecondary));
             dataSet.setMode(LineDataSet.Mode.LINEAR);
             LineData lineData = new LineData(dataSet);
             lineData.setDrawValues(false);

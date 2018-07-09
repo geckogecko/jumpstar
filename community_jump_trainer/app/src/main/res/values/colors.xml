@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#777272</color> <!-- todo find a better color -->
+    <color name="colorPrimary">#777272</color>
     <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">#448AFF</color>
+    <color name="colorAccentSecondary">#02a29d</color> <!-- TODO replace with the real one -->
     <color name="background">#303030</color>
     <color name="cardBackground">#424242</color>
 
@@ -23,7 +24,8 @@
     <color name="colorExercisePlyometric">#ffe100</color>
     <color name="colorExercisePlyometricLight">#33ffe100</color>
 
-    <color name="colorVerticalProgress">@color/colorAccent</color>W
+    <color name="colorVerticalProgress">@color/colorAccent</color>
+    <color name="colorVerticalProgressLine"></color>
 
 
 </resources>
