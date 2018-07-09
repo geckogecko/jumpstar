@@ -5,4 +5,6 @@
 
     <dimen name="inner_card_margins">16sp</dimen>
     <dimen name="card_margins_content">5sp</dimen>
+
+    <dimen name="alertdialog_margins_side">20sp</dimen>
 </resources>
