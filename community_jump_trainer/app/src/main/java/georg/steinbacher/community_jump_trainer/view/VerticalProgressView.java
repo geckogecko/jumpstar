@@ -18,6 +18,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -155,7 +156,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
             dataSet.setLineWidth(2);
-            dataSet.setColor(mContext.getResources().getColor(R.color.colorAccent));
+            dataSet.setColor(mContext.getResources().getColor(R.color.colorAccentSecondary));
             dataSet.setMode(LineDataSet.Mode.LINEAR);
             LineData lineData = new LineData(dataSet);
             lineData.setDrawValues(false);
@@ -218,23 +219,13 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.DialogTheme));
         builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
 
-        final AppCompatEditText input = new AppCompatEditText(mContext);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-        if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
-                .equals(Configuration.UnitLocal.METRIC.name())) {
-            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
-                    mContext.getResources().getString(R.string.centimeters_short)));
-        } else {
-            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
-                    mContext.getResources().getString(R.string.inches_short)));
-        }
-        builder.setView(input);
-
+        LinearLayoutCompat layoutCompat = new LinearLayoutCompat(mContext);
+        builder.setView(layoutCompat);
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                final String inputString =  input.getText().toString();
+                final String inputString =  "";
                 if(inputString.isEmpty()) {
                     dialog.cancel();
                 } else {
@@ -257,7 +248,21 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             }
         });
 
-        builder.show();
+        AlertDialog dialog = builder.create();
+
+        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext, layoutCompat);
+        final AppCompatEditText input = view.findViewById(R.id.edit_text);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        if(Configuration.getString(mContext, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.METRIC.name())
+                .equals(Configuration.UnitLocal.METRIC.name())) {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.centimeters_short)));
+        } else {
+            input.setHint(mContext.getResources().getString(R.string.reach_height_input_hint,
+                    mContext.getResources().getString(R.string.inches_short)));
+        }
+
+        dialog.show();
     }
 
     private void createInfoDialog() {
