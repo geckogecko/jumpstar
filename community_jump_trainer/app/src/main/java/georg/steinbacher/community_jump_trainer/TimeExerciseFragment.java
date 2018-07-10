@@ -18,11 +18,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +52,6 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
     private boolean mCountdownPaused;
 
     private Button mExerciseStart;
-    private SliderLayout mExerciseImages;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

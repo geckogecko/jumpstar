@@ -2,15 +2,16 @@ package georg.steinbacher.community_jump_trainer.view;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-
-import com.daimajia.slider.library.Indicators.PagerIndicator;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 
 import static android.content.ContentValues.TAG;
 
-public class ExerciseStepsView extends SliderLayout{
+public class ExerciseStepsView extends LinearLayoutCompat{
     private Exercise mExercise;
     private View mView;
     private Context mContext;
@@ -44,44 +45,26 @@ public class ExerciseStepsView extends SliderLayout{
     public void setTrainingsplan(Exercise exercise) {
         mExercise = exercise;
 
-        SliderLayout exerciseImages = mView.findViewById(R.id.slider_layout);
-        HashMap<String,Integer> file_maps = new HashMap<>();
+        AppCompatImageView imageView= mView.findViewById(R.id.image_view);
+
         Resources resources = getContext().getResources();
-        for(ExerciseStep step : mExercise.getDescription().getSteps()) {
-            final String imageName = mExercise.getType().name().toLowerCase() + "_" +
-                    mExercise.getId() + "_" +
-                    step.getStepNr();
-            final int resourceId = resources.getIdentifier(imageName, "drawable",
-                    getContext().getPackageName());
 
-            if(resourceId != 0) {
-                file_maps.put(step.getStepNr() + ": " + step.getDescription(), resourceId);
-            } else {
-                Log.e(TAG, "description image for step: " + imageName + " not found");
-                //TODO what should we do if the image is not found?
-            }
+        ExerciseStep step = mExercise.getDescription().getSteps().get(0);
+        final String imageName = mExercise.getType().name().toLowerCase() + "_" +
+                mExercise.getId() + "_" +
+                step.getStepNr();
+        final int resourceId = resources.getIdentifier(imageName, "drawable",
+                getContext().getPackageName());
+
+        if(resourceId != 0) {
+            imageView.setImageDrawable(ContextCompat.getDrawable(mContext, resourceId));
+        } else {
+            Log.e(TAG, "description image for step: " + imageName + " not found");
+            //TODO what should we do if the image is not found?
         }
 
-        for(String description : file_maps.keySet()){
-            TextSliderView textSliderView = new TextSliderView(getContext());
-            // initialize a SliderLayout
-            textSliderView
-                    .description(description)
-                    .image(file_maps.get(description))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+        AppCompatTextView textView = mView.findViewById(R.id.text_view);
+        textView.setText(step.getDescription());
 
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra",description);
-
-            exerciseImages.addSlider(textSliderView);
-        }
-        exerciseImages.setPresetTransformer(SliderLayout.Transformer.Default);
-        exerciseImages.getPagerIndicator().setIndicatorVisibility(PagerIndicator.IndicatorVisibility.Invisible);
-
-        if(mExercise.getDescription().getSteps().size() <= 1) {
-            exerciseImages.stopAutoCycle();
-        }
     }
 }

@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.slider.library.SliderLayout
+<android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/slider_layout"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_view"
+        android:layout_height="180sp"
+        android:layout_width="match_parent"
+        android:scaleType="fitCenter" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/inner_card_margins"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+</android.support.v7.widget.LinearLayoutCompat>
+
