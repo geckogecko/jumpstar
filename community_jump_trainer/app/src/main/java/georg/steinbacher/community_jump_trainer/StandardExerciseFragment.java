@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -96,7 +98,31 @@ public class StandardExerciseFragment extends Fragment {
                 super.onSwipeLeft();
 
                 if(mExercise.getDescription().getSteps().size() -1 > mSteps.getCurrentShownStep()) {
-                    mSteps.viewStep(mSteps.getCurrentShownStep() + 1);
+                    Animation animSlide = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.slide_out_left);
+                    animSlide.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            mSteps.viewStep(mSteps.getCurrentShownStep() + 1);
+
+                            Animation animSlide = AnimationUtils.loadAnimation(getContext(),
+                                    R.anim.slide_in_right);
+                            mSteps.startAnimation(animSlide);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                    mSteps.startAnimation(animSlide);
+
                 }
             }
 
@@ -105,7 +131,30 @@ public class StandardExerciseFragment extends Fragment {
                 super.onSwipeRight();
 
                 if(mSteps.getCurrentShownStep() > 0) {
-                    mSteps.viewStep(mSteps.getCurrentShownStep() - 1);
+                    Animation animSlide = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.slide_out_right);
+                    animSlide.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            mSteps.viewStep(mSteps.getCurrentShownStep() - 1);
+                            
+                            Animation animSlide = AnimationUtils.loadAnimation(getContext(),
+                                    R.anim.slide_in_left);
+                            mSteps.startAnimation(animSlide);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                    mSteps.startAnimation(animSlide);
                 }
             }
         });
