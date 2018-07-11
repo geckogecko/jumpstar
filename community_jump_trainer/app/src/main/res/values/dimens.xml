@@ -7,4 +7,6 @@
     <dimen name="card_margins_content">5sp</dimen>
 
     <dimen name="alertdialog_margins_side">20sp</dimen>
+
+    <dimen name="time_exercise_clock_top_margin">25sp</dimen>
 </resources>
