@@ -27,6 +27,7 @@ import georg.steinbacher.community_jump_trainer.core.Equipment;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.TimeExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.util.OnSwipeTouchListener;
 import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
 
@@ -158,6 +159,27 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
         equipmentViewHolder.setEquipment(equipmentList);
+
+        //Swipe listener
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            @Override
+            public void onSwipeLeft() {
+                super.onSwipeLeft();
+
+                if(mExercise.getDescription().getSteps().size() -1 > mSteps.getCurrentShownStep()) {
+                    mSteps.viewStep(mSteps.getCurrentShownStep() + 1);
+                }
+            }
+
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+
+                if(mSteps.getCurrentShownStep() > 0) {
+                    mSteps.viewStep(mSteps.getCurrentShownStep() - 1);
+                }
+            }
+        });
     }
 
     private void stopTimer() {

@@ -20,14 +20,19 @@ import georg.steinbacher.community_jump_trainer.core.ExerciseDescription;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
 import georg.steinbacher.community_jump_trainer.core.StandardExercise;
 import georg.steinbacher.community_jump_trainer.drawables.CategoryPaints;
+import georg.steinbacher.community_jump_trainer.util.OnSwipeTouchListener;
 import georg.steinbacher.community_jump_trainer.view.EquipmentView;
 import georg.steinbacher.community_jump_trainer.view.ExerciseStepsView;
+
+import static android.content.ContentValues.TAG;
 
 public class StandardExerciseFragment extends Fragment {
     private static final String TAG = "StandardExerciseFragmen";
 
     private StandardExercise mExercise;
     private View mView;
+
+    private ExerciseStepsView mSteps;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,8 +52,8 @@ public class StandardExerciseFragment extends Fragment {
         nameTextView.setText(mExercise.getName());
 
         //ExerciseSteps
-        ExerciseStepsView steps = mView.findViewById(R.id.exercise_step_view);
-        steps.setTrainingsplan(mExercise);
+        mSteps = mView.findViewById(R.id.exercise_step_view);
+        mSteps.setTrainingsplan(mExercise);
 
         //Sets
         TextView setsTextView = mView.findViewById(R.id.exercise_sets);
@@ -83,6 +88,27 @@ public class StandardExerciseFragment extends Fragment {
         EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mExercise.getNeededEquipment();
         equipmentViewHolder.setEquipment(equipmentList);
+
+        //Swipe listener
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            @Override
+            public void onSwipeLeft() {
+                super.onSwipeLeft();
+
+                if(mExercise.getDescription().getSteps().size() -1 > mSteps.getCurrentShownStep()) {
+                    mSteps.viewStep(mSteps.getCurrentShownStep() + 1);
+                }
+            }
+
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+
+                if(mSteps.getCurrentShownStep() > 0) {
+                    mSteps.viewStep(mSteps.getCurrentShownStep() - 1);
+                }
+            }
+        });
     }
 
     public void setExercise(StandardExercise exercise) {

@@ -26,6 +26,12 @@ public class ExerciseStepsView extends LinearLayoutCompat{
     private Exercise mExercise;
     private View mView;
     private Context mContext;
+    private Resources mResources;
+
+    private AppCompatImageView mImageView;
+    private AppCompatTextView mTextView;
+
+    private int mCurrentShownStep = -1;
 
     public ExerciseStepsView(Context context) {
         super(context);
@@ -40,31 +46,41 @@ public class ExerciseStepsView extends LinearLayoutCompat{
     private void init(Context context) {
         mContext = context;
         mView = inflate(mContext, R.layout.view_exercise_steps, this);
+
+        mImageView = mView.findViewById(R.id.image_view);
+        mTextView = mView.findViewById(R.id.text_view);
+
+        mResources = getContext().getResources();
     }
 
     public void setTrainingsplan(Exercise exercise) {
         mExercise = exercise;
+        if(exercise.getDescription().getSteps().size() > 0) {
+            viewStep(0);
+        }
+    }
 
-        AppCompatImageView imageView= mView.findViewById(R.id.image_view);
-
-        Resources resources = getContext().getResources();
-
-        ExerciseStep step = mExercise.getDescription().getSteps().get(0);
+    public void viewStep(int nr) {
+        ExerciseStep step = mExercise.getDescription().getSteps().get(nr);
         final String imageName = mExercise.getType().name().toLowerCase() + "_" +
                 mExercise.getId() + "_" +
                 step.getStepNr();
-        final int resourceId = resources.getIdentifier(imageName, "drawable",
+        final int resourceId = mResources.getIdentifier(imageName, "drawable",
                 getContext().getPackageName());
 
         if(resourceId != 0) {
-            imageView.setImageDrawable(ContextCompat.getDrawable(mContext, resourceId));
+            mImageView.setImageDrawable(ContextCompat.getDrawable(mContext, resourceId));
         } else {
             Log.e(TAG, "description image for step: " + imageName + " not found");
             //TODO what should we do if the image is not found?
         }
 
-        AppCompatTextView textView = mView.findViewById(R.id.text_view);
-        textView.setText(step.getDescription());
 
+        mTextView.setText(step.getDescription());
+        mCurrentShownStep = nr;
+    }
+
+    public int getCurrentShownStep() {
+        return mCurrentShownStep;
     }
 }

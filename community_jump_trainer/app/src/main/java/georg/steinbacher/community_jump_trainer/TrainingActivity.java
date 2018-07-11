@@ -17,6 +17,7 @@ import georg.steinbacher.community_jump_trainer.core.TrainingsPlan;
 import georg.steinbacher.community_jump_trainer.core.TrainingsPlanEntry;
 import georg.steinbacher.community_jump_trainer.drawables.TrainingsPlanProgressDrawable;
 import georg.steinbacher.community_jump_trainer.util.Factory;
+import georg.steinbacher.community_jump_trainer.util.OnSwipeTouchListener;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingsPlan.ITrainingsPlanListener,
         TrainingsPlanEntry.ITrainingsPlanEntryListener {
@@ -59,7 +60,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
             //TODO remove the case to Exercise
             loadExerciseFragment((Exercise) mTraingsPlan.getCurrentEntry());
         }
-
     }
 
     @Override
