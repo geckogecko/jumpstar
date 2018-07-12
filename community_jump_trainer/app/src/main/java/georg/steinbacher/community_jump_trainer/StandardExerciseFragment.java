@@ -86,11 +86,6 @@ public class StandardExerciseFragment extends Fragment {
         txtCategory.setText(category);
         txtCategory.setTextColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
 
-        //Equipment
-        EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
-        List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        equipmentViewHolder.setEquipment(equipmentList);
-
         //Swipe listener
         view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
     }

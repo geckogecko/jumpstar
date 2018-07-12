@@ -81,7 +81,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
         if(mExercise.getTime() == -1) {
-            mCountdownView.setVisibility(View.GONE);
+            mCountdownView.setVisibility(View.INVISIBLE);
         } else {
             mCountdownView.setOnCountdownEndListener(this);
             mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
@@ -91,7 +91,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Button
         mExerciseStart = mView.findViewById(R.id.exercise_start_button);
         if(mExercise.getTime() == -1) {
-            mExerciseStart.setVisibility(View.GONE);
+            mExerciseStart.setVisibility(View.INVISIBLE);
         } else {
             mExerciseStart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,7 +123,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //ProgressBar
         mProgressBar = mView.findViewById(R.id.time_exercise_progress_bar);
         if(mExercise.getTime() == -1) {
-            mProgressBar.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.INVISIBLE);
         }
 
         //Sets
@@ -154,11 +154,6 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         category = category.substring(0, 1).toUpperCase() + category.substring(1);
         txtCategory.setText(category);
         txtCategory.setTextColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
-
-        //Equipment
-        EquipmentView equipmentViewHolder = mView.findViewById(R.id.equipment_view);
-        List<Equipment> equipmentList = mExercise.getNeededEquipment();
-        equipmentViewHolder.setEquipment(equipmentList);
 
         //Swipe listener
         view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
