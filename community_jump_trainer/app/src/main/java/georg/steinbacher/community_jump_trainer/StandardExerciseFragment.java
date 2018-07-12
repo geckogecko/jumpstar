@@ -87,7 +87,7 @@ public class StandardExerciseFragment extends Fragment {
         txtCategory.setTextColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Swipe listener
-        view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
+        //view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
     }
 
     public void setExercise(StandardExercise exercise) {

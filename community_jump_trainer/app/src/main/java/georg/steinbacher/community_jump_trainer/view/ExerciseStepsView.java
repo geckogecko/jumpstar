@@ -17,6 +17,7 @@ import android.view.View;
 
 import java.util.HashMap;
 
+import georg.steinbacher.community_jump_trainer.ExerciseStepsSwipeListener;
 import georg.steinbacher.community_jump_trainer.R;
 import georg.steinbacher.community_jump_trainer.core.Exercise;
 import georg.steinbacher.community_jump_trainer.core.ExerciseStep;
@@ -37,6 +38,8 @@ public class ExerciseStepsView extends LinearLayoutCompat{
     private AppCompatImageButton mButtonRight;
 
     private int mCurrentShownStep = -1;
+
+    private ExerciseStepsSwipeListener mSwipeListener;
 
     public ExerciseStepsView(Context context) {
         super(context);
@@ -61,7 +64,7 @@ public class ExerciseStepsView extends LinearLayoutCompat{
         mButtonLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewStep(mCurrentShownStep-1);
+                mSwipeListener.onSwipeRight();
             }
         });
 
@@ -69,7 +72,7 @@ public class ExerciseStepsView extends LinearLayoutCompat{
         mButtonRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewStep(mCurrentShownStep+1);
+                mSwipeListener.onSwipeLeft();
             }
         });
     }
@@ -79,6 +82,10 @@ public class ExerciseStepsView extends LinearLayoutCompat{
         if(exercise.getDescription().getSteps().size() > 0) {
             viewStep(0);
         }
+
+        //Swipe listener
+        mSwipeListener = new ExerciseStepsSwipeListener(getContext(), mExercise, this);
+        mView.setOnTouchListener(mSwipeListener);
     }
 
     public void viewStep(int nr) {
@@ -101,17 +108,17 @@ public class ExerciseStepsView extends LinearLayoutCompat{
         mCurrentShownStep = nr;
 
         if(mExercise.getDescription().getSteps().size() == 1) {
-            mButtonLeft.setEnabled(false);
-            mButtonRight.setEnabled(false);
+            mButtonLeft.setVisibility(View.INVISIBLE);
+            mButtonRight.setVisibility(View.INVISIBLE);
         } else if(nr <= 0) {
-            mButtonLeft.setEnabled(false);
-            mButtonRight.setEnabled(true);
+            mButtonLeft.setVisibility(View.INVISIBLE);
+            mButtonRight.setVisibility(View.VISIBLE);
         } else if(nr == mExercise.getDescription().getSteps().size() -1) {
-            mButtonLeft.setEnabled(true);
-            mButtonRight.setEnabled(false);
+            mButtonLeft.setVisibility(View.VISIBLE);
+            mButtonRight.setVisibility(View.INVISIBLE);
         } else {
-            mButtonLeft.setEnabled(true);
-            mButtonRight.setEnabled(true);
+            mButtonLeft.setVisibility(View.VISIBLE);
+            mButtonRight.setVisibility(View.VISIBLE);
         }
     }
 

@@ -156,7 +156,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         txtCategory.setTextColor(CategoryPaints.getPrimaryColor(getContext(), mExercise.getCategory()).getColor());
 
         //Swipe listener
-        view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
+        //view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
     }
 
     private void stopTimer() {
