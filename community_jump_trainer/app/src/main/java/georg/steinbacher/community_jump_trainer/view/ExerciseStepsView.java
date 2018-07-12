@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -31,6 +33,9 @@ public class ExerciseStepsView extends LinearLayoutCompat{
     private AppCompatImageView mImageView;
     private AppCompatTextView mTextView;
 
+    private AppCompatImageButton mButtonLeft;
+    private AppCompatImageButton mButtonRight;
+
     private int mCurrentShownStep = -1;
 
     public ExerciseStepsView(Context context) {
@@ -51,6 +56,22 @@ public class ExerciseStepsView extends LinearLayoutCompat{
         mTextView = mView.findViewById(R.id.text_view);
 
         mResources = getContext().getResources();
+
+        mButtonLeft = mView.findViewById(R.id.button_left);
+        mButtonLeft.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewStep(mCurrentShownStep-1);
+            }
+        });
+
+        mButtonRight = mView.findViewById(R.id.button_right);
+        mButtonRight.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewStep(mCurrentShownStep+1);
+            }
+        });
     }
 
     public void setTrainingsplan(Exercise exercise) {
@@ -78,6 +99,20 @@ public class ExerciseStepsView extends LinearLayoutCompat{
 
         mTextView.setText(step.getDescription());
         mCurrentShownStep = nr;
+
+        if(mExercise.getDescription().getSteps().size() == 1) {
+            mButtonLeft.setEnabled(false);
+            mButtonRight.setEnabled(false);
+        } else if(nr <= 0) {
+            mButtonLeft.setEnabled(false);
+            mButtonRight.setEnabled(true);
+        } else if(nr == mExercise.getDescription().getSteps().size() -1) {
+            mButtonLeft.setEnabled(true);
+            mButtonRight.setEnabled(false);
+        } else {
+            mButtonLeft.setEnabled(true);
+            mButtonRight.setEnabled(true);
+        }
     }
 
     public int getCurrentShownStep() {
