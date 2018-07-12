@@ -34,11 +34,6 @@
         <item name="colorButtonNormal">@color/darkerGrey</item>
     </style>
 
-    <style name="TrainingsStyle" parent="AppTheme">
-        <item name="android:background">@color/background</item>
-    </style>
-
-
     <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

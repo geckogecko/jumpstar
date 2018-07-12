@@ -219,13 +219,14 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.DialogTheme));
         builder.setTitle(mContext.getString(R.string.vertical_progress_input_hint));
 
-        LinearLayoutCompat layoutCompat = new LinearLayoutCompat(mContext);
+        final LinearLayoutCompat layoutCompat = new LinearLayoutCompat(mContext);
         builder.setView(layoutCompat);
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                final String inputString =  "";
+                AppCompatEditText textView = layoutCompat.findViewById(R.id.edit_text);
+                final String inputString = textView.getText().toString();
                 if(inputString.isEmpty()) {
                     dialog.cancel();
                 } else {

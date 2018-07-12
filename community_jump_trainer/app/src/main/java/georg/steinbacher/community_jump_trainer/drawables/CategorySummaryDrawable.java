@@ -75,7 +75,7 @@ public class CategorySummaryDrawable extends Drawable {
         for (int i = 0; i < mCategoryCounts.size(); i++) {
             if(mCategoryCounts.get(i).getCount() > 0) {
                 final float segmentWidth = calculateSegmentWidth(mCategoryCounts.get(i),
-                        b.width()) - gapWidth;
+                        b.width());
                 RectF segment = new RectF(0, 0, segmentWidth, b.height());
 
                 paint = CategoryPaints.getPrimaryColor(mContext, mCategoryCounts.get(i).getCategory());
