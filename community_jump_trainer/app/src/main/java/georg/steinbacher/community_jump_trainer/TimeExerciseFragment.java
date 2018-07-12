@@ -161,25 +161,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         equipmentViewHolder.setEquipment(equipmentList);
 
         //Swipe listener
-        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-
-                if(mExercise.getDescription().getSteps().size() -1 > mSteps.getCurrentShownStep()) {
-                    mSteps.viewStep(mSteps.getCurrentShownStep() + 1);
-                }
-            }
-
-            @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-
-                if(mSteps.getCurrentShownStep() > 0) {
-                    mSteps.viewStep(mSteps.getCurrentShownStep() - 1);
-                }
-            }
-        });
+        view.setOnTouchListener(new ExerciseStepsSwipeListener(getContext(), mExercise, mSteps));
     }
 
     private void stopTimer() {
