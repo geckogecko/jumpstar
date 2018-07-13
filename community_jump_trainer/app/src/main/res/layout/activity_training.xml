@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="georg.steinbacher.community_jump_trainer.TrainingActivity">
+    tools:context="com.steinbacher.jumpstar.TrainingActivity">
 
     <FrameLayout
         android:id="@+id/main_content"

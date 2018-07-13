@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="georg.steinbacher.community_jump_trainer.StandardExerciseFragment"
+    tools:context="com.steinbacher.jumpstar.StandardExerciseFragment"
     android:orientation="vertical"
     android:background="@color/background"
     android:animateLayoutChanges="true">
@@ -26,7 +26,7 @@
             android:layout_marginTop="10sp"
             android:layout_marginBottom="15sp"/>
 
-        <georg.steinbacher.community_jump_trainer.view.ExerciseStepsView
+        <com.steinbacher.jumpstar.view.ExerciseStepsView
             android:id="@+id/exercise_step_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,7 +8,7 @@
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="georg.steinbacher.community_jump_trainer.TrainingsPlanDetailActivity"
+        tools:context="com.steinbacher.jumpstar.TrainingsPlanDetailActivity"
         android:orientation="vertical">
 
         <TextView
@@ -45,7 +45,7 @@
 
         </LinearLayout>
 
-        <georg.steinbacher.community_jump_trainer.view.EquipmentView
+        <com.steinbacher.jumpstar.view.EquipmentView
             android:id="@+id/equipment_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/card_margins_content" />
 
-        <georg.steinbacher.community_jump_trainer.view.ExercisesView
+        <com.steinbacher.jumpstar.view.ExercisesView
             android:id="@+id/detail_trainings_plan_exercises"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
