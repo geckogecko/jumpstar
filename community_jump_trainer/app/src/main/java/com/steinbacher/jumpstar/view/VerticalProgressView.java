@@ -195,9 +195,6 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
-
-            Log.i(TAG, "getFormattedValue: "+ value);
-
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(TimeUnit.DAYS.toMillis((long)value));
             String date = DateFormat.format("dd", cal).toString();
