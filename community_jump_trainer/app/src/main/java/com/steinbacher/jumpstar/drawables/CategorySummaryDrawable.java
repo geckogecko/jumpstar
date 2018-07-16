@@ -130,25 +130,4 @@ public class CategorySummaryDrawable extends Drawable {
     public int getOpacity() {
         return PixelFormat.TRANSLUCENT;
     }
-
-    private class CategoryCounter {
-        private Exercise.Category mCategory;
-        private int mCount = 0;
-
-        CategoryCounter(Exercise.Category category) {
-            mCategory = category;
-        }
-
-        public void increaseCount() {
-            mCount++;
-        }
-
-        public Exercise.Category getCategory() {
-            return mCategory;
-        }
-
-        public int getCount() {
-            return mCount;
-        }
-    }
 }
