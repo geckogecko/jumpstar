@@ -12,7 +12,8 @@ public class Equipment {
 
     public enum Type {
         GYM,
-        HOME
+        HOME,
+        BOTH
     }
 
     public Equipment(String name, Type type) {

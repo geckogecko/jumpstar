@@ -40,6 +40,7 @@
     <string name="minutes_short">min</string>
     <string name="time_exercise_hold_time_as_much">Hold time: As long as possible per set</string>
 
+    <string name="no_trainingsplan_found">No training plans found for your available equipment. You can change your available equipment under settings/available equipment.</string>
     <!-- current_trainingsplan_menu -->
     <string name="remove">Remove</string>
 

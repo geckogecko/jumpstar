@@ -3,6 +3,7 @@ package com.steinbacher.jumpstar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,13 +36,15 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
         LinearLayoutCompat linearLayoutCompat = view.findViewById(R.id.container);
 
-        boolean showPlan = true;
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
+            boolean showPlan = true;
             for (Equipment equipment : trainingsPlan.getNeededEquipment()) {
                 Equipment.Type type = equipment.getType();
-                if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)) {
+                if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)
+                        && type != Equipment.Type.BOTH) {
                     showPlan = false;
-                } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)) {
+                } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)
+                        && type != Equipment.Type.BOTH) {
                     showPlan = false;
                 }
             }
@@ -51,6 +54,11 @@ public class TrainingsPlanSelectionFragment extends Fragment {
                 trainingsPlanView.setTrainingsPlan(trainingsPlan);
                 linearLayoutCompat.addView(trainingsPlanView);
             }
+        }
+
+        if(linearLayoutCompat.getChildCount() == 1) {
+            AppCompatTextView textView = view.findViewById(R.id.txt_no_trainingsplan_found);
+            textView.setVisibility(View.VISIBLE);
         }
 
         //for detecting if a new currentTrainingsPlan got added

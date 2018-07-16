@@ -5,10 +5,10 @@
   },
   "2": {
     "name": "Jump rope",
-    "type": "HOME"
+    "type": "BOTH"
   },
   "3": {
     "name": "Pull-up bar",
-    "type": "HOME"
+    "type": "GYM"
   }
 }
