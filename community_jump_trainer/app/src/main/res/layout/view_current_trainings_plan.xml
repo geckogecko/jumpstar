@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardView"
@@ -7,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
-    style="@style/CardViewStyle">
+    style="@style/CardViewStyle"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,19 +69,6 @@
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:text="@string/start_current_trainingsPlan"/>
-
-            <View
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:background="@color/cardBackground"
-                ></View>
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/button_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:text="@string/info_current_trainingsPlan"/>
         </android.support.v7.widget.LinearLayoutCompat>
     </LinearLayout>
 </android.support.v7.widget.CardView>

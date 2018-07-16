@@ -65,8 +65,7 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
             }
         });
 
-        Button infoButton = mRootView.findViewById(R.id.button_info);
-        infoButton.setOnClickListener(new OnClickListener() {
+        setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
