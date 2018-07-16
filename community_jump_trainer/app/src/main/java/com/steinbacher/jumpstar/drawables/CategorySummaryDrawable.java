@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.StandardExercise;
 import com.steinbacher.jumpstar.core.TimeExercise;
@@ -70,7 +71,8 @@ public class CategorySummaryDrawable extends Drawable {
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         for (int i = 0; i < mCategoryCounts.size(); i++) {
-            if(mCategoryCounts.get(i).getCount() > 0) {
+            final int count = mCategoryCounts.get(i).getCount();
+            if(count > 0) {
                 final float segmentWidth = calculateSegmentWidth(mCategoryCounts.get(i),
                         b.width());
                 RectF segment = new RectF(0, 0, segmentWidth, b.height());
@@ -79,26 +81,18 @@ public class CategorySummaryDrawable extends Drawable {
 
                 segment.offset(leftOffset, 0);
                 canvas.drawRoundRect(segment, 5, 5, paint);
+
+                //Text
+                Paint textPaint = new Paint();
+                textPaint.setColor(mContext.getResources().getColor(R.color.black));
+                final float textSize = (float) (b.height() * 0.7);
+                textPaint.setTextSize(textSize);
+                textPaint.setFakeBoldText(true);
+                canvas.drawText(String.valueOf(count), leftOffset + (segmentWidth / 2) - (textSize /2), (float) (b.height() * 0.75), textPaint);
+
                 leftOffset += (segmentWidth + gapWidth);
             }
         }
-    }
-
-    /**
-     * Returns the paint for the Category which got the  highest counter
-     * returns the first if multiple cats have a equal amount.
-     * @return
-     */
-    public Paint getIndicatorPaint() {
-        int highest = 0;
-
-        for (int i = 1; i < mCategoryCounts.size(); i++) {
-            if(mCategoryCounts.get(i).getCount() > mCategoryCounts.get(highest).getCount()) {
-                highest = i;
-            }
-        }
-
-        return CategoryPaints.getSecondaryColor(mContext, mCategoryCounts.get(highest).getCategory());
     }
 
     private float calculateSegmentWidth(CategoryCounter categoryCounter, float width) {
