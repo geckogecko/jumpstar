@@ -88,7 +88,7 @@ public class CategorySummaryDrawable extends Drawable {
                 final float textSize = (float) (b.height() * 0.7);
                 textPaint.setTextSize(textSize);
                 textPaint.setFakeBoldText(true);
-                canvas.drawText(String.valueOf(count), leftOffset + (segmentWidth / 2) - (textSize /2), (float) (b.height() * 0.75), textPaint);
+                canvas.drawText(String.valueOf(count) + "x", leftOffset + (segmentWidth / 2) - (textSize /2), (float) (b.height() * 0.75), textPaint);
 
                 leftOffset += (segmentWidth + gapWidth);
             }
