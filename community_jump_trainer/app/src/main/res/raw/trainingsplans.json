@@ -35,11 +35,34 @@
         ]
     },
     "2": {
-        "name": "Explosive jump workout",
-        "description": "TODO",
+        "name": "Explosive jump workouts",
+        "description": "Six exercises to make you jump higher and run faster. The focus lies on increase your explosiveness, your power and your speed. No equipment needed.",
         "creationDate": 1530976246,
         "exercises": [
-
+            {
+                "type": "TIME",
+                "id": 5
+            },
+            {
+                "type": "STANDARD",
+                "id": 4
+            },
+            {
+                "type": "STANDARD",
+                "id": 5
+            },
+            {
+                "type": "STANDARD",
+                "id": 6
+            },
+            {
+                "type": "STANDARD",
+                "id": 7
+            },
+            {
+                "type": "TIME",
+                "id": 6
+            }
         ]
     }
 }

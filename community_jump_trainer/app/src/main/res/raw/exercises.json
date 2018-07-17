@@ -64,6 +64,90 @@
           "description": "Pull yourself up until the chin clears the bar."
         }
       ]
+    },
+    "4": {
+      "name": "180 Jumps",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [6],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Jump 180 degrees to your right while keeping your hands in front of you for balance."
+        },
+        {
+          "nr": 1,
+          "description": "Jump 180 degrees to your left while keeping your hands in front of you for balance."
+        }
+      ]
+    },
+    "5": {
+      "name": "Standing long jumps",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [6],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a standing position"
+        },
+        {
+          "nr": 1,
+          "description": "Take off using both feet. Swing you arms and bend your knees to provide a forward drive."
+        },
+        {
+          "nr": 2,
+          "description": "As soon as you land, jump again."
+        }
+      ]
+    },
+    "6": {
+      "name": "Kneeling tuck jumps",
+      "difficulty": 8,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [6],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a kneeling position. Arms behind your body."
+        },
+        {
+          "nr": 1,
+          "description": "Explode up into a standing position with your knees bent. Your arms move in front of your body."
+        },
+        {
+          "nr": 2,
+          "description": "As soon as your feet touch the floor, jump again while moving your knees up. Try to touch your hands with your knees."
+        }
+      ]
+    },
+    "7": {
+      "name": "Split jumps",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [6],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Take a large step forward and lower your body toward the floor. Both legs should be bent at 90-degree angle."
+        },
+        {
+          "nr": 1,
+          "description": "Lower your back knee slightly and explode up to switch legs."
+        },
+        {
+          "nr": 2,
+          "description": "Land in the bent position from step 0 and repeat."
+        }
+      ]
     }
 
   },
@@ -126,6 +210,34 @@
         {
           "nr": 0,
           "description": "Hold as long as you can."
+        }
+      ]
+    },
+    "5": {
+      "name": "High Knee Skips",
+      "difficulty": 4,
+      "targetArea": "FULL_BODY",
+      "sets": 1,
+      "category": "WARMUP",
+      "time": 180,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start with traditional skipping and gradually increase knee and rebound height with every step."
+        }
+      ]
+    },
+    "6": {
+      "name": "Time sprints",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 5,
+      "category": "PLYOMETRIC",
+      "time": 5,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Sprint for 5 seconds. Rest for 10 seconds and repeat"
         }
       ]
     }
