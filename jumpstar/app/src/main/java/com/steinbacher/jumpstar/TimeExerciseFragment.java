@@ -97,6 +97,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                mPreperationCountdown = false;
                                 mCountdownRunning = true;
                                 mPrepare.setVisibility(View.GONE);
                                 mExerciseStart.setEnabled(true);
@@ -177,6 +178,22 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mExerciseStart.setCompoundDrawables(drawable, null, null, null);
     }
 
+    private void resetTimer() {
+        mExerciseStart.setText(R.string.time_exercise_start);
+        mCountdownView.updateShow(mExercise.getTime() * 1000);
+
+        bottomLayout.setVisibility(View.VISIBLE);
+        topLayout.setVisibility(View.VISIBLE);
+
+        mCountdownPaused = false;
+        mCountdownRunning = false;
+        mPreperationCountdown = false;
+
+        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_24);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        mExerciseStart.setCompoundDrawables(drawable, null, null, null);
+    }
+
     public void setExercise(TimeExercise exercise) {
         mExercise = exercise;
     }
@@ -188,7 +205,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
             mProgressBar.setProgress(0);
             mCountdownView.start(mExercise.getTime() * 1000);
         } else {
-            mExercise.complete();
+            resetTimer();
         }
     }
 
