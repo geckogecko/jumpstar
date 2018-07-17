@@ -51,7 +51,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         if(resourceId != 0) {
             imgView.setBackgroundResource(resourceId);
         } else {
-            Log.e(TAG, "image for exercise: " + imageName + " not found");
+            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
             //TODO what should we do if the image is not found?
         }
 

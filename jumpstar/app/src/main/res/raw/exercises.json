@@ -219,7 +219,7 @@
       "targetArea": "FULL_BODY",
       "sets": 1,
       "category": "WARMUP",
-      "time": 180,
+      "time": 120,
       "steps": [
         {
           "nr": 0,

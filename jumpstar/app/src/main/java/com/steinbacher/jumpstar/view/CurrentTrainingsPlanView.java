@@ -2,14 +2,17 @@ package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -79,6 +82,19 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
 
         TextView txtDescription = mRootView.findViewById(R.id.description);
         txtDescription.setText(mTrainingsPlan.getDescription());
+
+        //image
+        AppCompatImageView imgView = findViewById(R.id.image);
+        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
+        final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
+                mContext.getPackageName());
+
+        if(resourceId != 0) {
+            imgView.setBackgroundResource(resourceId);
+        } else {
+            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
+            //TODO what should we do if the image is not found?
+        }
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {
