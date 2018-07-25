@@ -75,11 +75,7 @@
       "steps": [
         {
           "nr": 0,
-          "description": "Jump 180 degrees to your right while keeping your hands in front of you for balance."
-        },
-        {
-          "nr": 1,
-          "description": "Jump 180 degrees to your left while keeping your hands in front of you for balance."
+          "description": "Jump 180 degrees to your right while keeping your hands in front of you for balance. As soon as you land jump 180 degrees to your left"
         }
       ]
     },
@@ -97,11 +93,7 @@
         },
         {
           "nr": 1,
-          "description": "Take off using both feet. Swing you arms and bend your knees to provide a forward drive."
-        },
-        {
-          "nr": 2,
-          "description": "As soon as you land, jump again."
+          "description": "Take off using both feet. Swing you arms and bend your knees to provide a forward drive. As soon as you land, jump again."
         }
       ]
     },
