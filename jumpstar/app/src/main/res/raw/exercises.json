@@ -129,15 +129,7 @@
       "steps": [
         {
           "nr": 0,
-          "description": "Take a large step forward and lower your body toward the floor. Both legs should be bent at 90-degree angle."
-        },
-        {
-          "nr": 1,
-          "description": "Lower your back knee slightly and explode up to switch legs."
-        },
-        {
-          "nr": 2,
-          "description": "Land in the bent position from step 0 and repeat."
+          "description": "Take a large step forward and lower your body toward the floor. Both legs should be bent at 90-degree angle. Lower your back knee slightly and explode up to switch legs. Land in the bent position and repeat."
         }
       ]
     }
