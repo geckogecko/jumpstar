@@ -44,7 +44,6 @@
                     android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/trainingsplan_1"
                     android:layout_marginRight="@dimen/card_margins_content"
                     android:layout_marginBottom="@dimen/card_margins_content"/>
 
