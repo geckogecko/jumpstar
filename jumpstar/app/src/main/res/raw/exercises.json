@@ -6,8 +6,14 @@
       "targetArea": "FULL_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": [15,13,10],
-      "equipment": [1],
+      "repetitions": [
+        15,
+        13,
+        10
+      ],
+      "equipment": [
+        1
+      ],
       "steps": [
         {
           "nr": 0,
@@ -29,8 +35,14 @@
       "targetArea": "LEGS",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": [15,13,10],
-      "equipment": [1],
+      "repetitions": [
+        15,
+        13,
+        10
+      ],
+      "equipment": [
+        1
+      ],
       "steps": [
         {
           "nr": 0,
@@ -52,8 +64,12 @@
       "targetArea": "UPPER_BODY",
       "sets": 3,
       "category": "STRENGTH",
-      "repetitions": [-1],
-      "equipment": [3],
+      "repetitions": [
+        -1
+      ],
+      "equipment": [
+        3
+      ],
       "steps": [
         {
           "nr": 0,
@@ -71,7 +87,9 @@
       "targetArea": "LEGS",
       "sets": 3,
       "category": "PLYOMETRIC",
-      "repetitions": [6],
+      "repetitions": [
+        6
+      ],
       "steps": [
         {
           "nr": 0,
@@ -85,7 +103,9 @@
       "targetArea": "LEGS",
       "sets": 3,
       "category": "PLYOMETRIC",
-      "repetitions": [6],
+      "repetitions": [
+        6
+      ],
       "steps": [
         {
           "nr": 0,
@@ -103,7 +123,9 @@
       "targetArea": "LEGS",
       "sets": 3,
       "category": "PLYOMETRIC",
-      "repetitions": [6],
+      "repetitions": [
+        6
+      ],
       "steps": [
         {
           "nr": 0,
@@ -125,56 +147,64 @@
       "targetArea": "LEGS",
       "sets": 3,
       "category": "PLYOMETRIC",
-      "repetitions": [6],
+      "repetitions": [
+        6
+      ],
       "steps": [
         {
           "nr": 0,
           "description": "Take a large step forward and lower your body toward the floor. Both legs should be bent at 90-degree angle. Lower your back knee slightly and explode up to switch legs. Land in the bent position and repeat."
         }
       ]
-      "8": {
-        "name": "Max height and distance skips",
-        "difficulty": 6,
-        "targetArea": "LEGS",
-        "sets": 3,
-        "category": "PLYOMETRIC",
-        "repetitions": [15],
-        "steps": [
-          {
-            "nr": 0,
-            "description": "Skip while diving your free knee as far into the air as possible. Skip for maximal height with every jump."
-          }
-        ]
-      },
-      "9": {
-        "name": "Broad jumps into acceleration",
-        "difficulty": 6,
-        "targetArea": "LEGS",
-        "sets": 3,
-        "category": "PLYOMETRIC",
-        "repetitions": [15],
-        "steps": [
-          {
-            "nr": 0,
-            "description": "Start in a standing position. Quickly drop into squat position while moving your hands back. Jump forward as far as you can."
-          },
-          {
-            "nr": 1,
-            "description": "Land on one leg and immediately sprint forward for about 5 seconds."
-          }
-        ]
-      }
     },
-    "TIME": {
-      "1": {
-      },
+    "8": {
+      "name": "Max height and distance skips",
+      "difficulty": 6,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        15
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Skip while diving your free knee as far into the air as possible. Skip for maximal height with every jump."
+        }
+      ]
+    },
+    "9": {
+      "name": "Broad jumps into acceleration",
+      "difficulty": 6,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        15
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a standing position. Quickly drop into squat position while moving your hands back. Jump forward as far as you can."
+        },
+        {
+          "nr": 1,
+          "description": "Land on one leg and immediately sprint forward for about 5 seconds."
+        }
+      ]
+    }
+  },
+  "TIME": {
+    "1": {
       "name": "Rope jumps",
       "difficulty": 4,
       "targetArea": "LEGS",
       "sets": 1,
       "category": "WARMUP",
       "time": 300,
-      "equipment": [2],
+      "equipment": [
+        2
+      ],
       "steps": [
         {
           "nr": 0,
@@ -272,3 +302,4 @@
     }
   }
 }
+
