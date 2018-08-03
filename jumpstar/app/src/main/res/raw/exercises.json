@@ -132,11 +132,42 @@
           "description": "Take a large step forward and lower your body toward the floor. Both legs should be bent at 90-degree angle. Lower your back knee slightly and explode up to switch legs. Land in the bent position and repeat."
         }
       ]
-    }
-
-  },
-  "TIME": {
-    "1": {
+      "8": {
+        "name": "Max height and distance skips",
+        "difficulty": 6,
+        "targetArea": "LEGS",
+        "sets": 3,
+        "category": "PLYOMETRIC",
+        "repetitions": [15],
+        "steps": [
+          {
+            "nr": 0,
+            "description": "Skip while diving your free knee as far into the air as possible. Skip for maximal height with every jump."
+          }
+        ]
+      },
+      "9": {
+        "name": "Broad jumps into acceleration",
+        "difficulty": 6,
+        "targetArea": "LEGS",
+        "sets": 3,
+        "category": "PLYOMETRIC",
+        "repetitions": [15],
+        "steps": [
+          {
+            "nr": 0,
+            "description": "Start in a standing position. Quickly drop into squat position while moving your hands back. Jump forward as far as you can."
+          },
+          {
+            "nr": 1,
+            "description": "Land on one leg and immediately sprint forward for about 5 seconds."
+          }
+        ]
+      }
+    },
+    "TIME": {
+      "1": {
+      },
       "name": "Rope jumps",
       "difficulty": 4,
       "targetArea": "LEGS",
@@ -222,6 +253,20 @@
         {
           "nr": 0,
           "description": "Sprint for 5 seconds. Rest for 10 seconds and repeat"
+        }
+      ]
+    },
+    "7": {
+      "name": "Straight-Leg shuffle",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "time": 60,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Run while keeping the legs straight. Go for fast floor contacts and pull through with your hips."
         }
       ]
     }

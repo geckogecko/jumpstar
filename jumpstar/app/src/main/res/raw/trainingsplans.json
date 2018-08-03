@@ -64,5 +64,24 @@
                 "id": 6
             }
         ]
+    },
+    "3": {
+        "name": "Speed and agility",
+        "description": "TODO",
+        "creationDate": 1533296465,
+        "exercises": [
+            {
+                "type": "STANDARD",
+                "id": 8
+            },
+            {
+                "type": "TIME",
+                "id": 7
+            },
+            {
+                "type": "STANDARD",
+                "id": 9
+            },
+        ]
     }
 }
