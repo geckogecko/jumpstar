@@ -16,7 +16,7 @@ import com.steinbacher.jumpstar.view.AddCurrentTrainingsPlanView;
 import com.steinbacher.jumpstar.view.CurrentTrainingsPlanView;
 import com.steinbacher.jumpstar.view.VerticalProgressView;
 
-public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.IViewRemovedListener{
+public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.IViewRemovedListener, VerticalProgressView.IViewRemovedListener {
     private Context mContext;
     private LinearLayoutCompat mLayout;
 
@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.I
         //show vertical progress?
         if(Configuration.getBoolean(getContext(), Configuration.SHOW_VERTICAL_PROGRESS, true)) {
             VerticalProgressView verticalProgress = new VerticalProgressView(mContext);
+            verticalProgress.setListener(this);
             mLayout.addView(verticalProgress, 0);
         }
     }
