@@ -192,6 +192,45 @@
           "description": "Land on one leg and immediately sprint forward for about 5 seconds."
         }
       ]
+    },
+    "10": {
+      "name": "Double-side forward jump",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        15
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Stand with your feet shoulder wide apart in front of a line. Hop over the line and back with focus on speed and acceleration."
+        }
+      ]
+    },
+    "11": {
+      "name": "Slalom jumps",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        15
+      ],
+      "equipment": [
+        4
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Stand with your left foot inside the box / your right food outside."
+        },
+        {
+          "nr": 1,
+          "description": "Jump across the ladder and land with your right foot inside the box / left foot outside."
+        }
+      ]
     }
   },
   "TIME": {

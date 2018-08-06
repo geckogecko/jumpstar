@@ -67,9 +67,13 @@
     },
     "3": {
         "name": "Speed and agility",
-        "description": "TODO",
+        "description": "Exercises to improve your leg speed, agility and coordination.",
         "creationDate": 1533296465,
         "exercises": [
+            {
+                "type": "TIME",
+                "id": 1
+            },
             {
                 "type": "STANDARD",
                 "id": 8
@@ -81,6 +85,18 @@
             {
                 "type": "STANDARD",
                 "id": 9
+            },
+            {
+                "type": "STANDARD",
+                "id": 10
+            },
+            {
+                "type": "STANDARD",
+                "id": 4
+            },
+            {
+                "type": "STANDARD",
+                "id": 11
             }
         ]
     }

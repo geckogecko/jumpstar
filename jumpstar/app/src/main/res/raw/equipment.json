@@ -10,5 +10,9 @@
   "3": {
     "name": "Pull-up bar",
     "type": "GYM"
+  },
+  "4": {
+    "name": "Ladder",
+    "type": "BOTH"
   }
 }

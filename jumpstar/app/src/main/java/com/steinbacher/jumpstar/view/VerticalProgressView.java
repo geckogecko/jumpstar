@@ -55,7 +55,6 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
     private String mTitle = "";
 
     private IViewRemovedListener mListener;
-
     public interface IViewRemovedListener {
         void onRemoved();
     }
@@ -68,6 +67,10 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
     public VerticalProgressView(Context context, AttributeSet attrs) {
         super(context,attrs);
         init(context);
+    }
+
+    public void setListener(IViewRemovedListener listener) {
+        mListener = listener;
     }
 
     private void init(Context context) {
@@ -92,10 +95,6 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
                 createInfoDialog();
             }
         });
-    }
-
-    public void setListener(IViewRemovedListener listener) {
-        mListener = listener;
     }
 
     @Override
@@ -135,27 +134,29 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         LineChart chart = mRootView.findViewById(R.id.chart);
         chart.clear();
 
+        VerticalHeightReader reader = new VerticalHeightReader(getContext());
+        Cursor cursor = reader.getAll();
+
         //used to only add the newest entry of a day
         long prevDayTimestamp = -1;
 
-        if(true) {
+        if(cursor.getCount() > 0) {
             List<Entry> entries = new ArrayList<>();
-            entries.add(new Entry(17700, 280));
-            entries.add(new Entry(17705, 283));
-            entries.add(new Entry(17708, 287));
-            entries.add(new Entry(17711, 288));
-            entries.add(new Entry(17715, 293));
-            entries.add(new Entry(17720, 301));
-            entries.add(new Entry(17724, 303));
-            entries.add(new Entry(17726, 310));
-            entries.add(new Entry(17729, 311));
-            entries.add(new Entry(17733, 311));
-            entries.add(new Entry(17738, 312));
-            entries.add(new Entry(17742, 314));
-            entries.add(new Entry(17746, 315));
 
+            while (cursor.moveToNext()) {
+                long dayTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_DATE));
+                double vertical = cursor.getDouble(cursor.getColumnIndexOrThrow(VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT));
+                if(useImperialValues()) {
+                    vertical = cmToInches(vertical);
+                }
 
+                if(dayTimestamp == prevDayTimestamp) {
+                    entries.remove(entries.size()-1);
+                }
 
+                entries.add(new Entry(dayTimestamp, (int) vertical));
+                prevDayTimestamp = dayTimestamp;
+            }
 
             LineDataSet dataSet = new LineDataSet(entries, "Progress");
             dataSet.setLineWidth(2);
@@ -271,11 +272,11 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         builder.setTitle(mContext.getString(R.string.vertical_progress_info_hint));
         builder.setMessage(R.string.vertical_progress_info_show_youtube_video);
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        watchYoutubeVideo(mContext, "zMQR6T2HVY0");
-                    }
-                });
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                watchYoutubeVideo(mContext, "zMQR6T2HVY0");
+            }
+        });
 
         builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
             @Override
