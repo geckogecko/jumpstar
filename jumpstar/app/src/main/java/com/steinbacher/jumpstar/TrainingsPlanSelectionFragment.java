@@ -40,12 +40,16 @@ public class TrainingsPlanSelectionFragment extends Fragment {
             boolean showPlan = true;
             for (Equipment equipment : trainingsPlan.getNeededEquipment()) {
                 Equipment.Type type = equipment.getType();
-                if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)
-                        && type != Equipment.Type.BOTH) {
+                if(type == Equipment.Type.HOME && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)) {
                     showPlan = false;
-                } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)
-                        && type != Equipment.Type.BOTH) {
+                    break;
+                } else if(type == Equipment.Type.GYM && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)) {
                     showPlan = false;
+                    break;
+                } else if(type == Equipment.Type.BOTH && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_HOME, true)
+                        && !Configuration.getBoolean(getContext(), Configuration.EQUIPMENT_GYM, true)) {
+                    showPlan = false;
+                    break;
                 }
             }
 
