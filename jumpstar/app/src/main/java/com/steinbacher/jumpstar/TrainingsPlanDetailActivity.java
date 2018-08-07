@@ -1,8 +1,10 @@
 package com.steinbacher.jumpstar;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,13 +45,13 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         txtName.setText(mTrainingsPlan.getName());
 
         //image
-        ImageView imgView = findViewById(R.id.image);
+        AppCompatImageView imgView = findViewById(R.id.image);
         final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
-        final int resourceId = getApplicationContext().getResources().getIdentifier(imageName, "drawable",
-                getApplicationContext().getPackageName());
+        final int resourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
 
         if(resourceId != 0) {
-            imgView.setBackgroundResource(resourceId);
+            Drawable d = getResources().getDrawable(resourceId);
+            imgView.setImageDrawable(d);
         } else {
             Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
             //TODO what should we do if the image is not found?
