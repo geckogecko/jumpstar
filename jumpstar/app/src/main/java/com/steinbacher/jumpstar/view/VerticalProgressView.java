@@ -137,6 +137,9 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
         VerticalHeightReader reader = new VerticalHeightReader(getContext());
         Cursor cursor = reader.getAll();
 
+        //used to set the axis to the highest value
+        long maxValue = -1;
+
         //used to only add the newest entry of a day
         long prevDayTimestamp = -1;
 
@@ -152,6 +155,10 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
 
                 if(dayTimestamp == prevDayTimestamp) {
                     entries.remove(entries.size()-1);
+                }
+
+                if(vertical > maxValue) {
+                    maxValue = (long) vertical;
                 }
 
                 entries.add(new Entry(dayTimestamp, (int) vertical));
@@ -177,6 +184,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             chart.setClickable(false);
             chart.getAxisLeft().setValueFormatter(new UnitAxisValueFormatter());
             chart.getAxisLeft().setAxisMinimum(0);
+            chart.getAxisLeft().setAxisMaximum(maxValue + (long) (maxValue * 0.2));
             chart.getXAxis().setAxisMinimum(entries.get(0).getX() - 1);
             chart.getXAxis().setAxisMaximum(entries.get(entries.size()-1).getX() + 1);
         } else {
