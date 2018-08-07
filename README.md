@@ -7,6 +7,16 @@
 
 <img src="https://raw.githubusercontent.com/geckogecko/jumpstar/master/development/playstore/merge_from_ofoct.jpg" alt="Screenshots" height="350"/>
 
+Weekly new exercises for vertical jump training. Work through the exercises, increase your jump height and track your progress. Plans with and without equipment doable at your home or at your gym. Without any advertisements inside this open-source app!
+
+Features:
+- Different workout plans
+- Plans with and without equipment
+- Detailed descriptions
+- Track your progress
+- New workouts weekly
+- No advertisements
+
 ## Licenses
 
 * MPAndroidChart | [Source](https://github.com/PhilJay/MPAndroidChart) | [License](https://github.com/PhilJay/MPAndroidChart#license-page_facing_up)
