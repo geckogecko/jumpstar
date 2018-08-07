@@ -26,12 +26,9 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.android.support:design:27.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.stephentuso:welcome:1.4.1'
     implementation 'com.android.support:support-v4:27.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.github.iwgang:countdownview:2.1.6'
-    implementation 'com.squareup.picasso:picasso:2.3.2'
-    implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.takisoft.fix:preference-v7:27.1.1.2'
 
     testImplementation 'junit:junit:4.12'

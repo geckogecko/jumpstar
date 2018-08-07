@@ -9,14 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.stephentuso.welcome.WelcomeHelper;
 
 import com.steinbacher.jumpstar.util.JSONHolder;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private WelcomeHelper mSetupHelper;
     private Context mContext;
     private BottomNavigationView mNavigation;
     private Fragment mCurrentFragment;
