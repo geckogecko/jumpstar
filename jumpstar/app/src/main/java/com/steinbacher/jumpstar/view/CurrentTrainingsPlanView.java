@@ -2,6 +2,7 @@ package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
@@ -90,7 +91,8 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
                 mContext.getPackageName());
 
         if(resourceId != 0) {
-            imgView.setBackgroundResource(resourceId);
+            Drawable d = getResources().getDrawable(resourceId);
+            imgView.setImageDrawable(d);
         } else {
             Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
             //TODO what should we do if the image is not found?

@@ -2,6 +2,8 @@ package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -58,15 +60,16 @@ public class TrainingsPlanView extends LinearLayoutCompat implements View.OnClic
         txtDescription.setText(mTrainingsPlan.getDescription());
 
         //image
-        ImageView imgView = findViewById(R.id.image);
-        final String imageName = "trainingsplan_" + trainingsPlan.getId();
+        AppCompatImageView imgView = findViewById(R.id.image);
+        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
         final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
-                getContext().getPackageName());
+                mContext.getPackageName());
 
         if(resourceId != 0) {
-            imgView.setBackgroundResource(resourceId);
+            Drawable d = getResources().getDrawable(resourceId);
+            imgView.setImageDrawable(d);
         } else {
-            Log.e(TAG, "image for exercise: " + imageName + " not found");
+            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
             //TODO what should we do if the image is not found?
         }
     }
