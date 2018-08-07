@@ -5,7 +5,7 @@
        src="../../../images/brand/en_generic_rgb_wo_45.png" />
 </a>
 
-<img src="https://raw.githubusercontent.com/geckogecko/jumpstar/tree/master/development/playstore/merge_from_ofoct.jpg" alt="Screenshots" height="350"/>
+<img src="https://github.com/geckogecko/jumpstar/tree/master/development/playstore/merge_from_ofoct.jpg" alt="Screenshots" height="350"/>
 
 ## Licenses
 
