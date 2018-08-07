@@ -69,7 +69,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Countdown
         mCountdownView = mView.findViewById(R.id.exercise_countdown);
         if(mExercise.getTime() == -1) {
-            mCountdownView.setVisibility(View.INVISIBLE);
+            mCountdownView.setVisibility(View.GONE);
         } else {
             mCountdownView.setOnCountdownEndListener(this);
             mCountdownView.setOnCountdownIntervalListener(1000, this); //trigger every second
@@ -79,7 +79,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //Button
         mExerciseStart = mView.findViewById(R.id.exercise_start_button);
         if(mExercise.getTime() == -1) {
-            mExerciseStart.setVisibility(View.INVISIBLE);
+            mExerciseStart.setVisibility(View.GONE);
         } else {
             mExerciseStart.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,7 +112,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         //ProgressBar
         mProgressBar = mView.findViewById(R.id.time_exercise_progress_bar);
         if(mExercise.getTime() == -1) {
-            mProgressBar.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.GONE);
         }
 
         //Sets
