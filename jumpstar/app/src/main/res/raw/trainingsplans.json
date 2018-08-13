@@ -99,5 +99,13 @@
                 "id": 11
             }
         ]
+    },
+    "4": {
+        "name": "Stretch routine",
+        "description": "TODO",
+        "creationDate": 1534181774,
+        "exercises": [
+
+        ]
     }
 }
