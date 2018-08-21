@@ -189,7 +189,7 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
         mCountdownRunning = false;
         mPreperationCountdown = false;
 
-        Drawable drawable = getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_24);
+        Drawable drawable = mView.getContext().getResources().getDrawable(R.drawable.baseline_play_arrow_24);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         mExerciseStart.setCompoundDrawables(drawable, null, null, null);
     }
@@ -205,7 +205,9 @@ public class TimeExerciseFragment extends Fragment implements CountdownView.OnCo
             mProgressBar.setProgress(0);
             mCountdownView.start(mExercise.getTime() * 1000);
         } else {
-            resetTimer();
+            if(this.isVisible()) {
+                resetTimer();
+            }
         }
     }
 
