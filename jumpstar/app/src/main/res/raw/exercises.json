@@ -338,6 +338,34 @@
           "description": "Run while keeping the legs straight. Go for fast floor contacts and pull through with your hips."
         }
       ]
+    },
+    "8": {
+      "name": "Standing calf stretch",
+      "difficulty": 3,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Lean forward and rest your hands on the wall, keep your heel on the ground. You should feel a stretch in your calves. Hold for the required time. Repeat for both legs."
+        }
+      ]
+    },
+    "9": {
+      "name": "Lying glute stretch",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Lie with your back on the floor or a mat. Cross the lower leg over the tight of your other leg. Pull your leg towards your torso till you can feel a stretch. Hold for the required time and repeat on the other leg."
+        }
+      ]
     }
   }
 }

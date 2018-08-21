@@ -105,7 +105,14 @@
         "description": "TODO",
         "creationDate": 1534181774,
         "exercises": [
-
+            {
+                "type": "TIME",
+                "id": 8
+            },
+            {
+                "type": "TIME",
+                "id": 9
+            }
         ]
     }
 }
