@@ -366,6 +366,62 @@
           "description": "Lie with your back on the floor or a mat. Cross the lower leg over the tight of your other leg. Pull your leg towards your torso till you can feel a stretch. Hold for the required time and repeat on the other leg."
         }
       ]
+    },
+    "10": {
+      "name": "Seated groin stretch",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Sit on the floor with the soles of your feet together and as close to your body as possible. Hold your feet with both hands and position your elbows inside your lower leg. Press the knees with your elbow towards the floor and hold the required time. Repeat on the other leg."
+        }
+      ]
+    },
+    "11": {
+      "name": "Seated hamstring stretch",
+      "difficulty": 7,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Sit on the floor and straighten one leg in front of your body. Place the sole of your other leg on your upper leg. Slowly move your upper body forward until you feel a stretch in the back of the thigh. Grab your toes and hold for the required time. Repeat on the other leg."
+        }
+      ]
+    },
+    "12": {
+      "name": "Lunge stretch",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "TODO"
+        }
+      ]
+    },
+    "13": {
+      "name": "Standing quadriceps stretch",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "TODO"
+        }
+      ]
     }
   }
 }
