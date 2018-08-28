@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -41,6 +43,7 @@ import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.db.VerticalHeightContract;
 import com.steinbacher.jumpstar.db.VerticalHeightReader;
 import com.steinbacher.jumpstar.db.VerticalHeightWriter;
+import com.steinbacher.jumpstar.util.SharedPreferencesManager;
 
 
 /**
@@ -187,6 +190,27 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             chart.getAxisLeft().setAxisMaximum(maxValue + (long) (maxValue * 0.2));
             chart.getXAxis().setAxisMinimum(entries.get(0).getX() - 1);
             chart.getXAxis().setAxisMaximum(entries.get(entries.size()-1).getX() + 1);
+
+            if(SharedPreferencesManager.contains(mContext, "goal")) {
+                try {
+                    float goal = Float.valueOf(SharedPreferencesManager.getString(mContext, "goal", ""));
+                    LimitLine ll = new LimitLine(goal, "Goal");
+                    ll.setLineColor(mContext.getResources().getColor(R.color.colorAccentSecondary));
+                    ll.setLineWidth(2f);
+                    ll.setTextColor(mContext.getResources().getColor(R.color.lightGrey));
+                    ll.setTextSize(12f);
+
+                    chart.getAxisLeft().addLimitLine(ll);
+
+                    //set the max if needed
+                    float alternativeMax = goal + (long)(goal * 0.2);
+                    if(chart.getAxisLeft().getAxisMaximum() < alternativeMax) {
+                        chart.getAxisLeft().setAxisMaximum(alternativeMax);
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             //TODO indicate or hide the view
         }

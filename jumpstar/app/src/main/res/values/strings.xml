@@ -53,6 +53,8 @@
     <string name="preferences_equipment_home">Home</string>
     <string name="preferences_equipment_gym">Gym</string>
     <string name="preferences_unit_local_title">Measurement system</string>
+    <string name="preferences_goal_title">Your jump height goal</string>
+
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>

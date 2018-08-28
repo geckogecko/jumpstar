@@ -10,6 +10,12 @@
             android:title="@string/preferences_show_vertical_progress_title"
             android:defaultValue="true" />
 
+        <EditTextPreference
+            android:key="goal"
+            android:title="@string/preferences_goal_title"
+            android:inputType="numberDecimal"
+            />
+
         <ListPreference
             android:key="reached_height"
             android:title="@string/preferences_unit_local_title"
