@@ -18,19 +18,22 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
     private TrainingsPlanEntry mCurrentEntry;
     private boolean mLastCompletedEntry;
     private String mDescription;
+    private long mEstimatedDurationSeconds;
 
     private ITrainingsPlanListener mTrainingsPlanListener;
     public interface ITrainingsPlanListener {
         void onCurrentExerciseCompleted(Exercise currentCompletedExercise);
     }
 
-    public TrainingsPlan(int id, String name, String description, List<TrainingsPlanEntry> entries, long creationDate, Rating rating) {
+    public TrainingsPlan(int id, String name, String description, List<TrainingsPlanEntry> entries, long creationDate,
+                         Rating rating, long estimatedDurationSeconds) {
         mId = id;
         mName = name;
         mDescription = description;
         mEntries = entries;
         mCreationDate = creationDate;
         mRating = rating;
+        mEstimatedDurationSeconds = estimatedDurationSeconds;
 
         if (mEntries.size() > 0) {
             mCurrentEntry = entries.get(0);
@@ -150,5 +153,13 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         }
 
         return false;
+    }
+
+    public long getEstimatedDurationSeconds() {
+        return mEstimatedDurationSeconds;
+    }
+
+    public void setEstimatedDurationSeconds(long estimatedDurationSeconds) {
+        mEstimatedDurationSeconds = estimatedDurationSeconds;
     }
 }

@@ -117,7 +117,8 @@ public class Factory {
                     loadedTraingsPlan.getString("description"),
                     entries,
                     loadedTraingsPlan.getLong("creationDate"),
-                    null);
+                    null,
+                    loadedTraingsPlan.getLong("estimatedTime"));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

@@ -58,6 +58,9 @@
 
     <!-- TrainingsPlanDetail-->
     <string name="detail_add_trainings_plan">Add Trainings plan</string>
+    <string name="detail_plan_general">General</string>
+    <string name="detail_plan_estimated_time_title">Duration:</string>
+    <string name="detail_plan_estimated_time">%1$s h</string>
     <string name="detail_exercises_title">Exercises</string>
     <string name="detail_exercises_plyometric">Plyometric:</string>
     <string name="detail_exercises_strength">Strength:</string>

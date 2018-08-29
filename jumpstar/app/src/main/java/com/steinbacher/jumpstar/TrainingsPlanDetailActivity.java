@@ -82,6 +82,12 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         txtExercises.setText(exercisesString);
         */
 
+        //duration
+        TextView durationTextView = findViewById(R.id.detail_plan_estimated_time);
+        int hours = (int) (mTrainingsPlan.getEstimatedDurationSeconds() / 3600);
+        int minutes = (int) (mTrainingsPlan.getEstimatedDurationSeconds() % 3600) / 60;
+        durationTextView.setText(getString(R.string.detail_plan_estimated_time, String.format("%02d:%02d", hours, minutes)));
+
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
         final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);

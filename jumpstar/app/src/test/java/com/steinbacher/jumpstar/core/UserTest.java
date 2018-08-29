@@ -37,9 +37,10 @@ public class UserTest {
                 3,
                 Exercise.Category.STRENGTH));
         final long timeStamp = System.currentTimeMillis();
+        final long estimatedTimeSeconds = 60*60;
         final Rating rating = new Rating(5.0);
 
-        trainingsPlan = new TrainingsPlan(testId, testName, testDescription, exercises, timeStamp, rating);
+        trainingsPlan = new TrainingsPlan(testId, testName, testDescription, exercises, timeStamp, rating, estimatedTimeSeconds);
         trainingsPlanList = new ArrayList<>();
         trainingsPlanList.add(trainingsPlan);
 
