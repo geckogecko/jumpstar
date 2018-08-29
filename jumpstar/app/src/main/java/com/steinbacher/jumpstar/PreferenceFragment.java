@@ -71,7 +71,11 @@ public class PreferenceFragment extends PreferenceFragmentCompatDividers impleme
     private void updatePrefSummary(Preference pref) {
         if (pref instanceof EditTextPreference) {
             EditTextPreference editTextPref = (EditTextPreference) pref;
-            pref.setSummary(editTextPref.getText());
+            if(editTextPref.getText() == null) {
+                pref.setSummary("not set");
+            } else {
+                pref.setSummary(editTextPref.getText());
+            }
         }
     }
 }
