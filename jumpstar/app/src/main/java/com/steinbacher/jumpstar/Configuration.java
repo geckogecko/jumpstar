@@ -12,7 +12,7 @@ import com.steinbacher.jumpstar.util.SharedPreferencesManager;
 
 public class Configuration {
     public static final String SHOW_VERTICAL_PROGRESS = "show_vertical_progress";
-    public static final String UNIT_LOCAL_KEY = "reached_height";
+    public static final String UNIT_LOCAL_KEY = "unit_local";
     public static final String CURRENT_TRAININGSPLANS_ID_KEY = "current_trainingsPlan";
 
     public static final String PREPARATION_COUNTDOWN_TIME = "preferences_trainingsPlan_preparationTime";

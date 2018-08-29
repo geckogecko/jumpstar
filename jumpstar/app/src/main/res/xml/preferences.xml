@@ -17,7 +17,7 @@
             />
 
         <ListPreference
-            android:key="reached_height"
+            android:key="unit_local"
             android:title="@string/preferences_unit_local_title"
             android:defaultValue="@string/unit_local_default"
             android:entries="@array/unit_locals"

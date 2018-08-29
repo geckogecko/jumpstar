@@ -7,11 +7,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 
 import com.kobakei.ratethisapp.RateThisApp;
 import com.steinbacher.jumpstar.util.JSONHolder;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -66,8 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        //set the rate app dialog
         RateThisApp.onCreate(this);
         RateThisApp.showRateDialogIfNeeded(this);
+
+        //set the local to us if needed
+        if(!Configuration.isSet(this, Configuration.UNIT_LOCAL_KEY)) {
+            Locale current = getResources().getConfiguration().locale;
+            if(current.getCountry().equals(Locale.US.getCountry())) {
+                Configuration.set(this, Configuration.UNIT_LOCAL_KEY, Configuration.UnitLocal.IMPERIAL.name());
+            }
+        }
 
         // DEVELOPMENT TODO remove when not needed
         //SharedPreferencesManager.clear(mContext);

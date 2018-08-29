@@ -191,7 +191,7 @@ public class VerticalProgressView extends LinearLayoutCompat implements View.OnL
             chart.getXAxis().setAxisMinimum(entries.get(0).getX() - 1);
             chart.getXAxis().setAxisMaximum(entries.get(entries.size()-1).getX() + 1);
 
-            if(SharedPreferencesManager.contains(mContext, "goal")) {
+            if(Configuration.isSet(mContext, "goal")) {
                 try {
                     float goal = Float.valueOf(SharedPreferencesManager.getString(mContext, "goal", ""));
                     LimitLine ll = new LimitLine(goal, "Goal");
