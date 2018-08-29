@@ -4,6 +4,7 @@
         "description": "Balanced mix of exercises for general strength and reactive strength.",
         "creationDate": 1528742853,
         "estimatedTime": 5400,
+        "isPremium": false,
         "exercises": [
             {
                 "type": "TIME",
@@ -40,6 +41,7 @@
         "description": "Six exercises to make you jump higher and run faster. The focus lies on increasing your explosiveness, your power and your speed. No equipment needed.",
         "creationDate": 1530976246,
         "estimatedTime": 2400,
+        "isPremium": false,
         "exercises": [
             {
                 "type": "TIME",
@@ -72,6 +74,7 @@
         "description": "Exercises to improve your leg speed, agility and coordination.",
         "creationDate": 1533296465,
         "estimatedTime": 2700,
+        "isPremium": false,
         "exercises": [
             {
                 "type": "TIME",
@@ -108,6 +111,7 @@
         "description": "Stretching is an important part of your every day jump training. It will further improve your vertical, boost your recovery and helps with injury prevention.",
         "creationDate": 1534181774,
         "estimatedTime": 1800,
+        "isPremium": false,
         "exercises": [
             {
                 "type": "TIME",
@@ -132,6 +136,19 @@
             {
                 "type": "TIME",
                 "id": 13
+            }
+        ]
+    },
+    "5": {
+        "name": "7 Box jumps",
+        "description": "TODO",
+        "creationDate": 1534181774,
+        "estimatedTime": 1800,
+        "isPremium": true,
+        "exercises": [
+            {
+                "type": "STANDARD",
+                "id": 12
             }
         ]
     }

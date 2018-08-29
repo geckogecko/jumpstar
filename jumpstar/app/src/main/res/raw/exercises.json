@@ -231,6 +231,33 @@
           "description": "Jump across the ladder and land with your right foot inside the box / left foot outside."
         }
       ]
+    },
+    "12": {
+      "name": "Depth jump",
+      "difficulty": 8,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        6
+      ],
+      "equipment": [
+        5
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start standing on a box."
+        },
+        {
+          "nr": 1,
+          "description": "Let yourself drop off the box. Try to land as soft as possible. Be ready to immediately jump again."
+        },
+        {
+          "nr": 2,
+          "description": "As soon as your feet touch the floor jump as high as possible (straight into the air or onto another box)."
+        }
+      ]
     }
   },
   "TIME": {
