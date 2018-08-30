@@ -258,6 +258,33 @@
           "description": "As soon as your feet touch the floor jump as high as possible (straight into the air or onto another box)."
         }
       ]
+    },
+    "13": {
+      "name": "Kneeling box jump",
+      "difficulty": 9,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        6
+      ],
+      "equipment": [
+        5
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a kneeling position in front of a box."
+        },
+        {
+          "nr": 1,
+          "description": "Quickly dip for momentum and explode up onto the box."
+        },
+        {
+          "nr": 2,
+          "description": "Try to land as soft as possible."
+        }
+      ]
     }
   },
   "TIME": {
