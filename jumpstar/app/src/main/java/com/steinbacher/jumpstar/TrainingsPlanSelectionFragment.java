@@ -3,9 +3,13 @@ package com.steinbacher.jumpstar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,9 +26,13 @@ public class TrainingsPlanSelectionFragment extends Fragment {
 
     private int mCurrentTrainingsPlanCount;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_trainings_plan_selection, container, false);
     }
@@ -32,6 +40,9 @@ public class TrainingsPlanSelectionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar myToolbar = view.findViewById(R.id.selection_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(myToolbar);
 
         List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
         LinearLayoutCompat linearLayoutCompat = view.findViewById(R.id.container);
@@ -81,5 +92,10 @@ public class TrainingsPlanSelectionFragment extends Fragment {
             }
         }
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.select_trainingsplan_menu, menu);
     }
 }
