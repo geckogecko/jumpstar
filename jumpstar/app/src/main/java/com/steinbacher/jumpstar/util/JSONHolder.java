@@ -25,22 +25,26 @@ public class JSONHolder {
     private JSONHolder() {
     }
 
-    public void loadAll(Context context) {
-        loadExercises(context);
-        loadTrainingsPlans(context);
-        loadEquipment(context);
+    public boolean loadAll(Context context) {
+        return loadExercises(context) && loadTrainingsPlans(context) && loadEquipment(context);
     }
 
-    private void loadExercises(Context context) {
+    private boolean loadExercises(Context context) {
         mExercises = JSONLoader.get(context, R.raw.exercises);
+
+        return mExercises != null;
     }
 
-    private void loadTrainingsPlans(Context context) {
+    private boolean loadTrainingsPlans(Context context) {
         mTraingsPlans = JSONLoader.get(context, R.raw.trainingsplans);
+
+        return mTraingsPlans != null;
     }
 
-    private void loadEquipment(Context context) {
+    private boolean loadEquipment(Context context) {
         mEquipment = JSONLoader.get(context, R.raw.equipment);
+
+        return mEquipment != null;
     }
 
     JSONObject getExerciseJSON(int id, Exercise.Type type) {

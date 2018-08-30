@@ -113,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Load all the json data
         JSONHolder holder = JSONHolder.getInstance();
-        holder.loadAll(mContext);
+        if(!holder.loadAll(mContext)) {
+            //unable to load our json data
+            finish();
+        }
     }
 
     public void changeContent(int id, boolean animation) {
