@@ -285,6 +285,29 @@
           "description": "Try to land as soft as possible."
         }
       ]
+    },
+    "14": {
+      "name": "Seated box jump",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        6
+      ],
+      "equipment": [
+        5
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start sitting on a box with your toes pointing up."
+        },
+        {
+          "nr": 1,
+          "description": "Jump from the seated position as high as possible landing softly on top of the second box."
+        }
+      ]
     }
   },
   "TIME": {
