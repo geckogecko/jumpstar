@@ -148,11 +148,15 @@
         "exercises": [
             {
                 "type": "TIME",
-                "id": 14
+                "id": 15
             },
             {
                 "type": "STANDARD",
                 "id": 12
+            },
+            {
+                "type": "TIME",
+                "id": 14
             },
             {
                 "type": "STANDARD",

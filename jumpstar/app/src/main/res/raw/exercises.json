@@ -513,7 +513,7 @@
       "steps": [
         {
           "nr": 0,
-          "description": "Do as many repetitions in the required time as possible. Use  ~70% of the weight you would normally use. Start in a standing position, barbell on your shoulders/upper back, feet slightly wider than your hips."
+          "description": "Do as many repetitions in the required time as possible. Use ~70% of the weight you would normally use. Start in a standing position, barbell on your shoulders/upper back, feet slightly wider than your hips."
         },
         {
           "nr": 1,
@@ -524,6 +524,30 @@
           "description": "Bend down until your hips are lower than your knees (Or as low as you can go without losing form)."
         }
       ]
+    },
+    "15": {
+      "name": "Time deadlift",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRENGTH",
+      "time": 30,
+      "equipment": [
+        1
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Do as many repetitions in the required time as possible. Use ~70% of the weight you would normally use. Hold the bar at hip level with your knees slightly bent."
+        },
+        {
+          "nr": 1,
+          "description": "Lower the bar by moving your hips back. Move the bar down your body while moving forward. Stop just below your knees."
+        },
+        {
+          "nr": 2,
+          "description": "Return to the starting position by moving your hips forward."
+        }
     }
   }
 }
