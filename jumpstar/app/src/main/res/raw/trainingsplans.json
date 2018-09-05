@@ -140,12 +140,16 @@
         ]
     },
     "5": {
-        "name": "7 Box jumps",
+        "name": "TODO",
         "description": "TODO",
         "creationDate": 1534181774,
         "estimatedTime": 1800,
         "isPremium": true,
         "exercises": [
+            {
+                "type": "TIME",
+                "id": 14
+            },
             {
                 "type": "STANDARD",
                 "id": 12

@@ -499,6 +499,31 @@
           "description": "Stand on one leg. Bend your knee back and pull it with one arm towards your body. You should feel a slight pull along the front of your thigh and hip. Hold the position for the required time. Repeat on the other leg."
         }
       ]
+    },
+    "14": {
+      "name": "Time squats",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRENGTH",
+      "time": 30,
+      "equipment": [
+        1
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Do as many repetitions in the required time as possible. Use  ~70% of the weight you would normally use. Start in a standing position, barbell on your shoulders/upper back, feet slightly wider than your hips."
+        },
+        {
+          "nr": 1,
+          "description": "Move your hips backwards while bending your knees. Maintain a straight back all time."
+        },
+        {
+          "nr": 2,
+          "description": "Bend down until your hips are lower than your knees (Or as low as you can go without losing form)."
+        }
+      ]
     }
   }
 }
