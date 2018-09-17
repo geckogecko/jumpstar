@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.steinbacher.jumpstar.util.JSONHolder;
 
+import org.solovyev.android.checkout.Billing;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {

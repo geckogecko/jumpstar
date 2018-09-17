@@ -1,5 +1,6 @@
 package com.steinbacher.jumpstar;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,15 @@ import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.EquipmentView;
 import com.steinbacher.jumpstar.view.ExercisesView;
 
+import org.solovyev.android.checkout.ActivityCheckout;
+import org.solovyev.android.checkout.Billing;
+import org.solovyev.android.checkout.BillingRequests;
+import org.solovyev.android.checkout.Checkout;
+import org.solovyev.android.checkout.EmptyRequestListener;
+import org.solovyev.android.checkout.Inventory;
+import org.solovyev.android.checkout.ProductTypes;
+import org.solovyev.android.checkout.Purchase;
+
 import static com.steinbacher.jumpstar.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
 //TODO if this trainingsplan includes other trainingsplans -> show them here
@@ -27,10 +37,15 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
     private TrainingsPlan mTrainingsPlan;
 
+    private ActivityCheckout mCheckout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainings_plan_detail);
+
+        Billing billing = BillingSingleton.getInstance(getApplicationContext()).getBilling();
+        mCheckout = Checkout.forActivity(this, billing);
 
         int trainingsPlanId = getIntent().getIntExtra(TRAININGS_PLAN_ID, -1);
         if(trainingsPlanId == -1) {
@@ -96,12 +111,26 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
                 btnAddTrainingsPlan.setText(R.string.detail_buy_trainingsplan);
             }
         }
+
+        //billing
+        mCheckout.start();
+        mCheckout.createPurchaseFlow(new PurchaseListener());
+
+        mInventory = mCheckout.makeInventory();
+        mInventory.load(Inventory.Request.create()
+                .loadAllPurchases()
+                .loadSkus(ProductTypes.IN_APP, "trainingsplan_5"), new InventoryCallback());
     }
 
     @Override
     public void onClick(View v) {
         if(mTrainingsPlan.isPremium()) {
-            //TODO open buy dialog
+            mCheckout.whenReady(new Checkout.EmptyListener() {
+                @Override
+                public void onReady(BillingRequests requests) {
+                    requests.purchase(ProductTypes.IN_APP, "trainingsplan_5", null, mCheckout.getPurchaseFlow());
+                }
+            });
         } else {
             final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
             int[] newCurrentPlans = new int[currentPlans.length + 1];
@@ -113,5 +142,37 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
             finish();
         }
+    }
+
+    private Inventory mInventory;
+    private class PurchaseListener extends EmptyRequestListener<Purchase> {
+        @Override
+        public void onSuccess(Purchase purchase) {
+            // here you can process the loaded purchase
+        }
+
+        @Override
+        public void onError(int response, Exception e) {
+            // handle errors here
+        }
+    }
+
+    private class InventoryCallback implements Inventory.Callback {
+        @Override
+        public void onLoaded(Inventory.Products products) {
+            // your code here
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCheckout.stop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCheckout.onActivityResult(requestCode, resultCode, data);
     }
 }
