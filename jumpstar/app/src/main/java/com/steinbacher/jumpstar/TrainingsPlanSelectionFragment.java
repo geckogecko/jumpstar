@@ -8,7 +8,10 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.steinbacher.jumpstar.core.Equipment;
@@ -34,8 +37,7 @@ public class TrainingsPlanSelectionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
-        LinearLayoutCompat linearLayoutCompat = view.findViewById(R.id.container);
-
+        List<TrainingsPlan> filteredTrainingsPlanList = new ArrayList<>();
         for (TrainingsPlan trainingsPlan : trainingsPlanList) {
             boolean showPlan = true;
             for (Equipment equipment : trainingsPlan.getNeededEquipment()) {
@@ -54,16 +56,19 @@ public class TrainingsPlanSelectionFragment extends Fragment {
             }
 
             if(showPlan) {
-                TrainingsPlanView trainingsPlanView = new TrainingsPlanView(getContext());
-                trainingsPlanView.setTrainingsPlan(trainingsPlan);
-                linearLayoutCompat.addView(trainingsPlanView);
+               filteredTrainingsPlanList.add(trainingsPlan);
             }
         }
 
-        if(linearLayoutCompat.getChildCount() == 1) {
+
+        if(filteredTrainingsPlanList.size() == 0) {
             AppCompatTextView textView = view.findViewById(R.id.txt_no_trainingsplan_found);
             textView.setVisibility(View.VISIBLE);
         }
+
+        ListView listView = view.findViewById(R.id.selection_list_view);
+        TrainingsplanAdapter trainingsPlanAdapter = new TrainingsplanAdapter(getContext(), R.layout.view_exercises, trainingsPlanList);
+        listView.setAdapter(trainingsPlanAdapter);
 
         //for detecting if a new currentTrainingsPlan got added
         mCurrentTrainingsPlanCount = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY).length;
