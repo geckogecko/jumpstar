@@ -38,14 +38,12 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private TrainingsPlan mTrainingsPlan;
 
     private ActivityCheckout mCheckout;
+    private boolean planPaided = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainings_plan_detail);
-
-        Billing billing = BillingSingleton.getInstance(getApplicationContext()).getBilling();
-        mCheckout = Checkout.forActivity(this, billing);
 
         int trainingsPlanId = getIntent().getIntExtra(TRAININGS_PLAN_ID, -1);
         if(trainingsPlanId == -1) {
@@ -112,19 +110,23 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             }
         }
 
-        //billing
-        mCheckout.start();
-        mCheckout.createPurchaseFlow(new PurchaseListener());
+        if(mTrainingsPlan.isPremium()) {
+            //billing
+            Billing billing = BillingSingleton.getInstance(getApplicationContext()).getBilling();
+            mCheckout = Checkout.forActivity(this, billing);
+            mCheckout.start();
+            mCheckout.createPurchaseFlow(new PurchaseListener());
 
-        mInventory = mCheckout.makeInventory();
-        mInventory.load(Inventory.Request.create()
-                .loadAllPurchases()
-                .loadSkus(ProductTypes.IN_APP, "trainingsplan_5"), new InventoryCallback());
+            mInventory = mCheckout.makeInventory();
+            mInventory.load(Inventory.Request.create()
+                    .loadAllPurchases()
+                    .loadSkus(ProductTypes.IN_APP, "trainingsplan_5"), new InventoryCallback());
+        }
     }
 
     @Override
     public void onClick(View v) {
-        if(mTrainingsPlan.isPremium()) {
+        if(mTrainingsPlan.isPremium() && !planPaided) {
             mCheckout.whenReady(new Checkout.EmptyListener() {
                 @Override
                 public void onReady(BillingRequests requests) {
@@ -148,31 +150,43 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private class PurchaseListener extends EmptyRequestListener<Purchase> {
         @Override
         public void onSuccess(Purchase purchase) {
-            // here you can process the loaded purchase
+            planPaided = true;
+
+            AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
+            btnAddTrainingsPlan.setText(R.string.detail_add_trainings_plan);
         }
 
         @Override
         public void onError(int response, Exception e) {
-            // handle errors here
+            Log.e(TAG, "onError: Purchase failed");
         }
     }
 
     private class InventoryCallback implements Inventory.Callback {
         @Override
         public void onLoaded(Inventory.Products products) {
-            // your code here
+            if(products.get(ProductTypes.IN_APP).isPurchased("trainingsplan_5")) {
+                planPaided = true;
+
+                AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
+                btnAddTrainingsPlan.setText(R.string.detail_add_trainings_plan);
+            }
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mCheckout.stop();
+        if(mTrainingsPlan.isPremium()) {
+            mCheckout.stop();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCheckout.onActivityResult(requestCode, resultCode, data);
+        if(mTrainingsPlan.isPremium()) {
+            mCheckout.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
