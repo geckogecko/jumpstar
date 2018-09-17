@@ -26,6 +26,7 @@ public class TrainingsPlanTest {
     final long timeStamp = System.currentTimeMillis();
     final Rating rating = new Rating(5.0);
     final long estimatedTimeSeconds = 60 * 60;
+    final boolean isPremium = true;
 
     @InjectMocks
     TrainingsPlan trainingsPlan;
@@ -69,7 +70,7 @@ public class TrainingsPlanTest {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        trainingsPlan = new TrainingsPlan(id, testName, testDescription, exercises, timeStamp, rating, estimatedTimeSeconds);
+        trainingsPlan = new TrainingsPlan(id, testName, testDescription, exercises, timeStamp, rating, estimatedTimeSeconds, isPremium);
 
         // listenerCalledTest
         MockitoAnnotations.initMocks(this);
@@ -86,6 +87,7 @@ public class TrainingsPlanTest {
         assertEquals(3, trainingsPlan.getEntryCount());
         assertEquals(id, trainingsPlan.getId());
         assertEquals(estimatedTimeSeconds, trainingsPlan.getEstimatedDurationSeconds());
+        assertEquals(isPremium, trainingsPlan.isPremium());
     }
 
     @Test

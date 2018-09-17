@@ -70,18 +70,6 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         ExercisesView exercisesView = findViewById(R.id.detail_trainings_plan_exercises);
         exercisesView.setTrainingsplan(mTrainingsPlan);
 
-        /*
-        List<TrainingsPlanEntry> exercises = mTrainingsPlan.getEntries();
-        String exercisesString = "";
-        for (TrainingsPlanEntry exercise : exercises) {
-            if(exercise.getClass().equals(TimeExercise.class) || exercise.getClass().equals(StandardExercise.class)) {
-                exercisesString += ((Exercise)exercise).getName() + ", ";
-            }
-        }
-        exercisesString = exercisesString.substring(0,exercisesString.length()-1);
-        txtExercises.setText(exercisesString);
-        */
-
         //duration
         TextView durationTextView = findViewById(R.id.detail_plan_estimated_time);
         int hours = (int) (mTrainingsPlan.getEstimatedDurationSeconds() / 3600);
@@ -103,19 +91,27 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             btnAddTrainingsPlan.setVisibility(View.GONE);
         } else {
             btnAddTrainingsPlan.setOnClickListener(this);
+
+            if(mTrainingsPlan.isPremium()) {
+                btnAddTrainingsPlan.setText(R.string.detail_buy_trainingsplan);
+            }
         }
     }
 
     @Override
     public void onClick(View v) {
-        final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
-        int[] newCurrentPlans = new int[currentPlans.length +1];
-        newCurrentPlans[0] = mTrainingsPlan.getId();
-        for (int i = 0; i < currentPlans.length; i++) {
-            newCurrentPlans[i+1] = currentPlans[i];
-        }
-        Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
+        if(mTrainingsPlan.isPremium()) {
+            //TODO open buy dialog
+        } else {
+            final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
+            int[] newCurrentPlans = new int[currentPlans.length + 1];
+            newCurrentPlans[0] = mTrainingsPlan.getId();
+            for (int i = 0; i < currentPlans.length; i++) {
+                newCurrentPlans[i + 1] = currentPlans[i];
+            }
+            Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
 
-        finish();
+            finish();
+        }
     }
 }

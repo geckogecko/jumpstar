@@ -118,7 +118,8 @@ public class Factory {
                     entries,
                     loadedTraingsPlan.getLong("creationDate"),
                     null,
-                    loadedTraingsPlan.getLong("estimatedTime"));
+                    loadedTraingsPlan.getLong("estimatedTime"),
+                    loadedTraingsPlan.getBoolean("isPremium"));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

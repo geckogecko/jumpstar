@@ -72,6 +72,14 @@ public class TrainingsPlanView extends LinearLayoutCompat implements View.OnClic
             Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
             //TODO what should we do if the image is not found?
         }
+
+        //cash_icon
+        AppCompatImageView cashIcon = findViewById(R.id.cash_icon);
+        if(mTrainingsPlan.isPremium()) {
+            cashIcon.setVisibility(View.VISIBLE);
+        } else {
+            cashIcon.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {

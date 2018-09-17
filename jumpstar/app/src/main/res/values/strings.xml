@@ -66,5 +66,6 @@
     <string name="detail_exercises_strength">Strength:</string>
     <string name="detail_exercises_stretch">Stretch:</string>
     <string name="detail_exercises_warmup">Warmup:</string>
+    <string name="detail_buy_trainingsplan">Buy plan</string>
 
 </resources>

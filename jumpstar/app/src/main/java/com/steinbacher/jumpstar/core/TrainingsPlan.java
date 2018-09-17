@@ -19,6 +19,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
     private boolean mLastCompletedEntry;
     private String mDescription;
     private long mEstimatedDurationSeconds;
+    private boolean mIsPremium = false;
 
     private ITrainingsPlanListener mTrainingsPlanListener;
     public interface ITrainingsPlanListener {
@@ -26,7 +27,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
     }
 
     public TrainingsPlan(int id, String name, String description, List<TrainingsPlanEntry> entries, long creationDate,
-                         Rating rating, long estimatedDurationSeconds) {
+                         Rating rating, long estimatedDurationSeconds, boolean isPremium) {
         mId = id;
         mName = name;
         mDescription = description;
@@ -34,6 +35,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         mCreationDate = creationDate;
         mRating = rating;
         mEstimatedDurationSeconds = estimatedDurationSeconds;
+        mIsPremium = isPremium;
 
         if (mEntries.size() > 0) {
             mCurrentEntry = entries.get(0);
@@ -161,5 +163,13 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
 
     public void setEstimatedDurationSeconds(long estimatedDurationSeconds) {
         mEstimatedDurationSeconds = estimatedDurationSeconds;
+    }
+
+    public void setIsPremium(boolean isPremium) {
+        mIsPremium = isPremium;
+    }
+
+    public boolean isPremium() {
+        return mIsPremium;
     }
 }
