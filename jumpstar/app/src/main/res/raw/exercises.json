@@ -549,6 +549,27 @@
           "description": "Return to the starting position by moving your hips forward."
         }
       ]
+    },
+    "16": {
+      "name": "Straight-legged dead lift",
+      "difficulty": 3,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "STRENGTH",
+      "time": 30,
+      "equipment": [
+        1
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Stand straight with your hips slightly back. Hold the barbell in front of your body."
+        },
+        {
+          "nr": 1,
+          "description": "Push your hips back while maintaining straight legs and a straight back. Keep the bar close to your body. Lower the bur until its over your feet without touching the floor. Do as many reps as possible in the required time."
+        }
+      ]
     }
   }
 }

@@ -35,3 +35,5 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+jumpstar/app/release/

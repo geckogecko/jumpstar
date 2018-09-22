@@ -148,6 +148,10 @@
         "exercises": [
             {
                 "type": "TIME",
+                "id": 1
+            },
+            {
+                "type": "TIME",
                 "id": 15
             },
             {
@@ -161,6 +165,10 @@
             {
                 "type": "STANDARD",
                 "id": 13
+            },
+            {
+                "type": "TIME",
+                "id": 15
             },
             {
                 "type": "STANDARD",
