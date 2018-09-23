@@ -3,7 +3,7 @@
     <color name="colorPrimary">#777272</color>
     <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">#448AFF</color>
-    <color name="colorAccentSecondary">#02a29d</color> <!-- TODO replace with the real one -->
+    <color name="colorAccentSecondary">#02a29d</color>
     <color name="background">#303030</color>
     <color name="cardBackground">#424242</color>
 
