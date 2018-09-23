@@ -59,6 +59,13 @@ public class ExerciseTest {
         assertEquals(false, exercise.isCompleted());
     }
 
+    @Test
+    public void setTest() {
+        final int newSets = 5;
+        exercise.setSets(newSets);
+        assertEquals(newSets, exercise.getSets());
+    }
+
     @Mock
     TrainingsPlanEntry.ITrainingsPlanEntryListener exerciseListener;
 

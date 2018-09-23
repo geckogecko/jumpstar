@@ -99,6 +99,12 @@ public class Factory {
                                 loaded.getInt("sets"),
                                 Exercise.Category.valueOf(loaded.getString("category")),
                                 loaded.getInt("time"));
+
+                        //overwrite params
+                        if(current.has("sets")) {
+                            ex.setSets(current.getInt("sets"));
+                        }
+
                         entries.add(ex);
                     } else {
                         Log.e(TAG, "createTraingsPlan: Type not found!");

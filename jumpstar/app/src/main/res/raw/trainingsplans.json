@@ -140,15 +140,35 @@
         ]
     },
     "5": {
-        "name": "TODO",
-        "description": "TODO",
+        "name": "Jumpstar 1",
+        "description": "Explosive jump training to bring your vertical to the next level.",
         "creationDate": 1534181774,
-        "estimatedTime": 1800,
+        "estimatedTime": 5400,
         "isPremium": true,
         "exercises": [
             {
                 "type": "TIME",
                 "id": 1
+            },
+            {
+                "type": "TIME",
+                "id": 15,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 12,
+                "sets": 1
+            },
+            {
+                "type": "TIME",
+                "id": 15,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 12,
+                "sets": 1
             },
             {
                 "type": "TIME",
@@ -176,7 +196,47 @@
             },
             {
                 "type": "TIME",
+                "id": 14,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 13,
+                "sets": 1
+            },
+            {
+                "type": "TIME",
+                "id": 14,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 13,
+                "sets": 1
+            },
+            {
+                "type": "TIME",
                 "id": 17
+            },
+            {
+                "type": "TIME",
+                "id": 15,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 14,
+                "sets": 1
+            },
+            {
+                "type": "TIME",
+                "id": 15,
+                "sets": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 14,
+                "sets": 1
             },
             {
                 "type": "TIME",

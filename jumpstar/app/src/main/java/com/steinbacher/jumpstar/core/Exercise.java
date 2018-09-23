@@ -95,6 +95,9 @@ public class Exercise extends TrainingsPlanEntry{
     public int getSets() {
         return mSets;
     }
+    public void setSets(int sets) {
+        mSets = sets;
+    }
 
     public Category getCategory() {
         return mCategory;
