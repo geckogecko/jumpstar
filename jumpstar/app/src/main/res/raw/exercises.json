@@ -570,6 +570,20 @@
           "description": "Push your hips back while maintaining straight legs and a straight back. Keep the bar close to your body. Lower the bur until its over your feet without touching the floor. Do as many reps as possible in the required time."
         }
       ]
+    },
+    "17": {
+      "name": "Hip flexor stretch",
+      "difficulty": 4,
+      "targetArea": "LEGS",
+      "sets": 1,
+      "category": "STRETCH",
+      "time": 30,
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Front knee bent slightly deeper than 90 degrees. With the opposite hand of you back leg, pull the foot toward your butt. Press your hips forward and hold the required time. Repeat on the opposite side."
+        }
+      ]
     }
   }
 }
