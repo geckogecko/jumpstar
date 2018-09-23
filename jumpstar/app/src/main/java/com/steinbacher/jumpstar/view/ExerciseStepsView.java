@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.steinbacher.jumpstar.Configuration;
 import com.steinbacher.jumpstar.ExerciseStepsSwipeListener;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.core.Exercise;
@@ -50,6 +51,9 @@ public class ExerciseStepsView extends LinearLayoutCompat{
 
         mImageView = mView.findViewById(R.id.image_view);
         mTextView = mView.findViewById(R.id.text_view);
+        if(!Configuration.getBoolean(mContext, Configuration.SHOW_EXERCISE_DESCRIPTION)) {
+            mTextView.setVisibility(View.GONE);
+        }
 
         mResources = getContext().getResources();
 

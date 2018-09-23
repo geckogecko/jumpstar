@@ -29,6 +29,11 @@
         android:title="@string/preferences_training_title"
         android:layout="@layout/preference_category">
 
+        <SwitchPreferenceCompat
+            android:key="show_exercise_description"
+            android:title="@string/preferences_show_exercise_description_title"
+            android:defaultValue="true" />
+
         <ListPreference
             android:key="preferences_trainingsPlan_preparationTime"
             android:title="@string/preferences_trainingsPlan_preparationTime"
