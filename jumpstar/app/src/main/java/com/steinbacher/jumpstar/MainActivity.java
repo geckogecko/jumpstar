@@ -46,11 +46,22 @@ public class MainActivity extends AppCompatActivity {
                     TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
                     if(mPrevItem.getItemId() == R.id.navigation_home) {
                         fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-                    } else if(mPrevItem.getItemId() == R.id.navigation_settings){
+                    } else if(mPrevItem.getItemId() == R.id.navigation_exercises || mPrevItem.getItemId() == R.id.navigation_settings){
                         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     }
                     fragmentTransaction.replace(R.id.main_content, fragmentTrai).commit();
                     mCurrentFragment = fragmentTrai;
+                    mPrevItem = item;
+                    return true;
+                case R.id.navigation_exercises:
+                    ExerciseOverviewFragment fragmentExercise = new ExerciseOverviewFragment();
+                    if(mPrevItem.getItemId() == R.id.navigation_home || mPrevItem.getItemId() == R.id.navigation_trainingsPlanChooser) {
+                        fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                    } else if(mPrevItem.getItemId() == R.id.navigation_settings){
+                        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    }
+                    fragmentTransaction.replace(R.id.main_content, fragmentExercise).commit();
+                    mCurrentFragment = fragmentExercise;
                     mPrevItem = item;
                     return true;
                 case R.id.navigation_settings:
@@ -136,6 +147,11 @@ public class MainActivity extends AppCompatActivity {
                     TrainingsPlanSelectionFragment fragmentTrai = new TrainingsPlanSelectionFragment();
                     fragmentTransaction.replace(R.id.main_content, fragmentTrai).commit();
                     mCurrentFragment = fragmentTrai;
+                    break;
+                case R.id.navigation_exercises:
+                    ExerciseOverviewFragment fragmentExercise = new ExerciseOverviewFragment();
+                    fragmentTransaction.replace(R.id.main_content, fragmentExercise).commit();
+                    mCurrentFragment = fragmentExercise;
                     break;
                 case R.id.navigation_settings:
                     PreferenceFragment fragmentPref = new PreferenceFragment();
