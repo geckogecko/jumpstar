@@ -15,6 +15,7 @@ import com.steinbacher.jumpstar.drawables.CategoryCounter;
 import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 
@@ -70,9 +71,26 @@ public class ExercisesView extends LinearLayoutCompat{
                 line.setCategory(categoryCount.getCategory());
 
                 String exercisesString = "";
-                for(Exercise exercise : categoryCount.getExercises()) {
-                    exercisesString += exercise.getName() + ", ";
+
+                //remove duplicates
+                List<Exercise> exercises = categoryCount.getExercises();
+                List<Exercise> dupsRemovedExercises = new ArrayList<>();
+                for(int i=0; i<exercises.size(); i++) {
+
+                    boolean found = false;
+                    for(Exercise exercise : dupsRemovedExercises) {
+                        if(exercise.getId() == exercises.get(i).getId()) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if(!found) {
+                        dupsRemovedExercises.add(exercises.get(i));
+                        exercisesString += exercises.get(i).getName() + ", ";
+                    }
                 }
+
                 exercisesString = exercisesString.substring(0, exercisesString.length()-2);
                 line.setExercises(exercisesString);
                 holder.addView(line);
