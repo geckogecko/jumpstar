@@ -16,7 +16,7 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +24,6 @@
         app:menu="@menu/navigation"
         android:background="@color/colorPrimaryDark"
         app:itemIconTint="@drawable/bottom_navbar"
-        app:itemTextColor="@drawable/bottom_navbar"/>
+        app:itemTextColor="@drawable/bottom_navbar" />
 
 </android.support.v7.widget.LinearLayoutCompat>

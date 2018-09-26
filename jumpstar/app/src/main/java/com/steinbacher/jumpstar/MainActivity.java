@@ -9,8 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.steinbacher.jumpstar.util.JSONHolder;
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private Context mContext;
-    private BottomNavigationView mNavigation;
+    private BottomNavigationViewEx mNavigation;
     private Fragment mCurrentFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -116,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Bottom Navigation
         mNavigation = findViewById(R.id.navigation);
+        mNavigation.enableShiftingMode(false);
+        mNavigation.enableItemShiftingMode(false);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mNavigation.setSelectedItemId(R.id.navigation_home);
 

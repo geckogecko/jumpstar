@@ -23,4 +23,5 @@ Features:
 * CountdownView | [Source](https://github.com/iwgang/CountdownView) | [License](https://github.com/iwgang/CountdownView/blob/master/LICENSE)
 * Android-Support-Preference-V7-Fix | [Source](https://github.com/Gericop/Android-Support-Preference-V7-Fix) | [License](https://github.com/Gericop/Android-Support-Preference-V7-Fix#license-notes)
 * Android-RateThisApp | [Source](https://github.com/kobakei/Android-RateThisApp) | [License](https://github.com/kobakei/Android-RateThisApp/blob/master/LICENSE)
+* BottomNavigationViewEx | [Source](https://github.com/ittianyu/BottomNavigationViewEx) | [License](https://github.com/ittianyu/BottomNavigationViewEx)
 
