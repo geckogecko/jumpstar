@@ -132,6 +132,23 @@ public class Factory {
         }
     }
 
+    public static List<Exercise> getAllExercises() {
+        JSONObject exeObj = JSONHolder.getInstance().getExercises();
+
+        List<Exercise> exercises = new ArrayList<>();
+
+        try {
+            JSONArray standardEx = exeObj.getJSONArray("STANDARD");
+            for (int i = 0; i < exeObj.length(); i++) {
+                JSONObject jsonObject = exeObj.getJSONObject(Integer.toString(i));
+                
+                );
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, "getAllExercises: ", e);
+        }
+    }
+
     public static List<TrainingsPlan> getAllTrainingsPlans() {
         JSONObject trainingsPlansJSON = JSONHolder.getInstance().getTrainingsPlans();
 
