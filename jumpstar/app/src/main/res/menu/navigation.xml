@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_exercises"
         android:icon="@drawable/baseline_list_black_24"
-        android:title="@string/title_trainingsPlans" />
+        android:title="@string/title_exercises" />
 
     <item
         android:id="@+id/navigation_settings"
