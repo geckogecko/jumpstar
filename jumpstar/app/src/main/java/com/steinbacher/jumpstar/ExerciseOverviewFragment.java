@@ -1,14 +1,21 @@
 package com.steinbacher.jumpstar;
 
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -30,8 +37,6 @@ public class ExerciseOverviewFragment extends Fragment {
     private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
     private FloatingActionButton mAddNewEcerciseButton;
-    private ListView mListView;
-    private ExerciseAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,30 +49,33 @@ public class ExerciseOverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
-        mAddNewEcerciseButton = mView.findViewById(R.id.create_new_trainingsplan);
-        mAddNewEcerciseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=0; i<mAdapter.getCount(); i++) {
-                    ((ExerciseOverviewLine)mListView.getChildAt(i)).showCheckBox(true);
-                }
-            }
-        });
-        new ExercisesLoader().execute();
+
+        ExercisePageAdapter pageAdapter = new ExercisePageAdapter(getFragmentManager());
+        ViewPager viewPager = mView.findViewById(R.id.pager);
+        viewPager.setAdapter(pageAdapter);
     }
 
-    private class ExercisesLoader extends AsyncTask<Void, Void, List<Exercise>> {
+    public class ExercisePageAdapter extends FragmentStatePagerAdapter {
 
-        @Override
-        protected List<Exercise> doInBackground(Void... params) {
-            return Factory.getAllExercises();
+        public ExercisePageAdapter(FragmentManager fm) {
+            super(fm);
         }
 
         @Override
-        protected void onPostExecute(List<Exercise> result) {
-            mListView = mView.findViewById(R.id.list);
-            mAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_overview, result);
-            mListView.setAdapter(mAdapter);
+        public Fragment getItem(int position) {
+            ExercisePageFragment fragment = new ExercisePageFragment();
+            return fragment;
         }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "test";
+        }
+
     }
 }
