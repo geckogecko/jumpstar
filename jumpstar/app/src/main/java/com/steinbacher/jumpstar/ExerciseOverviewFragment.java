@@ -4,9 +4,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.steinbacher.jumpstar.core.Equipment;
@@ -22,27 +26,42 @@ import java.util.List;
  */
 
 public class ExerciseOverviewFragment extends Fragment {
+    private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
+    private FloatingActionButton mAddNewEcerciseButton;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_exercise_overview, container, false);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
+        mAddNewEcerciseButton = mView.findViewById(R.id.create_new_trainingsplan);
+        mAddNewEcerciseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+        new ExercisesLoader().execute();
     }
 
     private class ExercisesLoader extends AsyncTask<Void, Void, List<Exercise>> {
 
         @Override
         protected List<Exercise> doInBackground(Void... params) {
-
-            return Factory.;
+            return Factory.getAllExercises();
         }
 
         @Override
-        protected void onPostExecute(List<TrainingsPlan> result) {
-
-            ListView listView = mView.findViewById(R.id.selection_list_view);
-            TrainingsplanAdapter trainingsPlanAdapter = new TrainingsplanAdapter(getContext(), R.layout.fragment_exercise_overview, result);
+        protected void onPostExecute(List<Exercise> result) {
+            ListView listView = mView.findViewById(R.id.list);
+            ExerciseAdapter trainingsPlanAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_overview, result);
             listView.setAdapter(trainingsPlanAdapter);
         }
     }
