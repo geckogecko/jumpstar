@@ -1,6 +1,7 @@
 package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
@@ -17,6 +18,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
     private Context mContext;
     private View mView;
     private Exercise mExercise;
+    private AppCompatCheckBox mCheckBox;
 
     private AppCompatTextView mName;
 
@@ -40,11 +42,20 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
         mView = inflate(mContext, R.layout.view_exercise_overview_line, this);
 
         mName = mView.findViewById(R.id.txt_exercise_name);
+        mCheckBox = mView.findViewById(R.id.exercise_selected_box);
     }
 
     public void setExercise(Exercise exercise) {
         mExercise = exercise;
 
         mName.setText(mExercise.getName());
+    }
+
+    public void showCheckBox(boolean show) {
+        if(show) {
+            mCheckBox.setVisibility(VISIBLE);
+        } else {
+            mCheckBox.setVisibility(GONE);
+        }
     }
 }

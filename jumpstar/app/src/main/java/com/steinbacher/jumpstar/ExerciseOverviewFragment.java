@@ -17,6 +17,7 @@ import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.util.Factory;
+import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class ExerciseOverviewFragment extends Fragment {
     private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
     private FloatingActionButton mAddNewEcerciseButton;
+    private ListView mListView;
+    private ExerciseAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +48,9 @@ public class ExerciseOverviewFragment extends Fragment {
         mAddNewEcerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                for(int i=0; i<mAdapter.getCount(); i++) {
+                    ((ExerciseOverviewLine)mListView.getChildAt(i)).showCheckBox(true);
+                }
             }
         });
         new ExercisesLoader().execute();
@@ -60,9 +65,9 @@ public class ExerciseOverviewFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Exercise> result) {
-            ListView listView = mView.findViewById(R.id.list);
-            ExerciseAdapter trainingsPlanAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_overview, result);
-            listView.setAdapter(trainingsPlanAdapter);
+            mListView = mView.findViewById(R.id.list);
+            mAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_overview, result);
+            mListView.setAdapter(mAdapter);
         }
     }
 }
