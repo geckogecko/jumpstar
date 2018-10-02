@@ -15,6 +15,7 @@ import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,15 +39,25 @@ public class ExercisePageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
-
-        new ExercisesLoader().execute();
     }
 
-    private class ExercisesLoader extends AsyncTask<Void, Void, List<Exercise>> {
+    public void init(Exercise.Category category) {
+        new ExercisesLoader().execute(category);
+    }
 
+    private class ExercisesLoader extends AsyncTask<Exercise.Category, Void, List<Exercise>> {
         @Override
-        protected List<Exercise> doInBackground(Void... params) {
-            return Factory.getAllExercises();
+        protected List<Exercise> doInBackground(Exercise.Category... cats) {
+            List<Exercise> allExercises = Factory.getAllExercises();
+            List<Exercise> filteredExercises = new ArrayList<>();
+
+            for(Exercise exercise : allExercises) {
+                if(exercise.getCategory().equals(cats[0])) {
+                    filteredExercises.add(exercise);
+                }
+            }
+
+            return filteredExercises;
         }
 
         @Override

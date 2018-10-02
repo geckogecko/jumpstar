@@ -64,6 +64,13 @@ public class ExerciseOverviewFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             ExercisePageFragment fragment = new ExercisePageFragment();
+            switch (position) {
+                case 0: fragment.init(Exercise.Category.STRETCH); break;
+                case 1: fragment.init(Exercise.Category.STRENGTH); break;
+                case 2: fragment.init(Exercise.Category.PLYOMETRIC); break;
+                case 3: fragment.init(Exercise.Category.STRETCH); break;
+            }
+
             return fragment;
         }
 
@@ -74,7 +81,13 @@ public class ExerciseOverviewFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "test";
+            switch (position) {
+                case 0: return getString(R.string.detail_exercises_warmup).replace(":", "");
+                case 1: return getString(R.string.detail_exercises_strength).replace(":", "");
+                case 2: return getString(R.string.detail_exercises_plyometric).replace(":", "");
+                case 3: return getString(R.string.detail_exercises_stretch).replace(":", "");
+                default: return "";
+            }
         }
 
     }
