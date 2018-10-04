@@ -89,6 +89,5 @@ public class ExerciseOverviewFragment extends Fragment {
                 default: return "";
             }
         }
-
     }
 }

@@ -30,6 +30,8 @@ public class ExerciseDetailActivity extends AppCompatActivity{
         final int exerciseId = getIntent().getIntExtra(EXERCISE_ID, -1);
         final Exercise.Type exerciseType = Exercise.Type.valueOf(getIntent().getStringExtra(EXERCISE_TYPE));
         final Exercise exercise = Factory.getExercise(exerciseType, exerciseId);
+        Log.i(TAG, "onCreate: " + exerciseId);
+        Log.i(TAG, "onCreate: " + exerciseType);
 
         if(exerciseType == Exercise.Type.STANDARD) {
             StandardExerciseFragment fragment = new StandardExerciseFragment();
