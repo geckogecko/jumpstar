@@ -24,25 +24,25 @@ public class ExerciseDetailActivity extends AppCompatActivity{
     public static final String EXERCISE_TYPE = "exercise_type";
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_exercise_detail);
 
         final int exerciseId = getIntent().getIntExtra(EXERCISE_ID, -1);
         final Exercise.Type exerciseType = Exercise.Type.valueOf(getIntent().getStringExtra(EXERCISE_TYPE));
         final Exercise exercise = Factory.getExercise(exerciseType, exerciseId);
-        Log.i(TAG, "onCreate: " + exerciseId);
-        Log.i(TAG, "onCreate: " + exerciseType);
 
         if(exerciseType == Exercise.Type.STANDARD) {
             StandardExerciseFragment fragment = new StandardExerciseFragment();
             fragment.setExercise((StandardExercise) exercise);
-            getSupportFragmentManager().beginTransaction().add(R.id.main_content, fragment)
+            getSupportFragmentManager().beginTransaction().add(R.id.content, fragment)
                     .commit();
 
         } else if(exerciseType == Exercise.Type.TIME) {
             TimeExerciseFragment fragment = new TimeExerciseFragment();
             fragment.setExercise((TimeExercise) exercise);
-            getSupportFragmentManager().beginTransaction().add(R.id.main_content, fragment)
+            getSupportFragmentManager().beginTransaction().add(R.id.content, fragment)
                     .commit();
         } else {
             Log.e(TAG, "Error: unknown exercise type");

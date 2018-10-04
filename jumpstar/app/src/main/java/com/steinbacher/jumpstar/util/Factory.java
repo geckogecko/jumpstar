@@ -121,7 +121,9 @@ public class Factory {
 
     public static Exercise getExercise(Exercise.Type type, int exerciseId) {
         try {
-            return buildExercise(JSONHolder.getInstance().getExercises().getJSONObject(Integer.toString(exerciseId)), type, exerciseId);
+            JSONObject exercises = JSONHolder.getInstance().getExercises().getJSONObject(type.toString().toUpperCase());
+            JSONObject object = exercises.getJSONObject(Integer.toString(exerciseId));
+            return buildExercise(object, type, exerciseId);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
