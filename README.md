@@ -17,6 +17,9 @@ Features:
 - New workouts weekly
 - No advertisements
 
+## Community
+* Jumpstar subreddit - Tipps, Discussions, Promos,.. [Link](https://www.reddit.com/r/Jumpstar/) 
+
 ## Licenses
 
 * MPAndroidChart | [Source](https://github.com/PhilJay/MPAndroidChart) | [License](https://github.com/PhilJay/MPAndroidChart#license-page_facing_up)
