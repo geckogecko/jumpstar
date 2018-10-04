@@ -119,6 +119,15 @@ public class Factory {
         return trainingsPlans;
     }
 
+    public static Exercise getExercise(Exercise.Type type, int exerciseId) {
+        try {
+            return buildExercise(JSONHolder.getInstance().getExercises().getJSONObject(Integer.toString(exerciseId)), type, exerciseId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private static Exercise buildExercise(JSONObject exerciseJSON, Exercise.Type type, int exerciseId) throws JSONException {
         JSONHolder holder = JSONHolder.getInstance();
         Exercise ex = null;

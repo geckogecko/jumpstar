@@ -1,6 +1,8 @@
 package com.steinbacher.jumpstar.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
@@ -10,6 +12,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.steinbacher.jumpstar.ExerciseDetailActivity;
+import com.steinbacher.jumpstar.MainActivity;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.ExerciseStep;
@@ -69,5 +73,9 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
             Log.e(TAG, "description image for step: " + imageName + " not found");
             //TODO what should we do if the image is not found?
         }
+    }
+
+    public Exercise getExercise() {
+        return mExercise;
     }
 }

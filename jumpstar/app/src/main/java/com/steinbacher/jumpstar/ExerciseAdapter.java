@@ -1,6 +1,7 @@
 package com.steinbacher.jumpstar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class ExerciseAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Exercise exercise = (Exercise) getItem(position);
+        final Exercise exercise = (Exercise) getItem(position);
 
         if (convertView == null) {
             convertView = new ExerciseOverviewLine(getContext());
@@ -32,6 +33,15 @@ public class ExerciseAdapter extends ArrayAdapter {
 
         ExerciseOverviewLine view = (ExerciseOverviewLine) convertView;
         view.setExercise(exercise);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ExerciseDetailActivity.class);
+                intent.putExtra(ExerciseDetailActivity.EXERCISE_ID, exercise.getId());
+                intent.putExtra(ExerciseDetailActivity.EXERCISE_TYPE, exercise.getType().toString());
+                v.getContext().startActivity(intent);
+            }
+        });
 
         return view;
     }
