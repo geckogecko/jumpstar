@@ -18,7 +18,7 @@ Features:
 - No advertisements
 
 ## Community
-* Jumpstar subreddit - Tipps, Discussions, Promos,.. [Link](https://www.reddit.com/r/Jumpstar/) 
+* [Jumpstar subreddit](https://www.reddit.com/r/Jumpstar/)  - Tipps, Discussions, Promos,.. 
 
 ## Licenses
 
