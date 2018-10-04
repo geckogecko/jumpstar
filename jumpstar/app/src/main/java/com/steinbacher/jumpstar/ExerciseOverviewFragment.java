@@ -65,7 +65,7 @@ public class ExerciseOverviewFragment extends Fragment {
         public Fragment getItem(int position) {
             ExercisePageFragment fragment = new ExercisePageFragment();
             switch (position) {
-                case 0: fragment.init(Exercise.Category.STRETCH); break;
+                case 0: fragment.init(Exercise.Category.WARMUP); break;
                 case 1: fragment.init(Exercise.Category.STRENGTH); break;
                 case 2: fragment.init(Exercise.Category.PLYOMETRIC); break;
                 case 3: fragment.init(Exercise.Category.STRETCH); break;
