@@ -53,14 +53,14 @@ public class TrainingsPlanSelectionFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 4;
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0: return "1";
-                case 1: return "2";
+                case 0: return getString(R.string.plan_chooser_predefined_plans);
+                case 1: return getString(R.string.plan_chooser_own_plans);
                 default: return "";
             }
         }

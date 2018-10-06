@@ -70,4 +70,11 @@
     <string name="detail_exercises_warmup">Warmup:</string>
     <string name="detail_buy_trainingsplan">Buy plan</string>
 
+    <string name="plan_chooser_predefined_plans">Predefined plans</string>
+    <string name="plan_chooser_own_plans">Own plans</string>
+
+
+    <!-- Exercise Overview -->
+    <string name="create_new_plan_input_hint">New plan name</string>
+
 </resources>

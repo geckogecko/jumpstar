@@ -13,7 +13,7 @@ public class VerticalHeightWriter {
     private SQLiteDatabase mDb;
 
     public VerticalHeightWriter(Context context) {
-        mDb = new VerticalHeightDbHelper(context).getWritableDatabase();
+        mDb = new DbHelper(context).getWritableDatabase();
     }
 
     public void add(long timestamp, double verticalHeight) {
@@ -25,6 +25,6 @@ public class VerticalHeightWriter {
     }
 
     public void drop() {
-        mDb.execSQL(VerticalHeightDbHelper.SQL_DROP_VERTICAL_HEIGHT);
+        mDb.execSQL(DbHelper.SQL_DROP_VERTICAL_HEIGHT);
     }
 }

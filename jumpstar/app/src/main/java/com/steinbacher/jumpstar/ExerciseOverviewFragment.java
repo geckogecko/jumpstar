@@ -2,6 +2,7 @@ package com.steinbacher.jumpstar;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +12,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +29,8 @@ import android.widget.ListView;
 import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
+import com.steinbacher.jumpstar.db.PlanWriter;
+import com.steinbacher.jumpstar.db.VerticalHeightWriter;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 
@@ -36,7 +44,7 @@ import java.util.List;
 public class ExerciseOverviewFragment extends Fragment {
     private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
-    private FloatingActionButton mAddNewEcerciseButton;
+    private FloatingActionButton mCreateNewPlanButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,14 @@ public class ExerciseOverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
+
+        mCreateNewPlanButton = view.findViewById(R.id.create_new_trainingsplan);
+        mCreateNewPlanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPlanDialog();
+            }
+        });
 
         ExercisePageAdapter pageAdapter = new ExercisePageAdapter(getFragmentManager());
         ViewPager viewPager = mView.findViewById(R.id.pager);
@@ -89,5 +105,46 @@ public class ExerciseOverviewFragment extends Fragment {
                 default: return "";
             }
         }
+    }
+
+    private void createPlanDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
+        builder.setTitle(getContext().getString(R.string.create_new_plan_input_hint));
+
+        final LinearLayoutCompat layoutCompat = new LinearLayoutCompat(getContext());
+        builder.setView(layoutCompat);
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                AppCompatEditText textView = layoutCompat.findViewById(R.id.edit_text);
+                final String inputString = textView.getText().toString();
+                if(inputString.isEmpty()) {
+                    dialog.cancel();
+                } else {
+                    createNewPlan(inputString);
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+
+        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext, layoutCompat);
+        final AppCompatEditText input = view.findViewById(R.id.edit_text);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        dialog.show();
+    }
+
+    private void createNewPlan(String planName) {
+        Log.i(TAG, "createNewPlan: ");
+        PlanWriter writer = new PlanWriter(getContext());
+        writer.add(planName, new ArrayList<Exercise>());
     }
 }

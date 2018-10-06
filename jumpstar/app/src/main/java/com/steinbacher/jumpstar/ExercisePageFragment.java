@@ -1,22 +1,30 @@
 package com.steinbacher.jumpstar;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.steinbacher.jumpstar.core.Exercise;
+import com.steinbacher.jumpstar.db.VerticalHeightWriter;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Georg Steinbacher on 27.09.18.
