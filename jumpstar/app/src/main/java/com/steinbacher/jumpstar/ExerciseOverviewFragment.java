@@ -25,6 +25,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.Exercise;
@@ -45,6 +46,9 @@ public class ExerciseOverviewFragment extends Fragment {
     private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
     private FloatingActionButton mCreateNewPlanButton;
+    private ExercisePageAdapter mPageAdapter;
+
+    private boolean mShowAddExerciseButton = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,12 +70,13 @@ public class ExerciseOverviewFragment extends Fragment {
             }
         });
 
-        ExercisePageAdapter pageAdapter = new ExercisePageAdapter(getFragmentManager());
+        mPageAdapter = new ExercisePageAdapter(getFragmentManager());
         ViewPager viewPager = mView.findViewById(R.id.pager);
-        viewPager.setAdapter(pageAdapter);
+        viewPager.setAdapter(mPageAdapter);
     }
 
     public class ExercisePageAdapter extends FragmentStatePagerAdapter {
+        private Fragment mCurrentFragment;
 
         public ExercisePageAdapter(FragmentManager fm) {
             super(fm);
@@ -79,15 +84,27 @@ public class ExerciseOverviewFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            ExercisePageFragment fragment = new ExercisePageFragment();
+            ExercisePageFragment page = new ExercisePageFragment();
             switch (position) {
-                case 0: fragment.init(Exercise.Category.WARMUP); break;
-                case 1: fragment.init(Exercise.Category.STRENGTH); break;
-                case 2: fragment.init(Exercise.Category.PLYOMETRIC); break;
-                case 3: fragment.init(Exercise.Category.STRETCH); break;
+                case 0: page.init(Exercise.Category.WARMUP, mShowAddExerciseButton); break;
+                case 1: page.init(Exercise.Category.STRENGTH, mShowAddExerciseButton); break;
+                case 2: page.init(Exercise.Category.PLYOMETRIC, mShowAddExerciseButton); break;
+                case 3: page.init(Exercise.Category.STRETCH, mShowAddExerciseButton); break;
             }
 
-            return fragment;
+            return page;
+        }
+
+        public Fragment getCurrentFragment() {
+            return mCurrentFragment;
+        }
+
+        @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            if (getCurrentFragment() != object) {
+                mCurrentFragment = ((Fragment) object);
+            }
+            super.setPrimaryItem(container, position, object);
         }
 
         @Override
@@ -104,6 +121,12 @@ public class ExerciseOverviewFragment extends Fragment {
                 case 3: return getString(R.string.detail_exercises_stretch).replace(":", "");
                 default: return "";
             }
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            // POSITION_NONE makes it possible to reload the PagerAdapter
+            return POSITION_NONE;
         }
     }
 
@@ -144,7 +167,16 @@ public class ExerciseOverviewFragment extends Fragment {
 
     private void createNewPlan(String planName) {
         Log.i(TAG, "createNewPlan: ");
+
+        mShowAddExerciseButton = true;
+        mPageAdapter.notifyDataSetChanged();
+        //((ExercisePageFragment) mPageAdapter.getCurrentFragment()).showAddExerciseButton(true);
+
+        //Toast.makeText(getContext(), "CLick on a exercise to add", Toast.LENGTH_SHORT).show(); //TODO String
+
+        /*
         PlanWriter writer = new PlanWriter(getContext());
         writer.add(planName, new ArrayList<Exercise>());
+        */
     }
 }

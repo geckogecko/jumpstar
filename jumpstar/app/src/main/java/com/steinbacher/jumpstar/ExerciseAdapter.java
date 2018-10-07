@@ -19,8 +19,12 @@ import java.util.List;
  */
 
 public class ExerciseAdapter extends ArrayAdapter {
-    public ExerciseAdapter(@NonNull Context context, int resource, @NonNull List objects) {
+    private boolean mShowAddExerciseButton = false;
+
+    public ExerciseAdapter(@NonNull Context context, int resource, @NonNull List objects, boolean showAddExerciseButton) {
         super(context, resource, objects);
+
+        mShowAddExerciseButton = showAddExerciseButton;
     }
 
     @Override
@@ -33,6 +37,7 @@ public class ExerciseAdapter extends ArrayAdapter {
 
         ExerciseOverviewLine view = (ExerciseOverviewLine) convertView;
         view.setExercise(exercise);
+        view.showAddExerciseButton(mShowAddExerciseButton);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

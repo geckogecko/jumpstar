@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -31,6 +32,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
 
     private AppCompatTextView mName;
     private AppCompatImageView mImage;
+    private AppCompatButton mAddButton;
 
     public ExerciseOverviewLine(Context context) {
         super(context);
@@ -53,6 +55,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
 
         mName = mView.findViewById(R.id.txt_exercise_name);
         mImage = mView.findViewById(R.id.image_view);
+        mAddButton = mView.findViewById(R.id.add_button);
     }
 
     public void setExercise(Exercise exercise) {
@@ -77,5 +80,13 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
 
     public Exercise getExercise() {
         return mExercise;
+    }
+
+    public void showAddExerciseButton(boolean show) {
+        if(show) {
+            mAddButton.setVisibility(View.VISIBLE);
+        } else {
+            mAddButton.setVisibility(View.INVISIBLE);
+        }
     }
 }

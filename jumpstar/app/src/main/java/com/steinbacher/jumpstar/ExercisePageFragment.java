@@ -34,6 +34,7 @@ public class ExercisePageFragment extends Fragment {
     private View mView;
     private ListView mListView;
     private ExerciseAdapter mAdapter;
+    private boolean mShowAddExerciseButton = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,9 +48,11 @@ public class ExercisePageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
+        mListView = mView.findViewById(R.id.list);
     }
 
-    public void init(Exercise.Category category) {
+    public void init(Exercise.Category category, boolean showAddExerciseButton) {
+        mShowAddExerciseButton = showAddExerciseButton;
         new ExercisesLoader().execute(category);
     }
 
@@ -70,8 +73,7 @@ public class ExercisePageFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Exercise> result) {
-            mListView = mView.findViewById(R.id.list);
-            mAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_page, result);
+            mAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_page, result, mShowAddExerciseButton);
             mListView.setAdapter(mAdapter);
         }
     }
