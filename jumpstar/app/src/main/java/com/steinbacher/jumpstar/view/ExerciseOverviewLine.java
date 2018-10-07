@@ -3,9 +3,11 @@ package com.steinbacher.jumpstar.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -32,7 +34,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
 
     private AppCompatTextView mName;
     private AppCompatImageView mImage;
-    private AppCompatButton mAddButton;
+    private AppCompatImageButton mAddButton;
 
     public ExerciseOverviewLine(Context context) {
         super(context);
@@ -56,6 +58,18 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
         mName = mView.findViewById(R.id.txt_exercise_name);
         mImage = mView.findViewById(R.id.image_view);
         mAddButton = mView.findViewById(R.id.add_button);
+        mAddButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(mView, mExercise.getName(), Snackbar.LENGTH_LONG)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        }).show();
+            }
+        });
     }
 
     public void setExercise(Exercise exercise) {

@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -47,6 +48,7 @@ public class ExerciseOverviewFragment extends Fragment {
     private View mView;
     private FloatingActionButton mCreateNewPlanButton;
     private ExercisePageAdapter mPageAdapter;
+    private AppCompatButton mSaveExerciseButton;
 
     private boolean mShowAddExerciseButton = false;
 
@@ -73,6 +75,8 @@ public class ExerciseOverviewFragment extends Fragment {
         mPageAdapter = new ExercisePageAdapter(getFragmentManager());
         ViewPager viewPager = mView.findViewById(R.id.pager);
         viewPager.setAdapter(mPageAdapter);
+
+        mSaveExerciseButton = view.findViewById(R.id.save_exercise_button);
     }
 
     public class ExercisePageAdapter extends FragmentStatePagerAdapter {
@@ -170,9 +174,9 @@ public class ExerciseOverviewFragment extends Fragment {
 
         mShowAddExerciseButton = true;
         mPageAdapter.notifyDataSetChanged();
-        //((ExercisePageFragment) mPageAdapter.getCurrentFragment()).showAddExerciseButton(true);
 
-        //Toast.makeText(getContext(), "CLick on a exercise to add", Toast.LENGTH_SHORT).show(); //TODO String
+        mCreateNewPlanButton.setVisibility(View.GONE);
+        mSaveExerciseButton.setVisibility(View.VISIBLE);
 
         /*
         PlanWriter writer = new PlanWriter(getContext());
