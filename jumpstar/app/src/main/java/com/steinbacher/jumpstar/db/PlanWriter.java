@@ -19,7 +19,7 @@ public class PlanWriter {
         mDb = new DbHelper(context).getWritableDatabase();
     }
 
-    public void add(String name, List<Exercise> exercises) {
+    public void add(String name, String description, List<Exercise> exercises) {
 
         String exercisesString = "";
         for(Exercise exercise : exercises) {
@@ -37,6 +37,7 @@ public class PlanWriter {
         value.put(PlanContract.PlanContractEntry.COLUMN_NAME_DATE, 0); //TODO
         value.put(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE, name);
         value.put(PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES, exercisesString);
+        value.put(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION, description);
 
         mDb.insert(PlanContract.PlanContractEntry.TABLE_NAME, null, value);
     }

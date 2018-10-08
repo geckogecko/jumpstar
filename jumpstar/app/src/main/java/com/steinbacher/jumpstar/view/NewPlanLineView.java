@@ -17,6 +17,7 @@ public class NewPlanLineView extends LinearLayoutCompat{
     private Context mContext;
     private AppCompatTextView mPlanName;
     private AppCompatButton mSaveButton;
+    private AppCompatButton mSaveCancel;
 
     public NewPlanLineView(Context context) {
         super(context);
@@ -34,13 +35,18 @@ public class NewPlanLineView extends LinearLayoutCompat{
 
         mPlanName = findViewById(R.id.plan_name);
         mSaveButton = findViewById(R.id.plan_save_button);
+        mSaveCancel = findViewById(R.id.plan_cancel_button);
     }
 
     public void setPlanName(String planName) {
-        mPlanName.setText(planName);
+        mPlanName.setText(getContext().getString(R.string.create_new_plan_name, planName));
     }
 
     public void setOnSaveButtonClickListener(View.OnClickListener listener) {
         mSaveButton.setOnClickListener(listener);
+    }
+
+    public void setOnCancelButtonClickListener(View.OnClickListener listener) {
+        mSaveCancel.setOnClickListener(listener);
     }
 }

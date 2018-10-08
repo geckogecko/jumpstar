@@ -80,6 +80,7 @@ public class Factory {
      */
     public static TrainingsPlan createTraingsPlan(Cursor cursor) {
         final String name = cursor.getString(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE));
+        final String description = cursor.getString(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION));
         final int id = cursor.getInt(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_ID));
 
         //get the exercises
@@ -102,7 +103,7 @@ public class Factory {
             }
         }
 
-        return new TrainingsPlan(id, name, "", exercisesList,
+        return new TrainingsPlan(id, name, description, exercisesList,
                 0, null, -1, false, true);
     }
 

@@ -77,6 +77,15 @@ public class ExercisePageFragment extends Fragment implements ExerciseOverviewLi
         }
     }
 
+    @Override
+    public void onExerciseUndoClicked(Exercise undoExercise) {
+        if(mListener != null) {
+            mListener.onExerciseUndoClicked(undoExercise);
+        } else {
+            Log.d(TAG, "onExerciseUndoClicked: no listener set");
+        }
+    }
+
     private class ExercisesLoader extends AsyncTask<Exercise.Category, Void, List<Exercise>> {
         @Override
         protected List<Exercise> doInBackground(Exercise.Category... cats) {

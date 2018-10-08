@@ -75,8 +75,15 @@
 
 
     <!-- Exercise Overview -->
-    <string name="create_new_plan_input_hint">New plan name</string>
+    <string name="create_new_plan_dialog_title">New plan</string>
+    <string name="create_new_plan_dialog_missing_name">Please enter a name for your plan</string>
+    <string name="create_new_plan_name_hint">Plan name</string>
+    <string name="create_new_plan_name">Plan: %1$s</string>
+    <string name="create_new_plan_exercise_added">Exercise: %1$s added!</string>
+    <string name="create_new_plan_description_hint">Plan description</string>
     <string name="create_new_plan_save">Save</string>
+    <string name="create_new_plan_cancel">Cancel</string>
     <string name="create_new_plan_undo">Undo</string>
+    <string name="create_new_plan_plan_created">Plan created!</string>
 
 </resources>

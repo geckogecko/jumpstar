@@ -25,6 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
                     PlanContract.PlanContractEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_DATE + " INTEGER," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE + " TEXT," +
+                    PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION + " TEXT," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES + " TEXT)";
 
     public DbHelper(Context context) {

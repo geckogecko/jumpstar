@@ -68,4 +68,13 @@ public class ExerciseAdapter extends ArrayAdapter implements ExerciseOverviewLin
             Log.d(TAG, "onAddExerciseClicked: no listener set");
         }
     }
+
+    @Override
+    public void onExerciseUndoClicked(Exercise undoExercise) {
+        if(mListener != null) {
+            mListener.onExerciseUndoClicked(undoExercise);
+        } else {
+            Log.d(TAG, "onExerciseUndoClicked: no listener set");
+        }
+    }
 }

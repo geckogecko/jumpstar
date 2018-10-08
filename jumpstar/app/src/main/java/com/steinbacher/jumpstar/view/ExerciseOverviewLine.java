@@ -13,7 +13,9 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.steinbacher.jumpstar.ExerciseDetailActivity;
 import com.steinbacher.jumpstar.MainActivity;
@@ -41,6 +43,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
     private IExerciseOverviewLineListener mListener;
     public interface IExerciseOverviewLineListener {
         void onAddExerciseClicked(Exercise clickedExercise);
+        void onExerciseUndoClicked(Exercise undoExercise);
     }
 
     public void setExerciseOverviewLineListener(IExerciseOverviewLineListener listener) {
@@ -74,13 +77,17 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
             public void onClick(View view) {
                 if(mListener != null) {
                     mListener.onAddExerciseClicked(mExercise);
-                    Snackbar.make(mView, mExercise.getName(), Snackbar.LENGTH_LONG)
+                    Snackbar snackbar = Snackbar.make(mView, mContext.getString(R.string.create_new_plan_exercise_added, mExercise.getName()),
+                            Snackbar.LENGTH_LONG)
                             .setAction(R.string.create_new_plan_undo, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    if(mListener != null) {
+                                        mListener.onExerciseUndoClicked(mExercise);
+                                    }
                                 }
-                            }).show();
+                            });
+                    snackbar.show();
                 } else {
                     Log.d(TAG, "onClick: no listener added");
                 }

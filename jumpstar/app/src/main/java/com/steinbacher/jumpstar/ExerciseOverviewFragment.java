@@ -18,6 +18,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.db.PlanWriter;
@@ -76,9 +77,16 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
         mClickedExercises.add(clickedExercise);
     }
 
+    @Override
+    public void onExerciseUndoClicked(Exercise undoExercise) {
+        if(mClickedExercises.get(mClickedExercises.size()-1).getName().equals(undoExercise.getName())) {
+            mClickedExercises.remove(mClickedExercises.size()-1);
+        }
+    }
+
     private void createPlanDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
-        builder.setTitle(getContext().getString(R.string.create_new_plan_input_hint));
+        builder.setTitle(getContext().getString(R.string.create_new_plan_dialog_title));
 
         final LinearLayoutCompat layoutCompat = new LinearLayoutCompat(getContext());
         builder.setView(layoutCompat);
@@ -86,12 +94,13 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                AppCompatEditText textView = layoutCompat.findViewById(R.id.edit_text);
-                final String inputString = textView.getText().toString();
+                AppCompatEditText planName = layoutCompat.findViewById(R.id.edit_text);
+                AppCompatEditText planDescription = layoutCompat.findViewById(R.id.edit_text_description);
+                final String inputString = planName.getText().toString();
                 if(inputString.isEmpty()) {
-                    dialog.cancel();
+                    Toast.makeText(getContext(), getString(R.string.create_new_plan_dialog_missing_name), Toast.LENGTH_SHORT).show();
                 } else {
-                    startCreateNewPlanMode(inputString);
+                    startCreateNewPlanMode(inputString, planDescription.getText().toString());
                 }
             }
         });
@@ -104,28 +113,65 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
 
         AlertDialog dialog = builder.create();
 
-        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext, layoutCompat);
-        final AppCompatEditText input = view.findViewById(R.id.edit_text);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext_rich, layoutCompat);
+        final AppCompatEditText plan_name = view.findViewById(R.id.edit_text);
+        plan_name.setInputType(InputType.TYPE_CLASS_TEXT);
+        plan_name.setHint(R.string.create_new_plan_name_hint);
+
+        final AppCompatEditText plan_description = view.findViewById(R.id.edit_text_description);
+        plan_description.setInputType(InputType.TYPE_CLASS_TEXT);
+        plan_description.setHint(R.string.create_new_plan_description_hint);
 
         dialog.show();
     }
 
-    private void startCreateNewPlanMode(final String planName) {
-        mShowAddExerciseButton = true;
-        mPageAdapter.notifyDataSetChanged();
-
-        mCreateNewPlanButton.setVisibility(View.GONE);
-
-        mNewPlanLineView.setVisibility(View.VISIBLE);
+    private void startCreateNewPlanMode(final String planName, final String planDescription) {
+        createPlanModeOn(true);
         mNewPlanLineView.setPlanName(planName);
         mNewPlanLineView.setOnSaveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PlanWriter writer = new PlanWriter(getContext());
-                writer.add(planName, mClickedExercises);
+
+                String description = planDescription;
+                if(description == null) {
+                    description = "";
+                }
+
+                writer.add(planName, description, mClickedExercises);
+
+                //reset the state
+                createPlanModeOn(false);
+
+                Toast.makeText(getContext(), getString(R.string.create_new_plan_plan_created), Toast.LENGTH_SHORT).show();
             }
         });
+        mNewPlanLineView.setOnCancelButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mClickedExercises = new ArrayList<>();
+
+                //reset the state
+                createPlanModeOn(false);
+            }
+        });
+    }
+
+    private void createPlanModeOn(boolean on) {
+        if(on) {
+            mShowAddExerciseButton = true;
+            mPageAdapter.notifyDataSetChanged();
+
+            mCreateNewPlanButton.setVisibility(View.INVISIBLE);
+
+            mNewPlanLineView.setVisibility(View.VISIBLE);
+        } else {
+            mShowAddExerciseButton = false;
+            mPageAdapter.notifyDataSetChanged();
+
+            mCreateNewPlanButton.setVisibility(View.VISIBLE);
+            mNewPlanLineView.setVisibility(View.GONE);
+        }
     }
 
     public class ExercisePageAdapter extends FragmentStatePagerAdapter implements ExerciseOverviewLine.IExerciseOverviewLineListener {
@@ -208,6 +254,15 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 mListener.onAddExerciseClicked(clickedExercise);
             } else {
                 Log.d(TAG, "onAddExerciseClicked: no listener set");
+            }
+        }
+
+        @Override
+        public void onExerciseUndoClicked(Exercise undoExercise) {
+            if(mListener != null) {
+                mListener.onExerciseUndoClicked(undoExercise);
+            } else {
+                Log.d(TAG, "onExerciseUndoClicked: no listener set");
             }
         }
     }

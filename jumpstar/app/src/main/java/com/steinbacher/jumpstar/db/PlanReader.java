@@ -19,12 +19,14 @@ public class PlanReader {
 
     private static final String SELECT_ALL = "SELECT " + PlanContract.PlanContractEntry.COLUMN_NAME_ID + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE + ", " +
+            PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_DATE+ " FROM " +
             PlanContract.PlanContractEntry.TABLE_NAME;
 
     private static final String SELECT_BY_ID = "SELECT " + PlanContract.PlanContractEntry.COLUMN_NAME_ID + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE + ", " +
+            PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES + ", " +
             PlanContract.PlanContractEntry.COLUMN_NAME_DATE+ " FROM " +
             PlanContract.PlanContractEntry.TABLE_NAME + " WHERE " + PlanContract.PlanContractEntry.COLUMN_NAME_ID + " = ?";
