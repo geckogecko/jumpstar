@@ -109,9 +109,10 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
         final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
+        final int planId = mTrainingsPlan.isOwnPlan() ? -mTrainingsPlan.getId() : mTrainingsPlan.getId();
         boolean planIsCurrentTrainingsPlan = false;
         for (int i = 0; i < currentPlans.length; i++) {
-            if(currentPlans[i] == mTrainingsPlan.getId()) {
+            if(currentPlans[i] == planId) {
                 planIsCurrentTrainingsPlan = true;
                 break;
             }
@@ -153,7 +154,13 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         } else {
             final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
             int[] newCurrentPlans = new int[currentPlans.length + 1];
-            newCurrentPlans[0] = mTrainingsPlan.getId();
+
+            if(mTrainingsPlan.isOwnPlan()) {
+                newCurrentPlans[0] = -mTrainingsPlan.getId();
+            } else {
+                newCurrentPlans[0] = mTrainingsPlan.getId();
+            }
+
             for (int i = 0; i < currentPlans.length; i++) {
                 newCurrentPlans[i + 1] = currentPlans[i];
             }

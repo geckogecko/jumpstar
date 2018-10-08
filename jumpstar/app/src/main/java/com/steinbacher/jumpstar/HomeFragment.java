@@ -2,21 +2,25 @@ package com.steinbacher.jumpstar;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.steinbacher.jumpstar.core.TrainingsPlan;
+import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.AddCurrentTrainingsPlanView;
 import com.steinbacher.jumpstar.view.CurrentTrainingsPlanView;
 import com.steinbacher.jumpstar.view.VerticalProgressView;
 
 public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.IViewRemovedListener, VerticalProgressView.IViewRemovedListener {
+    private static final String TAG = "HomeFragment";
     private Context mContext;
     private LinearLayoutCompat mLayout;
 
@@ -39,9 +43,26 @@ public class HomeFragment extends Fragment implements CurrentTrainingsPlanView.I
             final int[] trainingsPlanIds = Configuration.getIntArray(getContext(), Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             for (int i = 0; i < trainingsPlanIds.length; i++) {
                 final int id = trainingsPlanIds[i];
-                final TrainingsPlan trainingsPlan = Factory.createTraingsPlan(id);
-                CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(),this,  trainingsPlan);
-                mLayout.addView(ctpv);
+                TrainingsPlan trainingsPlan = null;
+
+                //own plans have a id < 0
+                if(id < 0) {
+                    PlanReader reader = new PlanReader(mContext);
+                    Cursor cursor = reader.getById(Math.abs(id));
+                    if(cursor.getCount() > 0) {
+                        cursor.moveToFirst();
+                        trainingsPlan = Factory.createTraingsPlan(cursor);
+                    } else {
+                        Log.e(TAG, "onViewCreated: own plan id not found");
+                    }
+                } else {
+                    trainingsPlan = Factory.createTraingsPlan(id);
+                }
+
+                if(trainingsPlan != null) {
+                    CurrentTrainingsPlanView ctpv = new CurrentTrainingsPlanView(view.getContext(), this, trainingsPlan);
+                    mLayout.addView(ctpv);
+                }
             }
         } else {
             AddCurrentTrainingsPlanView actpv = new AddCurrentTrainingsPlanView(mContext);

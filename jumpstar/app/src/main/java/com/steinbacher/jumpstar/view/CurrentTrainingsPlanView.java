@@ -25,6 +25,7 @@ import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
 
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
+import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_IS_OWN_PLAN;
 
 /**
  * Created by georg on 04.04.18.
@@ -74,6 +75,7 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
                 intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
+                intent.putExtra(TRAININGS_PLAN_IS_OWN_PLAN, mTrainingsPlan.isOwnPlan());
                 mContext.startActivity(intent);
             }
         });
@@ -125,8 +127,9 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
             int[] currentConfig = Configuration.getIntArray(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             int[] newConfig = new int[currentConfig.length-1];
             int j = 0;
+            final int planId = mTrainingsPlan.isOwnPlan() ? -mTrainingsPlan.getId() : mTrainingsPlan.getId();
             for (int i = 0; i < currentConfig.length; i++) {
-                if(currentConfig[i] != mTrainingsPlan.getId()) {
+                if(currentConfig[i] != planId) {
                     newConfig[j] = currentConfig[i];
                     j++;
                 }
