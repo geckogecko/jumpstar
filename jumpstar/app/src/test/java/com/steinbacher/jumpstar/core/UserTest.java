@@ -40,8 +40,9 @@ public class UserTest {
         final long estimatedTimeSeconds = 60*60;
         final Rating rating = new Rating(5.0);
         final boolean isPremium = true;
+        final boolean isOwnPlan = true;
 
-        trainingsPlan = new TrainingsPlan(testId, testName, testDescription, exercises, timeStamp, rating, estimatedTimeSeconds, isPremium);
+        trainingsPlan = new TrainingsPlan(testId, testName, testDescription, exercises, timeStamp, rating, estimatedTimeSeconds, isPremium, isOwnPlan);
         trainingsPlanList = new ArrayList<>();
         trainingsPlanList.add(trainingsPlan);
 

@@ -19,6 +19,7 @@ import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
 
 import static android.content.ContentValues.TAG;
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
+import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_IS_OWN_PLAN;
 
 
 /**
@@ -91,6 +92,7 @@ public class TrainingsPlanView extends LinearLayoutCompat implements View.OnClic
     public void onClick(View v) {
         Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
         intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
+        intent.putExtra(TRAININGS_PLAN_IS_OWN_PLAN, mTrainingsPlan.isOwnPlan());
         mContext.startActivity(intent);
     }
 }

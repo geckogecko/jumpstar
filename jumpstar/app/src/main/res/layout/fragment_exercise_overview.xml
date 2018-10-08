@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatButton
+        <com.steinbacher.jumpstar.view.NewPlanLineView
             android:id="@+id/save_exercise_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -76,5 +76,7 @@
 
     <!-- Exercise Overview -->
     <string name="create_new_plan_input_hint">New plan name</string>
+    <string name="create_new_plan_save">Save</string>
+    <string name="create_new_plan_undo">Undo</string>
 
 </resources>

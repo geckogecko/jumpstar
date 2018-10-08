@@ -22,6 +22,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_PLANS =
             "CREATE TABLE " + PlanContract.PlanContractEntry.TABLE_NAME + " (" +
+                    PlanContract.PlanContractEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_DATE + " INTEGER," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE + " TEXT," +
                     PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES + " TEXT)";

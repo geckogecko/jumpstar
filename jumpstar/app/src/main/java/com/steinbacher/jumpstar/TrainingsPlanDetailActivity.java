@@ -1,6 +1,7 @@
 package com.steinbacher.jumpstar;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
+import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.EquipmentView;
 import com.steinbacher.jumpstar.view.ExercisesView;
@@ -33,7 +35,9 @@ import static com.steinbacher.jumpstar.Configuration.CURRENT_TRAININGSPLANS_ID_K
 //TODO if this trainingsplan includes other trainingsplans -> show them here
 public class TrainingsPlanDetailActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "TrainingsPlanDetailActi";
+
     public static final String TRAININGS_PLAN_ID = "trainings_plan_id";
+    public static final String TRAININGS_PLAN_IS_OWN_PLAN = "trainings_plan_is_own_plan";
 
     private TrainingsPlan mTrainingsPlan;
 
@@ -46,11 +50,24 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         setContentView(R.layout.activity_trainings_plan_detail);
 
         int trainingsPlanId = getIntent().getIntExtra(TRAININGS_PLAN_ID, -1);
-        if(trainingsPlanId == -1) {
-            Log.e(TAG, "onCreate: No trainingsplanId provided");
-            finish();
+        boolean isOwnPlan = getIntent().getBooleanExtra(TRAININGS_PLAN_IS_OWN_PLAN, false);
+
+        if(isOwnPlan) {
+            PlanReader planReader = new PlanReader(getApplicationContext());
+            Cursor cursor = planReader.getById(trainingsPlanId);
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                mTrainingsPlan = Factory.createTraingsPlan(cursor);
+            } else {
+                Log.e(TAG, "onCreate: own plan not found");
+            }
         } else {
-            mTrainingsPlan = Factory.createTraingsPlan(trainingsPlanId);
+            if (trainingsPlanId == -1) {
+                Log.e(TAG, "onCreate: No trainingsplanId provided");
+                finish();
+            } else {
+                mTrainingsPlan = Factory.createTraingsPlan(trainingsPlanId);
+            }
         }
 
         //title

@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.InputType;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +31,18 @@ import java.util.concurrent.TimeUnit;
  * Created by Georg Steinbacher on 27.09.18.
  */
 
-public class ExercisePageFragment extends Fragment {
+public class ExercisePageFragment extends Fragment implements ExerciseOverviewLine.IExerciseOverviewLineListener{
+    private static final String TAG = "ExercisePageFragment";
+
     private View mView;
     private ListView mListView;
     private ExerciseAdapter mAdapter;
     private boolean mShowAddExerciseButton = false;
+
+    private ExerciseOverviewLine.IExerciseOverviewLineListener mListener;
+    public void setExerciseOverviewLineListener(ExerciseOverviewLine.IExerciseOverviewLineListener listener) {
+        mListener = listener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +64,19 @@ public class ExercisePageFragment extends Fragment {
         new ExercisesLoader().execute(category);
     }
 
+    public void exercisesLoaded() {
+        mAdapter.setExerciseOverviewLineListener(this);
+    }
+
+    @Override
+    public void onAddExerciseClicked(Exercise clickedExercise) {
+        if(mListener != null) {
+            mListener.onAddExerciseClicked(clickedExercise);
+        } else {
+            Log.d(TAG, "onAddExerciseClicked: no listener set");
+        }
+    }
+
     private class ExercisesLoader extends AsyncTask<Exercise.Category, Void, List<Exercise>> {
         @Override
         protected List<Exercise> doInBackground(Exercise.Category... cats) {
@@ -75,6 +96,7 @@ public class ExercisePageFragment extends Fragment {
         protected void onPostExecute(List<Exercise> result) {
             mAdapter = new ExerciseAdapter(getContext(), R.layout.fragment_exercise_page, result, mShowAddExerciseButton);
             mListView.setAdapter(mAdapter);
+            exercisesLoaded();
         }
     }
 }

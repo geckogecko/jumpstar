@@ -1,9 +1,6 @@
 package com.steinbacher.jumpstar;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,28 +10,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.InputType;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.Exercise;
-import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.db.PlanWriter;
-import com.steinbacher.jumpstar.db.VerticalHeightWriter;
-import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
+import com.steinbacher.jumpstar.view.NewPlanLineView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +31,14 @@ import java.util.List;
  * Created by stge on 24.09.18.
  */
 
-public class ExerciseOverviewFragment extends Fragment {
+public class ExerciseOverviewFragment extends Fragment implements ExerciseOverviewLine.IExerciseOverviewLineListener{
     private static final String TAG = "ExerciseOverviewFragmen";
     private View mView;
     private FloatingActionButton mCreateNewPlanButton;
     private ExercisePageAdapter mPageAdapter;
-    private AppCompatButton mSaveExerciseButton;
+    private NewPlanLineView mNewPlanLineView;
+
+    private List<Exercise> mClickedExercises = new ArrayList<>();
 
     private boolean mShowAddExerciseButton = false;
 
@@ -73,14 +63,79 @@ public class ExerciseOverviewFragment extends Fragment {
         });
 
         mPageAdapter = new ExercisePageAdapter(getFragmentManager());
+        mPageAdapter.setExerciseOverviewLineListener(this);
+
         ViewPager viewPager = mView.findViewById(R.id.pager);
         viewPager.setAdapter(mPageAdapter);
 
-        mSaveExerciseButton = view.findViewById(R.id.save_exercise_button);
+        mNewPlanLineView = view.findViewById(R.id.save_exercise_button);
     }
 
-    public class ExercisePageAdapter extends FragmentStatePagerAdapter {
+    @Override
+    public void onAddExerciseClicked(Exercise clickedExercise) {
+        mClickedExercises.add(clickedExercise);
+    }
+
+    private void createPlanDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
+        builder.setTitle(getContext().getString(R.string.create_new_plan_input_hint));
+
+        final LinearLayoutCompat layoutCompat = new LinearLayoutCompat(getContext());
+        builder.setView(layoutCompat);
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                AppCompatEditText textView = layoutCompat.findViewById(R.id.edit_text);
+                final String inputString = textView.getText().toString();
+                if(inputString.isEmpty()) {
+                    dialog.cancel();
+                } else {
+                    startCreateNewPlanMode(inputString);
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+
+        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext, layoutCompat);
+        final AppCompatEditText input = view.findViewById(R.id.edit_text);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        dialog.show();
+    }
+
+    private void startCreateNewPlanMode(final String planName) {
+        mShowAddExerciseButton = true;
+        mPageAdapter.notifyDataSetChanged();
+
+        mCreateNewPlanButton.setVisibility(View.GONE);
+
+        mNewPlanLineView.setVisibility(View.VISIBLE);
+        mNewPlanLineView.setPlanName(planName);
+        mNewPlanLineView.setOnSaveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlanWriter writer = new PlanWriter(getContext());
+                writer.add(planName, mClickedExercises);
+            }
+        });
+    }
+
+    public class ExercisePageAdapter extends FragmentStatePagerAdapter implements ExerciseOverviewLine.IExerciseOverviewLineListener {
         private Fragment mCurrentFragment;
+
+        private ExerciseOverviewLine.IExerciseOverviewLineListener mListener;
+
+        public void setExerciseOverviewLineListener(ExerciseOverviewLine.IExerciseOverviewLineListener listener) {
+            mListener = listener;
+        }
 
         public ExercisePageAdapter(FragmentManager fm) {
             super(fm);
@@ -89,11 +144,20 @@ public class ExerciseOverviewFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             ExercisePageFragment page = new ExercisePageFragment();
+            page.setExerciseOverviewLineListener(this);
             switch (position) {
-                case 0: page.init(Exercise.Category.WARMUP, mShowAddExerciseButton); break;
-                case 1: page.init(Exercise.Category.STRENGTH, mShowAddExerciseButton); break;
-                case 2: page.init(Exercise.Category.PLYOMETRIC, mShowAddExerciseButton); break;
-                case 3: page.init(Exercise.Category.STRETCH, mShowAddExerciseButton); break;
+                case 0:
+                    page.init(Exercise.Category.WARMUP, mShowAddExerciseButton);
+                    break;
+                case 1:
+                    page.init(Exercise.Category.STRENGTH, mShowAddExerciseButton);
+                    break;
+                case 2:
+                    page.init(Exercise.Category.PLYOMETRIC, mShowAddExerciseButton);
+                    break;
+                case 3:
+                    page.init(Exercise.Category.STRETCH, mShowAddExerciseButton);
+                    break;
             }
 
             return page;
@@ -119,11 +183,16 @@ public class ExerciseOverviewFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0: return getString(R.string.detail_exercises_warmup).replace(":", "");
-                case 1: return getString(R.string.detail_exercises_strength).replace(":", "");
-                case 2: return getString(R.string.detail_exercises_plyometric).replace(":", "");
-                case 3: return getString(R.string.detail_exercises_stretch).replace(":", "");
-                default: return "";
+                case 0:
+                    return getString(R.string.detail_exercises_warmup).replace(":", "");
+                case 1:
+                    return getString(R.string.detail_exercises_strength).replace(":", "");
+                case 2:
+                    return getString(R.string.detail_exercises_plyometric).replace(":", "");
+                case 3:
+                    return getString(R.string.detail_exercises_stretch).replace(":", "");
+                default:
+                    return "";
             }
         }
 
@@ -132,55 +201,14 @@ public class ExerciseOverviewFragment extends Fragment {
             // POSITION_NONE makes it possible to reload the PagerAdapter
             return POSITION_NONE;
         }
-    }
 
-    private void createPlanDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
-        builder.setTitle(getContext().getString(R.string.create_new_plan_input_hint));
-
-        final LinearLayoutCompat layoutCompat = new LinearLayoutCompat(getContext());
-        builder.setView(layoutCompat);
-        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                AppCompatEditText textView = layoutCompat.findViewById(R.id.edit_text);
-                final String inputString = textView.getText().toString();
-                if(inputString.isEmpty()) {
-                    dialog.cancel();
-                } else {
-                    createNewPlan(inputString);
-                }
+        @Override
+        public void onAddExerciseClicked(Exercise clickedExercise) {
+            if (mListener != null) {
+                mListener.onAddExerciseClicked(clickedExercise);
+            } else {
+                Log.d(TAG, "onAddExerciseClicked: no listener set");
             }
-        });
-        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-
-        View view = dialog.getLayoutInflater().inflate(R.layout.alertdialog_edittext, layoutCompat);
-        final AppCompatEditText input = view.findViewById(R.id.edit_text);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-
-        dialog.show();
-    }
-
-    private void createNewPlan(String planName) {
-        Log.i(TAG, "createNewPlan: ");
-
-        mShowAddExerciseButton = true;
-        mPageAdapter.notifyDataSetChanged();
-
-        mCreateNewPlanButton.setVisibility(View.GONE);
-        mSaveExerciseButton.setVisibility(View.VISIBLE);
-
-        /*
-        PlanWriter writer = new PlanWriter(getContext());
-        writer.add(planName, new ArrayList<Exercise>());
-        */
+        }
     }
 }

@@ -20,6 +20,8 @@ import com.steinbacher.jumpstar.MainActivity;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.ExerciseStep;
+import com.steinbacher.jumpstar.core.TrainingsPlan;
+import com.steinbacher.jumpstar.core.TrainingsPlanEntry;
 
 import static android.content.ContentValues.TAG;
 
@@ -35,6 +37,15 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
     private AppCompatTextView mName;
     private AppCompatImageView mImage;
     private AppCompatImageButton mAddButton;
+
+    private IExerciseOverviewLineListener mListener;
+    public interface IExerciseOverviewLineListener {
+        void onAddExerciseClicked(Exercise clickedExercise);
+    }
+
+    public void setExerciseOverviewLineListener(IExerciseOverviewLineListener listener) {
+        mListener = listener;
+    }
 
     public ExerciseOverviewLine(Context context) {
         super(context);
@@ -61,13 +72,18 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
         mAddButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(mView, mExercise.getName(), Snackbar.LENGTH_LONG)
-                        .setAction("Undo", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                if(mListener != null) {
+                    mListener.onAddExerciseClicked(mExercise);
+                    Snackbar.make(mView, mExercise.getName(), Snackbar.LENGTH_LONG)
+                            .setAction(R.string.create_new_plan_undo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                            }
-                        }).show();
+                                }
+                            }).show();
+                } else {
+                    Log.d(TAG, "onClick: no listener added");
+                }
             }
         });
     }

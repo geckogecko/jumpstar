@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import java.util.List;
  */
 
 public class OwnPlansFragmentPage extends Fragment{
+    private static final String TAG = "OwnPlansFragmentPage";
 
     private View mView;
 
@@ -59,10 +61,7 @@ public class OwnPlansFragmentPage extends Fragment{
             List<TrainingsPlan> plans = new ArrayList<>();
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    String name = cursor.getString(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE));
-                    TrainingsPlan plan = new TrainingsPlan(0, name, "", new ArrayList<TrainingsPlanEntry>(),
-                            0, null, -1, false);
-                    plans.add(plan);
+                    plans.add(Factory.createTraingsPlan(cursor));
                 }
             }
             return plans;

@@ -1,5 +1,6 @@
 package com.steinbacher.jumpstar.util;
 
+import android.database.Cursor;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -18,6 +19,7 @@ import com.steinbacher.jumpstar.core.StandardExercise;
 import com.steinbacher.jumpstar.core.TimeExercise;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.core.TrainingsPlanEntry;
+import com.steinbacher.jumpstar.db.PlanContract;
 
 /**
  * Created by stge on 13.04.18.
@@ -65,11 +67,43 @@ public class Factory {
                     loadedTraingsPlan.getLong("creationDate"),
                     null,
                     loadedTraingsPlan.getLong("estimatedTime"),
-                    loadedTraingsPlan.getBoolean("isPremium"));
+                    loadedTraingsPlan.getBoolean("isPremium"),
+                    false);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /*
+    Creates a own trainingplan from a cursor
+     */
+    public static TrainingsPlan createTraingsPlan(Cursor cursor) {
+        final String name = cursor.getString(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_NANE));
+        final int id = cursor.getInt(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_ID));
+
+        //get the exercises
+        //they have the form: T:1;S:12;
+        //Time exercises with id 1, Standard exercise with id 12
+        String exercisesString = cursor.getString(cursor.getColumnIndexOrThrow(PlanContract.PlanContractEntry.COLUMN_NAME_EXERCISES));
+        String[] splitedExercises = exercisesString.split(";");
+        List<TrainingsPlanEntry> exercisesList = new ArrayList<>();
+        for(int i=0; i<splitedExercises.length; i++) {
+            String[] splitedExercise = splitedExercises[i].split(":");
+            Exercise exercise = null;
+            if(splitedExercise[0].equals("S")) {
+                exercise = Factory.getExercise(Exercise.Type.STANDARD, Integer.parseInt(splitedExercise[1]));
+                exercisesList.add(exercise);
+            } else if(splitedExercise[0].equals("T")) {
+                exercise = Factory.getExercise(Exercise.Type.TIME, Integer.parseInt(splitedExercise[1]));
+                exercisesList.add((TrainingsPlanEntry)exercise);
+            } else {
+                Log.e(TAG, "doInBackground: unknown exercise type!");
+            }
+        }
+
+        return new TrainingsPlan(id, name, "", exercisesList,
+                0, null, -1, false, true);
     }
 
     public static List<Exercise> getAllExercises() {

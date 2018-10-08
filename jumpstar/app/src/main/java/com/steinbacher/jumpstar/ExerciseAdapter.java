@@ -3,6 +3,7 @@ package com.steinbacher.jumpstar;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,8 +19,15 @@ import java.util.List;
  * Created by stge on 27.09.18.
  */
 
-public class ExerciseAdapter extends ArrayAdapter {
+public class ExerciseAdapter extends ArrayAdapter implements ExerciseOverviewLine.IExerciseOverviewLineListener{
+    private static final String TAG = "ExerciseAdapter";
+
     private boolean mShowAddExerciseButton = false;
+
+    private ExerciseOverviewLine.IExerciseOverviewLineListener mListener;
+    public void setExerciseOverviewLineListener(ExerciseOverviewLine.IExerciseOverviewLineListener listener) {
+        mListener = listener;
+    }
 
     public ExerciseAdapter(@NonNull Context context, int resource, @NonNull List objects, boolean showAddExerciseButton) {
         super(context, resource, objects);
@@ -47,7 +55,17 @@ public class ExerciseAdapter extends ArrayAdapter {
                 v.getContext().startActivity(intent);
             }
         });
+        view.setExerciseOverviewLineListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onAddExerciseClicked(Exercise clickedExercise) {
+        if(mListener != null) {
+            mListener.onAddExerciseClicked(clickedExercise);
+        } else {
+            Log.d(TAG, "onAddExerciseClicked: no listener set");
+        }
     }
 }
