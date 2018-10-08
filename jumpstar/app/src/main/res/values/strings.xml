@@ -69,6 +69,7 @@
     <string name="detail_exercises_stretch">Stretch:</string>
     <string name="detail_exercises_warmup">Warmup:</string>
     <string name="detail_buy_trainingsplan">Buy plan</string>
+    <string name="detail_description_default">Custom created plan</string>
 
     <string name="plan_chooser_predefined_plans">Predefined plans</string>
     <string name="plan_chooser_own_plans">Own plans</string>
@@ -85,5 +86,7 @@
     <string name="create_new_plan_cancel">Cancel</string>
     <string name="create_new_plan_undo">Undo</string>
     <string name="create_new_plan_plan_created">Plan created!</string>
+    <string name="create_new_plan_info_title">Add Exercises</string>
+    <string name="create_new_plan_info_description">Click on "+" to add the exercise to your new plan. Click on the "save" button when you are done!</string>
 
 </resources>

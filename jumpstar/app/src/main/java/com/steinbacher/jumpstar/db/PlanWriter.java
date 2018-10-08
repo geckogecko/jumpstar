@@ -3,6 +3,7 @@ package com.steinbacher.jumpstar.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.steinbacher.jumpstar.core.Exercise;
 
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 public class PlanWriter {
+    private static final String TAG = "PlanWriter";
     private SQLiteDatabase mDb;
 
     public PlanWriter(Context context) {
@@ -40,5 +42,14 @@ public class PlanWriter {
         value.put(PlanContract.PlanContractEntry.COLUMN_NAME_PLAN_DESCRIPTION, description);
 
         mDb.insert(PlanContract.PlanContractEntry.TABLE_NAME, null, value);
+    }
+
+    private static final String DELETE_BY_ID = "DELETE FROM "+ PlanContract.PlanContractEntry.TABLE_NAME +
+            " WHERE " + PlanContract.PlanContractEntry.COLUMN_NAME_ID + " = ?";
+
+    public int dropById(int id) {
+        String[] params = new String[]{ Integer.toString(id) };
+
+        return mDb.delete(PlanContract.PlanContractEntry.TABLE_NAME, PlanContract.PlanContractEntry.COLUMN_NAME_ID + "=?", params);
     }
 }

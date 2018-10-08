@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -91,6 +92,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         TextView txtDescription = findViewById(R.id.detail_trainings_plan_description);
         txtDescription.setText(mTrainingsPlan.getDescription());
 
+
         //Equipment
         EquipmentView equipmentViewHolder= findViewById(R.id.equipment_view);
         List<Equipment> equipmentList = mTrainingsPlan.getNeededEquipment();
@@ -102,9 +104,14 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
         //duration
         TextView durationTextView = findViewById(R.id.detail_plan_estimated_time);
-        int hours = (int) (mTrainingsPlan.getEstimatedDurationSeconds() / 3600);
-        int minutes = (int) (mTrainingsPlan.getEstimatedDurationSeconds() % 3600) / 60;
-        durationTextView.setText(getString(R.string.detail_plan_estimated_time, String.format("%02d:%02d", hours, minutes)));
+        if(mTrainingsPlan.getEstimatedDurationSeconds() < 0) {
+            LinearLayoutCompat general = findViewById(R.id.section_general);
+            general.setVisibility(View.GONE);
+        } else {
+            int hours = (int) (mTrainingsPlan.getEstimatedDurationSeconds() / 3600);
+            int minutes = (int) (mTrainingsPlan.getEstimatedDurationSeconds() % 3600) / 60;
+            durationTextView.setText(getString(R.string.detail_plan_estimated_time, String.format("%02d:%02d", hours, minutes)));
+        }
 
         //add button
         AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);

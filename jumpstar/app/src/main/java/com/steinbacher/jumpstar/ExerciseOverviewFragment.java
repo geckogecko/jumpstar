@@ -100,7 +100,12 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 if(inputString.isEmpty()) {
                     Toast.makeText(getContext(), getString(R.string.create_new_plan_dialog_missing_name), Toast.LENGTH_SHORT).show();
                 } else {
-                    startCreateNewPlanMode(inputString, planDescription.getText().toString());
+                    String descriptionString = planDescription.getText().toString();
+                    if(descriptionString.isEmpty()) {
+                        descriptionString = getString(R.string.detail_description_default);
+                    }
+                    startCreateNewPlanMode(inputString, descriptionString);
+                    createAddPlanHelpDialog();
                 }
             }
         });
@@ -123,6 +128,20 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
         plan_description.setHint(R.string.create_new_plan_description_hint);
 
         dialog.show();
+    }
+
+    private void createAddPlanHelpDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
+        builder.setTitle(getContext().getString(R.string.create_new_plan_info_title));
+        builder.setMessage(R.string.create_new_plan_info_description);
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
     }
 
     private void startCreateNewPlanMode(final String planName, final String planDescription) {
