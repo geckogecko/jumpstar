@@ -45,7 +45,6 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
     private ActivityCheckout mCheckout;
     private boolean planPaided = false;
-
     private String mSku;
 
     @Override

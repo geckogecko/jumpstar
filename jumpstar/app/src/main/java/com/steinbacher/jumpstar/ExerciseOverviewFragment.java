@@ -1,6 +1,7 @@
 package com.steinbacher.jumpstar;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.InputType;
@@ -21,9 +23,20 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.steinbacher.jumpstar.core.Exercise;
+import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.db.PlanWriter;
+import com.steinbacher.jumpstar.util.PaidProducts;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 import com.steinbacher.jumpstar.view.NewPlanLineView;
+
+import org.solovyev.android.checkout.ActivityCheckout;
+import org.solovyev.android.checkout.Billing;
+import org.solovyev.android.checkout.BillingRequests;
+import org.solovyev.android.checkout.Checkout;
+import org.solovyev.android.checkout.EmptyRequestListener;
+import org.solovyev.android.checkout.Inventory;
+import org.solovyev.android.checkout.ProductTypes;
+import org.solovyev.android.checkout.Purchase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +51,9 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
     private FloatingActionButton mCreateNewPlanButton;
     private ExercisePageAdapter mPageAdapter;
     private NewPlanLineView mNewPlanLineView;
+
+    private ActivityCheckout mCheckout;
+    private boolean mHasPremium = false;
 
     private List<Exercise> mClickedExercises = new ArrayList<>();
 
@@ -59,7 +75,13 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
         mCreateNewPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPlanDialog();
+                PlanReader customPlans = new PlanReader(getContext());
+                Cursor cursor = customPlans.getAll();
+                if(mHasPremium || cursor.getCount() == 0) {
+                    createPlanDialog();
+                } else {
+                    createBuyPremiumDialog();
+                }
             }
         });
 
@@ -70,6 +92,17 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
         viewPager.setAdapter(mPageAdapter);
 
         mNewPlanLineView = view.findViewById(R.id.save_exercise_button);
+
+        //billing
+        Billing billing = BillingSingleton.getInstance(getContext()).getBilling();
+        mCheckout = Checkout.forActivity(getActivity(), billing);
+        mCheckout.start();
+        mCheckout.createPurchaseFlow(new PurchaseListener());
+
+        mInventory = mCheckout.makeInventory();
+        mInventory.load(Inventory.Request.create()
+                .loadAllPurchases()
+                .loadSkus(ProductTypes.IN_APP, PaidProducts.PREMIUM), new InventoryCallback());
     }
 
     @Override
@@ -141,6 +174,31 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
             }
         });
 
+        builder.show();
+    }
+
+    private void createBuyPremiumDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
+        builder.setTitle(getContext().getString(R.string.buy_premium_dialog_title));
+        builder.setMessage(R.string.buy_premium_dialog_text);
+        builder.setPositiveButton(R.string.button_buy, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mCheckout.whenReady(new Checkout.EmptyListener() {
+                    @Override
+                    public void onReady(BillingRequests requests) {
+                        requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                    }
+                });
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         builder.show();
     }
 
@@ -282,6 +340,30 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 mListener.onExerciseUndoClicked(undoExercise);
             } else {
                 Log.d(TAG, "onExerciseUndoClicked: no listener set");
+            }
+        }
+    }
+
+    private Inventory mInventory;
+    private class PurchaseListener extends EmptyRequestListener<Purchase> {
+        @Override
+        public void onSuccess(Purchase purchase) {
+            mHasPremium = true;
+            Toast.makeText(getContext(), getString(R.string.buy_premium_dialog_success), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(int response, Exception e) {
+            Toast.makeText(getContext(), getString(R.string.buy_premium_dialog_fail), Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "onError: Purchase failed");
+        }
+    }
+
+    private class InventoryCallback implements Inventory.Callback {
+        @Override
+        public void onLoaded(Inventory.Products products) {
+            if(PaidProducts.ownsProduct(products, PaidProducts.PREMIUM)) {
+                mHasPremium = true;
             }
         }
     }

@@ -14,6 +14,8 @@
 
     <string name="button_ok">OK</string>
     <string name="button_cancel">Cancel</string>
+    <string name="button_buy">Buy</string>
+
     <!-- Home -->
     <string name="start_current_trainingsPlan">Start</string>
     <string name="info_current_trainingsPlan">Info</string>
@@ -89,4 +91,8 @@
     <string name="create_new_plan_info_title">Add Exercises</string>
     <string name="create_new_plan_info_description">Click on "+" to add the exercise to your new plan. Click on the "save" button when you are done!</string>
 
+    <string name="buy_premium_dialog_title">Premium needed</string>
+    <string name="buy_premium_dialog_text">To add more than one custom plan please buy premium or delete your current custom plan.</string>
+    <string name="buy_premium_dialog_success">Your purchase was successful!</string>
+    <string name="buy_premium_dialog_fail">Your purchase failed!</string>
 </resources>
