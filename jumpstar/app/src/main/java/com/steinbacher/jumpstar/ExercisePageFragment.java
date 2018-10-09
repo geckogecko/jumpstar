@@ -47,7 +47,6 @@ public class ExercisePageFragment extends Fragment implements ExerciseOverviewLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_exercise_page, container, false);
     }
 
@@ -91,7 +90,6 @@ public class ExercisePageFragment extends Fragment implements ExerciseOverviewLi
         protected List<Exercise> doInBackground(Exercise.Category... cats) {
             List<Exercise> allExercises = Factory.getAllExercises();
             List<Exercise> filteredExercises = new ArrayList<>();
-
             for(Exercise exercise : allExercises) {
                 if(exercise.getCategory().equals(cats[0])) {
                     filteredExercises.add(exercise);

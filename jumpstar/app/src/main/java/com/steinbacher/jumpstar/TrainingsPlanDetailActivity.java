@@ -19,6 +19,7 @@ import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.util.Factory;
+import com.steinbacher.jumpstar.util.PaidProducts;
 import com.steinbacher.jumpstar.view.EquipmentView;
 import com.steinbacher.jumpstar.view.ExercisesView;
 
@@ -44,6 +45,8 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
     private ActivityCheckout mCheckout;
     private boolean planPaided = false;
+
+    private String mSku;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,9 +146,11 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             mCheckout.createPurchaseFlow(new PurchaseListener());
 
             mInventory = mCheckout.makeInventory();
+
+            mSku = "trainingsplan_" + mTrainingsPlan.getId();
             mInventory.load(Inventory.Request.create()
                     .loadAllPurchases()
-                    .loadSkus(ProductTypes.IN_APP, "trainingsplan_5"), new InventoryCallback());
+                    .loadSkus(ProductTypes.IN_APP, mSku), new InventoryCallback());
         }
     }
 
@@ -155,7 +160,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             mCheckout.whenReady(new Checkout.EmptyListener() {
                 @Override
                 public void onReady(BillingRequests requests) {
-                    requests.purchase(ProductTypes.IN_APP, "trainingsplan_5", null, mCheckout.getPurchaseFlow());
+                    requests.purchase(ProductTypes.IN_APP, mSku, null, mCheckout.getPurchaseFlow());
                 }
             });
         } else {
@@ -196,7 +201,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private class InventoryCallback implements Inventory.Callback {
         @Override
         public void onLoaded(Inventory.Products products) {
-            if(products.get(ProductTypes.IN_APP).isPurchased("trainingsplan_5")) {
+            if(PaidProducts.ownsProduct(products, mSku)) {
                 planPaided = true;
 
                 AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
