@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.squareup.picasso.Picasso;
 import com.steinbacher.jumpstar.ExerciseDetailActivity;
 import com.steinbacher.jumpstar.MainActivity;
 import com.steinbacher.jumpstar.R;
@@ -108,7 +109,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
                 getContext().getPackageName());
 
         if(resourceId != 0) {
-            mImage.setImageDrawable(ContextCompat.getDrawable(mContext, resourceId));
+            Picasso.get().load(resourceId).into(mImage);
         } else {
             Log.e(TAG, "description image for step: " + imageName + " not found");
             //TODO what should we do if the image is not found?
