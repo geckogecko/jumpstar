@@ -16,6 +16,7 @@ import com.steinbacher.jumpstar.ExerciseStepsSwipeListener;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.ExerciseStep;
+import com.steinbacher.jumpstar.util.DrawableLoader;
 
 import static android.content.ContentValues.TAG;
 
@@ -87,19 +88,8 @@ public class ExerciseStepsView extends LinearLayoutCompat{
 
     public void viewStep(int nr) {
         ExerciseStep step = mExercise.getDescription().getSteps().get(nr);
-        final String imageName = mExercise.getType().name().toLowerCase() + "_" +
-                mExercise.getId() + "_" +
-                step.getStepNr();
-        final int resourceId = mResources.getIdentifier(imageName, "drawable",
-                getContext().getPackageName());
 
-        if(resourceId != 0) {
-            mImageView.setImageDrawable(ContextCompat.getDrawable(mContext, resourceId));
-        } else {
-            Log.e(TAG, "description image for step: " + imageName + " not found");
-            //TODO what should we do if the image is not found?
-        }
-
+        DrawableLoader.loadExerciseImage(getContext(), mExercise, step.getStepNr(), mImageView);
 
         mTextView.setText(step.getDescription());
         mCurrentShownStep = nr;

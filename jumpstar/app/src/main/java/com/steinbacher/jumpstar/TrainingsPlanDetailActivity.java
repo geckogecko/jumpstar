@@ -18,6 +18,7 @@ import java.util.List;
 import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.db.PlanReader;
+import com.steinbacher.jumpstar.util.DrawableLoader;
 import com.steinbacher.jumpstar.util.Factory;
 import com.steinbacher.jumpstar.util.PaidProducts;
 import com.steinbacher.jumpstar.view.EquipmentView;
@@ -79,16 +80,7 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
 
         //image
         AppCompatImageView imgView = findViewById(R.id.image);
-        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
-        final int resourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
-
-        if(resourceId != 0) {
-            Drawable d = getResources().getDrawable(resourceId);
-            imgView.setImageDrawable(d);
-        } else {
-            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
-            //TODO what should we do if the image is not found?
-        }
+        DrawableLoader.loadPlanImage(getApplicationContext(), mTrainingsPlan, imgView);
 
         //Description
         TextView txtDescription = findViewById(R.id.detail_trainings_plan_description);

@@ -25,6 +25,7 @@ import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.ExerciseStep;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.core.TrainingsPlanEntry;
+import com.steinbacher.jumpstar.util.DrawableLoader;
 
 import static android.content.ContentValues.TAG;
 
@@ -100,20 +101,7 @@ public class ExerciseOverviewLine extends LinearLayoutCompat {
         mExercise = exercise;
 
         mName.setText(mExercise.getName());
-
-        ExerciseStep step = mExercise.getDescription().getSteps().get(0);
-        final String imageName = mExercise.getType().name().toLowerCase() + "_" +
-                mExercise.getId() + "_" +
-                step.getStepNr();
-        final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
-                getContext().getPackageName());
-
-        if(resourceId != 0) {
-            Picasso.get().load(resourceId).into(mImage);
-        } else {
-            Log.e(TAG, "description image for step: " + imageName + " not found");
-            //TODO what should we do if the image is not found?
-        }
+        DrawableLoader.loadExerciseImage(getContext(), mExercise, 0, mImage);
     }
 
     public Exercise getExercise() {

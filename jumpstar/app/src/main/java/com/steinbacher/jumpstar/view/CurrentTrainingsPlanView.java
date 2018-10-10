@@ -23,6 +23,7 @@ import com.steinbacher.jumpstar.TrainingActivity;
 import com.steinbacher.jumpstar.TrainingsPlanDetailActivity;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
+import com.steinbacher.jumpstar.util.DrawableLoader;
 
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_IS_OWN_PLAN;
@@ -88,17 +89,7 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
 
         //image
         AppCompatImageView imgView = findViewById(R.id.image);
-        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
-        final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
-                mContext.getPackageName());
-
-        if(resourceId != 0) {
-            Drawable d = getResources().getDrawable(resourceId);
-            imgView.setImageDrawable(d);
-        } else {
-            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
-            //TODO what should we do if the image is not found?
-        }
+        DrawableLoader.loadPlanImage(getContext(), mTrainingsPlan, imgView);
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {
