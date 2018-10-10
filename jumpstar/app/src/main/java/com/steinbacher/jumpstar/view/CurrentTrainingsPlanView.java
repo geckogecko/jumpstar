@@ -2,21 +2,20 @@ package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.steinbacher.jumpstar.Configuration;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.TrainingActivity;
@@ -24,6 +23,7 @@ import com.steinbacher.jumpstar.TrainingsPlanDetailActivity;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
 import com.steinbacher.jumpstar.util.DrawableLoader;
+import com.steinbacher.jumpstar.util.FirebaseLogs;
 
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_IS_OWN_PLAN;
@@ -128,6 +128,11 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
 
             Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, newConfig);
             mListener.onRemoved();
+
+            FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+            Bundle params = new Bundle();
+            params.putString(FirebaseLogs.PLAN_ID, Integer.toString(mTrainingsPlan.getId()));
+            firebaseAnalytics.logEvent(FirebaseLogs.PLAN_REMOVED_EVENT, params);
         }
         return false;
     }

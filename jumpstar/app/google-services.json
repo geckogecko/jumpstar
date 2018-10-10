@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "208597161021",
+    "firebase_url": "https://jumpstar-24470.firebaseio.com",
+    "project_id": "jumpstar-24470",
+    "storage_bucket": "jumpstar-24470.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208597161021:android:5f878a32531b0933",
+        "android_client_info": {
+          "package_name": "georg.steinbacher.community_jump_trainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208597161021-4ldsnolrgc53h97joor8jk3e37hpdgh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2_SRTTbHnZbE3xEfU_mwWYtYD_9Cc8Fw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

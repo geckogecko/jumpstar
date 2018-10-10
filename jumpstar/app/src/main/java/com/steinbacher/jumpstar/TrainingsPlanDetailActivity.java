@@ -2,7 +2,6 @@ package com.steinbacher.jumpstar;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -10,17 +9,18 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.steinbacher.jumpstar.core.Equipment;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.util.DrawableLoader;
 import com.steinbacher.jumpstar.util.Factory;
+import com.steinbacher.jumpstar.util.FirebaseLogs;
 import com.steinbacher.jumpstar.util.PaidProducts;
 import com.steinbacher.jumpstar.view.EquipmentView;
 import com.steinbacher.jumpstar.view.ExercisesView;
@@ -33,7 +33,6 @@ import org.solovyev.android.checkout.EmptyRequestListener;
 import org.solovyev.android.checkout.Inventory;
 import org.solovyev.android.checkout.ProductTypes;
 import org.solovyev.android.checkout.Purchase;
-import org.solovyev.android.checkout.Sku;
 
 import static com.steinbacher.jumpstar.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
@@ -49,6 +48,8 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private ActivityCheckout mCheckout;
     private boolean planPaided = false;
     private String mSku;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +179,8 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
                     .loadAllPurchases()
                     .loadSkus(ProductTypes.IN_APP, skus), new InventoryCallback());
         }
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     @Override
@@ -196,6 +199,10 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
         }
         Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
 
+        //send the add event to firebase
+        Bundle params = new Bundle();
+        params.putString(FirebaseLogs.PLAN_ID, Integer.toString(mTrainingsPlan.getId()));
+        mFirebaseAnalytics.logEvent(FirebaseLogs.PLAN_ADDED_EVENT, params);
         finish();
     }
 

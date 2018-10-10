@@ -22,9 +22,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.db.PlanReader;
 import com.steinbacher.jumpstar.db.PlanWriter;
+import com.steinbacher.jumpstar.util.FirebaseLogs;
 import com.steinbacher.jumpstar.util.PaidProducts;
 import com.steinbacher.jumpstar.view.ExerciseOverviewLine;
 import com.steinbacher.jumpstar.view.NewPlanLineView;
