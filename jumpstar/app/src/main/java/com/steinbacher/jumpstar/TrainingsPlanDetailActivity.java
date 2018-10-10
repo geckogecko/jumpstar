@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.steinbacher.jumpstar.core.Equipment;
@@ -32,6 +33,7 @@ import org.solovyev.android.checkout.EmptyRequestListener;
 import org.solovyev.android.checkout.Inventory;
 import org.solovyev.android.checkout.ProductTypes;
 import org.solovyev.android.checkout.Purchase;
+import org.solovyev.android.checkout.Sku;
 
 import static com.steinbacher.jumpstar.Configuration.CURRENT_TRAININGSPLANS_ID_KEY;
 
@@ -125,7 +127,37 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             btnAddTrainingsPlan.setOnClickListener(this);
 
             if(mTrainingsPlan.isPremium()) {
-                btnAddTrainingsPlan.setText(R.string.detail_buy_trainingsplan);
+                LinearLayoutCompat buyLine = findViewById(R.id.buy_plan_line);
+                btnAddTrainingsPlan.setVisibility(View.GONE);
+                buyLine.setVisibility(View.VISIBLE);
+
+                AppCompatButton buyPlanButton = findViewById(R.id.detail_button_buy_plan);
+                buyPlanButton.setText(getString(R.string.detail_buy_trainingsplan_with_price, ""));
+                buyPlanButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCheckout.whenReady(new Checkout.EmptyListener() {
+                            @Override
+                            public void onReady(BillingRequests requests) {
+                                requests.purchase(ProductTypes.IN_APP, mSku, null, mCheckout.getPurchaseFlow());
+                            }
+                        });
+                    }
+                });
+
+                AppCompatButton buyPremiumButton = findViewById(R.id.detail_button_buy_premium);
+                buyPremiumButton.setText(getString(R.string.detail_buy_premium_with_price, ""));
+                buyPremiumButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCheckout.whenReady(new Checkout.EmptyListener() {
+                            @Override
+                            public void onReady(BillingRequests requests) {
+                                requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                            }
+                        });
+                    }
+                });
             }
         }
 
@@ -139,38 +171,32 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             mInventory = mCheckout.makeInventory();
 
             mSku = "trainingsplan_" + mTrainingsPlan.getId();
+            List<String> skus = new ArrayList<>();
+            skus.add(mSku);
+            skus.add(PaidProducts.PREMIUM);
             mInventory.load(Inventory.Request.create()
                     .loadAllPurchases()
-                    .loadSkus(ProductTypes.IN_APP, mSku), new InventoryCallback());
+                    .loadSkus(ProductTypes.IN_APP, skus), new InventoryCallback());
         }
     }
 
     @Override
     public void onClick(View v) {
-        if(mTrainingsPlan.isPremium() && !planPaided) {
-            mCheckout.whenReady(new Checkout.EmptyListener() {
-                @Override
-                public void onReady(BillingRequests requests) {
-                    requests.purchase(ProductTypes.IN_APP, mSku, null, mCheckout.getPurchaseFlow());
-                }
-            });
+        final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
+        int[] newCurrentPlans = new int[currentPlans.length + 1];
+
+        if(mTrainingsPlan.isOwnPlan()) {
+            newCurrentPlans[0] = -mTrainingsPlan.getId();
         } else {
-            final int[] currentPlans = Configuration.getIntArray(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY);
-            int[] newCurrentPlans = new int[currentPlans.length + 1];
-
-            if(mTrainingsPlan.isOwnPlan()) {
-                newCurrentPlans[0] = -mTrainingsPlan.getId();
-            } else {
-                newCurrentPlans[0] = mTrainingsPlan.getId();
-            }
-
-            for (int i = 0; i < currentPlans.length; i++) {
-                newCurrentPlans[i + 1] = currentPlans[i];
-            }
-            Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
-
-            finish();
+            newCurrentPlans[0] = mTrainingsPlan.getId();
         }
+
+        for (int i = 0; i < currentPlans.length; i++) {
+            newCurrentPlans[i + 1] = currentPlans[i];
+        }
+        Configuration.set(getApplicationContext(), CURRENT_TRAININGSPLANS_ID_KEY, newCurrentPlans);
+
+        finish();
     }
 
     private Inventory mInventory;
@@ -180,7 +206,10 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
             planPaided = true;
 
             AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
-            btnAddTrainingsPlan.setText(R.string.detail_add_trainings_plan);
+            btnAddTrainingsPlan.setVisibility(View.VISIBLE);
+
+            LinearLayoutCompat buyLine = findViewById(R.id.buy_plan_line);
+            buyLine.setVisibility(View.GONE);
         }
 
         @Override
@@ -192,11 +221,22 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private class InventoryCallback implements Inventory.Callback {
         @Override
         public void onLoaded(Inventory.Products products) {
-            if(PaidProducts.ownsProduct(products, mSku)) {
-                planPaided = true;
+            AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
+            btnAddTrainingsPlan.setVisibility(View.VISIBLE);
 
-                AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
-                btnAddTrainingsPlan.setText(R.string.detail_add_trainings_plan);
+            LinearLayoutCompat buyLine = findViewById(R.id.buy_plan_line);
+            buyLine.setVisibility(View.GONE);
+
+            if(PaidProducts.ownsProduct(products, mSku) && PaidProducts.ownsProduct(products, PaidProducts.PREMIUM)) {
+                planPaided = true;
+            } else {
+                String planPrice = PaidProducts.getPice(products, mSku);
+                AppCompatButton buyPlanButton = findViewById(R.id.detail_button_buy_plan);
+                buyPlanButton.setText(getString(R.string.detail_buy_trainingsplan_with_price, planPrice));
+
+                String premiumPrice = PaidProducts.getPice(products, PaidProducts.PREMIUM);
+                AppCompatButton buypremiumButton = findViewById(R.id.detail_button_buy_premium);
+                buypremiumButton.setText(getString(R.string.detail_buy_premium_with_price, premiumPrice));
             }
         }
     }

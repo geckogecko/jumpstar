@@ -14,7 +14,7 @@
 
     <string name="button_ok">OK</string>
     <string name="button_cancel">Cancel</string>
-    <string name="button_buy">Buy</string>
+    <string name="button_buy">%1$s buy</string>
 
     <!-- Home -->
     <string name="start_current_trainingsPlan">Start</string>
@@ -71,6 +71,9 @@
     <string name="detail_exercises_stretch">Stretch:</string>
     <string name="detail_exercises_warmup">Warmup:</string>
     <string name="detail_buy_trainingsplan">Buy plan</string>
+
+    <string name="detail_buy_trainingsplan_with_price">%1$s buy plan</string>
+    <string name="detail_buy_premium_with_price">%1$s buy premium</string>
     <string name="detail_description_default">Custom created plan</string>
 
     <string name="plan_chooser_predefined_plans">Predefined plans</string>

@@ -119,5 +119,35 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/card_margins_content"
             android:text="@string/detail_add_trainings_plan"/>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/buy_plan_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/detail_button_buy_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/card_margins_content"
+                android:layout_weight="1"
+                android:text="@string/detail_buy_trainingsplan_with_price"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/detail_button_buy_premium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/card_margins_content"
+                android:layout_weight="1"
+                android:text="@string/detail_buy_premium_with_price"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 </ScrollView>

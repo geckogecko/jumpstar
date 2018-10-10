@@ -14,4 +14,10 @@ public class PaidProducts {
     public static boolean ownsProduct(Inventory.Products products, String sku) {
         return products.get(ProductTypes.IN_APP).isPurchased(sku);
     }
+
+    public static String getPice(Inventory.Products products, String sku) {
+        String price = products.get(ProductTypes.IN_APP).getSku(sku).price;
+        price = price == null ? "" : price;
+        return price;
+    }
 }

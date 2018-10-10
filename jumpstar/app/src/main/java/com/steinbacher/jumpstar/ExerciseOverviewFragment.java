@@ -59,6 +59,8 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
 
     private boolean mShowAddExerciseButton = false;
 
+    private String mPremiumPrice = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -181,7 +183,7 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
         final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.DialogTheme));
         builder.setTitle(getContext().getString(R.string.buy_premium_dialog_title));
         builder.setMessage(R.string.buy_premium_dialog_text);
-        builder.setPositiveButton(R.string.button_buy, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.button_buy, mPremiumPrice), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mCheckout.whenReady(new Checkout.EmptyListener() {
@@ -362,6 +364,8 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
     private class InventoryCallback implements Inventory.Callback {
         @Override
         public void onLoaded(Inventory.Products products) {
+            mPremiumPrice = PaidProducts.getPice(products, PaidProducts.PREMIUM);
+
             if(PaidProducts.ownsProduct(products, PaidProducts.PREMIUM)) {
                 mHasPremium = true;
             }
