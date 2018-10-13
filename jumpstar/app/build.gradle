@@ -7,8 +7,8 @@ android {
         applicationId "georg.steinbacher.community_jump_trainer"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 8
-        versionName "1.5.0"
+        versionCode 9
+        versionName "1.5.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
