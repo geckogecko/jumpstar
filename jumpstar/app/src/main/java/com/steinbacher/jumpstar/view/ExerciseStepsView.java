@@ -52,7 +52,7 @@ public class ExerciseStepsView extends LinearLayoutCompat{
 
         mImageView = mView.findViewById(R.id.image_view);
         mTextView = mView.findViewById(R.id.text_view);
-        if(!Configuration.getBoolean(mContext, Configuration.SHOW_EXERCISE_DESCRIPTION)) {
+        if(!Configuration.getBoolean(mContext, Configuration.SHOW_EXERCISE_DESCRIPTION, true)) {
             mTextView.setVisibility(View.GONE);
         }
 
