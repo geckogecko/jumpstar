@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.steinbacher.jumpstar.core.Exercise;
 import com.steinbacher.jumpstar.core.StandardExercise;
 import com.steinbacher.jumpstar.core.TimeExercise;
@@ -17,6 +18,7 @@ import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.core.TrainingsPlanEntry;
 import com.steinbacher.jumpstar.drawables.TrainingsPlanProgressDrawable;
 import com.steinbacher.jumpstar.util.Factory;
+import com.steinbacher.jumpstar.util.FirebaseLogs;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingsPlan.ITrainingsPlanListener,
         TrainingsPlanEntry.ITrainingsPlanEntryListener {
@@ -26,6 +28,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     private TrainingsPlan mTraingsPlan;
     private ProgressBar mProgressBar;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
             //TODO remove the case to Exercise
             loadExerciseFragment((Exercise) mTraingsPlan.getCurrentEntry());
         }
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle params = new Bundle();
+        params.putString(FirebaseLogs.PLAN_ID, Integer.toString(mTraingsPlan.getId()));
+        mFirebaseAnalytics.logEvent(FirebaseLogs.PLAN_STARTED_EVENT, params);
     }
 
     @Override

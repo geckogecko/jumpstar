@@ -12,7 +12,7 @@ public class VerticalHeightReader {
     private SQLiteDatabase mDb;
 
     public VerticalHeightReader(Context context) {
-        mDb = new VerticalHeightDbHelper(context).getReadableDatabase();
+        mDb = new DbHelper(context).getReadableDatabase();
     }
 
     private static final String SELECT_ALL = "SELECT " + VerticalHeightContract.VerticalHeightEntry.COLUMN_NAME_HEIGHT + ", " +

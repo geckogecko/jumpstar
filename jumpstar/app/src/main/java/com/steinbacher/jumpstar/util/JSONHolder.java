@@ -57,6 +57,10 @@ public class JSONHolder {
         }
     }
 
+    JSONObject getExercises() {
+        return mExercises;
+    }
+
     JSONObject getTraingsPlan(int id) {
         try {
             return mTraingsPlans.getJSONObject(Integer.toString(id));

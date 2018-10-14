@@ -20,6 +20,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
     private String mDescription;
     private long mEstimatedDurationSeconds;
     private boolean mIsPremium = false;
+    private boolean mIsOwnPlan = false;
 
     private ITrainingsPlanListener mTrainingsPlanListener;
     public interface ITrainingsPlanListener {
@@ -27,7 +28,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
     }
 
     public TrainingsPlan(int id, String name, String description, List<TrainingsPlanEntry> entries, long creationDate,
-                         Rating rating, long estimatedDurationSeconds, boolean isPremium) {
+                         Rating rating, long estimatedDurationSeconds, boolean isPremium, boolean isOwnPlan) {
         mId = id;
         mName = name;
         mDescription = description;
@@ -36,6 +37,7 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
         mRating = rating;
         mEstimatedDurationSeconds = estimatedDurationSeconds;
         mIsPremium = isPremium;
+        mIsOwnPlan = isOwnPlan;
 
         if (mEntries.size() > 0) {
             mCurrentEntry = entries.get(0);
@@ -171,5 +173,13 @@ public class TrainingsPlan extends TrainingsPlanEntry implements TrainingsPlanEn
 
     public boolean isPremium() {
         return mIsPremium;
+    }
+
+    public void setIsOwnPlan(boolean isOwnPlan) {
+        mIsOwnPlan = isOwnPlan;
+    }
+
+    public boolean isOwnPlan() {
+        return mIsOwnPlan;
     }
 }

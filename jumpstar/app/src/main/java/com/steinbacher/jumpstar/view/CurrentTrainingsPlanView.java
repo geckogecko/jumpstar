@@ -2,29 +2,31 @@ package com.steinbacher.jumpstar.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.steinbacher.jumpstar.Configuration;
 import com.steinbacher.jumpstar.R;
 import com.steinbacher.jumpstar.TrainingActivity;
 import com.steinbacher.jumpstar.TrainingsPlanDetailActivity;
 import com.steinbacher.jumpstar.core.TrainingsPlan;
 import com.steinbacher.jumpstar.drawables.CategorySummaryDrawable;
+import com.steinbacher.jumpstar.util.DrawableLoader;
+import com.steinbacher.jumpstar.util.FirebaseLogs;
 
 import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_ID;
+import static com.steinbacher.jumpstar.TrainingsPlanDetailActivity.TRAININGS_PLAN_IS_OWN_PLAN;
 
 /**
  * Created by georg on 04.04.18.
@@ -74,6 +76,7 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TrainingsPlanDetailActivity.class);
                 intent.putExtra(TRAININGS_PLAN_ID, mTrainingsPlan.getId());
+                intent.putExtra(TRAININGS_PLAN_IS_OWN_PLAN, mTrainingsPlan.isOwnPlan());
                 mContext.startActivity(intent);
             }
         });
@@ -86,17 +89,7 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
 
         //image
         AppCompatImageView imgView = findViewById(R.id.image);
-        final String imageName = "trainingsplan_" + mTrainingsPlan.getId();
-        final int resourceId = mContext.getResources().getIdentifier(imageName, "drawable",
-                mContext.getPackageName());
-
-        if(resourceId != 0) {
-            Drawable d = getResources().getDrawable(resourceId);
-            imgView.setImageDrawable(d);
-        } else {
-            Log.e(TAG, "image for trainingsplan: " + imageName + " not found");
-            //TODO what should we do if the image is not found?
-        }
+        DrawableLoader.loadPlanImage(getContext(), mTrainingsPlan, imgView);
     }
 
     private void setCategorySummary(TrainingsPlan trainingsPlan) {
@@ -125,8 +118,9 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
             int[] currentConfig = Configuration.getIntArray(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY);
             int[] newConfig = new int[currentConfig.length-1];
             int j = 0;
+            final int planId = mTrainingsPlan.isOwnPlan() ? -mTrainingsPlan.getId() : mTrainingsPlan.getId();
             for (int i = 0; i < currentConfig.length; i++) {
-                if(currentConfig[i] != mTrainingsPlan.getId()) {
+                if(currentConfig[i] != planId) {
                     newConfig[j] = currentConfig[i];
                     j++;
                 }
@@ -134,6 +128,11 @@ public class CurrentTrainingsPlanView extends LinearLayoutCompat implements View
 
             Configuration.set(mContext, Configuration.CURRENT_TRAININGSPLANS_ID_KEY, newConfig);
             mListener.onRemoved();
+
+            FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+            Bundle params = new Bundle();
+            params.putString(FirebaseLogs.PLAN_ID, Integer.toString(mTrainingsPlan.getId()));
+            firebaseAnalytics.logEvent(FirebaseLogs.PLAN_REMOVED_EVENT, params);
         }
         return false;
     }

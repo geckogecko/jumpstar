@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:animateLayoutChanges="true">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_view"
+        android:layout_height="70sp"
+        android:layout_width="50sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:scaleType="fitCenter" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_exercise_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/inner_card_margins"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:src="@drawable/baseline_add_white_24"/>
+</android.support.v7.widget.LinearLayoutCompat>
