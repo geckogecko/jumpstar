@@ -50,7 +50,7 @@ public class JumpstarPlansFragmentPage extends Fragment{
 
         @Override
         protected List<TrainingsPlan> doInBackground(Void... params) {
-            List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans();
+            List<TrainingsPlan> trainingsPlanList = Factory.getAllTrainingsPlans("ALL");
             List<TrainingsPlan> filteredTrainingsPlanList = new ArrayList<>();
             for (TrainingsPlan trainingsPlan : trainingsPlanList) {
                 boolean showPlan = true;

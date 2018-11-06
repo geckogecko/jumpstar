@@ -154,6 +154,28 @@ public class Factory {
         return trainingsPlans;
     }
 
+    public static List<TrainingsPlan> getAllTrainingsPlans(String sortOrderName) {
+        JSONArray trainingsPlanSortOrdersJSON = JSONHolder.getInstance().getTrainingsplanSortOrder(sortOrderName);
+
+        List<TrainingsPlan> trainingsPlans = new ArrayList<>();
+        for (int i = 0; i <= trainingsPlanSortOrdersJSON.length(); i++) {
+            TrainingsPlan trainingsPlan = null;
+            try {
+                trainingsPlan = createTraingsPlan(trainingsPlanSortOrdersJSON.getInt(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if(trainingsPlan != null) {
+                trainingsPlans.add(trainingsPlan);
+            } else {
+                Log.e(TAG, "getAllTrainingsPlans: createTraingsPlan() returned null. Traininsplan not added!");
+            }
+        }
+
+        return trainingsPlans;
+    }
+
     public static Exercise getExercise(Exercise.Type type, int exerciseId) {
         try {
             JSONObject exercises = JSONHolder.getInstance().getExercises().getJSONObject(type.toString().toUpperCase());
