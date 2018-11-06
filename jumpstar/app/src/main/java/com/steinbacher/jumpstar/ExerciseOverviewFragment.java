@@ -43,6 +43,8 @@ import org.solovyev.android.checkout.Purchase;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by stge on 24.09.18.
  */
@@ -62,6 +64,8 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
     private boolean mShowAddExerciseButton = false;
 
     private String mPremiumPrice = "";
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +112,7 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 .loadAllPurchases()
                 .loadSkus(ProductTypes.IN_APP, PaidProducts.PREMIUM), new InventoryCallback());
     }
+
 
     @Override
     public void onAddExerciseClicked(Exercise clickedExercise) {
@@ -191,7 +196,18 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 mCheckout.whenReady(new Checkout.EmptyListener() {
                     @Override
                     public void onReady(BillingRequests requests) {
-                        requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                        int statusCode = requests.isBillingSupported(ProductTypes.IN_APP);
+                        if(statusCode == 0) {
+                            requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                        } else {
+                            Toast.makeText(getContext(), getString(R.string.buy_error), Toast.LENGTH_SHORT).show();
+
+                            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+                            Bundle params = new Bundle();
+                            params.putString(FirebaseLogs.BILLING_NOT_AVAILABLE, Integer.toString(statusCode));
+                            mFirebaseAnalytics.logEvent(FirebaseLogs.BILLING_NOT_AVAILABLE_EVENT, params);
+                        }
+
                     }
                 });
                 dialog.dismiss();
@@ -358,6 +374,7 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
 
         @Override
         public void onError(int response, Exception e) {
+            Log.e(TAG, "onError: " + response + " " +e);
             Toast.makeText(getContext(), getString(R.string.buy_premium_dialog_fail), Toast.LENGTH_SHORT).show();
             Log.e(TAG, "onError: Purchase failed");
         }
