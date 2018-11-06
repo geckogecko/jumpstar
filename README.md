@@ -7,7 +7,7 @@
 
 <img src="https://raw.githubusercontent.com/geckogecko/jumpstar/master/development/playstore/merge_from_ofoct.jpg" alt="Screenshots" height="350"/>
 
-Detailed plans for your vertical jump training. Work through the exercises, increase your jump height and track your progress. Plans with and without equipment doable at home or at your local gym. Without any advertisements!
+Detailed programs for your vertical jump training. Work through the exercises, increase your jump height and track your progress. Plans with and without equipment doable at home or at your local gym. Without any advertisements! The goal of this app is to support you on your goal on jumping higher. No matter if your goal is to dunk a basketball, jump higher during volleyball or just beeing a better athlete. 
 
 Features:
 - Different workout plans
