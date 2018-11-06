@@ -308,6 +308,33 @@
           "description": "Jump from the seated position as high as possible landing softly on top of the second box."
         }
       ]
+    },
+    "15": {
+      "name": "Standing two-arm overhead throw",
+      "difficulty": 6,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        10
+      ],
+      "equipment": [
+        6
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start with your feet together and the medicine ball in both hands above your head."
+        },
+        {
+          "nr": 1,
+          "description": "Flex your knees and follow throw with a hig thrust."
+        },
+        {
+          "nr": 2,
+          "description": "Throw the ball as far as you can or against a wall in front of you. Land with your feet on the same spot."
+        }
+      ]
     }
   },
   "TIME": {

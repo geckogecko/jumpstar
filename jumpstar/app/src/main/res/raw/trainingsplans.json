@@ -253,5 +253,18 @@
                 "id": 17
             }
         ]
+    },
+    "6": {
+        "name": "Explosive jump workouts 2",
+        "description": "The focus lies on increasing your explosiveness, your power and your speed.",
+        "creationDate": 1541528949,
+        "estimatedTime": 2400,
+        "isPremium": false,
+        "exercises": [
+            {
+                "type": "STANDARD",
+                "id": 15
+            }
+        ]
     }
 }
