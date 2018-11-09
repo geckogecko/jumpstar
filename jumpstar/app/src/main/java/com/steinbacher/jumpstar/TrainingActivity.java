@@ -122,7 +122,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingsPlan
 
     @Override
     public void onEntryCompleted(TrainingsPlanEntry completedEntry) {
-        //TODO return something
+        FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
+        Bundle params = new Bundle();
+        params.putString(FirebaseLogs.PLAN_ID, Integer.toString(((TrainingsPlan)completedEntry).getId()));
+        firebaseAnalytics.logEvent(FirebaseLogs.PLAN_FINISHED_EVENT, params);
+
         finish();
     }
 }

@@ -253,5 +253,46 @@
                 "id": 17
             }
         ]
+    },
+    "6": {
+        "name": "Explosive workouts",
+        "description": "The focus of this program is increasing your explosiveness, your power and your speed in your legs and core.",
+        "creationDate": 1541528949,
+        "estimatedTime": 2400,
+        "isPremium": false,
+        "exercises": [
+            {
+                "type": "TIME",
+                "id": 1
+            },
+            {
+                "type": "STANDARD",
+                "id": 15
+            },
+            {
+                "type": "STANDARD",
+                "id": 16
+            },
+            {
+                "type": "STANDARD",
+                "id": 12
+            },
+            {
+                "type": "STANDARD",
+                "id": 17
+            },
+            {
+                "type": "STANDARD",
+                "id": 7
+            },
+            {
+                "type": "STANDARD",
+                "id": 18
+            },
+            {
+                "type": "TIME",
+                "id": 12
+            }
+        ]
     }
 }

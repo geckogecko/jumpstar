@@ -7,14 +7,14 @@
 
 <img src="https://raw.githubusercontent.com/geckogecko/jumpstar/master/development/playstore/merge_from_ofoct.jpg" alt="Screenshots" height="350"/>
 
-Weekly new exercises for vertical jump training. Work through the exercises, increase your jump height and track your progress. Plans with and without equipment doable at your home or at your gym. Without any advertisements inside this open-source app!
+Detailed programs for your vertical jump training. Work through the exercises, increase your jump height and track your progress. Plans with and without equipment doable at home or at your local gym. Without any advertisements! The goal of this app is to support you on your goal on jumping higher. No matter if your goal is to dunk a basketball, jump higher during volleyball or just beeing a better athlete. 
 
 Features:
 - Different workout plans
 - Plans with and without equipment
-- Detailed descriptions
+- Create your own plan with the existing exercises
+- Detailed exercise descriptions
 - Track your progress
-- New workouts weekly
 - No advertisements
 
 ## Community
@@ -27,4 +27,5 @@ Features:
 * Android-Support-Preference-V7-Fix | [Source](https://github.com/Gericop/Android-Support-Preference-V7-Fix) | [License](https://github.com/Gericop/Android-Support-Preference-V7-Fix#license-notes)
 * Android-RateThisApp | [Source](https://github.com/kobakei/Android-RateThisApp) | [License](https://github.com/kobakei/Android-RateThisApp/blob/master/LICENSE)
 * BottomNavigationViewEx | [Source](https://github.com/ittianyu/BottomNavigationViewEx) | [License](https://github.com/ittianyu/BottomNavigationViewEx)
+* Checkout | [Source](https://github.com/serso/android-checkout) | [License](https://github.com/serso/android-checkout/blob/master/LICENSE.txt)
 

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +141,17 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
                         mCheckout.whenReady(new Checkout.EmptyListener() {
                             @Override
                             public void onReady(BillingRequests requests) {
-                                requests.purchase(ProductTypes.IN_APP, mSku, null, mCheckout.getPurchaseFlow());
+                                int statusCode = requests.isBillingSupported(ProductTypes.IN_APP);
+                                if(statusCode == 0) {
+                                    requests.purchase(ProductTypes.IN_APP, mSku, null, mCheckout.getPurchaseFlow());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), getString(R.string.buy_error), Toast.LENGTH_SHORT).show();
+
+                                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
+                                    Bundle params = new Bundle();
+                                    params.putString(FirebaseLogs.BILLING_NOT_AVAILABLE, Integer.toString(statusCode));
+                                    mFirebaseAnalytics.logEvent(FirebaseLogs.BILLING_NOT_AVAILABLE_EVENT, params);
+                                }
                             }
                         });
                     }
@@ -154,7 +165,17 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
                         mCheckout.whenReady(new Checkout.EmptyListener() {
                             @Override
                             public void onReady(BillingRequests requests) {
-                                requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                                int statusCode = requests.isBillingSupported(ProductTypes.IN_APP);
+                                if(statusCode == 0) {
+                                    requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), getString(R.string.buy_error), Toast.LENGTH_SHORT).show();
+
+                                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
+                                    Bundle params = new Bundle();
+                                    params.putString(FirebaseLogs.BILLING_NOT_AVAILABLE, Integer.toString(statusCode));
+                                    mFirebaseAnalytics.logEvent(FirebaseLogs.BILLING_NOT_AVAILABLE_EVENT, params);
+                                }
                             }
                         });
                     }
@@ -228,14 +249,14 @@ public class TrainingsPlanDetailActivity extends AppCompatActivity implements Vi
     private class InventoryCallback implements Inventory.Callback {
         @Override
         public void onLoaded(Inventory.Products products) {
-            AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
-            btnAddTrainingsPlan.setVisibility(View.VISIBLE);
-
-            LinearLayoutCompat buyLine = findViewById(R.id.buy_plan_line);
-            buyLine.setVisibility(View.GONE);
-
-            if(PaidProducts.ownsProduct(products, mSku) && PaidProducts.ownsProduct(products, PaidProducts.PREMIUM)) {
+            if(PaidProducts.ownsProduct(products, mSku) || PaidProducts.ownsProduct(products, PaidProducts.PREMIUM)) {
                 planPaided = true;
+
+                AppCompatButton btnAddTrainingsPlan = findViewById(R.id.detail_button_add_trainings_plan);
+                btnAddTrainingsPlan.setVisibility(View.VISIBLE);
+
+                LinearLayoutCompat buyLine = findViewById(R.id.buy_plan_line);
+                buyLine.setVisibility(View.GONE);
             } else {
                 String planPrice = PaidProducts.getPice(products, mSku);
                 AppCompatButton buyPlanButton = findViewById(R.id.detail_button_buy_plan);

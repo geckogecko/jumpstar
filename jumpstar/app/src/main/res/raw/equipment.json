@@ -18,5 +18,9 @@
   "5": {
     "name": "Box",
     "type": "BOTH"
+  },
+  "6": {
+    "name": "Medicine ball",
+    "type": "BOTH"
   }
 }

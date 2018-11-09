@@ -98,4 +98,5 @@
     <string name="buy_premium_dialog_text">To add more than one custom plan please buy premium or delete your current custom plan.</string>
     <string name="buy_premium_dialog_success">Your purchase was successful!</string>
     <string name="buy_premium_dialog_fail">Your purchase failed!</string>
+    <string name="buy_error">An error occurred while processing your purchase!</string>
 </resources>

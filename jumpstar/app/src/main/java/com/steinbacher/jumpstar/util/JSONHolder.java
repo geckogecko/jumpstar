@@ -2,6 +2,7 @@ package com.steinbacher.jumpstar.util;
 
 import android.content.Context;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +18,7 @@ public class JSONHolder {
     private JSONObject mExercises;
     private JSONObject mTraingsPlans;
     private JSONObject mEquipment;
+    private JSONObject mTraingsPlanSortOrder;
 
     private static final JSONHolder ourInstance = new JSONHolder();
     public static JSONHolder getInstance() {
@@ -26,7 +28,10 @@ public class JSONHolder {
     }
 
     public boolean loadAll(Context context) {
-        return loadExercises(context) && loadTrainingsPlans(context) && loadEquipment(context);
+        return loadExercises(context) &&
+                loadTrainingsPlans(context) &&
+                loadEquipment(context) &&
+                loadTrainingsplanSortOrder(context);
     }
 
     private boolean loadExercises(Context context) {
@@ -43,6 +48,12 @@ public class JSONHolder {
 
     private boolean loadEquipment(Context context) {
         mEquipment = JSONLoader.get(context, R.raw.equipment);
+
+        return mEquipment != null;
+    }
+
+    private boolean loadTrainingsplanSortOrder(Context context) {
+        mTraingsPlanSortOrder = JSONLoader.get(context, R.raw.trainingsplan_display_order);
 
         return mEquipment != null;
     }
@@ -83,4 +94,14 @@ public class JSONHolder {
         }
     }
     JSONObject getEquipments() {return mEquipment;}
+
+
+    JSONArray getTrainingsplanSortOrder(String sortCategory) {
+        try {
+            return mTraingsPlanSortOrder.getJSONArray(sortCategory);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
