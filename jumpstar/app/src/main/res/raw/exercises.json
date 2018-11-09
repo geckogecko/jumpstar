@@ -312,7 +312,7 @@
     "15": {
       "name": "Standing two-arm overhead throw",
       "difficulty": 6,
-      "targetArea": "LEGS",
+      "targetArea": "CORE",
       "sets": 3,
       "category": "PLYOMETRIC",
       "repetitions": [
@@ -339,7 +339,7 @@
     "16": {
       "name": "Vertical swing",
       "difficulty": 6,
-      "targetArea": "LEGS",
+      "targetArea": "CORE",
       "sets": 3,
       "category": "PLYOMETRIC",
       "repetitions": [
@@ -356,6 +356,58 @@
         {
           "nr": 1,
           "description": "Keep your hands extended and swing the medicine ball up and down."
+        }
+      ]
+    },
+    "17": {
+      "name": "Floor kip",
+      "difficulty": 9,
+      "targetArea": "CORE",
+      "sets": 2,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        8
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start on the ground with your knees bent."
+        },
+        {
+          "nr": 1,
+          "description": "Roll backwards till your feet are past your head."
+        },
+        {
+          "nr": 2,
+          "description": "Rapidly extend your legs upwards while pushing against the floor with your hands."
+        },
+        {
+          "nr": 3,
+          "description": "Bring your legs under your body and land on your feet."
+        }
+      ]
+    },
+    "18": {
+      "name": "Lateral bound",
+      "difficulty": 5,
+      "targetArea": "LEGS",
+      "sets": 3,
+      "category": "PLYOMETRIC",
+      "repetitions": [
+        8
+      ],
+      "steps": [
+        {
+          "nr": 0,
+          "description": "Start in a half squat position."
+        },
+        {
+          "nr": 1,
+          "description": "Move your lead leg inwards while you shift your wight on the outer leg."
+        },
+        {
+          "nr": 2,
+          "description": "Immediately push off and extend your lead leg to the side as far as possible. Land and immediately repeat to the other side."
         }
       ]
     }
