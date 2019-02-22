@@ -196,18 +196,7 @@ public class ExerciseOverviewFragment extends Fragment implements ExerciseOvervi
                 mCheckout.whenReady(new Checkout.EmptyListener() {
                     @Override
                     public void onReady(BillingRequests requests) {
-                        int statusCode = requests.isBillingSupported(ProductTypes.IN_APP);
-                        if(statusCode == 0) {
-                            requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
-                        } else {
-                            Toast.makeText(getContext(), getString(R.string.buy_error), Toast.LENGTH_SHORT).show();
-
-                            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
-                            Bundle params = new Bundle();
-                            params.putString(FirebaseLogs.BILLING_NOT_AVAILABLE, Integer.toString(statusCode));
-                            mFirebaseAnalytics.logEvent(FirebaseLogs.BILLING_NOT_AVAILABLE_EVENT, params);
-                        }
-
+                        requests.purchase(ProductTypes.IN_APP, PaidProducts.PREMIUM, null, mCheckout.getPurchaseFlow());
                     }
                 });
                 dialog.dismiss();
