@@ -25,6 +25,8 @@ public class PreferenceFragment extends PreferenceFragmentCompatDividers impleme
         PreferenceManager.setDefaultValues(getContext(), R.xml.preferences,
                 false);
         initSummary(getPreferenceScreen());
+
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {

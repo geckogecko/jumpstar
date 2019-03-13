@@ -56,4 +56,12 @@
             android:defaultValue="true">
         </CheckBoxPreference>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/preferences_legal_title">
+        <Preference android:title="@string/preferences_privacy_policy" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="https://github.com/geckogecko/jumpstar/blob/master/privacy_policy.md" />
+        </Preference>
+    </PreferenceCategory>
 </android.support.v7.preference.PreferenceScreen>

@@ -58,6 +58,8 @@
     <string name="preferences_equipment_gym">Gym</string>
     <string name="preferences_unit_local_title">Measurement system</string>
     <string name="preferences_goal_title">Your jump height goal</string>
+    <string name="preferences_legal_title">Legal</string>
+    <string name="preferences_privacy_policy">Privacy policy</string>
 
 
     <!-- TrainingsPlanDetail-->
